@@ -1,23 +1,25 @@
 /**
- * HTML 조립 결과 + (선택) 기존 파일 sha → GitHub Contents API PUT 바디
+ * HTML 조립 결과 + 기존 파일 blob SHA → GitHub Contents API PUT 바디
+ *
+ * SHA는 반드시 Contents API의 type=file blob SHA만 사용.
+ * (커밋 SHA / 다른 경로 SHA를 넣으면 409: is at X but expected Y)
  */
 module.exports = function ($input, helpers) {
   const cfg = (helpers && helpers.runConfig) || {};
   let htmlItem = {};
-  let existing = $input.first().json || {};
+  let existing = null;
 
   try {
     if (helpers && typeof helpers.getJson === 'function') {
       htmlItem = helpers.getJson('HTML 조립')
         || helpers.getJson('AI HTML 파싱')
         || {};
-      const fromSha = helpers.getJson('GitHub 페이지 sha 조회');
-      if (fromSha && (fromSha.sha || fromSha.message)) existing = fromSha;
     }
   } catch (_) {}
 
   if (!htmlItem.html) {
-    htmlItem = $input.first().json || {};
+    const incoming = $input.first().json || {};
+    if (incoming.html) htmlItem = incoming;
   }
 
   const html = String(htmlItem.html || '');
@@ -35,9 +37,37 @@ module.exports = function ($input, helpers) {
   const pathName = `pages/${pageSlug}.html`;
   const vercelBase = String(cfg.vercelBaseUrl || 'https://figma-mcp-test-nu.vercel.app').replace(/\/$/, '');
   const includeCount = htmlItem.includeCount || htmlItem.componentCount || 0;
-  const isUpdate = Boolean(existing && existing.sha && existing.type === 'file');
   const mode = htmlItem.generationMode || 'pagespec-assemble';
 
+  function isBlobFileMeta(meta, expectPath) {
+    if (!meta || typeof meta !== 'object') return false;
+    if (meta.message && !meta.sha) return false;
+    if (meta.type !== 'file') return false;
+    if (!/^[0-9a-f]{40}$/i.test(String(meta.sha || ''))) return false;
+    if (meta.path && String(meta.path) !== expectPath) return false;
+    // 커밋 객체를 오인한 경우 걸러냄 (commit tree/parents 등)
+    if (meta.parents || meta.commit || meta.files) return false;
+    return true;
+  }
+
+  // 1) 로더가 PUT 직전 새로 조회한 메타 우선
+  if (isBlobFileMeta(helpers && helpers.freshPageMeta, pathName)) {
+    existing = helpers.freshPageMeta;
+  }
+
+  // 2) sha 조회 노드
+  if (!existing && helpers && typeof helpers.getJson === 'function') {
+    const fromSha = helpers.getJson('GitHub 페이지 sha 조회');
+    if (isBlobFileMeta(fromSha, pathName)) existing = fromSha;
+  }
+
+  // 3) $input (sha 조회 → 커밋 준비 연결일 때)
+  if (!existing) {
+    const incoming = $input.first().json || {};
+    if (isBlobFileMeta(incoming, pathName)) existing = incoming;
+  }
+
+  const isUpdate = Boolean(existing);
   const content = Buffer.from(html, 'utf8').toString('base64');
   const nodeId = String(cfg.nodeId || htmlItem.sourceNodeId || '').trim();
   const body = {
@@ -64,6 +94,12 @@ module.exports = function ($input, helpers) {
       generationMode: mode,
       warnings: htmlItem.warnings || [],
       sectionNames: htmlItem.sectionNames || [],
+      usedBlobSha: isUpdate ? existing.sha : null,
+      shaSource: isUpdate
+        ? ((helpers && helpers.freshPageMeta && helpers.freshPageMeta.sha === existing.sha)
+          ? 'fresh'
+          : 'node')
+        : 'create',
     },
   }];
 };
