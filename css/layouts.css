@@ -1,0 +1,76 @@
+.layout-page {
+  min-height: 100vh;
+  background: var(--layout-page-background, #f4f5f6);
+}
+
+.layout-page__main {
+  /* fixed GNB(.gnb) 높이만큼 확보 — 48px면 컨텐츠가 헤더에 가림 */
+  padding: var(--layout-page-padding-top, 12.8rem) 0
+    var(--layout-page-padding-bottom, 100px);
+}
+
+.layout-page__container {
+  width: min(
+    var(--layout-page-max-width, 1272px),
+    calc(100% - var(--layout-page-gutter, 40px))
+  );
+  margin: 0 auto;
+}
+
+.layout-detail {
+  display: grid;
+  gap: var(--layout-detail-gap, 40px);
+}
+
+.layout-detail__header:empty,
+.layout-detail__actions:empty {
+  display: none;
+}
+
+.layout-detail__surface {
+  padding: var(--layout-detail-padding, 60px);
+  border-radius: var(--layout-detail-radius, 60px);
+  background: var(--layout-detail-background, #fff);
+  box-shadow: var(
+    --layout-detail-shadow,
+    0 2px 28px rgb(0 0 0 / 5%)
+  );
+}
+
+.layout-detail__content {
+  display: grid;
+  gap: var(--layout-detail-content-gap, 40px);
+}
+
+.layout-detail__actions {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--layout-detail-actions-gap, 40px);
+}
+
+@media (max-width: 767px) {
+  .layout-page__main {
+    padding: 10.8rem 0 60px;
+  }
+
+  .layout-page__container {
+    width: min(100% - 32px, var(--layout-page-max-width, 1272px));
+  }
+
+  .layout-detail {
+    gap: 24px;
+  }
+
+  .layout-detail__surface {
+    padding: 32px 20px;
+    border-radius: 32px;
+  }
+
+  .layout-detail__content {
+    gap: 24px;
+  }
+
+  .layout-detail__actions {
+    margin-top: 32px;
+  }
+}

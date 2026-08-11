@@ -1,0 +1,676 @@
+<!-- GNB: Desktop type: "default" -->
+<header class="gnb" role="banner">
+  <div class="gnb-wrapper">
+    <!-- 유틸리티 바 -->
+    <div class="gnb__utility">
+      <div class="gnb__utility-inner">
+        <nav class="gnb__utility-nav" aria-label="유틸리티 메뉴">
+          <a href="#" class="gnb__utility-link">
+            <svg class="icon icon--20" aria-hidden="true">
+              <use href="#icon-myinfo"></use>
+            </svg>
+            <span>마이페이지</span>
+          </a>
+          <a href="#" class="gnb__utility-link">
+            <svg class="icon icon--20" aria-hidden="true">
+              <use href="#icon-login"></use>
+            </svg>
+            <span>로그인</span>
+          </a>
+          <a href="#" class="gnb__utility-link gnb__utility-link--logout">
+            <svg class="icon icon--20" aria-hidden="true">
+              <use href="#icon-logout"></use>
+            </svg>
+            <span>로그아웃</span>
+          </a>
+          <button type="button" class="gnb__utility-link js-theme-dark" aria-label="다크모드">
+            <svg class="icon icon--20" aria-hidden="true">
+              <use href="#icon-darkmode"></use>
+            </svg>
+            <span>다크모드</span>
+          </button>
+          <!--
+            2026-04-30 설계변경
+            - hidden 속성 추가
+          -->
+          <button type="button" class="gnb__utility-link js-theme-light" aria-label="라이트모드" hidden>
+            <svg class="icon icon--20" aria-hidden="true">
+              <use href="#icon-lightmode"></use>
+            </svg>
+            <span>라이트모드</span>
+          </button>
+          <!-- // 2026-04-30 설계변경 -->
+        </nav>
+      </div>
+    </div>
+
+    <!-- 메인 헤더 -->
+    <div class="gnb__main">
+      <div class="gnb__main-inner">
+        <!-- 로고 -->
+        <div class="gnb__logo">
+          <a href="/" class="gnb__logo-link" aria-label="노란우산 홈으로 이동">
+            <div data-include-path="/components/logoFull.html"></div>
+          </a>
+        </div>
+
+        <!-- 네비게이션 -->
+        <nav class="gnb__nav" aria-label="메인 네비게이션">
+          <div class="gnb__mobile-header">
+            <a href="#" class="gnb__utility-link">
+              <svg class="icon icon--20" aria-hidden="true">
+                <use href="#icon-logout"></use>
+              </svg>
+              <span>로그아웃</span>
+            </a>
+            <!-- 2026-04-30 설계변경 -->
+            <div class="gnb__mobile-actions" role="group" aria-label="검색 및 메뉴 닫기">
+              <button type="button" class="gnb__menu-search" aria-label="검색">
+                <svg class="icon icon--24" aria-hidden="true">
+                  <use href="#icon-search"></use>
+                </svg>
+              </button>
+              <button type="button" class="gnb__menu-close" aria-label="메뉴 닫기">
+                <svg class="icon icon--24" aria-hidden="true">
+                  <use href="#icon-close"></use>
+                </svg>
+              </button>
+            </div>
+            <!-- // 2026-04-30 설계변경 -->
+          </div>
+          <!-- Navigation Wrapper for Sticky & toggling -->
+          <div class="gnb__nav-list-wrapper">
+            <ul class="gnb__nav-list">
+              <li class="gnb__nav-item">
+                <a href="#" class="gnb__nav-link" data-menu-target="submenu-1">내 공제</a>
+              </li>
+              <li class="gnb__nav-item">
+                <a href="#" class="gnb__nav-link" data-menu-target="submenu-2">복지+</a>
+              </li>
+              <li class="gnb__nav-item">
+                <a href="#" class="gnb__nav-link" data-menu-target="submenu-3">경영자문</a>
+              </li>
+              <li class="gnb__nav-item">
+                <a href="#" class="gnb__nav-link" data-menu-target="submenu-6">노란우산</a>
+              </li>
+              <li class="gnb__nav-item">
+                <a href="#" class="gnb__nav-link" data-menu-target="submenu-5">가입·혜택</a>
+              </li>
+              <li class="gnb__nav-item">
+                <a href="#" class="gnb__nav-link" data-menu-target="submenu-7">이벤트</a>
+              </li>
+              <li class="gnb__nav-item">
+                <a href="#" class="gnb__nav-link" data-menu-target="submenu-8">고객센터</a>
+              </li>
+              <li class="gnb__nav-item">
+                <a href="#" class="gnb__nav-link" data-menu-target="submenu-4">정부지원사업</a>
+              </li>
+              
+              <!-- 2026-04-30 설계변경 -->
+              <li class="gnb__nav-item gnb__search">
+                <a href="#" class="gnb__nav-link gnb__search-group" data-menu-target="search-layer">
+                  <span>통합검색</span>
+                  <svg class="icon icon--24" aria-hidden="true">
+                    <use href="#icon-search"></use>
+                  </svg>
+                </a>
+              </li>
+              <!-- // 2026-04-30 설계변경 -->
+            </ul>
+            <button class="gnb__nav-toggle" aria-label="메뉴 전체보기">
+              <svg class="icon icon--16" aria-hidden="true">
+                <use href="#icon-chevron-down"></use>
+              </svg>
+            </button>
+          </div>
+          <!-- Mobile Profile Section -->
+          <div class="gnb__mobile-profile">
+            <div class="gnb__mobile-profile-user">
+              <span class="name">김우산님</span>
+
+              <!-- 2026-04-30 설계변경 -->
+              <!-- 멤버십 적용 후/gold, silver, bronze -->
+              <a href="" class="member-badge member-badge--bronze">
+                <img src="/assets/img/icons/membership-bronze.png" alt="">
+                <span class="member-badge__text">bronze</span>
+                <svg class="icon icon--12" aria-hidden="true">
+                  <use href="#icon-chevron-right"></use>
+                </svg>
+              </a>
+
+              <!-- 멤버십 적용전 -->
+              <a href="" class="member-badge">
+                <span class="member-badge__text">노란우산 회원</span>
+              </a>
+              <a href="" class="member-badge member-badge--none">
+                <span class="member-badge__text">일반회원</span>
+              </a>
+              <!-- // 2026-04-30 설계변경 -->
+            </div>
+            <button type="button" class="gnb__mobile-search-bar" aria-label="찾고싶은 메뉴, 키워드를 검색하세요">
+              
+              <!--
+                2026-04-30 설계변경
+                - 위치 변경
+              -->
+              <span class="gnb__mobile-search-text">찾으시는 정보가 있으신가요?</span>
+              <!-- // 2026-04-30 설계변경 -->
+              <span class="gnb__mobile-search-icon" aria-hidden="true">
+                <svg class="icon icon--20" aria-hidden="true">
+                  <use href="#icon-search"></use>
+                </svg>
+              </span>
+            </button>
+            <div class="gnb__mobile-quick-menu">
+              <a href="#" class="quick-link">
+                <!-- 2026-04-30 설계변경 -->
+                <svg class="icon icon--24" aria-hidden="true">
+                  <use href="#icon-notice"></use>
+                </svg>
+                <span>공지사항</span>
+                <!-- // 2026-04-30 설계변경 -->
+              </a>
+              <a href="#" class="quick-link">
+                <svg class="icon icon--24" aria-hidden="true">
+                  <use href="#icon-work-identity"></use>
+                </svg>
+                <span>마이페이지</span>
+              </a>
+              <a href="#" class="quick-link">
+                <!-- 2026-04-30 설계변경 -->
+                <svg class="icon icon--24" aria-hidden="true">
+                  <use href="#icon-promotion"></use>
+                </svg>
+                <span>프로모션</span>
+                <!-- // 2026-04-30 설계변경 -->
+              </a>
+              <a href="#" class="quick-link">
+                <svg class="icon icon--24" aria-hidden="true">
+                  <use href="#icon-volunteer-activism"></use>
+                </svg>
+                <span>이벤트</span>
+              </a>
+            </div>
+          </div>
+          <div class="gnb__mobile-banner-wrapper">
+            <!-- 2026-05-14 추가 -->
+            <div class="gnb__mobile-banner">
+              <img class="gnb__mobile-banner-img" src="/assets/img/pages/main/action-card-16.png" alt="">
+              <div class="gnb__mobile-banner-text">
+                <p class="gnb__mobile-banner-title">
+                  <span>
+                    김길동 자문위원과 완료한 상담이 있네요.<br>
+                    후기를 작성해 주세요.
+                  </span>
+                  <svg class="icon icon--20" aria-hidden="true">
+                    <use href="#icon-chevron-right"></use>
+                  </svg>
+                </p>
+              </div>
+            </div>
+
+            <!-- 2026-05-14 추가 -->
+            <div class="gnb__mobile-banner">
+              <img class="gnb__mobile-banner-img" src="/assets/img/pages/contents/kakaotalk.svg" alt="">
+              <div class="gnb__mobile-banner-text">
+                <p class="gnb__mobile-banner-title">
+                  <span>
+                    카카오톡 채널을 추가하고 노란우산의 공지와 혜택 소식을 빠르게 받아보세요!
+                  </span>
+                  <svg class="icon icon--20" aria-hidden="true">
+                    <use href="#icon-chevron-right"></use>
+                  </svg>
+                </p>
+              </div>
+            </div>
+            <!-- // 2026-05-14 추가 -->
+          </div>
+          <!-- Separated Submenus Container -->
+          <div class="gnb__submenus">
+            <!-- 내공제 -->
+            <ul class="gnb__nav-submenu submenu-1" id="submenu-1">
+              <li class="gnb__nav-submenu-item">
+                <div class="gnb__nav-submenu-item-title">
+                  <h3 class="gnb__nav-submenu-item-title-text">
+                    <img class="icon--26" src="/assets/img/gnb/gnb-menu-1.png" alt="">
+                    내 공제
+                  </h3>
+                  <!-- 2026-04-30 설계변경 -->
+                  <a href="#" class="gnb__nav-submenu-item-title-link">
+                    <img src="/assets/img/gnb/img-link-01.png" alt="">
+                  </a>
+                  <!-- // 2026-04-30 설계변경 -->
+                </div>
+                <div class="gnb__nav-submenu-item-content">
+                  <div class="gnb__nav-submenu-item-content-wrapper">
+                    <span>공제계약관리</span>
+                    <a href="#">계약정보</a>
+                    <a href="#">기준이율 변경신청</a>
+                    <a href="#">계약철회신청</a>
+                    <a href="#">지급예상액</a>
+                    <a href="#">공제금신청</a>
+                    <a href="#">해약금환금신청</a>
+                    <a href="#">부금통산 신청</a>
+                  </div>
+                  <div class="gnb__nav-submenu-item-content-wrapper">
+                    <span>내역조회</span>
+                    <a href="#">신청내역현황</a>
+                    <a href="#">장려금 상세내역</a>
+                  </div>
+                  <div class="gnb__nav-submenu-item-content-wrapper">
+                    <span>대출</span>
+                    <a href="#">대출내역</a>
+                    <a href="#">대출가능액</a>
+                    <a href="#">대출신청</a>
+                    <a href="#">대출상환신청</a>
+                    <a href="#">대출대환신청</a>
+                  </div>
+                  <div class="gnb__nav-submenu-item-content-wrapper">
+                    <span>납부</span>
+                    <a href="#">납부·미납내역</a>
+                    <a href="#">부급선납신청</a>
+                    <a href="#">미납부금수납신청</a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+
+            <!-- 복지+ -->
+            <ul class="gnb__nav-submenu submenu-2" id="submenu-2">
+              <li class="gnb__nav-submenu-item">
+                <div class="gnb__nav-submenu-item-title">
+                  <h3 class="gnb__nav-submenu-item-title-text">
+                    <img class="icon--26" src="/assets/img/gnb/gnb-menu-2.png" alt="">
+                    복지+
+                  </h3>
+                  <!-- 2026-04-30 설계변경 -->
+                  <a href="#" class="gnb__nav-submenu-item-title-link">
+                    <img src="/assets/img/gnb/img-link-02.png" alt="">
+                  </a>
+                  <!-- // 2026-04-30 설계변경 -->
+                </div>
+                <div class="gnb__nav-submenu-item-content">
+                  <div class="gnb__nav-submenu-item-content-wrapper">
+                    <span>프로모션</span>
+                    <a href="#">진행중 프로모션</a>
+                    <a href="#">종료 프로모션</a>
+                  </div>
+                  <div class="gnb__nav-submenu-item-content-wrapper">
+                    <span>숙소예약</span>
+                    <a href="#">온라인 예약</a>
+                    <a href="#">성수기</a>
+                  </div>
+                  <div class="gnb__nav-submenu-item-content-wrapper">
+                    <span>혜택</span>
+                    <a href="#">전체 혜택</a>
+                  </div>
+                  <div class="gnb__nav-submenu-item-content-wrapper">
+                    <span>교육</span>
+                    <a href="#">역량·힐링</a>
+                    <a href="#">노후·건강</a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+
+            <!-- 경영자문 -->
+            <ul class="gnb__nav-submenu submenu-3" id="submenu-3">
+              <li class="gnb__nav-submenu-item">
+                <div class="gnb__nav-submenu-item-title">
+                  <h3 class="gnb__nav-submenu-item-title-text">
+                    <img class="icon--26" src="/assets/img/gnb/gnb-menu-3.png" alt="">
+                    경영자문
+                  </h3>
+                  <!-- 2026-04-30 설계변경 -->
+                  <a href="#" class="gnb__nav-submenu-item-title-link">
+                    <img src="/assets/img/gnb/img-link-03.png" alt="">
+                  </a>
+                  <!-- // 2026-04-30 설계변경 -->
+                </div>
+                <div class="gnb__nav-submenu-item-content">
+                  <div class="gnb__nav-submenu-item-content-wrapper">
+                    <span>사용안내</span>
+                    <a href="#">사업소개</a>
+                  </div>
+                  <div class="gnb__nav-submenu-item-content-wrapper">
+                    <span>법률지원</span>
+                    <a href="#">서면작성 지원</a>
+                    <a href="#">분쟁소송대리 지원</a>
+                  </div>
+                  <div class="gnb__nav-submenu-item-content-wrapper">
+                    <span>상담사례</span>
+                    <a href="#">상담사례</a>
+                    <a href="#">상담사례집</a>
+                    <a href="#">상담사례 FAQ</a>
+                  </div>
+                  <div class="gnb__nav-submenu-item-content-wrapper">
+                    <span>자문위원</span>
+                    <a href="#">자문위원현황</a>
+                    <a href="#">자문위원 등록안내</a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+
+            <!-- 정부지원사업 -->
+            <ul class="gnb__nav-submenu submenu-4" id="submenu-4">
+              <li class="gnb__nav-submenu-item">
+                <div class="gnb__nav-submenu-item-title">
+                  <h3 class="gnb__nav-submenu-item-title-text">
+                    <img class="icon--26" src="/assets/img/gnb/gnb-menu-4.png" alt="">
+                    정부지원사업
+                  </h3>
+                </div>
+                <div class="gnb__nav-submenu-item-content">
+                  <div class="gnb__nav-submenu-item-content-wrapper">
+                    <span>정부지원사업</span>
+                    <a href="#">정부지원사업</a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+
+            <!-- 가입혜택 -->
+            <ul class="gnb__nav-submenu submenu-5" id="submenu-5">
+              <li class="gnb__nav-submenu-item">
+                <div class="gnb__nav-submenu-item-title">
+                  <h3 class="gnb__nav-submenu-item-title-text">
+                    <img class="icon--26" src="/assets/img/gnb/gnb-menu-5.svg" alt="">
+                    가입·혜택
+                  </h3>
+                  <!-- 2026-04-30 설계변경 -->
+                  <a href="#" class="gnb__nav-submenu-item-title-link">
+                    <img src="/assets/img/gnb/img-link-05.png" alt="">
+                  </a>
+                  <!-- // 2026-04-30 설계변경 -->
+                </div>
+                <div class="gnb__nav-submenu-item-content">
+                  <div class="gnb__nav-submenu-item-content-wrapper">
+                    <span>상품안내</span>
+                    <a href="#">공제 소개</a>
+                    <a href="#">가입대상</a>
+                    <a href="#">가입부금</a>
+                    <a href="#">가입방법</a>
+                    <a href="#">부금통산</a>
+                  </div>
+                  <div class="gnb__nav-submenu-item-content-wrapper">
+                    <!-- 2026-04-30 설계변경 -->
+                    <span>가입자 혜택</span>
+                    <!-- // 2026-04-30 설계변경 -->
+                    <a href="#">세금·이자 혜택</a>
+                    <a href="#">압류금지</a>
+                    <a href="#">가입(희망)장려금</a>
+                    <a href="#">복지혜택</a>
+                    <!-- 2026-04-30 설계변경 -->
+                    <a href="/pages/가입혜택/정책보험바우처.html">정책보험바우처</a>
+                    <!-- // 2026-04-30 설계변경 -->
+                  </div>
+                  <div class="gnb__nav-submenu-item-content-wrapper">
+                    <span>공제금·해약환급금</span>
+                    <a href="#">공제금 안내</a>
+                    <a href="#">공제금 지급예시표</a>
+                    <a href="#">해약환급금 안내</a>
+                  </div>
+                  <div class="gnb__nav-submenu-item-content-wrapper">
+                    <span>공제계약대출</span>
+                    <a href="#">공제계약대출 안내</a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+
+            <!-- 노란우산 -->
+            <ul class="gnb__nav-submenu submenu-6" id="submenu-6">
+              <li class="gnb__nav-submenu-item">
+                <div class="gnb__nav-submenu-item-title">
+                  <h3 class="gnb__nav-submenu-item-title-text">
+                    <img class="icon--26" src="/assets/img/gnb/gnb-menu-6.png" alt="">
+                    노란우산
+                  </h3>
+                  <!-- 2026-04-30 설계변경 -->
+                  <a href="#" class="gnb__nav-submenu-item-title-link">
+                    <img src="/assets/img/gnb/img-link-06.png" alt="">
+                  </a>
+                  <!-- // 2026-04-30 설계변경 -->
+                </div>
+                
+                <!-- 2026-04-30 설계변경 -->
+                <div class="gnb__nav-submenu-item-content">
+                  <!-- <div class="gnb__nav-submenu-item-content-wrapper">
+                    <span>인사말</span>
+                    <a href="#">인사말</a>
+                  </div> -->
+                  <div class="gnb__nav-submenu-item-content-wrapper">
+                    <span>노란우산이란?</span>
+                    <a href="#">노란우산이란?</a>
+                    <a href="#">BI·캐릭터 소개</a>
+                  </div>
+                  <div class="gnb__nav-submenu-item-content-wrapper">
+                    <span>기준이율공시</span>
+                    <a href="#">기준이율공시</a>
+                    <!-- <a href="#">대출이자율</a> -->
+                  </div>
+                  <div class="gnb__nav-submenu-item-content-wrapper">
+                    <span>경영공시</span>
+                    <a href="#">자산운용</a>
+                    <a href="#">경영성과</a>
+                    <a href="#">대내외평가</a>
+                  </div>
+                  <div class="gnb__nav-submenu-item-content-wrapper">
+                    <span>법령·규정</span>
+                    <a href="#">법령·규정</a>
+                  </div>
+                </div>
+                <!-- // 2026-04-30 설계변경 -->
+              </li>
+            </ul>
+
+            <!-- 이벤트 -->
+            <ul class="gnb__nav-submenu submenu-7" id="submenu-7">
+              <li class="gnb__nav-submenu-item">
+                <div class="gnb__nav-submenu-item-title">
+                  <h3 class="gnb__nav-submenu-item-title-text">
+                    <img class="icon--26" src="/assets/img/gnb/gnb-menu-7.png" alt="">
+                    이벤트
+                  </h3>
+                </div>
+                <div class="gnb__nav-submenu-item-title-img-link-wrapper">
+                  <a href="" class="gnb__nav-submenu-item-title-img-link gnb__nav-submenu-item-title-img-wrapper">
+                    <img src="/assets/img/gnb/gnb-submenu-bg-6-1.png" alt="">
+                    <p>노란우산 카카오톡 이모티콘 무료 배포 이벤트</p>
+                    <span class="gnb__nav-submenu-item-title-img-link-date">2025.09.08 ~ 소진시까지</span>
+                  </a>
+                  <a href="" class="gnb__nav-submenu-item-title-img-link gnb__nav-submenu-item-title-img-wrapper">
+                    <img src="/assets/img/gnb/gnb-submenu-bg-6-2.png" alt="">
+                    <p>제4회 노란우산 사진·숏폼 공모전 참여하기</p>
+                    <!-- 2026-04-30 설계변경 -->
+                    <span class="gnb__nav-submenu-item-title-img-link-date">
+                      <span class="badge badge--warning">예정</span>
+                      2025.12.01 - 2026.02.28
+                    </span>
+                    <!-- // 2026-04-30 설계변경 -->
+                  </a>
+                </div>
+                <div class="gnb__nav-submenu-item-content">
+                  <div class="gnb__nav-submenu-item-content-wrapper">
+                    <span>이벤트</span>
+                    <a href="#">진행중 이벤트</a>
+                    <a href="#">종료 이벤트</a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+
+            <!-- 고객센터 -->
+            <ul class="gnb__nav-submenu submenu-8" id="submenu-8">
+              <li class="gnb__nav-submenu-item">
+                <div class="gnb__nav-submenu-item-title">
+                  <h3 class="gnb__nav-submenu-item-title-text">
+                    <img class="icon--26" src="/assets/img/gnb/gnb-menu-8.png" alt="">
+                    고객센터
+                  </h3>
+                  <!-- 2026-04-30 설계변경 -->
+                  <a href="#" class="gnb__nav-submenu-item-title-link">
+                    <img src="/assets/img/gnb/img-link-08.png" alt="">
+                  </a>
+                  <!-- // 2026-04-30 설계변경 -->
+                </div>
+                <div class="gnb__nav-submenu-item-content">
+                  <div class="gnb__nav-submenu-item-content-wrapper">
+                    <span>공지사항</span>
+                    <a href="#">공지사항</a>
+                  </div>
+                  <div class="gnb__nav-submenu-item-content-wrapper">
+                    <span>문의사항</span>
+                    <a href="#">자주 묻는 질문</a>
+                    <a href="#">1:1 문의게시판</a>
+                  </div>
+                  <div class="gnb__nav-submenu-item-content-wrapper">
+                    <span>구비서류</span>
+                    <a href="#">구비서류 목록</a>
+                  </div>
+                  <div class="gnb__nav-submenu-item-content-wrapper">
+                    <span>지역본부 및 상담사</span>
+                    <a href="#">지역본부 안내</a>
+                    <a href="#">상담사 찾기</a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+
+            <!-- 2026-04-30 설계변경 -->
+            <!-- 통합검색 레이어 -->
+            <div class="gnb__nav-submenu search-layer" id="search-layer">
+              <div class="search-layer__panel" role="dialog" aria-modal="true" aria-label="통합검색">
+                <div class="search-layer__inner">
+                  <div class="search-layer__top">
+                    <div class="list-search-area">
+                      <div class="list-search-area__title">
+                        찾으시는 정보가 있으신가요?
+                      </div>
+                      <div class="input-field">
+                        <div class="input-group" data-js="inputGroup">
+                          <div class="input input--xlg">
+                            <input id="" type="text" placeholder="검색어를 입력해 주세요.">
+                            <button type="button" class="search-submit" aria-label="검색" onclick="alert('!!');">
+                              <svg class="icon" aria-hidden="true">
+                                <use href="#icon-search"></use>
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="search-layer__content">
+                    <div class="search-autocomplete" hidden>
+                      <a href="#" class="search-autocomplete__item"><span class="highlight">공</span>제</a>
+                      <a href="#" class="search-autocomplete__item"><span class="highlight">공</span>인</a>
+                      <a href="#" class="search-autocomplete__item"><span class="highlight">공</span>동</a>
+                      <a href="#" class="search-autocomplete__item"><span class="highlight">공</span>제가입</a>
+                      <a href="#" class="search-autocomplete__item"><span class="highlight">공</span>제부금</a>
+                      <a href="#" class="search-autocomplete__item"><span class="highlight">공</span>제사업기금</a>
+                      <a href="#" class="search-autocomplete__item"><span class="highlight">공</span>제기금회계</a>
+                      <a href="#" class="search-autocomplete__item"><span class="highlight">공</span>제</a>
+                      <a href="#" class="search-autocomplete__item"><span class="highlight">공</span>인</a>
+                      <a href="#" class="search-autocomplete__item"><span class="highlight">공</span>동</a>
+                      <a href="#" class="search-autocomplete__item"><span class="highlight">공</span>제가입</a>
+                      <a href="#" class="search-autocomplete__item"><span class="highlight">공</span>제부금</a>
+                      <a href="#" class="search-autocomplete__item"><span class="highlight">공</span>제사업기금</a>
+                      <a href="#" class="search-autocomplete__item"><span class="highlight">공</span>제기금회계</a>
+                      <a href="#" class="search-autocomplete__item"><span class="highlight">공</span>제</a>
+                      <a href="#" class="search-autocomplete__item"><span class="highlight">공</span>인</a>
+                      <a href="#" class="search-autocomplete__item"><span class="highlight">공</span>동</a>
+                      <a href="#" class="search-autocomplete__item"><span class="highlight">공</span>제가입</a>
+                      <a href="#" class="search-autocomplete__item"><span class="highlight">공</span>제부금</a>
+                      <a href="#" class="search-autocomplete__item"><span class="highlight">공</span>제사업기금</a>
+                      <a href="#" class="search-autocomplete__item"><span class="highlight">공</span>제기금회계</a>
+                      <a href="#" class="search-autocomplete__item"><span class="highlight">공</span>제</a>
+                      <a href="#" class="search-autocomplete__item"><span class="highlight">공</span>인</a>
+                      <a href="#" class="search-autocomplete__item"><span class="highlight">공</span>동</a>
+                      <a href="#" class="search-autocomplete__item"><span class="highlight">공</span>제가입</a>
+                      <a href="#" class="search-autocomplete__item"><span class="highlight">공</span>제부금</a>
+                      <a href="#" class="search-autocomplete__item"><span class="highlight">공</span>제사업기금</a>
+                      <a href="#" class="search-autocomplete__item"><span class="highlight">공</span>제기금회계</a>
+                    </div>
+
+                    <section class="search-layer__section">
+                      <div class="search-layer__head">
+                        <h3 class="search-layer__title">추천 검색어</h3>
+                      </div>
+
+                      <div class="tag-list">
+                        <button type="button" class="tag">가입신청</button>
+                        <button type="button" class="tag">대출신청</button>
+                        <button type="button" class="tag">공제금신청</button>
+                        <button type="button" class="tag">신청내역</button>
+                        <button type="button" class="tag">교육신청</button>
+                      </div>
+                    </section>
+
+                    <section class="search-layer__section">
+                      <div class="search-layer__head">
+                        <h3 class="search-layer__title">인기 검색어</h3>
+                        <p class="search-layer__date">2026.04.20 19:00 기준</p>
+                      </div>
+
+                      <ol class="search-layer__rank-list">
+                        <li>
+                          <a href="" class="numbering-item">
+                            <span class="num">1</span><span class="text">해약</span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="" class="numbering-item">
+                            <span class="num">2</span><span class="text">변경</span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="" class="numbering-item">
+                            <span class="num">3</span><span class="text">노란우산</span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="" class="numbering-item">
+                            <span class="num">4</span><span class="text">폐업</span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="" class="numbering-item">
+                            <span class="num">5</span><span class="text">가입증서</span>
+                          </a>
+                        </li>
+                      </ol>
+                    </section>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- // 2026-04-30 설계변경 -->
+          </div>
+        </nav>
+
+        <!-- 모바일 햄버거 메뉴 버튼 -->
+        <button type="button" class="gnb__menu-toggle" aria-label="메뉴 열기" aria-expanded="false"
+          aria-controls="gnb-menu">
+          <svg class="icon-menu icon--32" aria-hidden="true">
+            <use href="#icon-menu"></use>
+          </svg>
+        </button>
+
+        <!--
+          2026-04-30 설계변경
+          - <div class="gnb__search"> 삭제
+        -->
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <!-- 서브 메뉴 -->
+  <div class="gnb__submenu--filter">
+  </div>
+</header>

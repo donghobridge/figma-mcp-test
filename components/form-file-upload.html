@@ -1,0 +1,19 @@
+<div class="form-section {variantClass}">
+  <p class="form-section__label">{label}</p>
+  <div class="input-field">
+    <div class="file-attachment">
+      <div class="input-group" data-js="inputGroup">
+        <div class="input input--lg only-pc">
+          <input type="text" placeholder="{placeholder}" readonly aria-label="첨부 파일명" />
+        </div>
+        <button type="button" class="btn btn--tertiary btn--lg w-full-mo" data-js="button">
+          <span class="btn__label">{buttonLabel}</span>
+        </button>
+      </div>
+    </div>
+    <p class="input-field__msg">{helper}</p>
+  </div>
+  <ul class="file-list">
+    {filesHtml}
+  </ul>
+</div>

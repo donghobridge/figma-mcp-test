@@ -1,0 +1,161 @@
+<footer class="footer">
+  <!-- 유틸리티 네비게이션 -->
+  <div class="footer__utility">
+    <div class="footer__utility-inner">
+      <nav class="footer__utility-nav" aria-label="푸터 유틸리티">
+        <!--
+          2026-04-30 설계변경
+          - 법령·규정 삭제
+        -->
+        <a href="#" class="footer__utility-link">개인정보처리방침
+          <svg class="icon icon--20" aria-hidden="true">
+            <use href="#icon-btn-plus"></use>
+          </svg>
+        </a>
+        <a href="#" class="footer__utility-link">신용정보활용체제
+          <svg class="icon icon--20" aria-hidden="true">
+            <use href="#icon-btn-plus"></use>
+          </svg>
+        </a>
+        <a href="#" class="footer__utility-link">이용약관
+          <svg class="icon icon--20" aria-hidden="true">
+            <use href="#icon-btn-plus"></use>
+          </svg>
+        </a>
+        <a href="#" class="footer__utility-link">원격연결
+          <svg class="icon icon--20" aria-hidden="true">
+            <use href="#icon-btn-plus"></use>
+          </svg>
+        </a>
+        <a href="#" class="footer__utility-link">사이트맵
+          <svg class="icon icon--20" aria-hidden="true">
+            <use href="#icon-btn-plus"></use>
+          </svg>
+        </a>
+        <!-- // 2026-04-30 설계변경 -->
+      </nav>
+    </div>
+  </div>
+
+  <!-- 메인 푸터 콘텐츠 -->
+  <div class="footer__main">
+    <div class="footer__main-inner">
+
+      <!-- 상단: 로고 + 전국지점안내 -->
+      <div class="footer__top-row">
+        <div class="footer__logo">
+          <a href="#" class="footer__logo-link" aria-label="홈으로 이동">
+            <div data-include-path="/components/logo.html"></div>
+          </a>
+        </div>
+        
+        <!-- 2026-04-30 설계변경 -->
+        <div class="footer__branch-select">
+          <label for="footer-branch" class="sr-only">전국지점안내</label>
+          <div class="input input--md">
+            <select class="custom-select__native" id="footer-branch" aria-label="전국지점안내">
+              <option value="">전국지점안내</option>
+              <option value="seoul">서울</option>
+              <option value="busan">부산</option>
+              <option value="daegu">대구</option>
+              <option value="incheon">인천</option>
+              <option value="gwangju">광주</option>
+              <option value="daejeon">대전</option>
+              <option value="ulsan">울산</option>
+              <option value="gyeonggi">경기</option>
+              <option value="gangwon">강원</option>
+              <option value="chungbuk">충북</option>
+              <option value="chungnam">충남</option>
+              <option value="jeonbuk">전북</option>
+              <option value="jeonnam">전남</option>
+              <option value="gyeongbuk">경북</option>
+              <option value="gyeongnam">경남</option>
+              <option value="jeju">제주</option>
+            </select>
+            <div class="select-trigger" aria-expanded="false" aria-haspopup="listbox">
+              <div class="select-value">전국지점안내</div>
+              <svg class="icon select-arrow icon-chevron" aria-hidden="true">
+                <use href="#icon-chevron-down"></use>
+              </svg>
+            </div>
+            <div class="select-dropdown" role="listbox" hidden>
+              <div class="select-option is-selected" role="option" data-value="" aria-selected="true">전국지점안내</div>
+            </div>
+          </div>
+        </div>
+        <!-- // 2026-04-30 설계변경 -->
+      </div>
+
+      <!-- 2026-04-30 설계변경 -->
+      <!-- 중단: 연락처 + 소셜 미디어 -->
+      <div class="footer__grid">
+        <div class="footer__info">
+          <p class="footer__address">07242) 서울시 영등포구 은행로 30 (여의도동) 중소기업중앙회</p>
+          <div class="footer__contact">
+            <div class="footer__contact-item">
+              <b class="footer__contact-item-bold">전화</b>
+              <span>1666-9988</span>
+            </div>
+            <div class="footer__contact-item">
+              <b class="footer__contact-item-bold">이메일</b>
+              <span>kbizjoin@kbiz.or.kr</span>
+            </div>
+          </div>
+        </div>
+        <div class="footer__social">
+          <nav class="footer__social-nav" aria-label="소셜 미디어">
+            <a href="#" class="footer__social-link" aria-label="인스타그램">
+              <svg class="icon icon--action" aria-hidden="true">
+                <use href="#icon-instagram"></use>
+              </svg>
+            </a>
+            <a href="#" class="footer__social-link" aria-label="유튜브">
+              <svg class="icon icon--action" aria-hidden="true">
+                <use href="#icon-youtube"></use>
+              </svg>
+            </a>
+            <a href="#" class="footer__social-link" aria-label="블로그">
+              <svg class="icon icon--action" aria-hidden="true">
+                <use href="#icon-naverblog"></use>
+              </svg>
+            </a>
+          </nav>
+        </div>
+      </div>
+      <!-- // 2026-04-30 설계변경 -->
+
+      <!-- 2026-04-30 설계변경 -->
+      <!-- 하단: 정보보호 관리체계 인증 -->
+      <div class="footer__cert">
+        <div class="footer__cert-icon">
+          <img src="/assets/img/pages/main/isms-cert.svg" alt="정보보호 관리체계 인증 마크">
+        </div>
+        <div class="footer__cert-info">
+          <p class="footer__cert-title">정보보호 관리체계 인증</p>
+          <div class="footer__cert-details">
+            <div class="footer__cert-detail">
+              <b class="footer__cert-label">인증범위</b>
+              <span class="footer__cert-value">노란우산 디지털공제서비스</span>
+            </div>
+            <span class="footer__cert-divider" aria-hidden="true"></span>
+            <div class="footer__cert-detail">
+              <b class="footer__cert-label">유효기간</b>
+              <span class="footer__cert-value">2025.03.19 ~ 2028.03.18</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- // 2026-04-30 설계변경 -->
+
+    </div>
+  </div>
+
+  <!-- 저작권 정보 -->
+  <div class="footer__copyright">
+    <div class="footer__copyright-inner">
+      <!-- 2026-04-30 설계변경 -->
+      <p class="footer__copyright-text">Copyright 2026. KBIZ. all rights reserved.</p>
+      <!-- // 2026-04-30 설계변경 -->
+    </div>
+  </div>
+</footer>

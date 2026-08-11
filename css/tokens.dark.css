@@ -1,0 +1,139 @@
+/* tokens.dark.css */
+/* A) OS 다크모드 자동: tokens.css 값들을 "덮어쓰기"만 합니다. */
+:root {
+  color-scheme: dark;
+
+  /* logo */
+  --logo-primary: var(--color-transparent);
+  --logo-line: #ffffff;
+  --logo-point: #D12838;
+
+  /* surface */
+  --surface-default: var(--color-neutral-warm-850);
+  --surface-elevated: var(--color-neutral-warm-700);
+  --surface-elevated-dark: var(--color-neutral-warm-800);
+  --surface-inverse: var(--color-neutral-warm-600);
+  --surface-dim-13: var(--color-neutral-white-18);
+  --surface-dim-30: var(--color-neutral-white-35);
+  --surface-dim-50: var(--color-neutral-white-50);
+  --surface-dim-70: var(--color-neutral-white-80);
+  --surface-white-50: var(--color-neutral-black-50);
+  --surface-primary: var(--color-primary-500);
+  --surface-primary-light: var(--color-primary-300);
+  --surface-primary-dark: var(--color-primary-600);
+  --surface-white: var(--color-neutral-black);
+  --surface-black: var(--color-neutral-white);
+
+  /* surface/state */
+  --state-primary: var(--color-primary-750);
+  --state-info: var(--color-info-800);
+  --state-info-gray: var(--color-neutral-warm-600);
+  --state-info-gray-border: var(--color-neutral-warm-550);
+  --state-info-border: var(--color-info-700);
+  --state-success: var(--color-success-700);
+  --state-success-border: var(--color-success-600);
+  --state-error: var(--color-error-800);
+  --state-error-border: var(--color-error-800);
+  --state-warning: var(--color-primary-800);
+  --state-warning-border: var(--color-primary-700);
+
+  /* text */
+  --text-default: var(--color-neutral-warm-15);
+  --text-default-yellow: var(--color-neutral-black);
+  --text-subtle: var(--color-neutral-warm-300);
+  --text-subtle-dark: var(--color-neutral-warm-100);
+  --text-subtle-gray: var(--color-neutral-warm-300);
+  --text-disabled: var(--color-neutral-warm-500);
+  --text-input-disabled: var(--color-neutral-warm-300);
+  --text-primary: var(--color-primary-500);
+  --text-primary-dark: var(--color-primary-300);
+  --text-secondary: var(--color-pastel-turquoise-bg);
+  --text-white: var(--color-neutral-white);
+
+  /* text/state */
+  --text-state-info: var(--color-info-300);
+  --text-state-info-light: var(--color-info-200);
+  --text-state-info-gray: var(--color-neutral-300);
+  --text-state-success: var(--color-success-300);
+  --text-state-error: var(--color-error-300);
+  --text-state-warning: var(--color-warning-400);
+  --text-state-primary: var(--color-primary-400);
+
+  /* icon */
+  --icon-focus: var(--color-neutral-warm-75);
+  --icon-default: var(--color-neutral-warm-75);
+  --icon-default-yellow: var(--color-primary-800);
+  --icon-subtle: var(--color-neutral-warm-300);
+  --icon-primary: var(--color-primary-300);
+  --icon-pressed: var(--color-neutral-warm-200);
+  --icon-disabled: var(--color-neutral-warm-500);
+
+  /* button/text */
+  --btn-text-primary: var(--color-neutral-black);
+  --btn-text-primary-hover: var(--color-neutral-warm-650);
+  --btn-text-primary-pressed: var(--color-neutral-warm-700);
+  --btn-text-secondary: var(--color-primary-900);
+  --btn-text-secondary-yellow: var(--color-primary-800);
+  --btn-text-secondary-hover: var(--color-primary-800);
+  --btn-text-secondary-pressed: var(--color-primary-500);
+  --btn-text-secondary-disabled: var(--color-neutral-warm-250);
+  --btn-text-tertiary: var(--color-neutral-white);
+  --btn-text-tertiary-hover: var(--color-neutral-warm-15);
+  --btn-text-tertiary-pressed: var(--color-neutral-warm-300);
+  --btn-text: var(--color-neutral-warm-25);
+  --btn-text-hover: var(--color-neutral-warm-15);
+  --btn-text-pressed: var(--color-neutral-warm-450);
+  --btn-text-disabled: var(--color-neutral-warm-300);
+
+  /* button/bg */
+  --btn-bg-primary: var(--color-neutral-warm-25);
+  --btn-bg-primary-hover: var(--color-neutral-white);
+  --btn-bg-primary-pressed: var(--color-neutral-warm-300);
+  --btn-bg-secondary: var(--color-primary-500);
+  --btn-bg-secondary-hover: var(--color-primary-300);
+  --btn-bg-secondary-pressed: var(--color-primary-700);
+  --btn-bg-secondary-disabled: var(--color-primary-750);
+  --btn-bg-tertiary: var(--color-neutral-warm-550);
+  --btn-bg-tertiary-border: var(--color-neutral-warm-650);
+  --btn-bg-tertiary-hover: var(--color-neutral-warm-450);
+  --btn-bg-tertiary-pressed: var(--color-neutral-warm-900);
+  --btn-bg-disabled: var(--color-neutral-warm-600);
+
+  /* border */
+  --border-default: var(--color-neutral-warm-450);
+  --border-strong: var(--color-neutral-warm-600);
+  --border-yellow: var(--color-primary-450);
+  --border-green: var(--color-primary-green-light);
+  --border-subtle: var(--color-neutral-warm-550);
+
+  /* input */
+  --input-default: var(--color-neutral-warm-800);
+  --input-primary: var(--color-primary-400);
+  --input-focused: var(--color-primary-900);
+  --input-disabled: var(--color-neutral-warm-600);
+  --input-error-border: var(--color-error-400);
+  --input-default-border: var(--color-neutral-warm-850);
+  --input-focused-border: var(--color-primary-700);
+  --input-disabled-border: var(--color-neutral-warm-550);
+  --input-hover-border: var(--color-neutral-white);
+
+  /* element */
+  --element-default: var(--color-neutral-warm-850);
+  --element-primary-green: var(--color-primary-green-light);
+  --element-primary: var(--color-primary-400);
+  --element-focused: var(--color-primary-900);
+  --element-disabled: var(--color-neutral-warm-550);
+  --element-default-border: var(--color-neutral-warm-650);
+  --element-focused-border: var(--color-primary-700);
+  --element-disabled-border: var(--color-neutral-warm-600);
+  --element-hover-border: var(--color-primary-100);
+
+  /* table */
+  --table-border: #5a5a5a;
+  --thead-th-bg: var(--color-neutral-warm-850);
+  --thead-th-border: var(--color-neutral-warm-850);
+  --tbody-th-bg: var(--color-neutral-warm-700);
+  --tbody-th-border: var(--color-neutral-warm-700);
+  --tbody-td-bg: var(--color-neutral-warm-650);
+  --tbody-td-border: var(--color-neutral-warm-650);
+}

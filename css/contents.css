@@ -1,0 +1,832 @@
+/* 가입혜텍 > 공제소개 */
+.marquee-track {
+  flex-direction: column;
+  gap: var(--spacing-card-small);
+  width: 100%;
+  padding: 0 var(--page-padding-x-default);
+}
+.slide__item {
+  border-radius: var(--radius-card-medium);
+  -webkit-border-radius: var(--radius-card-medium);
+  -moz-border-radius: var(--radius-card-medium);
+  -ms-border-radius: var(--radius-card-medium);
+  -o-border-radius: var(--radius-card-medium);
+}
+
+.mutual-slide__item {
+  background: var(--surface-default);
+  border-radius: var(--radius-card-medium);
+  -webkit-border-radius: var(--radius-card-medium);
+  -moz-border-radius: var(--radius-card-medium);
+  -ms-border-radius: var(--radius-card-medium);
+  -o-border-radius: var(--radius-card-medium);
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+
+
+  &.mutual-slide__item--type-1 {
+    background-image: url('../assets/img/pages/contents/mutual-bg-01.png');
+  }
+  &.mutual-slide__item--type-2 {
+    background-image: url('../assets/img/pages/contents/mutual-bg-02.png');
+  }
+  &.mutual-slide__item--type-3 {
+    background-image: url('../assets/img/pages/contents/mutual-bg-03.png');
+  }
+  &.mutual-slide__item--type-4 {
+    background-image: url('../assets/img/pages/contents/mutual-bg-04.png');
+  }
+  &.mutual-slide__item--type-5 {
+    background-image: url('../assets/img/pages/contents/mutual-bg-05.png');
+  }
+
+  img {
+    max-width: 100%;
+    width: 24rem;
+  }
+}
+
+.slide__item__info,
+.mutual-slide__item__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: calc(var(--spacing-list-medium) * 2 + var(--font-body-regular) * 1.5 * -1);
+}
+.slide__item__tag,
+.mutual-slide__item__tag {
+  margin-bottom: var(--spacing-card-xxsmall);
+  padding: var(--spacing-list-medium) var(--spacing-card-xsmall);
+  background: var(--surface-dim-30-fixed);
+  border-radius: var(--radius-round);
+  -webkit-border-radius: var(--radius-round);
+  -moz-border-radius: var(--radius-round);
+  -ms-border-radius: var(--radius-round);
+  -o-border-radius: var(--radius-round);
+  color: var(--text-white);
+  font-size: var(--font-body-regular);
+  font-weight: var(--font-weight-medium);
+  line-height: 150%;
+  letter-spacing: var(--font-spacing-normal);
+}
+.slide__item__text,
+.mutual-slide__item__text {
+  padding-bottom: 4.4rem;
+  color: var(--text-white);
+  font-size: var(--font-headline-regular);
+  font-weight: var(--font-weight-semibold);
+  line-height: 150%;
+  letter-spacing: var(--font-spacing-normal);
+}
+
+.benefit-slide__item,
+.biz-slide__item {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  padding: var(--spacing-card-medium) var(--spacing-card-small);
+  text-align: center;
+
+  &.biz-slide__item--type-1 {
+    background: var(--element-pastel-legal);
+  }
+  
+  &.biz-slide__item--type-2 {
+    background: var(--element-pastel-tax);
+  }
+  
+  &.biz-slide__item--type-3 {
+    background: var(--element-pastel-people);
+  }
+  
+  &.biz-slide__item--type-4 {
+    background: var(--element-pastel-idea);
+  }
+  
+  &.biz-slide__item--type-5 {
+    background: var(--element-pastel-trade);
+  }
+  
+  &.biz-slide__item--type-6 {
+    background: var(--element-pastel-consulting);
+  }
+  
+  &.biz-slide__item--type-7 {
+    background: var(--element-pastel-medicine);
+  }
+
+  img {
+    width: 11rem;
+  }
+
+  .slide__item__info {
+    margin-top: 0;
+  }
+  .slide__item__tag {
+    margin-bottom: var(--gap-xsmall);
+    padding: var(--spacing-list-xsmall) var(--gap-xsmall);
+    background-color: var(--surface-white-50-fixed);
+    color: var(--surface-dim-50-fixed);
+  }
+  .slide__item__text {
+    padding-bottom: 0;
+    color: var(--surface-dim-70-fixed);
+    line-height: 148%;
+    letter-spacing: var(--font-spacing-tight);
+  }
+}
+
+.benefit-slide__item {
+  flex-direction: column;
+  gap: var(--gap-medium);
+  padding: var(--spacing-card-small) var(--gap-title-content);
+
+  &.benefit-slide__item--type-1 {
+    background: #DBEECE;
+  }
+
+  &.benefit-slide__item--type-2 {
+    background: #CDE4F3;
+  }
+
+  &.benefit-slide__item--type-3 {
+    background: #DFE4EA;
+  }
+
+  &.benefit-slide__item--type-4 {
+    background: #F4EAD2;
+  }
+
+  img {
+    width: 11rem;
+  }
+
+  .slide__item__tag {
+    color: var(--surface-dim-70-fixed);
+    font-size: var(--font-headline-regular);
+    font-weight: var(--font-weight-semibold);
+    line-height: 150%;
+    letter-spacing: -0.024rem;
+  }
+  .slide__item__text {
+    text-align: center;
+    color: var(--surface-dim-70-fixed);
+    font-size: var(--font-body-large);
+    font-weight: var(--font-weight-medium);
+    line-height: 148%;
+    letter-spacing: var(--font-spacing-tight);
+  }
+}
+
+@media (min-width: 1024px) {
+  .marquee-track {
+    flex-direction: row;
+    width: max-content;
+  }
+
+  .slide__item {
+    width: 40.8rem;
+    background-color: var(--surface-inverse);
+  }
+
+  .mutual-slide__item {
+    width: 40.8rem;
+
+    img {
+      width: 32rem;
+    }
+  }
+
+  .biz-slide__item {
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 28rem;
+    padding: var(--spacing-card-medium) 0 0;
+    text-align: center;
+    img {
+      width: 16rem;
+    }
+    .slide__item__info {
+      min-width: 19.5rem;
+      margin-top: 0.5rem;
+    }
+    .slide__item__text {
+      padding-bottom: var(--spacing-card-medium);
+    }
+  }
+
+  .benefit-slide {
+    margin-bottom: calc(20rem - var(--spacing-card-gap));
+  }
+
+  .benefit-slide__item {
+    flex-direction: row;
+    gap: var(--gap-headline-content);
+    width: 100%;
+    padding: var(--gap-title-content);
+
+    img {
+      width: 15rem;
+    }
+
+    .slide__item__info {
+      align-items: flex-start;
+    }
+    .slide__item__text {
+      text-align: left;
+    }
+  }
+}
+
+/* 가입혜택 > 가입방법 */
+.contents-section__guide-banner-img {
+  position: relative;
+  height: 40rem;
+  border-radius: var(--radius-card-medium);
+  overflow: hidden;
+}
+.contents-section__guide-banner-img::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(270deg, #FFF 0%, rgba(255, 255, 255, 0.00) 40.88%);
+  mix-blend-mode: overlay;
+  opacity: 0.6;
+}
+.contents-section__guide-banner-img img {
+  max-width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 46%;
+}
+
+.join-guide__list {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: var(--spacing-card-small);
+}
+.join-guide__item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  min-height: 30rem;
+  padding: var(--gap-title-content);
+  border-radius: var(--radius-card-medium);
+
+  .join-guide__media {
+    width: 16rem;
+    height: 16rem;
+  }
+}
+.join-guide__item.join-guide__item--type-1 {
+  background-color: #F8F6D8;
+
+  .join-guide__desc {
+    color: var(--text-default-yellow);
+  }
+}
+.join-guide__item.join-guide__item--type-2 {
+  background-color: var(--state-info-gray);
+}
+.join-guide__item.join-guide__item--type-3 {
+  background-color: var(--state-info);
+}
+.join-guide__item.join-guide__item--type-4 {
+  background-color: #F6EDE9;
+
+  .join-guide__desc {
+    color: var(--text-default-yellow);
+  }
+}
+.join-guide__item.join-guide__item--type-5 {
+  background-color: var(--state-success);
+}
+.join-guide__item.join-guide__item--type-6 {
+  background-color: var(--state-warning);
+}
+.join-guide__body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-xsmall);
+}
+.join-guide__title {
+  padding: var(--spacing-list-medium) var(--spacing-card-xsmall);
+  border-radius: var(--radius-round);
+  background: var(--surface-elevated);
+  color: var(--text-default);
+  text-align: center;
+  font-size: var(--font-body-regular);
+  font-style: normal;
+  font-weight: var(--font-weight-medium);
+  line-height: 150%;
+  letter-spacing: var(--font-spacing-normal);
+}
+.join-guide__desc {
+  color: var(--text-default);
+  text-align: center;
+}
+.join-guide__desc-main {
+  margin: 0;
+  font-size: var(--font-body-large);
+  font-weight: var(--font-weight-semibold);
+  line-height: 150%;
+  letter-spacing: var(--font-spacing-normal);
+}
+.join-guide__desc-sub {
+  margin: 0;
+  font-size: var(--font-body-small);
+  font-weight: var(--font-weight-regular);
+  line-height: 150%;
+  letter-spacing: var(--font-spacing-normal);
+}
+.join-guide__link {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-list-small);
+  position: absolute;
+  top: 1.6rem;
+  right: 1.4rem;
+  font-size: var(--font-body-small);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--font-spacing-normal);
+}
+
+.content-box.content-box--withdraw {
+  gap: 2.4rem;
+  padding: var(--spacing-card-large);
+
+  .content-box__content {
+    gap: var(--spacing-list-xlarge);
+  }
+  .content-box__header {
+    gap: var(--spacing-list-xlarge);
+  }
+  .content-box__text--large {
+    color: var(--text-subtle-dark);
+  }
+  .content-box__text-item {
+    margin: 0;
+    color: var(--text-subtle);
+    font-size: var(--font-body-large);
+    font-weight: var(--font-weight-regular);
+    line-height: 150%;
+    letter-spacing: var(--font-spacing-tight);
+  }
+}
+
+.content-box__contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.content-box__contact-label {
+  display: inline-block;
+  padding-right: 1.2rem;
+  min-width: 8rem;
+  font-weight: 700;
+}
+
+.content-box:has(.content-box__row-list) {
+  padding: var(--spacing-card-xxsmall) var(--spacing-card-small);
+}
+.content-box__row-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-card-xxsmall);
+}
+.content-box__row-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  padding-bottom: var(--spacing-card-xxsmall);
+}
+.content-box__row-item::after {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--border-default);
+  opacity: .6;
+}
+.content-box__row-item:last-child {
+  padding-bottom: 0;
+}
+.content-box__row-item:last-child::after {
+  display: none;
+}
+.content-box__row-title {
+  color: var(--text-default);
+  font-size: var(--font-body-regular);
+  font-weight: var(--font-weight-medium);
+  line-height: 150%;
+  letter-spacing: 0.5px;
+}
+
+/* 지역본부 및 상담사 */
+.content-box.content-box--directions {
+  padding: var(--spacing-card-small);
+  gap: var(--spacing-card-large);
+}
+.content-box--directions__info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-card-xsmall);
+}
+.content-box--directions__info .content-box__row-list {
+  gap: var(--spacing-card-medium);
+  padding: var(--spacing-card-xsmall);
+  border-radius: var(--radius-card-small);
+  background-color: var(--surface-elevated);
+}
+.content-box--directions__info .content-box__row-item {
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--spacing-list-xlarge);
+  flex-wrap: wrap;
+  padding-bottom: 0;
+}
+.content-box--directions__info .content-box__row-item::after {
+  display: none;
+}
+.content-box--directions__info .content-box__row-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem 0;
+}
+.content-box--directions__info .content-box__row-body:has(.content-box__directions-route) {
+  gap: var(--spacing-card-xsmall);
+}
+.subway-badge-wrap {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-list-small);
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.content-box__badge-subway {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  min-width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 4rem;
+  padding: 0.3rem var(--spacing-list-xlarge);
+  color: var(--text-white);
+  font-size: var(--font-body-small);
+  font-weight: var(--font-weight-regular);
+  line-height: 150%;
+  letter-spacing: var(--font-spacing-normal);
+  white-space: nowrap;
+  background-color: var(--surface-elevated-dark);
+
+  /* 1호선, 천안아산역 */
+  &.num1 {
+    background: #003499;
+  }
+
+  /* 4호선 */
+  &.num4 {
+    background: #359ede;
+  }
+
+  /* 5호선 */
+  &.num5 {
+    background: #972EBE;
+  }
+
+  /* 6호선 */
+  &.num6 {
+    background: #9A4E0F;
+  }
+
+  /* 9호선 */
+  &.num9 {
+    background: #BDA03E;
+  }
+
+  /* 인천 2호선 */
+  em.inchen {
+    background: #ffb850;
+  }
+
+  /* 경의중앙선 */
+  &.num_center {
+    background: #7DC4A5;
+  }
+
+  /* 공항철도 */
+  &.num_air {
+    background: #70B7E5;
+  }
+
+  /* 신분당선 */
+  &.subway_07 {
+    background: #a9022d;
+  }
+
+  /* 부산 1호선, 대구 1호선 */
+  &.busan01 {
+    background: #f86c3e;
+  }
+
+  /* 부산 3호선 */
+  &.busan03 {
+    background: #d7ac65;
+  }
+
+  /* 대전 1호선 */
+  &.daejeon01 {
+    background: #37b42d;
+  }
+}
+/* 지하철 배지 그룹 (복수 배지 래핑) */
+.content-box__badge-group {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: var(--spacing-list-small);
+  width: 100%;
+  max-width: 100%;
+}
+/* 배지 hug 레이아웃: 2개 이상 텍스트호선, 3개 이상 배지 */
+.content-box__row-item--badge-hug .content-box__badge-group {
+  flex-wrap: wrap;
+  align-items: center;
+}
+.content-box__route-item {
+  display: flex;
+  gap: var(--spacing-list-large);
+  padding-bottom: var(--spacing-list-medium);
+}
+.content-box__route-item:last-child {
+  padding-bottom: 0;
+}
+.content-box__badge-bus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 5.2rem;
+  height: 2.4rem;
+  padding: 0 0.8rem ;
+  border-radius: var(--radius-round);
+  color: var(--text-white);
+  font-size: var(--font-caption-regular);
+  font-weight: var(--font-weight-medium);
+  line-height: 150%;
+  letter-spacing: -0.13px;
+  background-color: #6E7986;
+
+  /* 간선 버스 */
+  &.num_navy {
+    background: #002060;
+  }
+
+  /* 지선 버스 */
+  &.num_green {
+    background: #13B050;
+  }
+
+  /* 좌석 버스 */
+  &.num_blue {
+    background: #375AAF;
+  }
+
+  /* 광역 버스 */
+  &.num_red {
+    background: #D91219;
+  }
+
+  /* 마을 버스 */
+  &.num_shuttle_bus {
+    background: #48932d;
+  }
+
+  /* 농어촌버스 */
+  &.nongA {
+    background: #E27E3F;
+  }
+
+  /* 순환버스 */
+  &.bus_cycle {
+    background: #F3AE09;
+  }
+
+  /* 공항버스 */
+  &.bus_air {
+    background-color: #8AB5D3;
+  }
+}
+.content-box__route-value {
+  flex: 1;
+  color: var(--text-default);
+  font-size: var(--font-body-regular);
+  font-weight: var(--font-weight-regular);
+  line-height: 150%;
+  letter-spacing: var(--font-spacing-normal);
+}
+
+/* 상담사 찾기 */
+.content-box:has(.content-box__profile-wrap) {
+  padding: var(--spacing-card-xsmall);
+}
+.content-box__profile-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-xsmall);
+  position: relative;
+}
+.content-box__profile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.content-box__profile-info {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-list-xlarge);
+  padding: 0.2rem 0;
+}
+.content-box__profile-name {
+  color: var(--text-default);
+  font-size: var(--font-headline-regular);
+  font-weight: var(--font-weight-semibold);
+  line-height: 150%;
+  letter-spacing: var(--font-spacing-normal);
+}
+.content-box__profile-branch {
+  color: var(--text-default);
+  font-size: var(--font-body-small);
+  font-weight: var(--font-weight-semibold);
+  line-height: 150%;
+  letter-spacing: var(--font-spacing-normal);
+}
+.content-box__info-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: var(--spacing-list-small);
+}
+.content-box__info-item:last-child {
+  padding-bottom: 0;
+}
+.content-box__info-label {
+  color: var(--text-subtle-dark);
+  font-size: var(--font-body-small);
+  font-weight: var(--font-weight-medium);
+  line-height: 150%;
+  letter-spacing: var(--font-spacing-normal);
+}
+.content-box__info-value {
+  color: var(--text-default);
+  font-size: var(--font-body-small);
+  font-weight: var(--font-weight-regular);
+  line-height: 150%;
+  letter-spacing: var(--font-spacing-normal);
+}
+.content-box__profile-wrap .btn-group {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+@media (min-width: 1024px) {
+  .contents-section__guide-banner-img {
+    height: 44rem;
+  }
+  .contents-section__guide-banner-img img {
+    width: 100%;
+    object-position: center;
+  }
+  .contents-section__guide-banner-img::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30rem;
+    height: 100%;
+    background: linear-gradient(270deg, rgba(198, 213, 217, 0.80) 0%, rgba(198, 213, 217, 0.00) 100%);
+  }
+  
+  .join-guide__list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .join-guide__link {
+    top: 2.4rem;
+    right: 2.2rem;
+  }
+  .content-box.content-box--withdraw {
+    flex-direction: row;
+    align-items: flex-start;
+    margin-top: 8.4rem;
+  }
+
+  /* 지역본부 및 상담사 */
+  .content-box.content-box--directions {
+    padding: var(--spacing-card-xxlarge) var(--gap-title-content);
+  }
+  .content-box--directions__info .content-box__row-list {
+    padding: var(--spacing-card-medium);
+  }
+  .content-box--directions__info .content-box__row-item {
+    gap: var(--spacing-card-small);
+    align-items: center;
+    padding-bottom: var(--spacing-card-medium);
+  }
+  .content-box--directions__info .content-box__row-item.mob-vertical {
+    flex-direction: row;
+  }
+  .content-box--directions__info .content-box__row-item::after {
+    display: block;
+  }
+  .content-box--directions__info .content-box__row-item:last-child {
+    padding-bottom: 0;
+  }
+  .content-box--directions__info .content-box__row-item:last-child::after {
+    display: none;
+  }
+
+  .content-box__badge-group {
+    width: auto;
+  }
+
+  .subway-badge-wrap {
+    min-width: 9.2rem;
+  }
+  
+  .subway-badge-wrap.content-box__badge-group--hug { 
+    flex: auto;
+  }
+  
+  .content-box__badge-subway {
+    min-width: 4rem;
+    height: 4rem;
+    padding: 0.3rem var(--spacing-list-xlarge);
+    letter-spacing: -0.22px;
+    font-size: var(--font-body-small);
+  }
+  .content-box__route-item {
+    align-items: center;
+  }
+
+  /* 상담사 찾기 */
+  .content-box__profile-wrap {
+    flex-direction: row;
+    gap: var(--spacing-card-medium);
+    position: relative;
+  }
+  .content-box__profile {
+    padding-right: var(--spacing-card-medium);
+  }
+  .content-box__info-list {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-card-medium);
+    padding-right: 9rem;
+  }
+  .content-box__profile-wrap .btn-group {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    z-index: 10;
+    transform: translateY(-50%);
+  }
+  .content-box__profile-info {
+    padding: 0;
+  }
+  .content-box__info-item {
+    gap: var(--spacing-list-xlarge);
+    padding: 0;
+  }
+  .content-box__profile {
+    position: relative;
+  }
+  .content-box__profile::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 1px;
+    height: 2rem;
+    background-color: var(--border-default);
+    transform: translateY(-50%);
+  }
+}

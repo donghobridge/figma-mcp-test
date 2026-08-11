@@ -1,0 +1,22 @@
+# OS
+.DS_Store
+**/.DS_Store
+
+# Local / test harness (not for deploy)
+wireframe-test/
+mcp Test/
+mcp-test/
+
+# Generated temporary outputs
+generated-*.html
+generated-*.json
+**/generated-*.html
+**/generated-*.json
+
+# Generated / local preview pages (pages/ is kept empty for workflow deploys)
+pages/*
+!pages/.gitkeep
+pages/catalog/
+
+# Local CSS overrides from polish runs
+css/overrides/

@@ -1,0 +1,784 @@
+/* Mobile base */
+
+/* Typography */
+:root {
+  --font-family: PretendardGOV, Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, "Apple SD Gothic Neo", "Noto Sans KR",
+    "Malgun Gothic", sans-serif;
+
+  --font-size-12: 1.2rem;
+  --font-size-13: 1.3rem;
+  --font-size-14: 1.4rem;
+  --font-size-15: 1.5rem;
+  --font-size-16: 1.6rem;
+  --font-size-17: 1.7rem;
+  --font-size-18: 1.8rem;
+  --font-size-19: 1.9rem;
+  --font-size-22: 2.2rem;
+
+  --font-spacing-tight: -0.05rem;
+  --font-spacing-normal: -0.03rem;
+  --font-spacing-loose: 0.05rem;
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 600;
+  --font-weight-extrabold: 800;
+
+  --font-heading-display: 3.6rem;
+  --font-heading-content: 2.8rem;
+  --font-heading-large: 2.8rem;
+  --font-heading-page: 2.6rem;
+
+  --font-headline-xlarge: 2.4rem;
+  --font-headline-large: 2.2rem;
+  --font-headline-regular: 2.0rem;
+
+  --font-body-large: 1.8rem;
+  --font-body-regular: 1.6rem;
+  --font-body-small: 1.4rem;
+  --font-body-table: 1.4rem;
+
+  --font-caption-regular: 1.3rem;
+  --font-caption-small: 1.2rem;
+}
+
+/* [1] Color - 팔레트/직접 사용 금지 */
+:root {
+  /* primary */
+  --color-primary-100: #fffdf0;
+  --color-primary-200: #fff8cc;
+  --color-primary-300: #ffef8a;
+  --color-primary-400: #ffe74d;
+  --color-primary-450: #c4c0a6;
+  --color-primary-500: #ffdd00;
+  --color-primary-550: #e2c712;
+  --color-primary-600: #c2a800;
+  --color-primary-650: #a38d00;
+  --color-primary-700: #857300;
+  --color-primary-750: #575547;
+  --color-primary-800: #524700;
+  --color-primary-900: #2e2800;
+  --color-primary-green-dark: #95c53d;
+  --color-primary-green-light: #bed730;
+
+  /* neutral */
+  --color-neutral-white: #ffffff;
+  --color-neutral-15: #f5f5f5;
+  --color-neutral-25: #f4f5f6;
+  --color-neutral-50: #f1f2f4;
+  --color-neutral-75: #e3e5e8;
+  --color-neutral-100: #cdd0d6;
+  --color-neutral-200: #b1b6bf;
+  --color-neutral-250: #a5acb5;
+  --color-neutral-300: #959da8;
+  --color-neutral-400: #848e9a;
+  --color-neutral-450: #757e8a;
+  --color-neutral-500: #6e7986;
+  --color-neutral-550: #646d78;
+  --color-neutral-600: #5a626d;
+  --color-neutral-625: #464c53;
+  --color-neutral-650: #40474e;
+  --color-neutral-700: #2e3338;
+  --color-neutral-800: #212427;
+  --color-neutral-850: #171a1c;
+  --color-neutral-900: #0c0d0e;
+  --color-neutral-black: #111111;
+  --color-neutral-black-13: rgba(17, 17, 17, 0.13);
+  --color-neutral-black-30: rgba(17, 17, 17, 0.30);
+  --color-neutral-black-50: rgba(17, 17, 17, 0.50);
+  --color-neutral-black-70: rgba(17, 17, 17, 0.70);
+  --color-neutral-white-18: rgba(255, 255, 255, 0.18);
+  --color-neutral-white-35: rgba(255, 255, 255, 0.35);
+  --color-neutral-white-50: rgba(255, 255, 255, 0.50);
+  --color-neutral-white-80: rgba(255, 255, 255, 0.80);
+
+  /* neutral-warm */
+  --color-neutral-warm-15: #fafafa;
+  --color-neutral-warm-25: #f2f2f2;
+  --color-neutral-warm-50: #ebebeb;
+  --color-neutral-warm-75: #e3e3e3;
+  --color-neutral-warm-100: #cccccc;
+  --color-neutral-warm-200: #b8b8b8;
+  --color-neutral-warm-250: #adadad;
+  --color-neutral-warm-300: #9e9e9e;
+  --color-neutral-warm-400: #8c8c8c;
+  --color-neutral-warm-450: #7a7a7a;
+  --color-neutral-warm-500: #696969;
+  --color-neutral-warm-550: #5c5c5c;
+  --color-neutral-warm-600: #525252;
+  --color-neutral-warm-650: #474747;
+  --color-neutral-warm-700: #3d3d3d;
+  --color-neutral-warm-800: #353535;
+  --color-neutral-warm-850: #2b2b2b;
+  --color-neutral-warm-900: #1f1f1f;
+
+  /* success */
+  --color-success-100: #eff8ed;
+  --color-success-200: #cbe8c4;
+  --color-success-300: #aadaa0;
+  --color-success-400: #79c468;
+  --color-success-500: #55a942;
+  --color-success-600: #447519;
+  --color-success-700: #25400d;
+
+  /* warning */
+  --color-warning-100: #fffcf5;
+  --color-warning-200: #fff3db;
+  --color-warning-300: #ffe2a8;
+  --color-warning-400: #ffd175;
+  --color-warning-500: #ffc041;
+  --color-warning-600: #ffad0a;
+  --color-warning-700: #d18b00;
+  --color-warning-800: #9e6900;
+  --color-warning-900: #5c3e00;
+
+  /* error */
+  --color-error-100: #fde7e3;
+  --color-error-200: #f7afa0;
+  --color-error-300: #f37f68;
+  --color-error-400: #ef5739;
+  --color-error-500: #e33512;
+  --color-error-600: #bd2c0f;
+  --color-error-700: #97230c;
+  --color-error-800: #5f1608;
+  --color-error-900: #2f0b04;
+
+  /* info */
+  --color-info-100: #e7f2fe;
+  --color-info-200: #c0dafc;
+  --color-info-300: #6da9f8;
+  --color-info-400: #3a8cf8;
+  --color-info-500: #1a7bf9;
+  --color-info-600: #055ed1;
+  --color-info-700: #044395;
+  --color-info-800: #022d64;
+  --color-info-900: #011632;
+
+  /* pastel */
+  --color-pastel-brown-bg: #ddd2c8;
+  --color-pastel-green-bg: #c6d9b2;
+  --color-pastel-grayish-bg: #d1d7d3;
+  --color-pastel-blue-bg: #bcd7ea;
+  --color-pastel-pink-bg: #dbc8db;
+  --color-pastel-bagie-bg: #e5e3c7;
+  --color-pastel-turquoise-bg: #b7d7d4;
+  --color-pastel-brown-text: #b09e8f;
+  --color-pastel-green-text: #587933;
+  --color-pastel-grayish-text: #5f6479;
+  --color-pastel-blue-text: #8ab5d3;
+  --color-pastel-pink-text: #b7a2b7;
+  --color-pastel-bagie-text: #c4c2a5;
+  --color-pastel-turquoise-text: #63908c;
+
+  /* graph */
+  --color-graphic-100: #ffdd00;
+  --color-graphic-200: #dfa920;
+  --color-graphic-300: #ff9d00;
+  --color-graphic-400: #ff7700;
+  --color-graphic-500: #ff5900;
+
+  --color-transparent: transparent;
+
+  --color-gold: #C2A800;
+  --color-silver: #B1B6BF;
+  --color-bronze: #BCAEA4;
+}
+
+/* [2] Color - 컴포넌트 토큰 *다크모드에서 컬러값 변경* */
+:root {
+  /* logo */
+  --logo-primary: var(--color-primary-500);
+  --logo-line: #221E1F;
+  --logo-point: #D12838;
+
+  /* surface */
+  --surface-default: var(--color-neutral-25);
+  --surface-default-fixed: var(--color-neutral-25);
+  --surface-elevated: var(--color-neutral-white);
+  --surface-elevated-fixed: var(--color-neutral-white);
+  --surface-elevated-dark: var(--color-neutral-550);
+  --surface-elevated-dark-fixed: var(--color-neutral-550);
+  --surface-inverse: var(--color-neutral-75);
+  --surface-inverse-fixed: var(--color-neutral-75);
+  --surface-dim-13: var(--color-neutral-black-13);
+  --surface-dim-30: var(--color-neutral-black-30);
+  --surface-dim-50: var(--color-neutral-black-50);
+  --surface-dim-70: var(--color-neutral-black-70);
+  --surface-dim-13-fixed: var(--color-neutral-black-13);
+  --surface-dim-30-fixed: var(--color-neutral-black-30);
+  --surface-dim-50-fixed: var(--color-neutral-black-50);
+  --surface-dim-70-fixed: var(--color-neutral-black-70);
+  --surface-white-50: var(--color-neutral-white-50);
+  --surface-white-50-fixed: var(--color-neutral-white-50);
+  --surface-primary: var(--color-primary-500);
+  --surface-primary-light: var(--color-primary-300);
+  --surface-primary-light-fixed: var(--color-primary-300);
+  --surface-primary-dark: var(--color-primary-600);
+  --surface-white: var(--color-neutral-white);
+  --surface-white-fixed: var(--color-neutral-white);
+  --surface-black: var(--color-neutral-black);
+  --surface-black-fixed: var(--color-neutral-black);
+
+  /* surface/state */
+  --state-primary: var(--color-primary-100);
+  --state-info: var(--color-info-100);
+  --state-info-fixed: var(--color-info-100);
+  --state-info-gray: var(--color-neutral-50);
+  --state-info-gray-border: var(--color-neutral-100);
+  --state-info-border: var(--color-info-200);
+  --state-success: var(--color-success-100);
+  --state-success-fixed: var(--color-success-100);
+  --state-success-border: var(--color-success-200);
+  --state-error: var(--color-error-100);
+  --state-error-fixed: var(--color-error-100);
+  --state-error-border: var(--color-error-200);
+  --state-warning: var(--color-warning-200);
+  --state-warning-border: var(--color-warning-300);
+
+  /* text */
+  --text-default: var(--color-neutral-black);
+  --text-default-fixed: var(--color-neutral-black);
+  --text-default-yellow: var(--color-neutral-black);
+  --text-subtle: var(--color-neutral-400);
+  --text-subtle-fixed: var(--color-neutral-400);
+  --text-subtle-dark: var(--color-neutral-550);
+  --text-subtle-dark-fixed: var(--color-neutral-550);
+  --text-subtle-gray: var(--color-neutral-625);
+  --text-disabled: var(--color-neutral-200);
+  --text-input-disabled: var(--color-neutral-450);
+  --text-primary: var(--color-primary-500);
+  --text-primary-dark: var(--color-primary-600);
+  --text-secondary: var(--color-pastel-turquoise-text);
+  --text-white: var(--color-neutral-white);
+
+  /* text/state */
+  --text-state-info: var(--color-info-600);
+  --text-state-info-light: var(--color-info-400);
+  --text-state-info-light-fixed: var(--color-info-400);
+  --text-state-info-gray: var(--color-neutral-500);
+  --text-state-success: var(--color-success-500);
+  --text-state-success-fixed: var(--color-success-500);
+  --text-state-error: var(--color-error-500);
+  --text-state-error-fixed: var(--color-error-500);
+  --text-state-warning: var(--color-warning-600);
+  --text-state-primary: var(--color-primary-650);
+
+  /* icon */
+  --icon-focus: var(--color-neutral-black);
+  --icon-default: var(--color-neutral-black);
+  --icon-default-fixed: var(--color-neutral-black);
+  --icon-default-yellow: var(--color-neutral-black);
+  --icon-subtle: var(--color-neutral-500);
+  --icon-subtle-fixed: var(--color-neutral-500);
+  --icon-primary: var(--color-primary-500);
+  --icon-pressed: var(--color-neutral-700);
+  --icon-pressed-fixed: var(--color-neutral-700); 
+  --icon-disabled: var(--color-neutral-300);
+  --icon-disabled-fixed: var(--color-neutral-300);
+
+  /* button/text */
+  --btn-text-primary: var(--color-neutral-white);
+  --btn-text-primary-hover: var(--color-neutral-75);
+  --btn-text-primary-pressed: var(--color-neutral-100);
+  --btn-text-primary-fixed: var(--color-neutral-white);
+  --btn-text-primary-hover-fixed: var(--color-neutral-75);
+  --btn-text-secondary: var(--color-neutral-black);
+  --btn-text-secondary-yellow: var(--color-neutral-black);
+  --btn-text-secondary-hover: var(--color-primary-900);
+  --btn-text-secondary-pressed: var(--color-primary-800);
+  --btn-text-secondary-disabled: var(--color-neutral-warm-450);
+  --btn-text-tertiary: var(--color-neutral-700);
+  --btn-text-tertiary-fixed: var(--color-neutral-700);
+  --btn-text-tertiary-hover: var(--color-neutral-650);
+  --btn-text-tertiary-hover-fixed: var(--color-neutral-650);
+  --btn-text-tertiary-pressed: var(--color-neutral-600);
+  --btn-text: var(--color-neutral-black);
+  --btn-text-hover: var(--color-neutral-600);
+  --btn-text-pressed: var(--color-neutral-300);
+  --btn-text-disabled: var(--color-neutral-450);
+
+  /* button/bg */
+  --btn-bg-primary: var(--color-neutral-800);
+  --btn-bg-primary-hover: var(--color-neutral-650);
+  --btn-bg-primary-pressed: var(--color-neutral-600);
+  --btn-bg-primary-fixed: var(--color-neutral-800);
+  --btn-bg-primary-hover-fixed: var(--color-neutral-650);
+  --btn-bg-secondary: var(--color-primary-500);
+  --btn-bg-secondary-hover: var(--color-primary-600);
+  --btn-bg-secondary-pressed: var(--color-primary-600);
+  --btn-bg-secondary-pressed-fixed: var(--color-primary-600);
+  --btn-bg-secondary-disabled: var(--color-primary-450);
+  --btn-bg-tertiary: var(--color-neutral-white);
+  --btn-bg-tertiary-fixed: var(--color-neutral-white);
+  --btn-bg-tertiary-border: var(--color-neutral-250);
+  --btn-bg-tertiary-border-fixed: var(--color-neutral-250);
+  --btn-bg-tertiary-hover: var(--color-neutral-100);
+  --btn-bg-tertiary-hover-fixed: var(--color-neutral-100);
+  --btn-bg-tertiary-pressed: var(--color-neutral-300);
+  --btn-bg-disabled: var(--color-neutral-75);
+
+  /* border */
+  --border-default: var(--color-neutral-100);
+  --border-strong: var(--color-neutral-300);
+  --border-yellow: var(--color-primary-700);
+  --border-green: var(--color-primary-green-dark);
+  --border-subtle: var(--color-neutral-75);
+
+  /* input */
+  --input-default: var(--color-neutral-white);
+  --input-default-fixed: var(--color-neutral-white);
+  --input-primary: var(--color-primary-500);
+  --input-focused: var(--color-primary-100);
+  --input-disabled: var(--color-neutral-75);
+  --input-error-border: var(--color-error-500);
+  --input-default-border: var(--color-neutral-100);
+  --input-default-border-fixed: var(--color-neutral-100);
+  --input-focused-border: var(--color-primary-400);
+  --input-disabled-border: var(--color-neutral-200);
+  --input-hover-border: var(--color-neutral-900);
+  --input-hover-border-fixed: var(--color-neutral-900);
+  /* element */
+  --element-default: var(--color-neutral-white);
+  --element-primary-green: var(--color-primary-green-dark);
+  --element-primary: var(--color-primary-500);
+  --element-focused: var(--color-primary-100);
+  --element-disabled: var(--color-neutral-100);
+  --element-default-border: var(--color-neutral-200);
+  --element-focused-border: var(--color-primary-400);
+  --element-disabled-border: var(--color-neutral-200);
+  --element-hover-border: var(--color-neutral-900);
+  --element-graph-100: var(--color-graphic-100);
+  --element-graph-200: var(--color-graphic-200);
+  --element-graph-300: var(--color-graphic-300);
+  --element-graph-400: var(--color-graphic-400);
+  --element-graph-500: var(--color-graphic-500);
+
+  /* pastel */
+  --element-pastel-legal: var(--color-pastel-brown-bg);
+  --element-pastel-legal-text: var(--color-pastel-brown-text);
+  --element-pastel-people: var(--color-pastel-green-bg);
+  --element-pastel-people-text: var(--color-pastel-green-text);
+  --element-pastel-tax: var(--color-pastel-grayish-bg);
+  --element-pastel-tax-text: var(--color-pastel-grayish-text);
+  --element-pastel-tax-text-fixed: var(--color-pastel-grayish-text);
+  --element-pastel-trade: var(--color-pastel-blue-bg);
+  --element-pastel-trade-text: var(--color-pastel-blue-text);
+  --element-pastel-idea: var(--color-pastel-pink-bg);
+  --element-pastel-idea-text: var(--color-pastel-pink-text);
+  --element-pastel-consulting: var(--color-pastel-turquoise-bg);
+  --element-pastel-consulting-fixed: var(--color-pastel-turquoise-bg);
+  --element-pastel-consulting-text: var(--color-pastel-turquoise-text);
+  --element-pastel-medicine: var(--color-pastel-bagie-bg);
+  --element-pastel-medicine-text: var(--color-pastel-bagie-text);
+  
+
+  /* 체크박스 */
+  --checkbox-bg: var(--element-default);
+  --checkbox-border: var(--element-default-border);
+  --checkbox-check: var(--icon-subtle);
+  --checkbox-check-opacity: 0.5;
+
+  /* bookmark */
+  --bookmark-bg: var(--color-transparent);
+
+  /* banner */
+  --banner-bg: var(--color-primary-200);
+
+  /* table */
+  --table-border: var(--border-default);
+  --thead-th-bg: var(--icon-subtle);
+  --thead-th-border: var(--color-neutral-warm-850);
+  --tbody-th-bg: var(--surface-default);
+  --tbody-th-border: var(--color-neutral-warm-700);
+  --tbody-td-bg: var(--surface-elevated);
+  --tbody-td-border: var(--color-neutral-warm-650);
+
+  --shadow-default: 0 2px 28px 0 rgba(0, 0, 0, 0.05);
+  --shadow-small: 0 8px 15px 0 rgba(0, 0, 0, 0.05);
+
+  /* membership */
+  --member-gold: var(--color-gold);
+  --member-silver: var(--color-silver);
+  --member-bronze: var(--color-bronze);
+}
+
+/* [1] Size - 팔레트/직접 사용 금지 */
+:root {
+  --size-360: 36rem;
+  --size-120: 12rem;
+  --size-100: 10rem;
+  --size-80: 8rem;
+  --size-68: 6.8rem;
+  --size-60: 6rem;
+  --size-56: 5.6rem;
+  --size-54: 5.4rem;
+  --size-52: 5.2rem;
+  --size-48: 4.8rem;
+  --size-40: 4rem;
+  --size-36: 3.6rem;
+  --size-34: 3.4rem;
+  --size-32: 3.2rem;
+  --size-30: 3rem;
+  --size-28: 2.8rem;
+  --size-26: 2.6rem;
+  --size-24: 2.4rem;
+  --size-22: 2.2rem;
+  --size-20: 2rem;
+  --size-18: 1.8rem;
+  --size-16: 1.6rem;
+  --size-14: 1.4rem;
+  --size-12: 1.2rem;
+  --size-10: 1rem;
+  --size-8: 0.8rem;
+  --size-6: 0.6rem;
+  --size-4: 0.4rem;
+  --size-2: 0.2rem;
+
+  --radius-6: 0.6rem;
+  --radius-8: 0.8rem;
+  --radius-10: 1rem;
+  --radius-12: 1.2rem;
+  --radius-16: 1.6rem;
+  --radius-18: 1.8rem;
+  --radius-22: 2.2rem;
+  --radius-24: 2.4rem;
+  --radius-28: 2.8rem;
+  --radius-30: 3rem;
+  --radius-32: 3.2rem;
+  --radius-34: 3.4rem;
+  --radius-60: 6rem;
+  --radius-999: 999px;
+}
+
+/* [2] Size - 컴포넌트 토큰 *반응형에서 사이즈 변경* */
+:root {
+  --page-padding-x: var(--size-12);
+  --page-padding-x-default: var(--size-20);
+  --page-medium: var(--size-24);
+  --page-small: var(--size-24);
+
+  --height-input-xlarge: var(--size-60);
+  --height-input-large: var(--size-52);
+  --height-input-medium: var(--size-48);
+  --height-input-small: var(--size-34); /* 확인필요 - css만 있음 */
+
+  --height-button-large: var(--size-52);
+  --height-button-medium: var(--size-48);
+  --height-button-small: var(--size-34);
+  --height-button-xsmall: var(--size-24);
+
+  --width-gnb-head: 100%;
+  --width-action-content: 66rem;
+
+  --width-card-content-large: 34.5rem;
+  --width-card-content-small: 34.5rem;
+  --width-modal-medium: 35.3rem;
+  --width-modal-small: 35.3rem; /* 확인필요 */
+
+  --width-logo: var(--size-34);
+
+  --padding-title-top: var(--size-16);
+  --padding-title-bottom: var(--size-24);
+
+  --padding-y-top: var(--size-32);
+  --padding-y-bottom: var(--size-60);
+  --padding-y-large: var(--size-120); /* 확인필요 - css만 있음 */
+  --padding-y: var(--size-80); /* 확인필요 - css만 있음 */
+  --padding-x: var(--size-24);
+  --padding-x-small: var(--size-24);
+
+  --gap-page: var(--size-40);
+  --gap-title-content: var(--size-24);
+  --gap-headline-content: var(--size-28);
+
+  --gap-xlarge: var(--size-26);
+  --gap-large: var(--size-22);
+  --gap-medium: var(--size-18);
+  --gap-small: var(--size-16);
+  --gap-xsmall: var(--size-14);
+  --gap-xxsmall: var(--size-8);
+
+  --spacing-card-xxsmall: var(--size-14);
+  --spacing-card-xsmall: var(--size-18);
+  --spacing-card-small: var(--size-20);
+  --spacing-card-medium: var(--size-28);
+  --spacing-card-large: var(--size-30);
+  --spacing-card-xlarge: var(--size-32);
+  --spacing-card-xxlarge: var(--size-36);
+  --spacing-card-gap: var(--size-40);
+
+  --spacing-list-xsmall: var(--size-2);
+  --spacing-list-small: var(--size-4);
+  --spacing-list-medium: var(--size-6);
+  --spacing-list-large: var(--size-8);
+  --spacing-list-xlarge: var(--size-12);
+
+  --radius-box-medium: var(--radius-10);
+  --radius-badge: var(--radius-6);
+  --radius-card-small: var(--radius-12);
+  --radius-card-medium: var(--radius-18);
+  --radius-card-large: var(--radius-24);
+  --radius-button-small: var(--radius-8);
+  --radius-input-medium: var(--radius-12);
+  --radius-button-medium: var(--radius-12);
+  --radius-input-large: var(--radius-12);
+  --radius-button-large: var(--radius-12);
+  --radius-page: var(--radius-24);
+
+  --radius-round: var(--radius-999);
+
+  --icon-12: 1.2rem;
+  --icon-16: 1.6rem;
+  --icon-20: 2rem;
+  --icon-24: 2.4rem;
+  --icon-26: 2.6rem;
+  --icon-28: 2.8rem;
+  --icon-32: 3.2rem;
+  --icon-36: 3.6rem;
+  --icon-40: 4rem;
+}
+
+/* Global base */
+html {
+  font-family: var(--font-family);
+  color: var(--text-default);
+  font-size: 10px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  word-break: keep-all;
+  word-wrap: break-word;
+  font-size: inherit;
+  font-family: inherit;
+}
+
+*[hidden] {
+  display: none !important;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+a,
+a:active {
+  color: inherit;
+  cursor: pointer;
+}
+
+/* Chrome, Safari, Edge */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* (선택) Large mobile fix */
+@media (min-width: 430px) {}
+
+/* Tablet */
+@media (min-width: 768px) {
+  :root {
+      /* typo */
+    --font-heading-display: 4.4rem;
+    --font-heading-content: 3.4rem;
+    --font-heading-large: 3rem;
+    --font-heading-page: 2.8rem;
+
+    --font-headline-xlarge: 2.6rem;
+    --font-headline-large: 2.4rem;
+    --font-headline-regular: 2.2rem;
+
+    --font-body-large: 2.2rem;
+    --font-body-regular: 1.8rem;
+    --font-body-small: 1.4rem;
+    --font-body-table: 1.6rem;
+
+    --font-caption-regular: 1.3rem;
+    --font-caption-small: 1.2rem;
+
+    /* size */
+    --page-medium: var(--size-40);
+    --page-small: var(--size-32);
+
+    --height-input-large: var(--size-54);
+    --height-input-medium: var(--size-48);
+    --height-input-small: var(--size-34);
+    /* 확인필요 - css만 있음 */
+
+    --height-button-large: var(--size-54);
+    --height-button-medium: var(--size-48);
+    --height-button-small: var(--size-34);
+    --height-button-xsmall: var(--size-24);
+
+    --width-gnb-head: 100%;
+
+    --width-card-content-large: 72rem;
+    --width-card-content-small: 62rem;
+    --width-modal-medium: 66rem;
+    --width-modal-small: 56rem;
+
+    --width-logo: var(--size-56);
+
+    --padding-title-top: var(--size-32);
+    --padding-title-bottom: var(--size-48);
+
+    --padding-y-top: var(--size-48);
+    --padding-y-bottom: var(--size-80);
+    --padding-y-large: var(--size-100); /* 확인필요 - css만 있음 */
+    --padding-y: var(--size-80); /* 확인필요 - css만 있음 */
+    --padding-x: var(--size-34);
+    --padding-x-small: var(--size-24);
+
+    --gap-page: var(--size-60);
+    --gap-title-content: var(--size-40);
+    --gap-headline-content: var(--size-28);
+
+    --gap-xlarge: var(--size-26);
+    --gap-large: var(--size-22);
+    --gap-medium: var(--size-18);
+    --gap-small: var(--size-16);
+    --gap-xsmall: var(--size-14);
+    --gap-xxsmall: var(--size-10);
+
+    --spacing-card-xxsmall: var(--size-16);
+    --spacing-card-xsmall: var(--size-18);
+    --spacing-card-small: var(--size-24);
+    --spacing-card-medium: var(--size-32);
+    --spacing-card-large: var(--size-36);
+    --spacing-card-xlarge: var(--size-40);
+    --spacing-card-xxlarge: var(--size-48);
+    --spacing-card-gap: var(--size-60);
+
+    --spacing-list-xsmall: var(--size-2);
+    --spacing-list-small: var(--size-4);
+    --spacing-list-medium: var(--size-6);
+    --spacing-list-large: var(--size-10);
+    --spacing-list-xlarge: var(--size-12);
+
+    --radius-box-medium: var(--radius-12);
+    --radius-badge: var(--radius-6);
+    --radius-card-small: var(--radius-22);
+    --radius-card-medium: var(--radius-24);
+    --radius-card-large: var(--radius-30);
+    --radius-button-small: var(--radius-8);
+    --radius-input-medium: var(--radius-16);
+    --radius-button-medium: var(--radius-16);
+    --radius-input-large: var(--radius-18);
+    --radius-button-large: var(--radius-18);
+    --radius-page: var(--radius-32);
+  }
+}
+
+/* PC: web only */
+@media (min-width: 1024px) {
+  :root {
+    /* typo */
+    --font-heading-display: 5.2rem;
+    --font-heading-content: 4rem;
+    --font-heading-large: 3.6rem;
+    --font-heading-page: 3.2rem;
+
+    --font-headline-xlarge: 3rem;
+    --font-headline-large: 2.8rem;
+    --font-headline-regular: 2.4rem;
+
+    --font-body-large: 2.2rem;
+    --font-body-regular: 1.9rem;
+    --font-body-small: 1.6rem;
+    --font-body-table: 1.9rem;
+
+    --font-caption-regular: 1.4rem;
+    --font-caption-small: 1.2rem;
+
+    /* size */
+    --page-padding-x: var(--size-40);
+    --page-medium: var(--size-60);
+    --page-small: var(--size-40);
+
+    --height-input-xlarge: var(--size-68);
+    --height-input-large: var(--size-56);
+    --height-input-medium: var(--size-48);
+    --height-input-small: var(--size-34);
+    /* 확인필요 - css만 있음 */
+
+    --height-button-large: var(--size-56);
+    --height-button-medium: var(--size-48);
+    --height-button-small: var(--size-34);
+    --height-button-xsmall: var(--size-24);
+
+    --width-gnb-head: 127.2rem;
+
+    --width-card-content-large: 96rem;
+    --width-card-content-small: 66rem;
+    --width-modal-medium: 56rem;
+    --width-modal-small: 48rem;
+
+    --width-logo: var(--size-80);
+
+    --padding-title-top: var(--size-48);
+    --padding-title-bottom: var(--size-60);
+
+    --padding-y-top: var(--size-60);
+    --padding-y-bottom: var(--size-100);
+    --padding-y-large: var(--size-120); /* 확인필요 - css만 있음 */
+    --padding-y: var(--size-80); /* 확인필요 - css만 있음 */
+    --padding-x: var(--size-360);
+    --padding-x-small: var(--size-100);
+
+    --gap-page: var(--size-60);
+    --gap-title-content: var(--size-40);
+    --gap-headline-content: var(--size-32);
+
+    --gap-xlarge: var(--size-28);
+    --gap-large: var(--size-24);
+    --gap-medium: var(--size-20);
+    --gap-small: var(--size-18);
+    --gap-xsmall: var(--size-16);
+    --gap-xxsmall: var(--size-12);
+
+    --spacing-card-xxsmall: var(--size-16);
+    --spacing-card-xsmall: var(--size-20);
+    --spacing-card-small: var(--size-24);
+    --spacing-card-medium: var(--size-32);
+    --spacing-card-large: var(--size-36);
+    --spacing-card-xlarge: var(--size-40);
+    --spacing-card-xxlarge: var(--size-48);
+    --spacing-card-gap: var(--size-60);
+
+    --spacing-list-xsmall: var(--size-2);
+    --spacing-list-small: var(--size-4);
+    --spacing-list-medium: var(--size-8);
+    --spacing-list-large: var(--size-10);
+    --spacing-list-xlarge: var(--size-12);
+
+    --radius-box-medium: var(--radius-12);
+    --radius-badge: var(--radius-8);
+    --radius-card-small: var(--radius-24);
+    --radius-card-medium: var(--radius-28);
+    --radius-card-large: var(--radius-34);
+    --radius-button-small: var(--radius-8);
+    --radius-input-medium: var(--radius-16);
+    --radius-button-medium: var(--radius-16);
+    --radius-input-large: var(--radius-18);
+    --radius-button-large: var(--radius-18);
+    --radius-page: var(--radius-60);
+  }
+
+  html {
+    font-size: clamp(7px, 0.5208vw, 10px);
+  }
+}
