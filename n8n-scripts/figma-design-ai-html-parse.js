@@ -1,6 +1,6 @@
 /**
  * AI HTML 추출 + 문서 셸 보정 + 품질 게이트.
- * 참고: yuma-component-img_text/pages — 본문은 마크업, include는 공통 셸(svg/gnb/footer).
+ * 공통 셸/폭만 검증. 화면별 블록 순서는 강제하지 않음 (MCP 따름).
  */
 module.exports = function ($input, helpers) {
   const ai = $input.first().json || {};
@@ -305,21 +305,18 @@ module.exports = function ($input, helpers) {
     warnings.push('import.css/js/common.js/svg-symbols 문서 셸 보정');
   }
 
-  // 가운데 흰 카드 구조 필수 (시안 fidelity)
-  if (!/layout-detail__surface/i.test(html)) {
+  // 공통: 폭 컨테이너 필수. 화면별 블록 순서/컴포넌트는 강제하지 않음
+  if (!/layout-page__container/i.test(html) && !/page-layout__page-inner/i.test(html)) {
     throw new Error(
-      'layout-detail__surface(가운데 흰 카드)가 없습니다. '
-      + 'layout-page > layout-page__container > layout-detail > layout-detail__surface 구조로 다시 생성하세요.'
+      '폭 제한 래퍼가 없습니다 (layout-page__container 또는 page-layout__page-inner). '
+      + '본문이 100% 풀폭으로 나갑니다.'
     );
   }
-  if (!/layout-page__container/i.test(html)) {
-    throw new Error(
-      'layout-page__container가 없습니다. 본문이 100% 풀폭으로 나갑니다.'
-    );
+  if (!/layout-page|page-layout/i.test(html)) {
+    warnings.push('layout-page/page-layout 래퍼가 없습니다.');
   }
-  if (/page-layout__page-inner|class=["'][^"']*page-layout[^"']*["']/i.test(html)
-    && !/layout-detail__surface/i.test(html)) {
-    throw new Error('page-layout 공개형 구조입니다. 이 시안은 layout-detail__surface 카드형이 필요합니다.');
+  if (!/layout-detail__surface/i.test(html) && !/page-layout__page-inner/i.test(html)) {
+    warnings.push('detail 카드(surface) 또는 page-inner 가 없어 레이아웃이 헐거울 수 있습니다.');
   }
 
   // 셸 include
@@ -329,9 +326,6 @@ module.exports = function ($input, helpers) {
   if (!/data-include-path=["']\/patterns\/(gnb|footer)/i.test(html)
     && !/data-include-path=["'][^"']*(gnb|footer|header)/i.test(html)) {
     warnings.push('gnb/footer include가 약합니다.');
-  }
-  if (!/portal-case-header|case-header\.html|portal-contact-bar|contact-bar\.html/i.test(html)) {
-    warnings.push('CaseHeader/ContactBar 패턴이 약합니다.');
   }
 
   if (/TODO|lorem ipsum/i.test(html)) {
