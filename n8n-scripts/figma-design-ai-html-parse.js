@@ -154,6 +154,101 @@ module.exports = function ($input, helpers) {
     return { html, repairs };
   }
 
+  /** include 호스트는 자식이 버려지므로 form-card 래퍼를 풀어 자식을 살린다 */
+  function unwrapNestedIncludeHosts(html) {
+    function replaceBalancedInclude(source, pathToken, replacer) {
+      const openRe = new RegExp(`<div\\b([^>]*data-include-path=["']${pathToken}["'][^>]*)>`, 'gi');
+      let out = '';
+      let last = 0;
+      let match;
+      while ((match = openRe.exec(source)) !== null) {
+        const start = match.index;
+        let i = start + match[0].length;
+        let depth = 1;
+        while (i < source.length && depth > 0) {
+          const nextOpen = source.toLowerCase().indexOf('<div', i);
+          const nextClose = source.toLowerCase().indexOf('</div>', i);
+          if (nextClose < 0) break;
+          if (nextOpen >= 0 && nextOpen < nextClose) {
+            depth += 1;
+            i = nextOpen + 4;
+          } else {
+            depth -= 1;
+            i = nextClose + 6;
+          }
+        }
+        const attrs = match[1] || '';
+        const inner = source.slice(start + match[0].length, i - 6);
+        out += source.slice(last, start) + replacer(attrs, inner);
+        last = i;
+        openRe.lastIndex = i;
+      }
+      out += source.slice(last);
+      return out;
+    }
+
+    // form-card: title → section-heading, 자식 include 유지
+    html = replaceBalancedInclude(html, '/components/form-card.html', (attrs, inner) => {
+      const title = (attrs.match(/data-prop-title=["']([^"']*)["']/) || [])[1];
+      const chunks = [];
+      if (title) chunks.push(includeDiv('/components/section-heading.html', { title }));
+      chunks.push(String(inner || '').trim());
+      return chunks.filter(Boolean).join('\n');
+    });
+
+    // key-value-card 안에 question-content가 있으면 labelN/valueN으로 합침
+    html = replaceBalancedInclude(html, '/components/key-value-card.html', (attrs, inner) => {
+      if (!/data-include-path=/.test(inner)) {
+        return `<div${attrs}></div>`;
+      }
+      const props = {};
+      const title = (attrs.match(/data-prop-title=["']([^"']*)["']/) || [])[1];
+      if (title) props.title = title;
+      const children = [...String(inner).matchAll(/<div\b([^>]*data-include-path=["']\/components\/question-content\.html["'][^>]*)>/gi)];
+      let idx = 0;
+      for (const child of children) {
+        idx += 1;
+        if (idx > 12) break;
+        const a = child[1] || '';
+        props[`label${idx}`] = (a.match(/data-prop-label=["']([^"']*)["']/) || [])[1] || '';
+        props[`value${idx}`] = (a.match(/data-prop-description=["']([^"']*)["']/) || [])[1]
+          || (a.match(/data-prop-value=["']([^"']*)["']/) || [])[1]
+          || '';
+      }
+      return includeDiv('/components/key-value-card.html', props);
+    });
+
+    return html;
+  }
+
+  function ensureDocumentShell(html, pageName) {
+    let out = html;
+    if (!/<meta[^>]*charset=/i.test(out)) {
+      out = out.replace(/<head([^>]*)>/i, '<head$1>\n  <meta charset="UTF-8">');
+    }
+    if (!/<meta[^>]*viewport/i.test(out)) {
+      out = out.replace(/<head([^>]*)>/i, '<head$1>\n  <meta name="viewport" content="width=device-width, initial-scale=1.0">');
+    }
+    if (!/href=["']\/import\.css["']/i.test(out)) {
+      out = out.replace(/<\/head>/i, '  <link rel="stylesheet" href="/import.css">\n</head>');
+    }
+    if (!/src=["']\/import\.js["']/i.test(out)) {
+      out = out.replace(/<\/head>/i, '  <script defer src="/import.js"><\/script>\n</head>');
+    }
+    if (!/src=["']\/common\.js["']/i.test(out)) {
+      out = out.replace(/<\/head>/i, '  <script defer src="/common.js"><\/script>\n</head>');
+    }
+    if (/<title>[\s\S]*?<\/title>/i.test(out)) {
+      out = out.replace(/<title>[\s\S]*?<\/title>/i, `<title>${pageName}</title>`);
+    } else {
+      out = out.replace(/<head([^>]*)>/i, `<head$1>\n  <title>${pageName}</title>`);
+    }
+    if (!/data-include-path=["']\/svg-symbols\.html["']/i.test(out)) {
+      out = out.replace(/<body([^>]*)>/i, '<body$1>\n  <div data-include-path="/svg-symbols.html"></div>');
+    }
+    return out;
+  }
+
   let html = raw
     .replace(/^```html\s*/i, '')
     .replace(/^```\s*/i, '')
@@ -183,6 +278,24 @@ module.exports = function ($input, helpers) {
     if (repairs.length) {
       warnings.push('AI 하드코딩 마크업을 include로 수리: ' + [...new Set(repairs)].join(', '));
     }
+  }
+
+  const beforeUnwrap = html;
+  html = unwrapNestedIncludeHosts(html);
+  if (html !== beforeUnwrap) {
+    repairs.push('UnwrapNestedIncludes');
+    warnings.push('중첩 include 호스트(form-card/key-value-card)를 풀어 자식을 살림');
+  }
+
+  const runConfigEarly = meta.runConfig || (helpers && helpers.runConfig) || {};
+  const pageNameEarly = (meta.preparedMeta && meta.preparedMeta.pageName)
+    || runConfigEarly.pageSlug
+    || 'Figma Design';
+  const beforeShell = html;
+  html = ensureDocumentShell(html, pageNameEarly);
+  if (html !== beforeShell) {
+    repairs.push('DocumentShell');
+    warnings.push('import.css/js/common.js/svg-symbols 문서 셸 보정');
   }
 
   if (!/data-include-path=/i.test(html)) {
@@ -216,10 +329,8 @@ module.exports = function ($input, helpers) {
     throw new Error('include가 너무 적습니다 (' + includeCount + ').');
   }
 
-  const runConfig = meta.runConfig || (helpers && helpers.runConfig) || {};
-  const pageName = (meta.preparedMeta && meta.preparedMeta.pageName)
-    || runConfig.pageSlug
-    || 'Figma Design';
+  const runConfig = runConfigEarly;
+  const pageName = pageNameEarly;
 
   return [{
     json: {
