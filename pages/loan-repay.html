@@ -2,142 +2,36 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>loan-repay</title>
-  <link rel="stylesheet" href="/import.css">
-  <script defer src="/import.js"></script>
-  <script defer src="/common.js"></script>
+  <title>대출상환 신청</title>
 </head>
 <body>
-  <div data-include-path="/svg-symbols.html"></div>
-  <!-- Header include -->
-  <div data-include-path="/patterns/gnb.html"></div>
-  <div class="layout-page">
-    <main class="layout-page__main">
-      <div class="page-wrapper">
-        <div class="section-heading">
-          <h1>대출상환 신청</h1>
-        </div>
-
-        <div class="guide-accordion">
-          <div class="guide-accordion__header">
-            <h2>유의사항</h2>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M18 15L12 9L6 15" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <p> - 자동연장 신청이 되어있지 않은 대출은 대출 만기일에 전액 일시 상환합니다.<br/>
-  - 조기상환에 따른 대출이자는 일할계산 되며 고객센터 신청(상담전화 1666-9988) 또는 인터넷 신청으로 가능합니다.</p>
-        </div>
-
-        <div class="form-card">
-          <h2>대출상환 신청을 위한 정보를 확인해 주세요.</h2>
-          
-          <div class="summary-bar ui-summary-bar--stack">
-            <div class="summary-bar__item">
-              <span class="summary-bar__label">현재 대출잔액</span>
-              <strong class="summary-bar__value">1,000,000원</strong>
-            </div>
-            
-            <div class="summary-bar__item">
-              <span class="summary-bar__label">상환금액</span>
-              <strong class="summary-bar__value">600,000원</strong>
-            </div>
-            
-            <hr/>
-            
-            <div class="summary-bar__item">
-              <span class="summary-bar__label">최종 대출잔액</span>
-              <strong class="summary-bar__value">400,000원</strong>
-            </div>
-          </div>
-
-          <div class="key-value-card">
-            <div class="key-value-card__header">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              <h3>신청내역</h3>
-              <button class="ui-button ui-button--tertiary">수정</button>
-            </div>
-
-            <table class="data-table">
-              <tbody>
-                <tr>
-                  <td class="data-table__cell data-table__cell--title">상환방법</td>
-                  <td class="data-table__cell"><p>정보(Data)</p></td>
-                </tr>
-                <tr>
-                  <td class="data-table__cell data-table__cell--title">대출잔액</td>
-                  <td class="data-table__cell"><p>정보(Data)</p></td>
-                </tr>
-                <tr>
-                  <td class="data-table__cell data-table__cell--title">상환금액</td>
-                  <td class="data-table__cell"><p>정보(Data)</p></td>
-                </tr>
-                <tr>
-                  <td class="data-table__cell data-table__cell--title">상환신청일</td>
-                  <td class="data-table__cell"><p>정보(Data)</p></td>
-                </tr>
-                <tr>
-                  <td class="data-table__cell data-table__cell--title">상환합계금
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M8 15C11.3137 15 14 12.3137 14 9C14 5.68629 11.3137 3 8 3C4.68629 3 2 5.68629 2 9C2 12.3137 4.68629 15 8 15Z" stroke="#111111" stroke-width="2"/>
-                      <path d="M8 11V9" stroke="#111111" stroke-width="2" stroke-linecap="round"/>
-                      <circle cx="8" cy="6" r="1" fill="#111111"/>
-                    </svg>
-                  </td>
-                  <td class="data-table__cell"><p>정보(Data)</p></td>
-                </tr>
-                <tr>
-                  <td class="data-table__cell data-table__cell--title">이자계산일수</td>
-                  <td class="data-table__cell"><p>정보(Data)</p></td>
-                </tr>
-                <tr>
-                  <td class="data-table__cell data-table__cell--title">대출이자율</td>
-                  <td class="data-table__cell"><p>정보(Data)</p></td>
-                </tr>
-                <tr>
-                  <td class="data-table__cell data-table__cell--title">이자납부주기</td>
-                  <td class="data-table__cell"><p>정보(Data)</p></td>
-                </tr>
-                <tr>
-                  <td class="data-table__cell data-table__cell--title">상환회차</td>
-                  <td class="data-table__cell"><p>정보(Data)</p></td>
-                </tr>
-                <tr>
-                  <td class="data-table__cell data-table__cell--title">이체은행</td>
-                  <td class="data-table__cell"><p>정보(Data)</p></td>
-                </tr>
-                <tr>
-                  <td class="data-table__cell data-table__cell--title">계좌번호</td>
-                  <td class="data-table__cell"><p>정보(Data)</p></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-        </div>
-
-        <div class="form-card">
-          <div class="application-date-card">
-            <h3>신청일</h3>
-            <div>
-              <strong>2025년 12월 09일</strong>
-              <p><span style="font-weight:600;">해당 신청은 별도 심사 없이 즉시 완료됩니다.</span><br/>
-<span style="font-weight:600;">정상적으로 출금이 완료되어야 신청이 완료됩니다.</span></p>
-            </div>
-          </div>
-
-          <div class="form-button-group">
-            <button class="ui-button ui-button--secondary">이전</button>
-            <button class="ui-button ui-button--primary">신청하기</button>
-          </div>
-        </div>
+<div data-include-path="/patterns/gnb.html"></div>
+<div class="layout-page">
+  <main class="layout-page__main">
+    <div data-include-path="/components/section-heading.html" data-prop-title="대출상환 신청"></div>
+    <div data-include-path="/components/guide-accordion.html" data-prop-title="유의사항" data-prop-content-html="- 자동연장 신청이 되어있지 않은 대출은 대출 만기일에 전액 일시 상환합니다.<br>- 조기상환에 따른 대출이자는 일할계산 되며 고객센터 신청(상담전화 1666-9988) 또는 인터넷 신청으로 가능합니다."></div>
+    <div data-include-path="/components/form-card.html" data-prop-title="대출상환 신청을 위한 정보를 확인해 주세요.">
+      <div data-include-path="/components/summary-bar.html" data-prop-label1="현재 대출잔액" data-prop-value1="1,000,000원" data-prop-label2="상환금액" data-prop-value2="600,000원" data-prop-label3="최종 대출잔액" data-prop-value3="400,000원" data-prop-variant-class="ui-summary-bar--stack"></div>
+      <div data-include-path="/components/key-value-card.html" data-prop-title="신청내역">
+        <div data-include-path="/components/question-content.html" data-prop-label="상환방법" data-prop-description="정보(Data)"></div>
+        <div data-include-path="/components/question-content.html" data-prop-label="대출잔액" data-prop-description="정보(Data)"></div>
+        <div data-include-path="/components/question-content.html" data-prop-label="상환금액" data-prop-description="정보(Data)"></div>
+        <div data-include-path="/components/question-content.html" data-prop-label="상환신청일" data-prop-description="정보(Data)"></div>
+        <div data-include-path="/components/question-content.html" data-prop-label="상환합계금" data-prop-description="정보(Data)"></div>
+        <div data-include-path="/components/question-content.html" data-prop-label="이자계산일수" data-prop-description="정보(Data)"></div>
+        <div data-include-path="/components/question-content.html" data-prop-label="대출이자율" data-prop-description="정보(Data)"></div>
+        <div data-include-path="/components/question-content.html" data-prop-label="이자납부주기" data-prop-description="정보(Data)"></div>
+        <div data-include-path="/components/question-content.html" data-prop-label="상환회차" data-prop-description="정보(Data)"></div>
+        <div data-include-path="/components/question-content.html" data-prop-label="이체은행" data-prop-description="정보(Data)"></div>
+        <div data-include-path="/components/question-content.html" data-prop-label="계좌번호" data-prop-description="정보(Data)"></div>
       </div>
-    </main>
-  </div>
-  <!-- Footer include -->
-  <div data-include-path="/patterns/footer.html"></div>
+    </div>
+    <div data-include-path="/components/form-card.html">
+      <div data-include-path="/components/application-date-card.html" data-prop-label="신청일" data-prop-date="2025년 12월 09일" data-prop-description="{ts1}**해당 신청은 별도 심사 없이 즉시 완료됩니다.**{/ts1}<br>{ts2}**정상적으로 출금이 완료되어야 신청이 완료됩니다.**{/ts2}"></div>
+      <div data-include-path="/components/form-button-group.html" data-prop-secondary-label="이전" data-prop-primary-label="신청하기"></div>
+    </div>
+  </main>
+</div>
+<div data-include-path="/patterns/footer.html"></div>
 </body>
 </html>
