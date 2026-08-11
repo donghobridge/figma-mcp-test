@@ -93,6 +93,9 @@ module.exports = function ($input, helpers) {
     });
 
     html = replaceClassBlocks(html, 'summary-bar', (block) => {
+      // summary-bar__item 은 스킵 (루트 summary-bar 만)
+      const openClass = ((block.match(/^<div\b[^>]*class=["']([^"']*)["']/i) || [])[1] || '').split(/\s+/);
+      if (!openClass.includes('summary-bar')) return block;
       const labels = [...block.matchAll(/summary-bar__label[^>]*>([\s\S]*?)<\//gi)].map((m) => stripTags(m[1]));
       const values = [...block.matchAll(/summary-bar__value[^>]*>([\s\S]*?)<\//gi)].map((m) => stripTags(m[1]));
       if (!labels.length) return block;
@@ -187,10 +190,10 @@ module.exports = function ($input, helpers) {
   }
 
   const stillBanned = [
-    /class=["'][^"']*guide-accordion/i,
-    /class=["'][^"']*summary-bar/i,
-    /class=["'][^"']*data-table/i,
-    /class=["'][^"']*key-value-card/i,
+    /(?:^|[\s"'])class=["'][^"']*\bguide-accordion\b/i,
+    /(?:^|[\s"'])class=["'][^"']*\bsummary-bar\b/i,
+    /(?:^|[\s"'])class=["'][^"']*\bdata-table\b/i,
+    /(?:^|[\s"'])class=["'][^"']*\bkey-value-card\b/i,
   ];
   for (const re of stillBanned) {
     if (re.test(html)) {
