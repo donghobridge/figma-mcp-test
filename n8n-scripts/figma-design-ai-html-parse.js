@@ -307,6 +307,17 @@ module.exports = function ($input, helpers) {
     warnings.push('import.css/js/common.js/svg-symbols 문서 셸 보정');
   }
 
+  // layout-page 잔존 / 풀폭 본문 구조 차단
+  if (/\blayout-page\b/i.test(html)) {
+    throw new Error('layout-page 가 남아 있습니다. page-layout + page-layout__page-inner 로 작성하세요.');
+  }
+  if (!/page-layout__page-inner/i.test(html)) {
+    throw new Error(
+      'page-layout__page-inner 가 없습니다. 본문이 100% 풀폭으로 나갑니다. '
+      + '참고 페이지처럼 page-layout__page-inner(--restr) page-layout--content 를 넣으세요.'
+    );
+  }
+
   // 본문 /components include 조립이면 실패 → 참고 페이지 마크업으로 재생성
   const bodyComponentIncludes = (html.match(/data-include-path=["']\/components\/[^"']+["']/gi) || []).length;
   if (bodyComponentIncludes >= 2) {
@@ -324,10 +335,10 @@ module.exports = function ($input, helpers) {
     && !/data-include-path=["']\/patterns\/gnb\.html["']/i.test(html)) {
     warnings.push('gnb/header include가 없습니다.');
   }
-  if (!/page-layout|layout-page/i.test(html)) {
-    warnings.push('page-layout 래퍼가 없습니다. 참고 페이지 구조와 다를 수 있음.');
+  if (!/page-layout--content|page-layout__page-inner--restr/i.test(html)) {
+    warnings.push('page-layout--content / --restr 가 없어 본문 폭이 넓을 수 있습니다.');
   }
-  if (!/detail-view|board-container|contents-section|page-layout__page-inner/i.test(html)) {
+  if (!/detail-view|board-container|contents-section|page-inner__inner/i.test(html)) {
     warnings.push('detail-view/board-container 본문 패턴이 약합니다.');
   }
 
