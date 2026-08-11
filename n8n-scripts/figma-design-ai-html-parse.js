@@ -398,11 +398,18 @@ module.exports = function ($input, helpers) {
     || runConfig.fileKey
     || '';
 
-  // 디버그용: 어떤 노드로 생성됐는지 HTML에 남김
+  // 디버그용: 어떤 노드/MCP 원문으로 생성됐는지 HTML에 남김
   if (sourceNodeId && !/data-source-node-id=/.test(html)) {
     html = html.replace(
       /<body([^>]*)>/i,
       `<body$1 data-source-file-key="${escapeAttr(sourceFileKey)}" data-source-node-id="${escapeAttr(sourceNodeId)}">`
+    );
+  }
+  const mcpHead = mcpText.slice(0, 280).replace(/--+/g, '-');
+  if (mcpHead && !/mcp-source:/.test(html)) {
+    html = html.replace(
+      /<body[^>]*>/i,
+      (m) => `${m}\n  <!-- mcp-source nodeId=${sourceNodeId} len=${mcpText.length} head=${mcpHead} -->`
     );
   }
 
@@ -420,6 +427,7 @@ module.exports = function ($input, helpers) {
       sourceFileKey,
       sourceNodeId,
       mcpTextHead: mcpText.slice(0, 240),
+      mcpTextLength: mcpText.length,
     },
   }];
 };
