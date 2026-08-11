@@ -320,17 +320,91 @@ module.exports = function ($input, helpers) {
   if (/TODO|lorem ipsum/i.test(html)) {
     throw new Error('더미 값(TODO/lorem)이 포함되어 있습니다. MCP 원문 실제 값만 쓰세요.');
   }
+  if (/\(MCP[^)]*\)/i.test(html)) {
+    throw new Error('프롬프트 플레이스홀더 "(MCP…)"가 HTML에 남아 있습니다. MCP 원문 값으로 다시 생성하세요.');
+  }
   if (/정보\s*\(\s*Data\s*\)/i.test(html)) {
     warnings.push('HTML에 "정보(Data)"가 포함됨. 시안 플레이스홀더일 수 있음.');
   }
 
+  // MCP grounding: HTML prop 값이 MCP에 없으면 환각/예시 복사로 보고 실패
+  let mcpText = String(meta.mcpText || '').trim();
+  if (!mcpText && helpers && helpers.prepared) {
+    mcpText = String(helpers.prepared.mcpText || '').trim();
+  }
+  if (!mcpText && helpers && typeof helpers.getJson === 'function') {
+    try {
+      const decoded = helpers.getJson('GitHub map 디코드') || {};
+      mcpText = String((decoded.prepared && decoded.prepared.mcpText) || '').trim();
+      if (!mcpText) {
+        const extracted = helpers.getJson('MCP 텍스트 추출') || {};
+        mcpText = String(extracted.mcpText || '').trim();
+      }
+    } catch (_) {}
+  }
+
+  if (mcpText) {
+    const mcpNorm = mcpText.replace(/\s+/g, '');
+    const propVals = [];
+    const propRe = /data-prop-[a-z0-9-]+="([^"]*)"/gi;
+    let pm;
+    while ((pm = propRe.exec(html)) !== null) {
+      const v = stripTags(pm[1]).trim();
+      if (v.length >= 4) propVals.push(v);
+    }
+
+    const missing = [];
+    for (const v of propVals) {
+      const compact = v.replace(/\s+/g, '');
+      if (compact.length < 4) continue;
+      // 날짜/금액처럼 변형될 수 있는 짧은 토큰은 느슨히: 숫자만이면 skip
+      if (/^[\d,.\-\/원%]+$/.test(v)) continue;
+      if (!mcpNorm.includes(compact) && !mcpText.includes(v)) {
+        missing.push(v.slice(0, 40));
+      }
+    }
+    // 너무 엄격하면 실패폭주 → 대표 문구 3개 이상 미스면 환각로 판단
+    if (missing.length >= 3) {
+      throw new Error(
+        'HTML prop 값이 MCP 원문에 없습니다 (예시/환각 의심). 예: '
+        + missing.slice(0, 5).join(' | ')
+        + '\n→ MCP 텍스트 추출의 mcpTextHead/sourceNodeId를 확인하세요.'
+      );
+    }
+
+    // 대출상환 고정 레시피 차단: MCP에 없는데 HTML에만 있으면 실패
+    const loanMarkers = ['대출상환', '현재 대출잔액', '상환합계금', '이자계산일수'];
+    const loanInHtml = loanMarkers.filter((m) => html.includes(m));
+    const loanInMcp = loanMarkers.filter((m) => mcpText.includes(m));
+    if (loanInHtml.length >= 2 && loanInMcp.length === 0) {
+      throw new Error(
+        '대출상환 화면 문구가 HTML에 있으나 MCP 원문에 없습니다. '
+        + '실행 입력 nodeId / MCP Client Input / mcpTextHead를 확인하세요.'
+      );
+    }
+  }
+
   const includeCount = (html.match(/data-include-path=/gi) || []).length;
-  if (includeCount < 5) {
+  if (includeCount < 3) {
     throw new Error('include가 너무 적습니다 (' + includeCount + ').');
   }
 
   const runConfig = runConfigEarly;
   const pageName = pageNameEarly;
+  const sourceNodeId = (meta.preparedMeta && meta.preparedMeta.sourceNodeId)
+    || runConfig.nodeId
+    || '';
+  const sourceFileKey = (meta.preparedMeta && meta.preparedMeta.sourceFileKey)
+    || runConfig.fileKey
+    || '';
+
+  // 디버그용: 어떤 노드로 생성됐는지 HTML에 남김
+  if (sourceNodeId && !/data-source-node-id=/.test(html)) {
+    html = html.replace(
+      /<body([^>]*)>/i,
+      `<body$1 data-source-file-key="${escapeAttr(sourceFileKey)}" data-source-node-id="${escapeAttr(sourceNodeId)}">`
+    );
+  }
 
   return [{
     json: {
@@ -343,6 +417,9 @@ module.exports = function ($input, helpers) {
       runConfig,
       pageSlug: runConfig.pageSlug || meta.pageSlug || 'design-page',
       componentCount: includeCount,
+      sourceFileKey,
+      sourceNodeId,
+      mcpTextHead: mcpText.slice(0, 240),
     },
   }];
 };

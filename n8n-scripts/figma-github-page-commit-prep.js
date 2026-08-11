@@ -37,10 +37,11 @@ module.exports = function ($input, helpers) {
   const isUpdate = Boolean(existing && existing.sha && existing.type === 'file');
 
   const content = Buffer.from(html, 'utf8').toString('base64');
+  const nodeId = String(cfg.nodeId || htmlItem.sourceNodeId || '').trim();
   const body = {
     message: isUpdate
-      ? `update(pages): ${pageSlug} include HTML via MCP AI`
-      : `feat(pages): add ${pageSlug} include HTML via MCP AI`,
+      ? `update(pages): ${pageSlug} via MCP AI (nodeId=${nodeId || 'unknown'})`
+      : `feat(pages): add ${pageSlug} via MCP AI (nodeId=${nodeId || 'unknown'})`,
     content,
     branch,
   };
