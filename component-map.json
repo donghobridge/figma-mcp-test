@@ -115,42 +115,60 @@
   },
   "CaseHeader": {
     "type": "component",
-    "slot": "content",
+    "slot": "header",
     "figmaNames": [
       "CaseHeader",
-      "case-header"
+      "case-header",
+      "DetailContentHeader",
+      "detail-content-header"
     ],
     "path": "/components/case-header.html",
     "props": [
       "badge1",
       "badge2",
+      "badge3",
       "status",
       "title",
+      "meta1",
+      "meta2",
+      "meta3",
+      "likeCount",
       "date"
     ],
     "textProps": [
       "badge1",
       "badge2",
+      "badge3",
       "status",
       "title",
+      "meta1",
+      "meta2",
+      "meta3",
+      "likeCount",
       "date"
     ],
     "requiredProps": [
-      "title",
-      "date"
+      "title"
     ],
     "variants": [],
-    "description": "상세 페이지의 배지, 제목, 작성일을 표시하는 머리말",
+    "description": "공개 상세 머리말(배지·제목·메타·좋아요) — img_text detail-view header",
     "propTypes": {
       "badge1": "label",
       "badge2": "label",
+      "badge3": "label",
+      "status": "label",
       "title": "shortText",
+      "meta1": "shortText",
+      "meta2": "shortText",
+      "meta3": "shortText",
+      "likeCount": "label",
       "date": "date"
     },
     "propMaxLen": {
       "badge1": 40,
       "badge2": 40,
-      "title": 80
+      "badge3": 40,
+      "title": 120
     }
   },
   "ContactBar": {
@@ -241,28 +259,30 @@
     "figmaNames": [
       "QuestionContent",
       "question",
-      "question-content"
+      "question-content",
+      "QuestionArea",
+      "question-area"
     ],
     "path": "/components/question-content.html",
     "props": [
+      "description",
       "label",
-      "category",
-      "description"
+      "category"
     ],
     "textProps": [
+      "description",
       "label",
-      "category",
-      "description"
+      "category"
     ],
     "requiredProps": [
       "description"
     ],
     "variants": [],
-    "description": "문의 분류와 긴 문의 본문을 표시",
+    "description": "공개 상세 Q 본문 (img_text question-area)",
     "propTypes": {
+      "description": "longText",
       "label": "shortText",
-      "category": "shortText",
-      "description": "longText"
+      "category": "shortText"
     },
     "propMaxLen": {
       "label": 80,
@@ -277,8 +297,7 @@
     "slot": "content",
     "figmaNames": [
       "AnswerPanel",
-      "answer-panel",
-      "answer"
+      "answer-panel"
     ],
     "path": "/components/answer-panel.html",
     "props": [
@@ -311,7 +330,7 @@
       "description"
     ],
     "variants": [],
-    "description": "상담답변 제목, 안내문, 비용, 긴 답변 본문과 태그를 하나의 패널로 표시",
+    "description": "어드민/포탈 상담답변 패널 (빈 notice·cost는 CSS로 숨김)",
     "propTypes": {
       "title": "shortText",
       "noticeTitle": "label",
@@ -334,6 +353,164 @@
     },
     "propMinLen": {
       "description": 40
+    }
+  },
+  "AnswerArea": {
+    "type": "component",
+    "slot": "content",
+    "figmaNames": [
+      "AnswerArea",
+      "answer-area",
+      "answer"
+    ],
+    "path": "/components/answer-area.html",
+    "props": [
+      "bodyHtml",
+      "tag1",
+      "tag2"
+    ],
+    "textProps": [
+      "bodyHtml",
+      "tag1",
+      "tag2"
+    ],
+    "requiredProps": [
+      "bodyHtml"
+    ],
+    "variants": [],
+    "description": "공개 상세 A 본문 (img_text answer-area)",
+    "propTypes": {
+      "bodyHtml": "longText",
+      "tag1": "tag",
+      "tag2": "tag"
+    },
+    "propMinLen": {
+      "bodyHtml": 40
+    }
+  },
+  "DetailContentHeader": {
+    "type": "component",
+    "slot": "header",
+    "figmaNames": [
+      "DetailContentHeader"
+    ],
+    "path": "/components/detail-content-header.html",
+    "props": [
+      "badge1",
+      "badge2",
+      "badge3",
+      "title",
+      "meta1",
+      "meta2",
+      "meta3",
+      "likeCount"
+    ],
+    "textProps": [
+      "badge1",
+      "badge2",
+      "badge3",
+      "title",
+      "meta1",
+      "meta2",
+      "meta3",
+      "likeCount"
+    ],
+    "requiredProps": [
+      "title"
+    ],
+    "description": "CaseHeader와 동일 마크업의 공개 상세 헤더 별칭",
+    "propTypes": {
+      "badge1": "label",
+      "badge2": "label",
+      "badge3": "label",
+      "title": "shortText",
+      "meta1": "shortText",
+      "meta2": "shortText",
+      "meta3": "shortText",
+      "likeCount": "label"
+    }
+  },
+  "BackToList": {
+    "type": "component",
+    "slot": "back",
+    "figmaNames": [
+      "BackToList",
+      "back-to-list"
+    ],
+    "path": "/components/back-to-list.html",
+    "props": [
+      "label",
+      "href"
+    ],
+    "textProps": [
+      "label"
+    ],
+    "requiredProps": [
+      "label"
+    ],
+    "defaults": {
+      "label": "목록",
+      "href": "#"
+    },
+    "description": "상세 상단 목록 돌아가기",
+    "propTypes": {
+      "label": "shortText",
+      "href": "href"
+    }
+  },
+  "AdvisorProfile": {
+    "type": "component",
+    "slot": "profile",
+    "figmaNames": [
+      "AdvisorProfile",
+      "answer-profile",
+      "advisor-profile"
+    ],
+    "path": "/components/advisor-profile.html",
+    "props": [
+      "imageSrc",
+      "name",
+      "field",
+      "region"
+    ],
+    "textProps": [
+      "name",
+      "field",
+      "region"
+    ],
+    "requiredProps": [
+      "name"
+    ],
+    "defaults": {
+      "imageSrc": "/assets/img/pages/contents/advisor-img-03.png"
+    },
+    "description": "답변 하단 자문위원 프로필",
+    "propTypes": {
+      "imageSrc": "href",
+      "name": "shortText",
+      "field": "shortText",
+      "region": "shortText"
+    }
+  },
+  "QuestionArea": {
+    "type": "component",
+    "slot": "content",
+    "figmaNames": [
+      "QuestionArea"
+    ],
+    "path": "/components/question-area.html",
+    "props": [
+      "bodyHtml"
+    ],
+    "textProps": [
+      "bodyHtml"
+    ],
+    "requiredProps": [
+      "bodyHtml"
+    ],
+    "description": "QuestionContent 공개형 별칭",
+    "propTypes": {
+      "bodyHtml": "longText"
     }
   },
   "TagList": {

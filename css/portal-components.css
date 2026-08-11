@@ -224,6 +224,33 @@
   font-size: 1.6rem;
 }
 
+.portal-answer__notice:not(:has(strong:not(:empty), span:not(:empty), time:not(:empty))) {
+  display: none;
+}
+
+.badge:empty,
+.tag:empty,
+.tag-list:not(:has(.tag:not(:empty))),
+.btn__label:empty {
+  display: none;
+}
+
+.badge-wrap .badge:empty {
+  display: none;
+}
+
+.title-group__text:empty {
+  display: none;
+}
+
+.portal-answer__costs:not(:has(dt:not(:empty), dd:not(:empty))) {
+  display: none;
+}
+
+.portal-tag-list:not(:has(span:not(:empty))) {
+  display: none;
+}
+
 .portal-answer__notice strong:not(:empty) {
   grid-column: 1;
 }

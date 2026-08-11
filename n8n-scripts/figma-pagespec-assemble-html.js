@@ -1,9 +1,8 @@
 /**
  * pageSpec → include-only HTML 조립
- * - 셸(layout-page / gnb / footer / layout-detail) 고정
- * - 섹션 순서는 pageSpec.sections (MCP 기반)
- * - props → data-prop-kebab-case
- * - fs 없이 include만 출력 (런타임 import.js가 채움)
+ * - 공개 상세: page-layout + detail-view-container (img_text)
+ * - 폼: page-layout + action-box 계열 섹션
+ * - props → data-prop-kebab-case, 빈 값 미출력
  */
 module.exports = function ($input, helpers) {
   const input = $input.first().json || {};
@@ -26,9 +25,7 @@ module.exports = function ($input, helpers) {
     ? extractedMap.data
     : extractedMap;
 
-  const runConfig = (helpers && helpers.runConfig)
-    || input.runConfig
-    || {};
+  const runConfig = (helpers && helpers.runConfig) || input.runConfig || {};
   const pageSlug = String(runConfig.pageSlug || input.pageSlug || 'design-page')
     .trim()
     .replace(/[^a-zA-Z0-9._-]+/g, '-')
@@ -74,8 +71,9 @@ module.exports = function ($input, helpers) {
           const n = (key.match(/(\d+)$/) || [])[1];
           if (!props[`file${n}`] && !props[`type${n}`]) continue;
           value = '#';
-        } else if (/href/i.test(key) && (props[key.replace(/Href.*/i, '')] || /button|primary|secondary/i.test(key))) {
-          value = '#';
+        } else if (/href/i.test(key) && (props[key.replace(/Href.*/i, '')] || /button|primary|secondary|label/i.test(key))) {
+          value = key === 'href' && props.label ? '#' : ( /href/i.test(key) ? '#' : '');
+          if (!value) continue;
         } else {
           continue;
         }
@@ -93,18 +91,26 @@ module.exports = function ($input, helpers) {
     return `${comment}\n<div ${attrs.join(' ')}></div>`;
   }
 
-  const headerComps = /^(SectionHeading|Breadcrumb|PageTitle)$/i;
-  const actionComps = /^(FormButtonGroup|ActionButtonGroup|ButtonGroup|PrimaryButton)$/i;
+  const backComps = /^(BackToList)$/i;
+  const headerComps = /^(SectionHeading|Breadcrumb|BreadcrumbGroup|PageTitle|PageTitleDisplay|DetailContentHeader|CaseHeader)$/i;
+  const actionComps = /^(FormButtonGroup|ActionButtonGroup|ButtonGroup|PrimaryButton|Button)$/i;
+  const profileComps = /^(AdvisorProfile)$/i;
 
+  const backParts = [];
   const headerParts = [];
   const contentParts = [];
+  const profileParts = [];
   const actionParts = [];
 
   for (const section of pageSpec.sections) {
     const html = renderInclude(section);
     const slot = String(section.slot || '').toLowerCase();
-    if (slot === 'actions' || actionComps.test(section.component)) {
+    if (backComps.test(section.component) || slot === 'back') {
+      backParts.push(html);
+    } else if (slot === 'actions' || actionComps.test(section.component)) {
       actionParts.push(html);
+    } else if (profileComps.test(section.component) || slot === 'profile') {
+      profileParts.push(html);
     } else if (slot === 'header' || headerComps.test(section.component)) {
       headerParts.push(html);
     } else {
@@ -112,13 +118,64 @@ module.exports = function ($input, helpers) {
     }
   }
 
+  // AdvisorProfile는 AnswerArea 바로 뒤에 붙이도록 content 끝에 합침
+  if (profileParts.length) {
+    contentParts.push(...profileParts);
+  }
+
   const names = pageSpec.sections.map((s) => s.component);
-  const isForm = names.some((n) => /Form|GuideAccordion|SummaryBar|ApplicationDate/i.test(n));
-  const detailClass = isForm ? 'layout-detail layout-detail--form' : 'layout-detail';
-  const pageClass = isForm ? 'layout-page layout-page--form' : 'layout-page';
+  const isForm = names.some((n) => /Form|GuideAccordion|SummaryBar|ApplicationDate|KeyValue|ActionBox|AmountBox/i.test(n))
+    && !names.some((n) => /CaseHeader|DetailContentHeader|QuestionArea|QuestionContent|AnswerArea|AnswerPanel/i.test(n));
+  const isPublicDetail = names.some((n) =>
+    /CaseHeader|DetailContentHeader|QuestionArea|QuestionContent|AnswerArea|AnswerPanel|BackToList|ContactBar|AttachmentList/i.test(n)
+  );
 
   const headerPath = pageSpec.headerPath || '/patterns/gnb.html';
   const footerPath = pageSpec.footerPath || '/patterns/footer.html';
+
+  let mainInner = '';
+  if (isForm) {
+    mainInner = `
+    <div class="page-layout__page-inner page-layout--content">
+      <div class="page-inner__inner">
+${headerParts.join('\n\n')}
+${contentParts.join('\n\n')}
+        <div class="action-button-list">
+${actionParts.join('\n\n')}
+        </div>
+      </div>
+    </div>`;
+  } else if (isPublicDetail) {
+    mainInner = `
+${backParts.join('\n\n')}
+    <div class="page-layout__page-inner page-layout--content">
+      <div class="detail-view-container">
+        <div class="page-inner__inner">
+          <div class="detail-view__content">
+${headerParts.join('\n\n')}
+            <div class="detail-view--content-body">
+${contentParts.join('\n\n')}
+            </div>
+          </div>
+          <div class="action-button-list" style="margin-top:24px;justify-content:center;">
+${actionParts.join('\n\n')}
+          </div>
+        </div>
+      </div>
+    </div>`;
+  } else {
+    mainInner = `
+${backParts.join('\n\n')}
+${headerParts.join('\n\n')}
+    <div class="page-layout__page-inner page-layout--content">
+      <div class="page-inner__inner">
+${contentParts.join('\n\n')}
+        <div class="action-button-list">
+${actionParts.join('\n\n')}
+        </div>
+      </div>
+    </div>`;
+  }
 
   const html = `<!DOCTYPE html>
 <html lang="ko">
@@ -132,30 +189,12 @@ module.exports = function ($input, helpers) {
 </head>
 <body>
   <div data-include-path="/svg-symbols.html"></div>
-<div class="${pageClass}">
-<div data-include-path="${escapeAttr(headerPath)}"></div>
+  <div class="page-layout">
+    <div data-include-path="${escapeAttr(headerPath)}"></div>
+${mainInner}
 
-  <main class="layout-page__main" id="main-content">
-    <div class="layout-page__container">
-<section class="${detailClass}">
-  <header class="layout-detail__header">
-${headerParts.join('\n\n') || '<!-- no header sections -->'}
-  </header>
-  <div class="layout-detail__surface">
-    <div class="layout-detail__content">
-${contentParts.join('\n\n') || '<!-- no content sections -->'}
-    </div>
-    <div class="layout-detail__actions">
-${actionParts.join('\n\n')}
-    </div>
+    <div data-include-path="${escapeAttr(footerPath)}"></div>
   </div>
-</section>
-    </div>
-  </main>
-
-<div data-include-path="${escapeAttr(footerPath)}"></div>
-</div>
-
 </body>
 </html>
 `;
@@ -168,6 +207,7 @@ ${actionParts.join('\n\n')}
       includeCount: pageSpec.sections.length,
       componentCount: pageSpec.sections.length,
       sectionNames: names,
+      layoutMode: isForm ? 'form' : (isPublicDetail ? 'public-detail' : 'content'),
       generationMode: 'pagespec-assemble',
       sourceNodeId: runConfig.nodeId || '',
       warnings: [],

@@ -45,7 +45,7 @@ module.exports = function ($input, helpers) {
     const t = cleanText(text);
     if (!t) return true;
     if (/^[\s○●◎◯◉□■☐☑✓✔✕✖×><›‹·•‧∙]+$/u.test(t)) return true;
-    if (/^(다운로드|바로보기|수정하기|취소|닫기|검색|LOGO|IMAGE)$/i.test(t)) return true;
+    if (/^(다운로드|바로보기|취소|닫기|검색|LOGO|IMAGE)$/i.test(t)) return true;
     if (/^•?\s*[A-Za-z][\w.]*\s*:/.test(t)) return true;
     return false;
   }
@@ -165,10 +165,16 @@ module.exports = function ($input, helpers) {
       return pool[i];
     }
 
+    function isTag(t) { return /^#[^\s#]+$/.test(t) || /^#\s*[^\s#]+$/.test(t); }
+    function isMoney(t) { return /\d{1,3}(?:,\d{3})+\s*원|\d+\s*원/.test(t); }
+    function isDate(t) { return /\d{4}[.\-/년]/.test(t); }
+    function isPhone(t) {
+      return /^\d{2,4}-\d{3,4}-\d{4}$/.test(t) || /\d{2,4}[-\s]\d{3,4}[-\s]\d{4}/.test(t);
+    }
+
     if (componentKey === 'KeyValueCard' || componentKey === 'SummaryBar') {
-      // 첫 short non-money를 title (KeyValueCard만). SummaryBar는 전부 label/value.
       if (componentKey === 'KeyValueCard' && pool[0] && pool[0].length <= 40
-        && !/\d{1,3}(?:,\d{3})+\s*원/.test(pool[0]) && !/\d{4}[.\-/]/.test(pool[0])) {
+        && !isMoney(pool[0]) && !isDate(pool[0])) {
         props.title = pool[0];
         used.add(0);
       }
@@ -177,24 +183,109 @@ module.exports = function ($input, helpers) {
       return props;
     }
 
+    if (componentKey === 'CaseHeader' || componentKey === 'DetailContentHeader') {
+      // 제목 먼저 (배지가 제목을 가져가지 않도록)
+      props.title = take((t) => t.length >= 8 && t.length <= 120 && !isDate(t) && !isPhone(t) && !isTag(t) && !/^(법률|법무|온라인|분쟁)/.test(t));
+      if (!props.title) {
+        props.title = take((t) => t.length >= 6 && t.length <= 120 && !isDate(t) && !isPhone(t) && !isTag(t));
+      }
+      if (props.title) {
+        const m = props.title.match(/^\[([^\]]+)\]\s*(.*)$/);
+        if (m) {
+          props.status = m[1];
+          props.title = m[2] || props.title;
+        }
+      }
+      props.badge1 = take((t) => t.length <= 24 && !isDate(t) && !isTag(t) && t !== props.title);
+      props.badge2 = take((t) => t.length <= 24 && !isDate(t) && !isTag(t) && t !== props.title);
+      props.badge3 = take((t) => t.length <= 24 && !isDate(t) && !isTag(t) && t !== props.title);
+      const date = take(isDate);
+      if (date) {
+        props.date = date;
+        props.meta1 = `작성일 : ${date}`;
+      }
+      props.meta2 = take((t) => /작성자|조회/.test(t) || (t.length <= 40 && /\*/.test(t)));
+      props.meta3 = take((t) => /조회/.test(t));
+      props.likeCount = take((t) => /^\d{1,4}$/.test(t)) || '';
+      return props;
+    }
+
+    if (componentKey === 'AnswerPanel') {
+      props.title = take((t) => /상담답변|답변/.test(t) && t.length <= 40) || '상담답변';
+      props.noticeDate = take(isDate);
+      props.tag1 = take(isTag);
+      props.tag2 = take(isTag);
+      props.costValue1 = take(isMoney);
+      props.costValue2 = take(isMoney);
+      props.costLabel1 = take((t) => /비용|금액/.test(t) && t.length <= 20) || (props.costValue1 ? '소송비용' : '');
+      props.costLabel2 = take((t) => /비용|금액/.test(t) && t.length <= 20) || (props.costValue2 ? '발생비용' : '');
+      props.noticeTitle = take((t) => /보완|요청|안내|공지|상담답변/.test(t) && t.length <= 30);
+      props.noticeMessage = take((t) => t.length >= 8 && t.length <= 80 && !isMoney(t) && !isDate(t) && !isTag(t));
+      props.description = take((t) => t.length >= 40) || take((t) => t.length >= 20);
+      return props;
+    }
+
+    if (componentKey === 'AnswerArea') {
+      props.tag1 = take(isTag);
+      props.tag2 = take(isTag);
+      const long = take((t) => t.length >= 40) || take((t) => t.length >= 20);
+      if (long) props.bodyHtml = long.replace(/\n/g, '<br/>');
+      return props;
+    }
+
+    if (componentKey === 'QuestionArea') {
+      const long = take((t) => t.length >= 40) || take((t) => t.length >= 20);
+      if (long) props.bodyHtml = long.replace(/\n/g, '<br/>');
+      return props;
+    }
+
+    if (componentKey === 'QuestionContent') {
+      props.description = take((t) => t.length >= 40) || take((t) => t.length >= 20);
+      props.category = take((t) => t.length <= 60 && (/:/.test(t) || /분쟁|법률|상담/.test(t)));
+      props.label = take((t) => /신청|내용|문의/.test(t) && t.length <= 40);
+      return props;
+    }
+
+    if (componentKey === 'AdvisorProfile') {
+      props.name = take((t) => /위원|상담|자문/.test(t) || (t.length <= 30 && t.length >= 2));
+      props.field = take((t) => t.length <= 20 && !isDate(t));
+      props.region = take((t) => t.length <= 10 && !isDate(t));
+      props.imageSrc = '/assets/img/pages/contents/advisor-img-03.png';
+      return props;
+    }
+
+    if (componentKey === 'BackToList') {
+      props.label = take((t) => /목록|뒤로|이전/.test(t)) || '목록';
+      props.href = '#';
+      return props;
+    }
+
+    if (componentKey === 'Button' || componentKey === 'ActionButton') {
+      props.label = take((t) => t.length <= 20) || '확인';
+      props.href = '#';
+      return props;
+    }
+
     for (const prop of propNames) {
       if (props[prop]) continue;
       const pType = String(propTypes[prop] || '');
       let value = '';
       if (/phone/i.test(pType) || /phone|tel|연락/i.test(prop)) {
-        value = take((t) => /^\d{2,4}-\d{3,4}-\d{4}$/.test(t) || /\d{2,4}[-\s]\d{3,4}[-\s]\d{4}/.test(t));
+        value = take(isPhone);
       } else if (/date/i.test(pType) || /date|일자|일시/i.test(prop)) {
-        value = take((t) => /\d{4}[.\-/년]/.test(t));
+        value = take(isDate);
       } else if (/file/i.test(pType) || /file|파일/i.test(prop)) {
         value = take((t) => /\.(pdf|png|jpe?g|docx?|hwp)$/i.test(t));
       } else if (/href/i.test(pType) || /href|url/i.test(prop)) {
         value = '#';
+      } else if (/tag/i.test(pType)) {
+        value = take(isTag);
       } else if (/html/i.test(pType)) {
         continue;
-      } else if (/longText|description|content/i.test(pType) || /description|content|본문|안내|helper/i.test(prop)) {
+      } else if (/longText|description|content/i.test(pType) || /description|content|본문|안내|helper|bodyHtml/i.test(prop)) {
         value = take((t) => t.length >= 40);
       } else if (/money/i.test(pType)) {
-        value = take((t) => /\d{1,3}(?:,\d{3})+\s*원|\d+\s*원/.test(t));
+        value = take(isMoney);
       } else if (/label|badge|tag|status|title|category|name/i.test(prop)) {
         value = take((t) => t.length > 0 && t.length <= 80 && !/\.(pdf|png)$/i.test(t));
       } else {
@@ -211,20 +302,13 @@ module.exports = function ($input, helpers) {
       if (!props.title) props.title = '유의사항';
     }
 
-    if (!props.description && !props.contentHtml && !props.helper) {
+    if (!props.description && !props.contentHtml && !props.helper && !props.bodyHtml) {
       const long = take((t) => t.length >= 40);
       if (long) {
         if (propNames.includes('description')) props.description = long;
+        else if (propNames.includes('bodyHtml')) props.bodyHtml = long;
         else if (propNames.includes('helper')) props.helper = long;
         else if (propNames.includes('contentHtml')) props.contentHtml = `<p>${long}</p>`;
-      }
-    }
-
-    if (componentKey === 'CaseHeader' && props.title) {
-      const m = props.title.match(/^\[([^\]]+)\]\s*(.*)$/);
-      if (m) {
-        props.status = props.status || m[1];
-        props.title = m[2] || props.title;
       }
     }
 
@@ -316,15 +400,22 @@ module.exports = function ($input, helpers) {
       propsTexts = collectTexts(nodes, c.index);
     }
     const props = assignProps(c.component, propsTexts);
+    const mapSlot = String(def.slot || '').toLowerCase();
+    let slot = 'content';
+    if (/button|action/i.test(c.component) || mapSlot === 'actions') slot = 'actions';
+    else if (mapSlot === 'back' || /^BackToList$/i.test(c.component)) slot = 'back';
+    else if (mapSlot === 'header' || mapSlot === 'heading' || /^(SectionHeading|Breadcrumb|BreadcrumbGroup|CaseHeader|DetailContentHeader|PageTitle)/i.test(c.component)) {
+      slot = 'header';
+    } else if (mapSlot === 'profile' || /^AdvisorProfile$/i.test(c.component)) {
+      slot = 'profile';
+    }
     sections.push({
       component: c.component,
       path: def.path || '',
       figmaName: c.node.name,
       figmaId: c.node.id,
       props,
-      slot: /button|action/i.test(c.component)
-        ? 'actions'
-        : (/^(SectionHeading|Breadcrumb)$/i.test(c.component) ? 'header' : 'content'),
+      slot,
     });
   }
 
