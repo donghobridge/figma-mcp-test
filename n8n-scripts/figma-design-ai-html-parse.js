@@ -23,6 +23,7 @@ module.exports = function ($input, helpers) {
 
   function stripTags(value) {
     return String(value || '')
+      .replace(/<svg[\s\S]*?<\/svg>/gi, '')
       .replace(/<[^>]+>/g, ' ')
       .replace(/\s+/g, ' ')
       .trim();
@@ -38,101 +39,114 @@ module.exports = function ($input, helpers) {
     return `<div ${attrs.join(' ')}></div>`;
   }
 
+  /** class에 token이 있는 최상위 div 블록을 균형 매칭으로 교체 */
+  function replaceClassBlocks(html, classToken, replacer) {
+    const openRe = new RegExp(`<div\\b([^>]*class=["'][^"']*${classToken}[^"']*["'][^>]*)>`, 'gi');
+    let out = '';
+    let last = 0;
+    let match;
+    while ((match = openRe.exec(html)) !== null) {
+      const start = match.index;
+      let i = start + match[0].length;
+      let depth = 1;
+      while (i < html.length && depth > 0) {
+        const nextOpen = html.toLowerCase().indexOf('<div', i);
+        const nextClose = html.toLowerCase().indexOf('</div>', i);
+        if (nextClose < 0) break;
+        if (nextOpen >= 0 && nextOpen < nextClose) {
+          depth += 1;
+          i = nextOpen + 4;
+        } else {
+          depth -= 1;
+          i = nextClose + 6;
+        }
+      }
+      const block = html.slice(start, i);
+      out += html.slice(last, start) + replacer(block);
+      last = i;
+      openRe.lastIndex = i;
+    }
+    out += html.slice(last);
+    return out;
+  }
+
   function repairToIncludes(source) {
     let html = source;
     const repairs = [];
 
-    // section-heading / bare h1
-    html = html.replace(
-      /<div[^>]*class="[^"]*section-heading[^"]*"[^>]*>[\s\S]*?<h1[^>]*>([\s\S]*?)<\/h1>[\s\S]*?<\/div>/gi,
-      (_, title) => {
-        repairs.push('SectionHeading');
-        return includeDiv('/components/section-heading.html', { title: stripTags(title) });
-      }
-    );
+    html = replaceClassBlocks(html, 'section-heading', (block) => {
+      const title = (block.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i) || [])[1];
+      if (!title) return block;
+      repairs.push('SectionHeading');
+      return includeDiv('/components/section-heading.html', { title: stripTags(title) });
+    });
 
-    // guide-accordion
-    html = html.replace(
-      /<div[^>]*class="[^"]*guide-accordion[^"]*"[^>]*>[\s\S]*?<h2[^>]*>([\s\S]*?)<\/h2>[\s\S]*?<p[^>]*>([\s\S]*?)<\/p>[\s\S]*?<\/div>/gi,
-      (_, title, body) => {
-        repairs.push('GuideAccordion');
-        return includeDiv('/components/guide-accordion.html', {
-          title: stripTags(title),
-          contentHtml: String(body || '').trim(),
-        });
-      }
-    );
+    html = replaceClassBlocks(html, 'guide-accordion', (block) => {
+      const title = (block.match(/<h2[^>]*>([\s\S]*?)<\/h2>/i) || [])[1];
+      const body = (block.match(/<p[^>]*>([\s\S]*?)<\/p>/i) || [])[1];
+      if (!title) return block;
+      repairs.push('GuideAccordion');
+      return includeDiv('/components/guide-accordion.html', {
+        title: stripTags(title),
+        contentHtml: String(body || '').trim(),
+      });
+    });
 
-    // summary-bar
-    html = html.replace(
-      /<div[^>]*class="[^"]*summary-bar[^"]*"[^>]*>[\s\S]*?<\/div>\s*(?=<div|<\/div|<section|$)/gi,
-      (block) => {
-        const labels = [...block.matchAll(/summary-bar__label[^>]*>([\s\S]*?)<\//gi)].map((m) => stripTags(m[1]));
-        const values = [...block.matchAll(/summary-bar__value[^>]*>([\s\S]*?)<\//gi)].map((m) => stripTags(m[1]));
-        if (!labels.length) return block;
-        const props = { variantClass: 'ui-summary-bar--stack' };
-        for (let i = 0; i < Math.min(3, labels.length); i += 1) {
-          props[`label${i + 1}`] = labels[i];
-          props[`value${i + 1}`] = values[i] || '';
-        }
-        repairs.push('SummaryBar');
-        return includeDiv('/components/summary-bar.html', props);
+    html = replaceClassBlocks(html, 'summary-bar', (block) => {
+      const labels = [...block.matchAll(/summary-bar__label[^>]*>([\s\S]*?)<\//gi)].map((m) => stripTags(m[1]));
+      const values = [...block.matchAll(/summary-bar__value[^>]*>([\s\S]*?)<\//gi)].map((m) => stripTags(m[1]));
+      if (!labels.length) return block;
+      const props = { variantClass: 'ui-summary-bar--stack' };
+      for (let i = 0; i < Math.min(3, labels.length); i += 1) {
+        props[`label${i + 1}`] = labels[i];
+        props[`value${i + 1}`] = values[i] || '';
       }
-    );
+      repairs.push('SummaryBar');
+      return includeDiv('/components/summary-bar.html', props);
+    });
 
-    // data-table rows → KeyValueCard
-    html = html.replace(
-      /<div[^>]*class="[^"]*key-value-card[^"]*"[^>]*>[\s\S]*?<table[^>]*class="[^"]*data-table[^"]*"[^>]*>[\s\S]*?<\/table>[\s\S]*?<\/div>/gi,
-      (block) => {
-        const titleMatch = block.match(/<h3[^>]*>([\s\S]*?)<\/h3>/i);
-        const rows = [...block.matchAll(
-          /data-table__cell--title[^>]*>([\s\S]*?)<\/td>\s*<td[^>]*>[\s\S]*?<p[^>]*>([\s\S]*?)<\/p>/gi
-        )];
-        const props = { title: stripTags((titleMatch && titleMatch[1]) || '신청내역') };
-        rows.slice(0, 12).forEach((row, i) => {
-          props[`label${i + 1}`] = stripTags(row[1]);
-          props[`value${i + 1}`] = stripTags(row[2]);
-        });
-        repairs.push('KeyValueCard');
-        return includeDiv('/components/key-value-card.html', props);
-      }
-    );
+    html = replaceClassBlocks(html, 'key-value-card', (block) => {
+      const titleMatch = block.match(/<h3[^>]*>([\s\S]*?)<\/h3>/i);
+      const rows = [...block.matchAll(
+        /data-table__cell--title[^>]*>([\s\S]*?)<\/td>\s*<td[^>]*>\s*(?:<p[^>]*>)?([\s\S]*?)(?:<\/p>)?\s*<\/td>/gi
+      )];
+      if (!rows.length) return block;
+      const props = { title: stripTags((titleMatch && titleMatch[1]) || '신청내역') };
+      rows.slice(0, 12).forEach((row, i) => {
+        props[`label${i + 1}`] = stripTags(row[1]);
+        props[`value${i + 1}`] = stripTags(row[2]);
+      });
+      repairs.push('KeyValueCard');
+      return includeDiv('/components/key-value-card.html', props);
+    });
 
-    // leftover bare data-table
-    html = html.replace(
-      /<table[^>]*class="[^"]*data-table[^"]*"[^>]*>[\s\S]*?<\/table>/gi,
-      (block) => {
-        const rows = [...block.matchAll(
-          /data-table__cell--title[^>]*>([\s\S]*?)<\/td>\s*<td[^>]*>([\s\S]*?)<\/td>/gi
-        )];
-        if (!rows.length) return block;
-        const props = { title: '신청내역' };
-        rows.slice(0, 12).forEach((row, i) => {
-          props[`label${i + 1}`] = stripTags(row[1]);
-          props[`value${i + 1}`] = stripTags(row[2]);
-        });
-        repairs.push('KeyValueCard');
-        return includeDiv('/components/key-value-card.html', props);
-      }
-    );
+    html = html.replace(/<table[^>]*class=["'][^"']*data-table[^"']*["'][^>]*>[\s\S]*?<\/table>/gi, (block) => {
+      const rows = [...block.matchAll(
+        /data-table__cell--title[^>]*>([\s\S]*?)<\/td>\s*<td[^>]*>\s*(?:<p[^>]*>)?([\s\S]*?)(?:<\/p>)?\s*<\/td>/gi
+      )];
+      if (!rows.length) return block;
+      const props = { title: '신청내역' };
+      rows.slice(0, 12).forEach((row, i) => {
+        props[`label${i + 1}`] = stripTags(row[1]);
+        props[`value${i + 1}`] = stripTags(row[2]);
+      });
+      repairs.push('KeyValueCard');
+      return includeDiv('/components/key-value-card.html', props);
+    });
 
-    // form-button-group
-    html = html.replace(
-      /<div[^>]*class="[^"]*form-button-group[^"]*"[^>]*>[\s\S]*?<\/div>/gi,
-      (block) => {
-        const buttons = [...block.matchAll(/<button[^>]*>([\s\S]*?)<\/button>/gi)].map((m) => stripTags(m[1]));
-        if (buttons.length < 2) return block;
-        repairs.push('FormButtonGroup');
-        return includeDiv('/components/form-button-group.html', {
-          secondaryLabel: buttons[0],
-          primaryLabel: buttons[1],
-        });
-      }
-    );
+    html = replaceClassBlocks(html, 'form-button-group', (block) => {
+      const buttons = [...block.matchAll(/<button[^>]*>([\s\S]*?)<\/button>/gi)].map((m) => stripTags(m[1]));
+      if (buttons.length < 2) return block;
+      repairs.push('FormButtonGroup');
+      return includeDiv('/components/form-button-group.html', {
+        secondaryLabel: buttons[0],
+        primaryLabel: buttons[1],
+      });
+    });
 
-    // unwrap empty decorative wrappers that often remain
-    html = html.replace(/<div[^>]*class="[^"]*page-wrapper[^"]*"[^>]*>/gi, '');
-    html = html.replace(/<div[^>]*class="[^"]*form-card[^"]*"[^>]*>/gi, '');
+    // 장식용 래퍼만 제거 (내용 보존을 위해 열린 태그만)
+    html = html.replace(/<div[^>]*class=["'][^"']*page-wrapper[^"']*["'][^>]*>/gi, '');
+    html = html.replace(/<div[^>]*class=["'][^"']*form-card[^"']*["'][^>]*>/gi, '');
 
     return { html, repairs };
   }
@@ -155,7 +169,7 @@ module.exports = function ($input, helpers) {
   }
 
   const warnings = [...((meta.preparedMeta && meta.preparedMeta.warnings) || [])];
-  const hasHardcode = /class=["'][^"']*(guide-accordion|summary-bar|data-table|ui-kv-card|section-heading|form-button-group)/i.test(html)
+  const hasHardcode = /class=["'][^"']*(guide-accordion|summary-bar|data-table|key-value-card|section-heading|form-button-group)/i.test(html)
     || /<table[\s>]/i.test(html);
 
   let repairs = [];
@@ -176,7 +190,7 @@ module.exports = function ($input, helpers) {
     /class=["'][^"']*guide-accordion/i,
     /class=["'][^"']*summary-bar/i,
     /class=["'][^"']*data-table/i,
-    /class=["'][^"']*ui-kv-card/i,
+    /class=["'][^"']*key-value-card/i,
   ];
   for (const re of stillBanned) {
     if (re.test(html)) {
