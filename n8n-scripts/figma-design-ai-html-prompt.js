@@ -85,36 +85,48 @@ Figma MCP 원문의 텍스트만 값으로 쓰고, component-map path만 include
 # 절대 금지 (위반 시 실패)
 - class="guide-accordion" / class="summary-bar" / class="data-table" / class="ui-kv-card" 등 컴포넌트 마크업을 직접 작성 금지
 - <table>, <dl>, <h1>~<h3>로 본문 구성 금지 (제목도 SectionHeading include)
+- form-card / key-value-card 안에 다른 data-include-path를 자식으로 넣지 말 것 (include 호스트는 자식을 버림)
+- question-content로 KV 행을 쪼개지 말 것 → KeyValueCard의 labelN/valueN만 사용
 - "정보(Data)", "TODO", "lorem", "placeholder", "샘플" 같은 더미 값 금지
 - MCP에 없는 문장·필드 창작 금지
 - 마크다운/설명 출력 금지
+- head에서 import.css / import.js / common.js 생략 금지 (생략하면 빈 화면)
 
-# 필수 출력 형식
-<!DOCTYPE html> … </html> 만.
-본문 컴포넌트는 전부 한 줄 include:
-<div data-include-path="/components/....html" data-prop-title="실제값" data-prop-label1="실제값"></div>
-prop 이름: camelCase → kebab-case (contentHtml → data-prop-content-html)
+# 필수 문서 셸 (그대로 유지)
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${pageName}</title>
+  <link rel="stylesheet" href="/import.css">
+  <script defer src="/import.js"></script>
+  <script defer src="/common.js"></script>
+</head>
+<body>
+  <div data-include-path="/svg-symbols.html"></div>
+  <div data-include-path="${headerPath}"></div>
+  <div class="layout-page">
+    <main class="layout-page__main">
+      <!-- 아래처럼 형제 include만. 중첩 금지 -->
+      <div data-include-path="/components/section-heading.html" data-prop-title="대출상환 신청"></div>
+      <div data-include-path="/components/guide-accordion.html" data-prop-title="유의사항" data-prop-content-html="안내<br>다음"></div>
+      <div data-include-path="/components/summary-bar.html" data-prop-label1="현재 대출잔액" data-prop-value1="1,000,000원" data-prop-label2="상환금액" data-prop-value2="600,000원" data-prop-label3="최종 대출잔액" data-prop-value3="400,000원" data-prop-variant-class="ui-summary-bar--stack"></div>
+      <div data-include-path="/components/key-value-card.html" data-prop-title="신청내역" data-prop-label1="상환방법" data-prop-value1="실제값" data-prop-label2="대출잔액" data-prop-value2="실제값"></div>
+      <div data-include-path="/components/form-button-group.html" data-prop-secondary-label="이전" data-prop-primary-label="신청하기"></div>
+    </main>
+  </div>
+  <div data-include-path="${footerPath}"></div>
+</body>
+</html>
 
-# 올바른 예시 (이 스타일만 사용)
-<div data-include-path="/svg-symbols.html"></div>
-<div data-include-path="${headerPath}"></div>
-<div class="layout-page">
-  <main class="layout-page__main">
-    <div data-include-path="/components/section-heading.html" data-prop-title="대출상환 신청"></div>
-    <div data-include-path="/components/guide-accordion.html" data-prop-title="유의사항" data-prop-content-html="안내 문장<br>다음 문장"></div>
-    <div data-include-path="/components/summary-bar.html" data-prop-label1="현재 대출잔액" data-prop-value1="1,000,000원" data-prop-label2="상환금액" data-prop-value2="600,000원" data-prop-label3="최종 대출잔액" data-prop-value3="400,000원" data-prop-variant-class="ui-summary-bar--stack"></div>
-    <div data-include-path="/components/key-value-card.html" data-prop-title="신청내역" data-prop-label1="상환방법" data-prop-value1="MCP에 있는 실제값" data-prop-label2="대출잔액" data-prop-value2="MCP에 있는 실제값"></div>
-    <div data-include-path="/components/form-button-group.html" data-prop-secondary-label="이전" data-prop-primary-label="신청하기"></div>
-  </main>
-</div>
-<div data-include-path="${footerPath}"></div>
-
-# 매핑 힌트
-- 유의사항/아코디언 → GuideAccordion (title + contentHtml)
-- 잔액/금액 3칸 요약 → SummaryBar (labelN/valueN, label=항목명 value=금액)
-- Table_A / 신청내역 / 반복 행 → KeyValueCard 하나 (label1/value1 … 최대 12). 행마다 테이블 만들지 말 것
-- 이전/신청하기 버튼 → FormButtonGroup
-- 페이지 제목 → SectionHeading (path: /components/section-heading.html)
+# 규칙
+- 본문 컴포넌트는 전부 한 줄 self-closing 형태 include (자식 없음)
+- prop 이름: camelCase → kebab-case (contentHtml → data-prop-content-html)
+- Table_A / 신청내역 반복 행 → KeyValueCard 하나 (label1/value1 … 최대 12)
+- 유의사항 → GuideAccordion (title + contentHtml)
+- 금액 요약 → SummaryBar
+- 이전/신청하기 → FormButtonGroup
 
 # pageName
 ${pageName}
@@ -125,7 +137,7 @@ ${JSON.stringify(catalog, null, 2)}
 # Figma MCP 원문 (값의 유일한 출처)
 ${mcpText}
 
-위 규칙으로 include-only HTML만 출력하세요.`;
+위 셸+include-only HTML만 출력하세요.`;
 
   return [{
     json: {
