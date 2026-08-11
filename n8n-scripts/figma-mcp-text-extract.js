@@ -31,25 +31,31 @@ module.exports = function ($input, helpers) {
 
   const pageName = String(runConfig.pageSlug || runConfig.pageName || 'Figma Design');
 
-  return [{
-    json: {
-      pageName,
-      mcpText,
-      mcpTextLength: mcpText.length,
-      generationMode: 'ai-html-direct',
-      warnings: [],
-      // AI 프롬프트 호환: designNodes 대신 mcpText 사용
-      designNodes: [{ id: 'mcp', depth: 0, type: 'DOCUMENT', name: pageName, ownTexts: [] }],
-      runConfig: {
-        ...runConfig,
-        fileKey: runConfig.fileKey || '',
-        nodeId: runConfig.nodeId || '',
-        pageSlug: runConfig.pageSlug || '',
-        githubOwner: runConfig.githubOwner || '',
-        githubRepo: runConfig.githubRepo || '',
-        githubBranch: runConfig.githubBranch || 'main',
-        vercelBaseUrl: runConfig.vercelBaseUrl || '',
-      },
+  const result = {
+    pageName,
+    mcpText,
+    mcpTextLength: mcpText.length,
+    generationMode: 'ai-html-direct',
+    warnings: [],
+    designNodes: [{ id: 'mcp', depth: 0, type: 'DOCUMENT', name: pageName, ownTexts: [] }],
+    runConfig: {
+      ...runConfig,
+      fileKey: runConfig.fileKey || '',
+      nodeId: runConfig.nodeId || '',
+      pageSlug: runConfig.pageSlug || '',
+      githubOwner: runConfig.githubOwner || '',
+      githubRepo: runConfig.githubRepo || '',
+      githubBranch: runConfig.githubBranch || 'main',
+      vercelBaseUrl: runConfig.vercelBaseUrl || '',
     },
-  }];
+  };
+
+  // HTTP 노드 뒤에서 $('MCP 텍스트 추출')이 깨질 수 있어 staticData에도 보관
+  try {
+    if (helpers && helpers.staticData && typeof helpers.staticData === 'object') {
+      helpers.staticData.lastPrepared = result;
+    }
+  } catch (_) {}
+
+  return [{ json: result }];
 };
