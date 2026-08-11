@@ -136,8 +136,12 @@ module.exports = function ($input, helpers) {
     return null;
   }
 
-  function assignLabelValuePairs(props, texts, start = 1, max = 12) {
-    const usable = texts.filter((t) => !isNoise(t));
+  function isUiChromeText(t) {
+    return /^(수정|삭제|편집|더보기|닫기|선택|복사|다운로드)$/i.test(String(t || '').trim());
+  }
+
+  function assignLabelValuePairs(props, texts, start = 1, max = 12, defaultValue = '') {
+    const usable = texts.filter((t) => !isNoise(t) && !isUiChromeText(t));
     let i = 0;
     let n = start;
     while (i < usable.length && n <= max) {
@@ -148,12 +152,56 @@ module.exports = function ($input, helpers) {
         props[`value${n}`] = b;
         i += 2;
         n += 1;
+      } else if (defaultValue) {
+        props[`label${n}`] = a;
+        props[`value${n}`] = defaultValue;
+        i += 1;
+        n += 1;
       } else {
         if (!props.title) props.title = a;
         i += 1;
       }
     }
     return props;
+  }
+
+  /** Table_A 한 행 = label 1 + value(없으면 기본값). 행을 가로로 잇지 않음 */
+  function collectKeyValueRows(nodes, startIdx) {
+    const end = endIndex(nodes, startIdx);
+    const titleTexts = [];
+    const rows = [];
+    for (let i = startIdx + 1; i < end; i += 1) {
+      const n = nodes[i];
+      if (isTableRowName(n.name) && (n.type === 'FRAME' || n.type === 'INSTANCE' || n.type === 'COMPONENT')) {
+        const rowTexts = collectTexts(nodes, i)
+          .map(cleanText)
+          .filter((t) => t && !isNoise(t) && !isUiChromeText(t));
+        if (rowTexts.length) {
+          const label = rowTexts[0];
+          const valueParts = rowTexts.slice(1).filter((t) => t && t !== label);
+          rows.push({
+            label,
+            value: valueParts.length ? valueParts.join(' ') : '정보(Data)',
+          });
+        }
+        i = endIndex(nodes, i) - 1;
+        continue;
+      }
+      if (n.type === 'TEXT' && n.text && !isNoise(n.text) && !isUiChromeText(n.text)) {
+        let insideTable = false;
+        for (let j = startIdx + 1; j < i; j += 1) {
+          if (isTableRowName(nodes[j].name) && nodes[j].depth <= n.depth) {
+            const te = endIndex(nodes, j);
+            if (i < te) { insideTable = true; break; }
+          }
+        }
+        if (!insideTable) titleTexts.push(cleanText(n.text));
+      }
+    }
+    return {
+      title: titleTexts.find((t) => t && t.length <= 40) || '',
+      rows,
+    };
   }
 
   function assignProps(componentKey, texts) {
@@ -164,7 +212,7 @@ module.exports = function ($input, helpers) {
     const propTypes = def.propTypes || {};
     const props = {};
     const used = new Set();
-    const pool = texts.map(cleanText).filter((t) => t && !isNoise(t));
+    const pool = texts.map(cleanText).filter((t) => t && !isNoise(t) && !isUiChromeText(t));
 
     function take(pred) {
       const i = pool.findIndex((t, idx) => !used.has(idx) && pred(t));
@@ -180,15 +228,39 @@ module.exports = function ($input, helpers) {
       return /^\d{2,4}-\d{3,4}-\d{4}$/.test(t) || /\d{2,4}[-\s]\d{3,4}[-\s]\d{4}/.test(t);
     }
 
-    if (componentKey === 'KeyValueCard' || componentKey === 'SummaryBar' || componentKey === 'AmountBox') {
-      if (componentKey === 'KeyValueCard' && pool[0] && pool[0].length <= 40
-        && !isMoney(pool[0]) && !isDate(pool[0])) {
+    if (componentKey === 'SummaryBar' || componentKey === 'AmountBox') {
+      assignLabelValuePairs(props, pool, 1, 3);
+      return props;
+    }
+
+    if (componentKey === 'KeyValueCard') {
+      // texts가 이미 평탄화된 경우 대비 (행 수집 실패 시)
+      if (pool[0] && pool[0].length <= 40 && !isMoney(pool[0]) && !isDate(pool[0]) && /내역|정보|확인/.test(pool[0])) {
         props.title = pool[0];
         used.add(0);
       }
       const rest = pool.filter((_, idx) => !used.has(idx));
-      const maxPairs = (componentKey === 'SummaryBar' || componentKey === 'AmountBox') ? 3 : 14;
-      assignLabelValuePairs(props, rest, 1, maxPairs);
+      assignLabelValuePairs(props, rest, 1, 14, '정보(Data)');
+      if (!props.title) props.title = '신청내역';
+      return props;
+    }
+
+    if (componentKey === 'ConfirmTableRow') {
+      props.label = pool[0] || '';
+      props.value = pool[1] || '정보(Data)';
+      return props;
+    }
+
+    if (componentKey === 'GuideAccordion') {
+      props.title = take((t) => /유의|안내|주의|공지/.test(t) && t.length <= 30)
+        || take((t) => t.length >= 2 && t.length <= 20)
+        || '유의사항';
+      const longs = pool.filter((_, idx) => !used.has(idx) && pool[idx].length >= 15);
+      if (longs.length) {
+        props.contentHtml = longs
+          .map((t) => `<p class="accordion__panel-text bullet-item">${t}</p>`)
+          .join('\n');
+      }
       return props;
     }
 
@@ -203,7 +275,14 @@ module.exports = function ($input, helpers) {
     if (componentKey === 'ApplicationDateCard') {
       props.label = take((t) => /신청일|날짜|일자/.test(t) && t.length <= 20) || '신청일';
       props.date = take(isDate) || take((t) => /\d{4}/.test(t) && t.length <= 40);
-      props.description = take((t) => t.length >= 20) || take((t) => t.length >= 10);
+      const descParts = pool.filter((_, idx) => !used.has(idx) && pool[idx].length >= 12);
+      if (descParts.length) {
+        descParts.forEach((_, idx) => {
+          const i = pool.findIndex((t, j) => !used.has(j) && t === descParts[idx]);
+          if (i >= 0) used.add(i);
+        });
+        props.description = descParts.join('<br>');
+      }
       return props;
     }
 
@@ -392,17 +471,7 @@ module.exports = function ($input, helpers) {
       if (value) props[prop] = value;
     }
 
-    if (componentKey === 'GuideAccordion') {
-      const longs = pool.filter((_, idx) => !used.has(idx) && pool[idx].length >= 20);
-      if (longs.length) {
-        props.contentHtml = longs
-          .map((t) => `<p class="accordion__panel-text bullet-item">${t}</p>`)
-          .join('\n');
-      }
-      if (!props.title) props.title = '유의사항';
-    }
-
-    if (!props.description && !props.contentHtml && !props.helper && !props.bodyHtml) {
+        if (!props.description && !props.contentHtml && !props.helper && !props.bodyHtml) {
       const long = take((t) => t.length >= 40);
       if (long) {
         if (propNames.includes('description')) props.description = long;
@@ -453,53 +522,35 @@ module.exports = function ($input, helpers) {
     if (!skip) chosen.push(c);
   }
 
-  function collectKeyValueTexts(nodes, startIdx) {
-    // KeyValueCard: 제목 텍스트 + 각 Table_A 행의 (label, value) 순서 유지
-    const start = nodes[startIdx];
-    const end = endIndex(nodes, startIdx);
-    const titleTexts = [];
-    const pairTexts = [];
-    for (let i = startIdx + 1; i < end; i += 1) {
-      const n = nodes[i];
-      if (isTableRowName(n.name) && (n.type === 'FRAME' || n.type === 'INSTANCE')) {
-        const rowTexts = collectTexts(nodes, i);
-        for (const t of rowTexts) pairTexts.push(t);
-        i = endIndex(nodes, i) - 1;
-        continue;
-      }
-      if (n.type === 'TEXT' && n.text && !isNoise(n.text)) {
-        // Table_A 밖에 있는 텍스트 = 카드 제목 후보
-        let insideTable = false;
-        for (let j = startIdx + 1; j < i; j += 1) {
-          if (isTableRowName(nodes[j].name) && nodes[j].depth < n.depth) {
-            const te = endIndex(nodes, j);
-            if (i < te) { insideTable = true; break; }
-          }
-        }
-        if (!insideTable) titleTexts.push(n.text);
-      }
-    }
-    return titleTexts.concat(pairTexts);
-  }
-
   const sections = [];
   for (const c of chosen) {
     const def = componentMap[c.component] || {};
-    let propsTexts;
+    let props;
+
     if (c.component === 'KeyValueCard') {
-      propsTexts = collectKeyValueTexts(nodes, c.index);
-    } else if (def.acceptsChildren) {
-      const childComps = chosen.filter((x) => x.index > c.index && x.index < c.end);
-      propsTexts = [];
-      const limit = childComps.length ? childComps[0].index : c.end;
-      for (let i = c.index + 1; i < limit; i += 1) {
-        const n = nodes[i];
-        if (n.type === 'TEXT' && n.text && !isNoise(n.text)) propsTexts.push(n.text);
-      }
+      const kv = collectKeyValueRows(nodes, c.index);
+      props = { title: kv.title || '신청내역' };
+      kv.rows.slice(0, 14).forEach((row, idx) => {
+        const n = idx + 1;
+        props[`label${n}`] = row.label;
+        props[`value${n}`] = row.value || '정보(Data)';
+      });
     } else {
-      propsTexts = collectTexts(nodes, c.index);
+      let propsTexts;
+      if (def.acceptsChildren) {
+        const childComps = chosen.filter((x) => x.index > c.index && x.index < c.end);
+        propsTexts = [];
+        const limit = childComps.length ? childComps[0].index : c.end;
+        for (let i = c.index + 1; i < limit; i += 1) {
+          const n = nodes[i];
+          if (n.type === 'TEXT' && n.text && !isNoise(n.text)) propsTexts.push(n.text);
+        }
+      } else {
+        propsTexts = collectTexts(nodes, c.index);
+      }
+      props = assignProps(c.component, propsTexts);
     }
-    const props = assignProps(c.component, propsTexts);
+
     const mapSlot = String(def.slot || '').toLowerCase();
     let slot = 'content';
     if (/button|action/i.test(c.component) || mapSlot === 'actions') slot = 'actions';
