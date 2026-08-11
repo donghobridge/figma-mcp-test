@@ -1,0 +1,52 @@
+<div class="input-field-group input-field-group--period {variantClass}">
+  <div class="input-field w-auto">
+    <label class="input-field__label">조회기간</label>
+    <div class="input-group input-group--date" data-js="inputGroup">
+      <div class="input input--lg">
+        <input type="text" value="{dateStart}" placeholder="YYYY.MM.DD" />
+        <svg class="icon icon--20" aria-hidden="true"><use href="#icon-calendar"></use></svg>
+      </div>
+      <span>~</span>
+      <div class="input input--lg">
+        <input type="text" value="{dateEnd}" placeholder="YYYY.MM.DD" />
+        <svg class="icon icon--20" aria-hidden="true"><use href="#icon-calendar"></use></svg>
+      </div>
+    </div>
+  </div>
+  <div class="input-field">
+    <label class="input-field__label">{filterLabel1}</label>
+    <div class="input-group">
+      <div class="input input--lg w-full-mo">
+        <div class="select-trigger" aria-expanded="false">
+          <div class="select-value">{filterValue1}</div>
+          <svg class="icon select-arrow icon-chevron" aria-hidden="true"><use href="#icon-chevron-down"></use></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="input-field">
+    <label class="input-field__label">{filterLabel2}</label>
+    <div class="input-group">
+      <div class="input input--lg w-full-mo">
+        <div class="select-trigger" aria-expanded="false">
+          <div class="select-value">{filterValue2}</div>
+          <svg class="icon select-arrow icon-chevron" aria-hidden="true"><use href="#icon-chevron-down"></use></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="input-field w-auto">
+    <label class="input-field__label">검색어</label>
+    <div class="input-group">
+      <div class="input input--lg w-full-mo">
+        <input type="text" placeholder="{searchPlaceholder}" value="{searchValue}" />
+      </div>
+    </div>
+  </div>
+  <div class="input-field w-auto input-field--button">
+    <label class="input-field__label only-pc"></label>
+    <button type="button" class="btn btn--primary btn--lg" data-js="button">
+      <span class="btn__label">{searchLabel}</span>
+    </button>
+  </div>
+</div>

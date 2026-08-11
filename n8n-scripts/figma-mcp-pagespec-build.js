@@ -266,6 +266,68 @@ module.exports = function ($input, helpers) {
       return props;
     }
 
+    if (componentKey === 'PageTitleDisplay' || componentKey === 'SectionHeading') {
+      props.title = take((t) => t.length >= 2 && t.length <= 40 && !isDate(t)) || take((t) => t.length <= 40);
+      return props;
+    }
+
+    if (componentKey === 'Breadcrumb' || componentKey === 'BreadcrumbGroup') {
+      let i = 1;
+      while (i <= 5) {
+        const v = take((t) => t.length <= 40 && !isDate(t) && !/^홈$/.test(t));
+        if (!v) break;
+        props[`item${i}`] = v;
+        i += 1;
+      }
+      return props;
+    }
+
+    if (componentKey === 'BoardFilterBar') {
+      props.dateStart = take(isDate) || '2025.01.01';
+      props.dateEnd = take(isDate) || '2025.06.30';
+      props.filterLabel1 = take((t) => /분야|카테고리/.test(t)) || '상담분야';
+      props.filterValue1 = take((t) => t.length <= 20) || '법률/법무';
+      props.filterLabel2 = take((t) => /유형|타입/.test(t)) || '상담유형';
+      props.filterValue2 = take((t) => t.length <= 20) || '전화상담';
+      props.searchPlaceholder = take((t) => /검색/.test(t)) || '검색어를 입력해 주세요.';
+      props.searchLabel = take((t) => /조회|검색/.test(t)) || '조회하기';
+      return props;
+    }
+
+    if (componentKey === 'BoardList') {
+      props.resultTitle = take((t) => /검색결과|건/.test(t)) || take((t) => t.length <= 30) || '검색결과';
+      return props;
+    }
+
+    if (componentKey === 'BoardListItem') {
+      props.category = take((t) => t.length <= 20 && /법률|노무|경영|세무|법무|컨설팅/.test(t)) || take((t) => t.length <= 16);
+      props.badge = take((t) => t.length <= 24);
+      props.title = take((t) => t.length >= 4 && t.length <= 80 && !isDate(t));
+      props.advisor = take((t) => t.length <= 16 && !isDate(t));
+      props.consultType = take((t) => /상담|대면|전화|온라인/.test(t) && t.length <= 16) || take((t) => t.length <= 16);
+      props.date = take(isDate);
+      props.likeCount = take((t) => /^\d{1,5}$/.test(t)) || '0';
+      props.viewCount = take((t) => /^\d{1,5}$/.test(t)) || '0';
+      return props;
+    }
+
+    if (componentKey === 'Pagination' || componentKey === 'PaginationBar') {
+      props.page1 = take((t) => /^\d+$/.test(t)) || '1';
+      props.page2 = take((t) => /^\d+$/.test(t)) || '2';
+      props.page3 = take((t) => /^\d+$/.test(t)) || '3';
+      props.page4 = take((t) => /^\d+$/.test(t)) || '4';
+      props.pageLast = take((t) => /^\d+$/.test(t)) || '23';
+      return props;
+    }
+
+    if (componentKey === 'EmptyDataPublic') {
+      props.message = take((t) => t.length >= 4) || '조회된 결과가 없습니다.';
+      props.buttonLabel = take((t) => /목록|확인/.test(t)) || '목록으로';
+      props.buttonHref = '#';
+      props.imageSrc = '/assets/img/pages/contents/content-empty-data-character.svg';
+      return props;
+    }
+
     for (const prop of propNames) {
       if (props[prop]) continue;
       const pType = String(propTypes[prop] || '');
@@ -404,7 +466,7 @@ module.exports = function ($input, helpers) {
     let slot = 'content';
     if (/button|action/i.test(c.component) || mapSlot === 'actions') slot = 'actions';
     else if (mapSlot === 'back' || /^BackToList$/i.test(c.component)) slot = 'back';
-    else if (mapSlot === 'header' || mapSlot === 'heading' || /^(SectionHeading|Breadcrumb|BreadcrumbGroup|CaseHeader|DetailContentHeader|PageTitle)/i.test(c.component)) {
+    else if (mapSlot === 'header' || mapSlot === 'heading' || /^(SectionHeading|Breadcrumb|BreadcrumbGroup|CaseHeader|DetailContentHeader|PageTitle|PageTitleDisplay)/i.test(c.component)) {
       slot = 'header';
     } else if (mapSlot === 'profile' || /^AdvisorProfile$/i.test(c.component)) {
       slot = 'profile';

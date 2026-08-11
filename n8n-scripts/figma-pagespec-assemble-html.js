@@ -58,7 +58,13 @@ module.exports = function ($input, helpers) {
     if (!includePath) {
       return `<!-- missing path: ${escapeAttr(name)} -->`;
     }
-    const props = section.props && typeof section.props === 'object' ? section.props : {};
+    const props = section.props && typeof section.props === 'object' ? { ...section.props } : {};
+    // map defaults
+    if (def.defaults && typeof def.defaults === 'object') {
+      for (const [k, v] of Object.entries(def.defaults)) {
+        if (props[k] == null || props[k] === '') props[k] = v;
+      }
+    }
     const attrs = [`data-include-path="${escapeAttr(includePath)}"`];
     const propKeys = Array.isArray(def.props) && def.props.length
       ? def.props.slice()
@@ -96,13 +102,59 @@ module.exports = function ($input, helpers) {
   const actionComps = /^(FormButtonGroup|ActionButtonGroup|ButtonGroup|PrimaryButton|Button)$/i;
   const profileComps = /^(AdvisorProfile)$/i;
 
+  // BoardListItem → BoardList.rowsHtml(nested includes) 병합
+  const normalized = [];
+  let boardAcc = null;
+  function flushBoard() {
+    if (!boardAcc) return;
+    normalized.push(boardAcc);
+    boardAcc = null;
+  }
+  for (const section of pageSpec.sections) {
+    if (/^BoardListItem$/i.test(section.component)) {
+      if (!boardAcc) {
+        const listDef = (componentMap && componentMap.BoardList) || {};
+        boardAcc = {
+          component: 'BoardList',
+          path: listDef.path || '/components/board-list.html',
+          props: {
+            resultTitle: '검색결과',
+            rowsHtml: '',
+          },
+          slot: 'content',
+          figmaName: 'BoardList',
+        };
+      }
+      const itemHtml = renderInclude(section);
+      boardAcc.props.rowsHtml += `${itemHtml}\n`;
+      continue;
+    }
+    if (/^BoardList$/i.test(section.component)) {
+      if (boardAcc && boardAcc.props && boardAcc.props.rowsHtml) {
+        boardAcc.props.resultTitle = (section.props && section.props.resultTitle)
+          || boardAcc.props.resultTitle
+          || '검색결과';
+        continue;
+      }
+      flushBoard();
+      boardAcc = {
+        ...section,
+        props: { ...(section.props || {}), rowsHtml: (section.props && section.props.rowsHtml) || '' },
+      };
+      continue;
+    }
+    flushBoard();
+    normalized.push(section);
+  }
+  flushBoard();
+
   const backParts = [];
   const headerParts = [];
   const contentParts = [];
   const profileParts = [];
   const actionParts = [];
 
-  for (const section of pageSpec.sections) {
+  for (const section of normalized) {
     const html = renderInclude(section);
     const slot = String(section.slot || '').toLowerCase();
     if (backComps.test(section.component) || slot === 'back') {
@@ -118,16 +170,18 @@ module.exports = function ($input, helpers) {
     }
   }
 
-  // AdvisorProfile는 AnswerArea 바로 뒤에 붙이도록 content 끝에 합침
   if (profileParts.length) {
     contentParts.push(...profileParts);
   }
 
-  const names = pageSpec.sections.map((s) => s.component);
+  const names = normalized.map((s) => s.component);
   const isForm = names.some((n) => /Form|GuideAccordion|SummaryBar|ApplicationDate|KeyValue|ActionBox|AmountBox/i.test(n))
-    && !names.some((n) => /CaseHeader|DetailContentHeader|QuestionArea|QuestionContent|AnswerArea|AnswerPanel/i.test(n));
+    && !names.some((n) => /CaseHeader|DetailContentHeader|QuestionArea|QuestionContent|AnswerArea|AnswerPanel|BoardList/i.test(n));
   const isPublicDetail = names.some((n) =>
     /CaseHeader|DetailContentHeader|QuestionArea|QuestionContent|AnswerArea|AnswerPanel|BackToList|ContactBar|AttachmentList/i.test(n)
+  );
+  const isList = !isPublicDetail && names.some((n) =>
+    /BoardList|BoardFilterBar|BoardListItem|Pagination|EmptyDataPublic|PageTitleDisplay|Breadcrumb/i.test(n)
   );
 
   const headerPath = pageSpec.headerPath || '/patterns/gnb.html';
@@ -159,6 +213,21 @@ ${contentParts.join('\n\n')}
           </div>
           <div class="action-button-list" style="margin-top:24px;justify-content:center;">
 ${actionParts.join('\n\n')}
+          </div>
+        </div>
+      </div>
+    </div>`;
+  } else if (isList) {
+    mainInner = `
+${headerParts.join('\n\n')}
+    <div class="page-layout__page-inner page-layout--content">
+      <div class="page-inner__wrap">
+        <div class="page-inner__inner">
+          <div class="board-container">
+            <section class="contents-section">
+${contentParts.join('\n\n')}
+${actionParts.join('\n\n')}
+            </section>
           </div>
         </div>
       </div>
@@ -207,11 +276,11 @@ ${mainInner}
       includeCount: pageSpec.sections.length,
       componentCount: pageSpec.sections.length,
       sectionNames: names,
-      layoutMode: isForm ? 'form' : (isPublicDetail ? 'public-detail' : 'content'),
+      layoutMode: isForm ? 'form' : (isPublicDetail ? 'public-detail' : (isList ? 'list' : 'content')),
       generationMode: 'pagespec-assemble',
       sourceNodeId: runConfig.nodeId || '',
       warnings: [],
-      pageSpec,
+      pageSpec: { ...pageSpec, sections: normalized },
     },
   }];
 };

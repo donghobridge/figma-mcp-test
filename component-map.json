@@ -513,6 +513,191 @@
       "bodyHtml": "longText"
     }
   },
+  "PageTitleDisplay": {
+    "type": "component",
+    "slot": "header",
+    "figmaNames": [
+      "PageTitleDisplay",
+      "page-title",
+      "DisplayTitle"
+    ],
+    "path": "/components/page-title-display.html",
+    "props": [
+      "title"
+    ],
+    "textProps": [
+      "title"
+    ],
+    "requiredProps": [
+      "title"
+    ],
+    "description": "img_text title-group title--display",
+    "propTypes": {
+      "title": "shortText"
+    }
+  },
+  "BoardFilterBar": {
+    "type": "component",
+    "slot": "content",
+    "figmaNames": [
+      "BoardFilterBar",
+      "ListFilter",
+      "board-filter",
+      "filter-bar"
+    ],
+    "path": "/components/board-filter-bar.html",
+    "props": [
+      "dateStart",
+      "dateEnd",
+      "filterLabel1",
+      "filterValue1",
+      "filterLabel2",
+      "filterValue2",
+      "searchPlaceholder",
+      "searchValue",
+      "searchLabel"
+    ],
+    "textProps": [
+      "dateStart",
+      "dateEnd",
+      "filterLabel1",
+      "filterValue1",
+      "filterLabel2",
+      "filterValue2",
+      "searchPlaceholder",
+      "searchLabel"
+    ],
+    "defaults": {
+      "dateStart": "2025.01.01",
+      "dateEnd": "2025.06.30",
+      "filterLabel1": "상담분야",
+      "filterValue1": "법률/법무",
+      "filterLabel2": "상담유형",
+      "filterValue2": "전화상담",
+      "searchPlaceholder": "검색어를 입력해 주세요.",
+      "searchLabel": "조회하기"
+    },
+    "description": "목록 상단 조회기간·필터·검색",
+    "propTypes": {
+      "dateStart": "date",
+      "dateEnd": "date",
+      "filterLabel1": "label",
+      "filterValue1": "shortText",
+      "filterLabel2": "label",
+      "filterValue2": "shortText",
+      "searchPlaceholder": "shortText",
+      "searchValue": "shortText",
+      "searchLabel": "shortText"
+    }
+  },
+  "BoardList": {
+    "type": "component",
+    "slot": "content",
+    "figmaNames": [
+      "BoardList",
+      "board-list",
+      "ConsultCaseList",
+      "custom-table"
+    ],
+    "path": "/components/board-list.html",
+    "props": [
+      "resultTitle",
+      "rowsHtml"
+    ],
+    "textProps": [
+      "resultTitle"
+    ],
+    "requiredProps": [
+      "resultTitle"
+    ],
+    "acceptsChildren": true,
+    "itemComponent": "BoardListItem",
+    "defaults": {
+      "resultTitle": "검색결과"
+    },
+    "description": "상담사례 등 게시판 테이블 + 행(rowsHtml)",
+    "propTypes": {
+      "resultTitle": "shortText",
+      "rowsHtml": "html"
+    }
+  },
+  "BoardListItem": {
+    "type": "component",
+    "slot": "content",
+    "figmaNames": [
+      "BoardListItem",
+      "board-list-item",
+      "ConsultCaseRow",
+      "list-row"
+    ],
+    "path": "/components/board-list-item.html",
+    "props": [
+      "category",
+      "badge",
+      "title",
+      "advisor",
+      "consultType",
+      "date",
+      "likeCount",
+      "viewCount"
+    ],
+    "textProps": [
+      "category",
+      "badge",
+      "title",
+      "advisor",
+      "consultType",
+      "date",
+      "likeCount",
+      "viewCount"
+    ],
+    "requiredProps": [
+      "title"
+    ],
+    "description": "게시판 목록 한 행",
+    "propTypes": {
+      "category": "label",
+      "badge": "label",
+      "title": "shortText",
+      "advisor": "shortText",
+      "consultType": "shortText",
+      "date": "date",
+      "likeCount": "label",
+      "viewCount": "label"
+    }
+  },
+  "EmptyDataPublic": {
+    "type": "component",
+    "slot": "content",
+    "figmaNames": [
+      "EmptyDataPublic",
+      "empty-data"
+    ],
+    "path": "/components/empty-data-public.html",
+    "props": [
+      "imageSrc",
+      "message",
+      "buttonLabel",
+      "buttonHref"
+    ],
+    "textProps": [
+      "message",
+      "buttonLabel"
+    ],
+    "defaults": {
+      "imageSrc": "/assets/img/pages/contents/content-empty-data-character.svg",
+      "message": "조회된 결과가 없습니다.",
+      "buttonLabel": "목록으로",
+      "buttonHref": "#"
+    },
+    "description": "공개 목록 빈 결과",
+    "propTypes": {
+      "imageSrc": "href",
+      "message": "shortText",
+      "buttonLabel": "shortText",
+      "buttonHref": "href"
+    }
+  },
   "TagList": {
     "type": "component",
     "slot": "content",
@@ -1266,47 +1451,48 @@
   },
   "Breadcrumb": {
     "type": "component",
-    "slot": "heading",
+    "slot": "header",
     "figmaNames": [
       "breadcrumb",
       "Breadcrumb",
-      "back",
+      "BreadcrumbGroup",
+      "breadcrumb-group",
       "breadcrumb-section"
     ],
-    "path": "/components/breadcrumb.html",
+    "path": "/components/breadcrumb-group.html",
     "props": [
       "item1",
       "item2",
       "item3",
-      "item4"
+      "item4",
+      "item5"
     ],
     "textProps": [
       "item1",
       "item2",
       "item3",
-      "item4"
+      "item4",
+      "item5"
     ],
     "requiredProps": [
       "item1"
     ],
     "variants": [],
-    "description": "홈부터 현재 페이지까지의 위치 경로",
+    "description": "img_text breadcrumb-group (홈 + depth)",
     "propTypes": {
       "item1": "shortText",
       "item2": "shortText",
       "item3": "shortText",
-      "item4": "shortText"
+      "item4": "shortText",
+      "item5": "shortText"
     },
     "propMaxLen": {
       "item1": 80,
       "item2": 80,
       "item3": 80,
-      "item4": 80
-    },
-    "aliases": [
-      "breadcrumb-section",
-      "breadcrumb-wrapper"
-    ]
+      "item4": 80,
+      "item5": 80
+    }
   },
   "Tabs": {
     "type": "component",
@@ -1687,41 +1873,43 @@
     "slot": "content",
     "figmaNames": [
       "pagination",
-      "paging"
+      "paging",
+      "PaginationBar",
+      "pagination-bar"
     ],
-    "path": "/components/pagination.html",
+    "path": "/components/pagination-bar.html",
     "props": [
-      "previous",
       "page1",
       "page2",
       "page3",
-      "next"
+      "page4",
+      "pageLast"
     ],
     "textProps": [
-      "previous",
       "page1",
       "page2",
       "page3",
-      "next"
+      "page4",
+      "pageLast"
     ],
     "requiredProps": [
       "page1"
     ],
+    "defaults": {
+      "page1": "1",
+      "page2": "2",
+      "page3": "3",
+      "page4": "4",
+      "pageLast": "23"
+    },
     "variants": [],
-    "description": "목록의 이전, 페이지 번호, 다음 이동",
+    "description": "img_text pagination 바",
     "propTypes": {
-      "previous": "shortText",
       "page1": "shortText",
       "page2": "shortText",
       "page3": "shortText",
-      "next": "shortText"
-    },
-    "propMaxLen": {
-      "previous": 80,
-      "page1": 80,
-      "page2": 80,
-      "page3": 80,
-      "next": 80
+      "page4": "shortText",
+      "pageLast": "shortText"
     }
   },
   "GuideAccordion": {

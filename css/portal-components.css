@@ -251,6 +251,15 @@
   display: none;
 }
 
+.breadcrumb-group__item:has(.breadcrumb-group__text:empty) {
+  display: none;
+}
+
+.badge.badge--white:empty {
+  display: none;
+}
+
+
 .portal-answer__notice strong:not(:empty) {
   grid-column: 1;
 }
