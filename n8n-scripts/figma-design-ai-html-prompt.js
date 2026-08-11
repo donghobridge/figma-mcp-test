@@ -1,7 +1,9 @@
 /**
  * Figma MCP 텍스트 + component-map → AI HTML 프롬프트.
- * include-only. 임의 마크업·플레이스홀더 금지.
- * few-shot에 구체 화면/문구를 넣지 않음 (복사 방지).
+ *
+ * 목표 스타일: yuma-component-img_text/pages/*
+ * - svg-symbols / gnb / footer 만 include
+ * - 본문은 page-layout + 디자인 시스템 마크업 (전부 include 금지)
  */
 module.exports = function ($input, helpers) {
   const inputJson = $input.first().json || {};
@@ -24,68 +26,59 @@ module.exports = function ($input, helpers) {
     throw new Error('component-map이 비어 있습니다.');
   }
 
-  const mcpLower = mcpText.toLowerCase();
-
   function toCatalogEntry(name, def) {
     return {
       path: def.path || '',
       figmaNames: def.figmaNames || [],
       props: def.props || [],
       textProps: def.textProps || [],
-      requiredProps: def.requiredProps || [],
-      slot: def.slot || def.role || '',
-      role: def.role || '',
+      role: def.role || def.slot || '',
       description: def.description || '',
-      variants: def.variants || [],
     };
   }
 
-  // MCP 텍스트에 이름이 보이거나 header/footer 역할만 카탈로그에 넣음.
-  // SummaryBar/GuideAccordion 등을 항상 넣으면 대출상환 레시피로 수렴함.
+  // include 후보: gnb/footer + MCP에 이름이 명확히 보이는 것만 (본문 강제용 아님)
+  const mcpLower = mcpText.toLowerCase();
   const catalog = {};
   for (const [name, def] of Object.entries(componentMap)) {
     if (!def || typeof def !== 'object' || def.type === 'layout') continue;
     const role = String(def.role || def.slot || '');
     const names = [name, ...(def.figmaNames || []), ...(def.aliases || [])].map(String);
-    const hitHeaderFooter = /header|footer|gnb/i.test(role) || /^(Header|Footer|GNB)$/i.test(name);
+    const hitShell = /header|footer|gnb/i.test(role) || /^(Header|Footer|GNB)$/i.test(name);
     const hitText = names.some((n) => n && mcpLower.includes(String(n).toLowerCase()));
-    if (hitHeaderFooter || hitText) {
-      catalog[name] = toCatalogEntry(name, def);
-    }
-  }
-
-  // 너무 비면 전체(레이아웃 제외) 폴백 — 그래도 "항상 쓰는 페이지 세트"는 강제하지 않음
-  if (Object.keys(catalog).length < 4) {
-    for (const [name, def] of Object.entries(componentMap)) {
-      if (!def || typeof def !== 'object' || def.type === 'layout') continue;
-      catalog[name] = toCatalogEntry(name, def);
-    }
+    if (hitShell || hitText) catalog[name] = toCatalogEntry(name, def);
   }
 
   const pageName = prepared.pageName || runConfig.pageSlug || 'Figma Design';
   const headerPath = (catalog.Header && catalog.Header.path)
-    || (Object.values(catalog).find((c) => c.role === 'header' || c.slot === 'header') || {}).path
+    || (Object.values(catalog).find((c) => /header|gnb/i.test(c.role)) || {}).path
     || '/patterns/gnb.html';
   const footerPath = (catalog.Footer && catalog.Footer.path)
-    || (Object.values(catalog).find((c) => c.role === 'footer' || c.slot === 'footer') || {}).path
+    || (Object.values(catalog).find((c) => /footer/i.test(c.role)) || {}).path
     || '/patterns/footer.html';
 
   const sourceFileKey = String(runConfig.fileKey || prepared.sourceFileKey || '');
   const sourceNodeId = String(runConfig.nodeId || prepared.sourceNodeId || '');
 
-  const prompt = `당신은 Yuma 포털 HTML 생성기입니다.
-아래 Figma MCP 원문만 보고, component-map의 path로 include HTML을 만드세요.
-다른 화면 예시·기억·추측 금지.
+  const prompt = `당신은 Yuma(노란우산) 포털 퍼블리셔입니다.
+Figma MCP 원문의 화면을 HTML로 만드세요.
+참고 페이지 스타일: yuma-component-img_text/pages (상담사례 상세/목록, 사업안내 등).
 
-# 절대 금지
-- 컴포넌트 마크업 직접 작성 금지 (class="summary-bar" 등)
-- <table>, <dl>, <h1>~<h3> 본문 구성 금지
-- include 중첩 금지 (form-card/key-value-card 안에 다른 data-include-path 넣지 말 것)
-- MCP에 없는 문구·숫자·버튼·섹션 창작 금지
-- "(MCP제목)", "정보(Data)", "TODO", "lorem", "샘플" 출력 금지
-- head에서 import.css / import.js / common.js 생략 금지
+# 핵심 규칙 (중요)
+- 페이지 전체를 data-include-path로 쪼개지 말 것
+- include는 공통 셸만: svg-symbols, gnb, footer
+- 본문은 실제 HTML 마크업으로 작성 (page-layout, breadcrumb-group, title-group, detail-view, badge, board-container 등)
+- MCP 원문에 있는 텍스트/구조만 사용. 없는 문구 창작 금지
+- TODO / lorem / 샘플 / (MCP제목) 금지
+- head에 import.css, import.js, common.js 필수
+- HTML만 출력 (설명/마크다운 금지)
 
-# 문서 셸 (형식만. 본문은 MCP에 맞게 채움)
+# include 허용 범위
+- 필수: /svg-symbols.html, ${headerPath}, ${footerPath}
+- 선택: component-map에 있고, 참고 페이지처럼 공통 조각으로 빼는 게 자연스러울 때만
+- case-header / question-content / answer-panel / key-value-card 등으로 본문 전체를 include 조립하지 말 것
+
+# 문서 구조 (이 뼈대 유지)
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -98,34 +91,44 @@ module.exports = function ($input, helpers) {
 </head>
 <body>
   <div data-include-path="/svg-symbols.html"></div>
-  <div data-include-path="${headerPath}"></div>
-  <div class="layout-page">
-    <main class="layout-page__main">
-      <!-- MCP 원문 순서대로 형제 include만. 예: -->
-      <div data-include-path="/components/...." data-prop-...="MCP원문값"></div>
-    </main>
+  <div class="page-layout">
+    <div data-include-path="${headerPath}"></div>
+
+    <!-- 본문: 시안에 맞게 마크업. include로 대체하지 말 것 -->
+    <div class="breadcrumb-group">...</div>
+    <div class="title-group title--display">
+      <h2 class="title-group__title">MCP제목</h2>
+    </div>
+    <div class="page-layout__page-inner page-layout--content">
+      <div class="page-inner__inner">
+        <!-- MCP 내용: badge, title-group, detail-view, question-area, answer-area, table 등 -->
+      </div>
+    </div>
+
+    <div data-include-path="${footerPath}"></div>
   </div>
-  <div data-include-path="${footerPath}"></div>
 </body>
 </html>
 
-# include 문법
-- 한 줄: <div data-include-path="map.path" data-prop-kebab="값"></div>
-- camelCase prop → kebab-case (contentHtml → data-prop-content-html)
-- 어떤 컴포넌트를 쓸지는 MCP 구조 + 아래 map만 보고 결정. 특정 화면 세트를 가정하지 말 것
+# 본문 작성 가이드
+- 상담/게시 상세면: detail-view-container, badge-wrap, title-group, question-area(Q), answer-area(A), tag-list, post-nav 패턴 사용
+- 목록이면: breadcrumb-group + title-group + board-container / custom-table 또는 카드 리스트
+- 아이콘은 <svg class="icon"><use href="#icon-..."></use></svg>
+- 줄바꿈은 <br> 사용 가능
+- class 이름은 기존 디자인 시스템 관례를 따름 (page-layout, title-group__title, btn, badge 등)
 
 # 이번 실행
 pageName=${pageName}
 fileKey=${sourceFileKey}
 nodeId=${sourceNodeId}
 
-# component-map (이 path/props만 사용)
+# component-map (참고용. 본문 강제 include 목록 아님)
 ${JSON.stringify(catalog, null, 2)}
 
-# Figma MCP 원문 (유일한 출처)
+# Figma MCP 원문 (값·구조의 유일한 출처)
 ${mcpText}
 
-HTML만 출력하세요.`;
+위 규칙의 HTML만 출력하세요.`;
 
   return [{
     json: {

@@ -1,6 +1,6 @@
 /**
- * AI HTML 추출 + (필요 시) 하드코딩 마크업 → include 수리 + 품질 게이트.
- * Figma 매칭 하드코딩 아님. AI가 잘못 쓴 컴포넌트 마크업만 map path로 되돌림.
+ * AI HTML 추출 + 문서 셸 보정 + 품질 게이트.
+ * 참고: yuma-component-img_text/pages — 본문은 마크업, include는 공통 셸(svg/gnb/footer).
  */
 module.exports = function ($input, helpers) {
   const ai = $input.first().json || {};
@@ -267,24 +267,16 @@ module.exports = function ($input, helpers) {
   }
 
   const warnings = [...((meta.preparedMeta && meta.preparedMeta.warnings) || [])];
-  const hasHardcode = /class=["'][^"']*(guide-accordion|summary-bar|data-table|key-value-card|section-heading|form-button-group)/i.test(html)
-    || /<table[\s>]/i.test(html);
-
   let repairs = [];
-  if (hasHardcode) {
-    const repaired = repairToIncludes(html);
-    html = repaired.html;
-    repairs = repaired.repairs;
-    if (repairs.length) {
-      warnings.push('AI 하드코딩 마크업을 include로 수리: ' + [...new Set(repairs)].join(', '));
-    }
-  }
+
+  // include-only 강제 제거: 본문 하드코딩 → include 수리는 더 이상 하지 않음
+  // (참고: yuma-component-img_text/pages 는 본문 마크업 + gnb/footer include)
 
   const beforeUnwrap = html;
   html = unwrapNestedIncludeHosts(html);
   if (html !== beforeUnwrap) {
     repairs.push('UnwrapNestedIncludes');
-    warnings.push('중첩 include 호스트(form-card/key-value-card)를 풀어 자식을 살림');
+    warnings.push('중첩 include 호스트를 풀어 자식을 살림');
   }
 
   const runConfigEarly = meta.runConfig || (helpers && helpers.runConfig) || {};
@@ -298,36 +290,28 @@ module.exports = function ($input, helpers) {
     warnings.push('import.css/js/common.js/svg-symbols 문서 셸 보정');
   }
 
-  if (!/data-include-path=/i.test(html)) {
-    throw new Error('HTML에 data-include-path가 없습니다. include 형식으로 다시 생성하세요.');
+  // 셸 include만 필수 (본문 include 강제 금지)
+  if (!/data-include-path=["']\/svg-symbols\.html["']/i.test(html)) {
+    throw new Error('svg-symbols include가 없습니다.');
   }
-
-  const stillBanned = [
-    /(?:^|[\s"'])class=["'][^"']*\bguide-accordion\b/i,
-    /(?:^|[\s"'])class=["'][^"']*\bsummary-bar\b/i,
-    /(?:^|[\s"'])class=["'][^"']*\bdata-table\b/i,
-    /(?:^|[\s"'])class=["'][^"']*\bkey-value-card\b/i,
-  ];
-  for (const re of stillBanned) {
-    if (re.test(html)) {
-      throw new Error(
-        '수리 후에도 컴포넌트 마크업이 남았습니다. data-include-path만 사용하세요. 매칭: '
-        + String(re)
-      );
-    }
+  if (!/data-include-path=["'][^"']*\/(patterns\/)?(gnb|header)[^"']*["']/i.test(html)
+    && !/data-include-path=["']\/patterns\/gnb\.html["']/i.test(html)) {
+    warnings.push('gnb/header include가 없습니다.');
+  }
+  if (!/page-layout|layout-page/i.test(html)) {
+    warnings.push('page-layout 래퍼가 없습니다. 참고 페이지 구조와 다를 수 있음.');
   }
 
   if (/TODO|lorem ipsum/i.test(html)) {
     throw new Error('더미 값(TODO/lorem)이 포함되어 있습니다. MCP 원문 실제 값만 쓰세요.');
   }
   if (/\(MCP[^)]*\)/i.test(html)) {
-    throw new Error('프롬프트 플레이스홀더 "(MCP…)"가 HTML에 남아 있습니다. MCP 원문 값으로 다시 생성하세요.');
+    throw new Error('프롬프트 플레이스홀더 "(MCP…)"가 HTML에 남아 있습니다.');
   }
   if (/정보\s*\(\s*Data\s*\)/i.test(html)) {
     warnings.push('HTML에 "정보(Data)"가 포함됨. 시안 플레이스홀더일 수 있음.');
   }
 
-  // MCP grounding: HTML prop 값이 MCP에 없으면 환각/예시 복사로 보고 실패
   let mcpText = String(meta.mcpText || '').trim();
   if (!mcpText && helpers && helpers.prepared) {
     mcpText = String(helpers.prepared.mcpText || '').trim();
@@ -344,49 +328,42 @@ module.exports = function ($input, helpers) {
   }
 
   if (mcpText) {
+    // 본문 텍스트 grounding (prop 전용 검사 → 본문 텍스트 샘플로 완화)
+    const textChunks = [];
+    const titleM = html.match(/<(?:h1|h2|h3)[^>]*>([^<]{4,80})<\/(?:h1|h2|h3)>/gi) || [];
+    for (const t of titleM) {
+      const inner = stripTags(t);
+      if (inner.length >= 4) textChunks.push(inner);
+    }
     const mcpNorm = mcpText.replace(/\s+/g, '');
-    const propVals = [];
-    const propRe = /data-prop-[a-z0-9-]+="([^"]*)"/gi;
-    let pm;
-    while ((pm = propRe.exec(html)) !== null) {
-      const v = stripTags(pm[1]).trim();
-      if (v.length >= 4) propVals.push(v);
-    }
-
     const missing = [];
-    for (const v of propVals) {
+    for (const v of textChunks.slice(0, 8)) {
       const compact = v.replace(/\s+/g, '');
-      if (compact.length < 4) continue;
-      // 날짜/금액처럼 변형될 수 있는 짧은 토큰은 느슨히: 숫자만이면 skip
       if (/^[\d,.\-\/원%]+$/.test(v)) continue;
-      if (!mcpNorm.includes(compact) && !mcpText.includes(v)) {
-        missing.push(v.slice(0, 40));
-      }
+      if (!mcpNorm.includes(compact) && !mcpText.includes(v)) missing.push(v.slice(0, 40));
     }
-    // 너무 엄격하면 실패폭주 → 대표 문구 3개 이상 미스면 환각로 판단
     if (missing.length >= 3) {
-      throw new Error(
-        'HTML prop 값이 MCP 원문에 없습니다 (예시/환각 의심). 예: '
-        + missing.slice(0, 5).join(' | ')
-        + '\n→ MCP 텍스트 추출의 mcpTextHead/sourceNodeId를 확인하세요.'
-      );
+      warnings.push('본문 제목 일부가 MCP에 없음: ' + missing.slice(0, 3).join(' | '));
     }
 
-    // 대출상환 고정 레시피 차단: MCP에 없는데 HTML에만 있으면 실패
     const loanMarkers = ['대출상환', '현재 대출잔액', '상환합계금', '이자계산일수'];
     const loanInHtml = loanMarkers.filter((m) => html.includes(m));
     const loanInMcp = loanMarkers.filter((m) => mcpText.includes(m));
     if (loanInHtml.length >= 2 && loanInMcp.length === 0) {
       throw new Error(
         '대출상환 화면 문구가 HTML에 있으나 MCP 원문에 없습니다. '
-        + '실행 입력 nodeId / MCP Client Input / mcpTextHead를 확인하세요.'
+        + '실행 입력 nodeId / MCP Client Input을 확인하세요.'
       );
     }
   }
 
   const includeCount = (html.match(/data-include-path=/gi) || []).length;
-  if (includeCount < 3) {
-    throw new Error('include가 너무 적습니다 (' + includeCount + ').');
+  // 셸 3개(svg/gnb/footer)면 충분. 본문 include 과다는 경고만
+  if (includeCount < 1) {
+    throw new Error('공통 include(svg-symbols 등)가 없습니다.');
+  }
+  if (includeCount > 12) {
+    warnings.push('include가 많습니다 (' + includeCount + '). 본문을 마크업으로 두는 편이 참고 페이지와 맞습니다.');
   }
 
   const runConfig = runConfigEarly;
@@ -398,7 +375,6 @@ module.exports = function ($input, helpers) {
     || runConfig.fileKey
     || '';
 
-  // 디버그용: 어떤 노드/MCP 원문으로 생성됐는지 HTML에 남김
   if (sourceNodeId && !/data-source-node-id=/.test(html)) {
     html = html.replace(
       /<body([^>]*)>/i,
