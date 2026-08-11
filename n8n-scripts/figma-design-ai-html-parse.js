@@ -1,6 +1,6 @@
 /**
- * AI HTML 추출 + 품질 게이트.
- * 하드코딩 컴포넌트 마크업 / 더미값이면 실패시켜 재생성하게 함.
+ * AI HTML 추출 + (필요 시) 하드코딩 마크업 → include 수리 + 품질 게이트.
+ * Figma 매칭 하드코딩 아님. AI가 잘못 쓴 컴포넌트 마크업만 map path로 되돌림.
  */
 module.exports = function ($input, helpers) {
   const ai = $input.first().json || {};
@@ -12,6 +12,130 @@ module.exports = function ($input, helpers) {
       meta = helpers.getJson('AI HTML 프롬프트') || {};
     }
   } catch (_) {}
+
+  function escapeAttr(value) {
+    return String(value == null ? '' : value)
+      .replace(/&/g, '&amp;')
+      .replace(/"/g, '&quot;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+  }
+
+  function stripTags(value) {
+    return String(value || '')
+      .replace(/<[^>]+>/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  function includeDiv(path, props) {
+    const attrs = [`data-include-path="${escapeAttr(path)}"`];
+    for (const [key, val] of Object.entries(props || {})) {
+      if (val == null || val === '') continue;
+      const kebab = key.replace(/[A-Z]/g, (c) => `-${c.toLowerCase()}`);
+      attrs.push(`data-prop-${kebab}="${escapeAttr(val)}"`);
+    }
+    return `<div ${attrs.join(' ')}></div>`;
+  }
+
+  function repairToIncludes(source) {
+    let html = source;
+    const repairs = [];
+
+    // section-heading / bare h1
+    html = html.replace(
+      /<div[^>]*class="[^"]*section-heading[^"]*"[^>]*>[\s\S]*?<h1[^>]*>([\s\S]*?)<\/h1>[\s\S]*?<\/div>/gi,
+      (_, title) => {
+        repairs.push('SectionHeading');
+        return includeDiv('/components/section-heading.html', { title: stripTags(title) });
+      }
+    );
+
+    // guide-accordion
+    html = html.replace(
+      /<div[^>]*class="[^"]*guide-accordion[^"]*"[^>]*>[\s\S]*?<h2[^>]*>([\s\S]*?)<\/h2>[\s\S]*?<p[^>]*>([\s\S]*?)<\/p>[\s\S]*?<\/div>/gi,
+      (_, title, body) => {
+        repairs.push('GuideAccordion');
+        return includeDiv('/components/guide-accordion.html', {
+          title: stripTags(title),
+          contentHtml: String(body || '').trim(),
+        });
+      }
+    );
+
+    // summary-bar
+    html = html.replace(
+      /<div[^>]*class="[^"]*summary-bar[^"]*"[^>]*>[\s\S]*?<\/div>\s*(?=<div|<\/div|<section|$)/gi,
+      (block) => {
+        const labels = [...block.matchAll(/summary-bar__label[^>]*>([\s\S]*?)<\//gi)].map((m) => stripTags(m[1]));
+        const values = [...block.matchAll(/summary-bar__value[^>]*>([\s\S]*?)<\//gi)].map((m) => stripTags(m[1]));
+        if (!labels.length) return block;
+        const props = { variantClass: 'ui-summary-bar--stack' };
+        for (let i = 0; i < Math.min(3, labels.length); i += 1) {
+          props[`label${i + 1}`] = labels[i];
+          props[`value${i + 1}`] = values[i] || '';
+        }
+        repairs.push('SummaryBar');
+        return includeDiv('/components/summary-bar.html', props);
+      }
+    );
+
+    // data-table rows → KeyValueCard
+    html = html.replace(
+      /<div[^>]*class="[^"]*key-value-card[^"]*"[^>]*>[\s\S]*?<table[^>]*class="[^"]*data-table[^"]*"[^>]*>[\s\S]*?<\/table>[\s\S]*?<\/div>/gi,
+      (block) => {
+        const titleMatch = block.match(/<h3[^>]*>([\s\S]*?)<\/h3>/i);
+        const rows = [...block.matchAll(
+          /data-table__cell--title[^>]*>([\s\S]*?)<\/td>\s*<td[^>]*>[\s\S]*?<p[^>]*>([\s\S]*?)<\/p>/gi
+        )];
+        const props = { title: stripTags((titleMatch && titleMatch[1]) || '신청내역') };
+        rows.slice(0, 12).forEach((row, i) => {
+          props[`label${i + 1}`] = stripTags(row[1]);
+          props[`value${i + 1}`] = stripTags(row[2]);
+        });
+        repairs.push('KeyValueCard');
+        return includeDiv('/components/key-value-card.html', props);
+      }
+    );
+
+    // leftover bare data-table
+    html = html.replace(
+      /<table[^>]*class="[^"]*data-table[^"]*"[^>]*>[\s\S]*?<\/table>/gi,
+      (block) => {
+        const rows = [...block.matchAll(
+          /data-table__cell--title[^>]*>([\s\S]*?)<\/td>\s*<td[^>]*>([\s\S]*?)<\/td>/gi
+        )];
+        if (!rows.length) return block;
+        const props = { title: '신청내역' };
+        rows.slice(0, 12).forEach((row, i) => {
+          props[`label${i + 1}`] = stripTags(row[1]);
+          props[`value${i + 1}`] = stripTags(row[2]);
+        });
+        repairs.push('KeyValueCard');
+        return includeDiv('/components/key-value-card.html', props);
+      }
+    );
+
+    // form-button-group
+    html = html.replace(
+      /<div[^>]*class="[^"]*form-button-group[^"]*"[^>]*>[\s\S]*?<\/div>/gi,
+      (block) => {
+        const buttons = [...block.matchAll(/<button[^>]*>([\s\S]*?)<\/button>/gi)].map((m) => stripTags(m[1]));
+        if (buttons.length < 2) return block;
+        repairs.push('FormButtonGroup');
+        return includeDiv('/components/form-button-group.html', {
+          secondaryLabel: buttons[0],
+          primaryLabel: buttons[1],
+        });
+      }
+    );
+
+    // unwrap empty decorative wrappers that often remain
+    html = html.replace(/<div[^>]*class="[^"]*page-wrapper[^"]*"[^>]*>/gi, '');
+    html = html.replace(/<div[^>]*class="[^"]*form-card[^"]*"[^>]*>/gi, '');
+
+    return { html, repairs };
+  }
 
   let html = raw
     .replace(/^```html\s*/i, '')
@@ -29,38 +153,50 @@ module.exports = function ($input, helpers) {
   if (!/<html[\s>]/i.test(html) || !/<\/html>/i.test(html)) {
     throw new Error('AI 응답에서 HTML 문서를 찾지 못했습니다.\n---\n' + raw.slice(0, 500));
   }
+
+  const warnings = [...((meta.preparedMeta && meta.preparedMeta.warnings) || [])];
+  const hasHardcode = /class=["'][^"']*(guide-accordion|summary-bar|data-table|ui-kv-card|section-heading|form-button-group)/i.test(html)
+    || /<table[\s>]/i.test(html);
+
+  let repairs = [];
+  if (hasHardcode) {
+    const repaired = repairToIncludes(html);
+    html = repaired.html;
+    repairs = repaired.repairs;
+    if (repairs.length) {
+      warnings.push('AI 하드코딩 마크업을 include로 수리: ' + [...new Set(repairs)].join(', '));
+    }
+  }
+
   if (!/data-include-path=/i.test(html)) {
     throw new Error('HTML에 data-include-path가 없습니다. include 형식으로 다시 생성하세요.');
   }
 
-  const bannedMarkup = [
+  const stillBanned = [
     /class=["'][^"']*guide-accordion/i,
     /class=["'][^"']*summary-bar/i,
     /class=["'][^"']*data-table/i,
     /class=["'][^"']*ui-kv-card/i,
-    /<table[\s>]/i,
   ];
-  for (const re of bannedMarkup) {
+  for (const re of stillBanned) {
     if (re.test(html)) {
       throw new Error(
-        '컴포넌트 마크업을 직접 작성했습니다. data-include-path만 사용하세요. 매칭: '
+        '수리 후에도 컴포넌트 마크업이 남았습니다. data-include-path만 사용하세요. 매칭: '
         + String(re)
       );
     }
   }
 
-  const warnings = [...((meta.preparedMeta && meta.preparedMeta.warnings) || [])];
-  if (/정보\s*\(\s*Data\s*\)/i.test(html)) {
-    warnings.push('HTML에 "정보(Data)"가 포함됨. 시안 플레이스홀더일 수 있음.');
-  }
   if (/TODO|lorem ipsum/i.test(html)) {
     throw new Error('더미 값(TODO/lorem)이 포함되어 있습니다. MCP 원문 실제 값만 쓰세요.');
   }
+  if (/정보\s*\(\s*Data\s*\)/i.test(html)) {
+    warnings.push('HTML에 "정보(Data)"가 포함됨. 시안 플레이스홀더일 수 있음.');
+  }
 
   const includeCount = (html.match(/data-include-path=/gi) || []).length;
-  // svg + header + footer + 최소 본문 2
   if (includeCount < 5) {
-    throw new Error('include가 너무 적습니다 (' + includeCount + '). SectionHeading/SummaryBar/KeyValueCard/Button 등을 include로 넣으세요.');
+    throw new Error('include가 너무 적습니다 (' + includeCount + ').');
   }
 
   const runConfig = meta.runConfig || (helpers && helpers.runConfig) || {};
@@ -73,7 +209,8 @@ module.exports = function ($input, helpers) {
       pageName,
       html,
       includeCount,
-      generationMode: 'ai-html-direct',
+      generationMode: repairs.length ? 'ai-html-repaired' : 'ai-html-direct',
+      repairs,
       warnings,
       runConfig,
       pageSlug: runConfig.pageSlug || meta.pageSlug || 'design-page',
