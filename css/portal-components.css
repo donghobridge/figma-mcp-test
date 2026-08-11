@@ -274,7 +274,8 @@
 }
 
 .title-group__subtitle:empty,
-.input-field__msg:empty {
+.input-field__msg:empty,
+.file-list:empty {
   display: none;
 }
 

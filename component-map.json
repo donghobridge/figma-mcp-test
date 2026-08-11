@@ -994,7 +994,6 @@
     "figmaNames": [
       "input-field",
       "text-field",
-      "input",
       "input_List",
       "input-list",
       "atomic_input",
@@ -1004,38 +1003,86 @@
       "input-name",
       "input-phone",
       "input-business-name",
-      "input-business-no",
       "input-dept",
       "input-position",
-      "textarea-wrapper",
-      "textarea-card",
-      "large-input"
+      "FormTextField"
     ],
     "path": "/components/form-text-field.html",
     "props": [
       "label",
       "placeholder",
-      "value"
+      "value",
+      "helper",
+      "requiredClass",
+      "maxLength"
     ],
     "textProps": [
       "label",
       "placeholder",
-      "value"
+      "value",
+      "helper"
     ],
     "requiredProps": [
       "label"
     ],
     "variants": [],
-    "description": "라벨과 단일 입력창",
+    "description": "img_text input-field 단일 텍스트",
     "propTypes": {
       "label": "shortText",
       "placeholder": "shortText",
-      "value": "shortText"
+      "value": "shortText",
+      "helper": "longText",
+      "requiredClass": "shortText",
+      "maxLength": "shortText"
     },
     "propMaxLen": {
       "label": 80,
       "placeholder": 80,
       "value": 80
+    },
+    "nestableInContainer": true
+  },
+  "FormTextareaField": {
+    "type": "component",
+    "slot": "content",
+    "figmaNames": [
+      "textarea-wrapper",
+      "textarea-card",
+      "large-input",
+      "FormTextareaField",
+      "textarea-field"
+    ],
+    "path": "/components/form-textarea-field.html",
+    "props": [
+      "label",
+      "placeholder",
+      "value",
+      "helper",
+      "requiredClass",
+      "maxLength",
+      "rows"
+    ],
+    "textProps": [
+      "label",
+      "placeholder",
+      "value",
+      "helper"
+    ],
+    "requiredProps": [
+      "label"
+    ],
+    "defaults": {
+      "rows": "12"
+    },
+    "description": "img_text textarea input-field",
+    "propTypes": {
+      "label": "shortText",
+      "placeholder": "shortText",
+      "value": "longText",
+      "helper": "longText",
+      "requiredClass": "shortText",
+      "maxLength": "shortText",
+      "rows": "shortText"
     },
     "nestableInContainer": true
   },
@@ -1314,7 +1361,8 @@
       "placeholder",
       "buttonLabel",
       "helper",
-      "fileName"
+      "fileName",
+      "filesHtml"
     ],
     "textProps": [
       "label",

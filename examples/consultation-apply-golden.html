@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>상담신청 작성 (golden include)</title>
+  <link rel="stylesheet" href="/import.css">
+  <script defer src="/import.js"></script>
+  <script defer src="/common.js"></script>
+</head>
+<body>
+  <div data-include-path="/svg-symbols.html"></div>
+
+  <div class="page-layout">
+    <div data-include-path="/patterns/gnb.html"></div>
+
+    <div data-include-path="/components/page-title-page.html" data-prop-title="상담신청 작성하기"></div>
+
+    <div class="page-layout__page-inner page-layout__page-inner--action">
+      <div class="page-inner__wrap">
+        <div class="page-inner__inner action-box-list">
+          <div data-include-path="/components/form-card.html"
+            data-prop-title="상담 접수를 위해 아래 내용을 입력해 주세요."
+            data-prop-body-html='<div class="action-box__body"><div class="action-input-field-wrapper"><div data-include-path="/components/form-text-field.html" data-prop-label="제목" data-prop-required-class="required" data-prop-placeholder="상담 제목을 입력해 주세요." data-prop-max-length="50" data-prop-helper="최대 50자 입력 가능"></div><div data-include-path="/components/form-textarea-field.html" data-prop-label="내용" data-prop-required-class="required" data-prop-placeholder="상담신청 내용을 입력해 주세요." data-prop-rows="12" data-prop-max-length="2000" data-prop-helper="최대 2,000자 입력 가능"></div><div data-include-path="/components/form-file-upload.html" data-prop-label="파일 첨부" data-prop-placeholder="파일을 첨부해 주세요." data-prop-button-label="파일 첨부" data-prop-helper="첨부파일 용량은 최대 10MB이며, 5개까지 등록 가능해요." data-prop-files-html="<li class=\"file-list__item\"><span class=\"file-list__name\">2025 법인등기부등본.jpg</span></li>"></div></div></div>'></div>
+
+          <div data-include-path="/components/form-card.html"
+            data-prop-title="양질의 서비스 제공을 위해 상담 내용을 상담사례로 제공하시겠습니까?"
+            data-prop-body-html='<div class="action-box__body"><div class="content-box content-box--fill gap--card-xxsmall"><p class="content-box__text content-box__text--medium">개인정보 등 민감한 내용은 제외되며,<br />미동의시에도 동일한 서비스 이용이 가능합니다.</p><div data-include-path="/components/form-choice-group.html" data-prop-label="상담사례 제공 동의" data-prop-options-html="<div class=\"radio__wrapper radio__wrapper--sm\" data-js=\"radio\"><input class=\"radio__input\" type=\"radio\" name=\"consultShareConsent\" id=\"consentYes\" checked /><label class=\"radio__label\" for=\"consentYes\">동의</label></div><div class=\"radio__wrapper radio__wrapper--sm\" data-js=\"radio\"><input class=\"radio__input\" type=\"radio\" name=\"consultShareConsent\" id=\"consentNo\" /><label class=\"radio__label\" for=\"consentNo\">미동의</label></div>"></div></div></div>'
+            data-prop-footer-html='<div data-include-path="/components/form-button-group.html" data-prop-secondary-label="이전" data-prop-secondary-href="#" data-prop-primary-label="신청하기" data-prop-primary-href="#"></div>'></div>
+        </div>
+      </div>
+    </div>
+
+    <div data-include-path="/patterns/footer.html"></div>
+  </div>
+</body>
+</html>

@@ -1,19 +1,15 @@
-<div class="form-section {variantClass}">
-  <p class="form-section__label">{label}</p>
-  <div class="input-field">
-    <div class="file-attachment">
-      <div class="input-group" data-js="inputGroup">
-        <div class="input input--lg only-pc">
-          <input type="text" placeholder="{placeholder}" readonly aria-label="첨부 파일명" />
-        </div>
-        <button type="button" class="btn btn--tertiary btn--lg w-full-mo" data-js="button">
-          <span class="btn__label">{buttonLabel}</span>
-        </button>
-      </div>
+<div class="input-field {variantClass}">
+  <label class="input-field__label">{label}</label>
+  <div class="input-group" data-js="inputGroup">
+    <div class="input input--lg only-pc">
+      <input type="text" placeholder="{placeholder}" readonly value="{fileName}" />
     </div>
-    <p class="input-field__msg">{helper}</p>
+    <button type="button" class="btn btn--tertiary btn--lg w-full-mo" data-js="button">
+      <span class="btn__label">{buttonLabel}</span>
+    </button>
   </div>
-  <ul class="file-list">
+  <p class="input-field__msg">{helper}</p>
+  <ul class="file-list" data-js="fileList" aria-label="첨부된 파일 목록">
     {filesHtml}
   </ul>
 </div>

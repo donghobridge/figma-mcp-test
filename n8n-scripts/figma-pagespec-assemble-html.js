@@ -101,7 +101,7 @@ module.exports = function ($input, helpers) {
   const headerComps = /^(SectionHeading|Breadcrumb|BreadcrumbGroup|PageTitle|PageTitleDisplay|PageTitlePage|DetailContentHeader|CaseHeader)$/i;
   const actionComps = /^(FormButtonGroup|ActionButtonGroup|ButtonGroup|PrimaryButton|Button)$/i;
   const profileComps = /^(AdvisorProfile)$/i;
-  const formChildComps = /^(SummaryBar|AmountBox|KeyValueCard|ApplicationDateCard|ConfirmTable)$/i;
+  const formChildComps = /^(SummaryBar|AmountBox|KeyValueCard|ApplicationDateCard|ConfirmTable|FormTextField|FormTextareaField|FormFileUpload|FormChoiceGroup|FormDateField|FormEmailField|FormAddressField|FormCheckbox|FormTerms)$/i;
 
   // 1) BoardListItem / ConfirmTableRow 병합
   const pass1 = [];
