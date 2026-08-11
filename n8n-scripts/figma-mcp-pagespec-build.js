@@ -101,7 +101,12 @@ module.exports = function ($input, helpers) {
     return out;
   }
 
-  // exact alias index only
+  // exact alias index only (짧은/모호 별칭은 등록하지 않음)
+  const SKIP_ALIAS = new Set([
+    'card', 'heading', 'answer', 'input', 'title', 'text', 'box', 'row', 'item',
+    'content', 'wrapper', 'button', 'list', 'form', 'date', 'btn', 'chip', 'tabs',
+    'gnb', 'question', 'table', 'col', 'grid',
+  ]);
   const nameToComponent = new Map();
   for (const [key, def] of Object.entries(componentMap)) {
     if (!def || typeof def !== 'object' || def.type === 'layout') continue;
@@ -109,8 +114,11 @@ module.exports = function ($input, helpers) {
     for (const a of aliases) {
       const token = String(a || '').trim();
       if (!token) continue;
-      // 너무 짧은/모호한 별칭은 정확 매칭만 (card, heading 등 fuzzy 금지)
-      nameToComponent.set(token.toLowerCase(), key);
+      const lower = token.toLowerCase();
+      if (SKIP_ALIAS.has(lower)) continue;
+      // ASCII 3자 이하 별칭은 너무 모호
+      if (/^[a-z0-9_-]+$/i.test(token) && token.length <= 3) continue;
+      nameToComponent.set(lower, key);
     }
   }
 

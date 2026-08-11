@@ -22,6 +22,20 @@ module.exports = function ($input, helpers) {
     if (incoming.html) htmlItem = incoming;
   }
 
+  // 품질 게이트 통과본 우선
+  try {
+    if (helpers && typeof helpers.getJson === 'function') {
+      const gated = helpers.getJson('HTML 품질 게이트');
+      if (gated && gated.html) {
+        htmlItem = {
+          ...htmlItem,
+          ...gated,
+          warnings: gated.warnings || htmlItem.warnings || [],
+        };
+      }
+    }
+  } catch (_) {}
+
   const html = String(htmlItem.html || '');
   if (!html || !/<html[\s>]/i.test(html)) {
     throw new Error('조립 HTML이 없습니다. HTML 조립 결과를 확인하세요.');

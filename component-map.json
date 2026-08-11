@@ -118,9 +118,7 @@
     "slot": "header",
     "figmaNames": [
       "CaseHeader",
-      "case-header",
-      "DetailContentHeader",
-      "detail-content-header"
+      "case-header"
     ],
     "path": "/components/case-header.html",
     "props": [
@@ -258,10 +256,7 @@
     "slot": "content",
     "figmaNames": [
       "QuestionContent",
-      "question",
-      "question-content",
-      "QuestionArea",
-      "question-area"
+      "question-content"
     ],
     "path": "/components/question-content.html",
     "props": [
@@ -360,8 +355,7 @@
     "slot": "content",
     "figmaNames": [
       "AnswerArea",
-      "answer-area",
-      "answer"
+      "answer-area"
     ],
     "path": "/components/answer-area.html",
     "props": [
@@ -392,7 +386,8 @@
     "type": "component",
     "slot": "header",
     "figmaNames": [
-      "DetailContentHeader"
+      "DetailContentHeader",
+      "detail-content-header"
     ],
     "path": "/components/detail-content-header.html",
     "props": [
@@ -758,8 +753,7 @@
     "figmaNames": [
       "SectionHeading",
       "title-section",
-      "PageTitle",
-      "heading"
+      "PageTitle"
     ],
     "path": "/components/section-heading.html",
     "props": [
@@ -1143,10 +1137,10 @@
     "figmaNames": [
       "date-field",
       "birth",
-      "date",
       "date-card",
       "date-wrapper",
-      "input-date-group"
+      "input-date-group",
+      "FormDateField"
     ],
     "path": "/components/form-date-field.html",
     "props": [
@@ -1452,10 +1446,10 @@
     "figmaNames": [
       "action-button-list",
       "button-group",
-      "BTN",
       "FormButtonGroupBox",
       "FormActionGroup",
-      "buttons-container"
+      "buttons-container",
+      "FormButtonGroup"
     ],
     "path": "/components/form-button-group.html",
     "props": [
@@ -1574,14 +1568,9 @@
       "basic-info",
       "business-info",
       "KeyValueCard",
-      "신청내역",
       "application-details",
       "repayment-details",
       "detail-list",
-      "Table_A_PC",
-      "Table_A",
-      "table-a-pc",
-      "table-row",
       "kv-row"
     ],
     "path": "/components/key-value-card.html",
