@@ -10,17 +10,50 @@
 </head>
 <body>
   <div data-include-path="/svg-symbols.html"></div>
-  <div data-include-path="/patterns/gnb.html"></div>
-  <div class="layout-page">
-    <main class="layout-page__main">
-      <div data-include-path="/components/section-heading.html" data-prop-title="대출상환 신청"></div>
-      <div data-include-path="/components/guide-accordion.html" data-prop-title="유의사항" data-prop-content-html="- 자동연장 신청이 되어있지 않은 대출은 대출 만기일에 전액 일시 상환합니다.<br>- 조기상환에 따른 대출이자는 일할계산 되며 고객센터 신청(상담전화 1666-9988) 또는 인터넷 신청으로 가능합니다."></div>
-      <div data-include-path="/components/summary-bar.html" data-prop-label1="현재 대출잔액" data-prop-value1="1,000,000원" data-prop-label2="상환금액" data-prop-value2="600,000원" data-prop-label3="최종 대출잔액" data-prop-value3="400,000원" data-prop-variant-class="ui-summary-bar--stack"></div>
-      <div data-include-path="/components/key-value-card.html" data-prop-title="신청내역" data-prop-label1="상환방법" data-prop-value1="정보(Data)" data-prop-label2="대출잔액" data-prop-value2="정보(Data)" data-prop-label3="상환금액" data-prop-value3="정보(Data)" data-prop-label4="상환신청일" data-prop-value4="정보(Data)" data-prop-label5="상환합계금" data-prop-value5="정보(Data)" data-prop-label6="이자계산일수" data-prop-value6="정보(Data)" data-prop-label7="대출이자율" data-prop-value7="정보(Data)" data-prop-label8="이자납부주기" data-prop-value8="정보(Data)" data-prop-label9="상환회차" data-prop-value9="정보(Data)" data-prop-label10="이체은행" data-prop-value10="정보(Data)" data-prop-label11="계좌번호" data-prop-value11="정보(Data)"></div>
-      <div data-include-path="/components/application-date-card.html" data-prop-label="신청일" data-prop-date="2025년 12월 09일" data-prop-description="{ts1}**해당 신청은 별도 심사 없이 즉시 완료됩니다.**{/ts1}<br>{ts2}**정상적으로 출금이 완료되어야 신청이 완료됩니다.**{/ts2}"></div>
-      <div data-include-path="/components/form-button-group.html" data-prop-secondary-label="이전" data-prop-primary-label="신청하기"></div>
-    </main>
+<div class="layout-page layout-page--form">
+<div data-include-path="/patterns/gnb.html"></div>
+
+  <main class="layout-page__main" id="main-content">
+    <div class="layout-page__container">
+<section class="layout-detail layout-detail--form">
+  <header class="layout-detail__header">
+<!-- SectionHeading: SectionHeading -->
+<div data-include-path="/components/section-heading.html" data-prop-title="대출상환 신청"></div>
+  </header>
+  <div class="layout-detail__surface">
+    <div class="layout-detail__content">
+<!-- GuideAccordion: GuideAccordion -->
+<div data-include-path="/components/guide-accordion.html" data-prop-title="유의사항"></div>
+
+<!-- FormCard: FormCard -->
+<div data-include-path="/components/form-card.html" data-prop-title="대출상환 신청을 위한 정보를 확인해 주세요."></div>
+
+<!-- SummaryBar: SummaryBar -->
+<div data-include-path="/components/summary-bar.html" data-prop-label1="현재 대출잔액" data-prop-value1="1,000,000원" data-prop-label2="상환금액" data-prop-value2="600,000원" data-prop-label3="최종 대출잔액" data-prop-value3="400,000원"></div>
+
+<!-- KeyValueCard: KeyValueCard -->
+<div data-include-path="/components/key-value-card.html" data-prop-title="신청내역" data-prop-label1="수정" data-prop-value1="상환방법" data-prop-label2="대출잔액" data-prop-value2="상환금액" data-prop-label3="상환신청일" data-prop-value3="상환합계금" data-prop-label4="이자계산일수" data-prop-value4="대출이자율" data-prop-label5="이자납부주기" data-prop-value5="상환회차" data-prop-label6="이체은행" data-prop-value6="계좌번호"></div>
+
+<!-- FormCard: FormCard -->
+<div data-include-path="/components/form-card.html"></div>
+
+<!-- ApplicationDateCard: ApplicationDateCard -->
+<div data-include-path="/components/application-date-card.html" data-prop-label="신청일" data-prop-date="2025년 12월 09일"></div>
+
+<!-- FormTextField: atomic_input -->
+<div data-include-path="/components/form-text-field.html" data-prop-label="전국지점안내"></div>
+    </div>
+    <div class="layout-detail__actions">
+<!-- FormButtonGroup: FormButtonGroup -->
+<div data-include-path="/components/form-button-group.html" data-prop-secondary-label="이전" data-prop-secondary-href="#" data-prop-primary-label="신청하기" data-prop-primary-href="#"></div>
+    </div>
   </div>
-  <div data-include-path="/patterns/footer.html"></div>
+</section>
+    </div>
+  </main>
+
+<div data-include-path="/patterns/footer.html"></div>
+</div>
+
 </body>
 </html>
