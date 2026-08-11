@@ -92,7 +92,7 @@ Figma MCP 원문의 텍스트만 값으로 쓰고, component-map path만 include
 - 마크다운/설명 출력 금지
 - head에서 import.css / import.js / common.js 생략 금지 (생략하면 빈 화면)
 
-# 필수 문서 셸 (그대로 유지)
+# 문서 셸 형식 (형식만 참고. 본문 문구/필드/컴포넌트 종류는 MCP 원문을 따름. 아래 예시 문구 복사 금지)
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -108,12 +108,12 @@ Figma MCP 원문의 텍스트만 값으로 쓰고, component-map path만 include
   <div data-include-path="${headerPath}"></div>
   <div class="layout-page">
     <main class="layout-page__main">
-      <!-- 아래처럼 형제 include만. 중첩 금지 -->
-      <div data-include-path="/components/section-heading.html" data-prop-title="대출상환 신청"></div>
-      <div data-include-path="/components/guide-accordion.html" data-prop-title="유의사항" data-prop-content-html="안내<br>다음"></div>
-      <div data-include-path="/components/summary-bar.html" data-prop-label1="현재 대출잔액" data-prop-value1="1,000,000원" data-prop-label2="상환금액" data-prop-value2="600,000원" data-prop-label3="최종 대출잔액" data-prop-value3="400,000원" data-prop-variant-class="ui-summary-bar--stack"></div>
-      <div data-include-path="/components/key-value-card.html" data-prop-title="신청내역" data-prop-label1="상환방법" data-prop-value1="실제값" data-prop-label2="대출잔액" data-prop-value2="실제값"></div>
-      <div data-include-path="/components/form-button-group.html" data-prop-secondary-label="이전" data-prop-primary-label="신청하기"></div>
+      <!-- 형제 include만. 중첩 금지. prop 값은 전부 MCP 원문에서 -->
+      <div data-include-path="/components/section-heading.html" data-prop-title="(MCP제목)"></div>
+      <div data-include-path="/components/guide-accordion.html" data-prop-title="(MCP안내제목)" data-prop-content-html="(MCP안내본문)"></div>
+      <div data-include-path="/components/summary-bar.html" data-prop-label1="(MCP라벨)" data-prop-value1="(MCP값)" data-prop-variant-class="ui-summary-bar--stack"></div>
+      <div data-include-path="/components/key-value-card.html" data-prop-title="(MCP카드제목)" data-prop-label1="(MCP라벨)" data-prop-value1="(MCP값)"></div>
+      <div data-include-path="/components/form-button-group.html" data-prop-secondary-label="(MCP버튼)" data-prop-primary-label="(MCP버튼)"></div>
     </main>
   </div>
   <div data-include-path="${footerPath}"></div>
@@ -121,23 +121,27 @@ Figma MCP 원문의 텍스트만 값으로 쓰고, component-map path만 include
 </html>
 
 # 규칙
-- 본문 컴포넌트는 전부 한 줄 self-closing 형태 include (자식 없음)
+- MCP 원문에 없는 화면(예: 대출상환)을 만들지 말 것. 예시 HTML의 문구를 그대로 쓰지 말 것
+- MCP에 있는 섹션/라벨/값/버튼만 include로 조립. 없는 컴포넌트는 넣지 말 것
+- 본문 컴포넌트는 전부 한 줄 include (자식 없음)
 - prop 이름: camelCase → kebab-case (contentHtml → data-prop-content-html)
-- Table_A / 신청내역 반복 행 → KeyValueCard 하나 (label1/value1 … 최대 12)
-- 유의사항 → GuideAccordion (title + contentHtml)
-- 금액 요약 → SummaryBar
-- 이전/신청하기 → FormButtonGroup
+- 라벨+값 반복 행 → KeyValueCard 하나 (label1/value1 … 최대 12)
+- 접이식 안내/유의사항 문구가 있으면 → GuideAccordion
+- 금액/수치 요약 줄이 있으면 → SummaryBar
+- 하단 이전/다음/신청 버튼이 있으면 → FormButtonGroup
 
-# pageName
-${pageName}
+# pageName / nodeId (이번 실행)
+pageName=${pageName}
+fileKey=${runConfig.fileKey || ''}
+nodeId=${runConfig.nodeId || ''}
 
 # component-map (이 path/props만 사용)
 ${JSON.stringify(catalog, null, 2)}
 
-# Figma MCP 원문 (값의 유일한 출처)
+# Figma MCP 원문 (값·구조의 유일한 출처 — 이것만 반영)
 ${mcpText}
 
-위 셸+include-only HTML만 출력하세요.`;
+위 셸 형식으로, MCP 원문에 맞는 include-only HTML만 출력하세요.`;
 
   return [{
     json: {
@@ -145,6 +149,9 @@ ${mcpText}
       preparedMeta: {
         pageName,
         mcpTextLength: mcpText.length,
+        mcpTextHead: mcpText.slice(0, 240),
+        sourceFileKey: runConfig.fileKey || prepared.sourceFileKey || '',
+        sourceNodeId: runConfig.nodeId || prepared.sourceNodeId || '',
         warnings: prepared.warnings || [],
       },
       catalogComponentCount: Object.keys(catalog).length,

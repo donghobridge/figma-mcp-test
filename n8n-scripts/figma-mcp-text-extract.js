@@ -31,18 +31,26 @@ module.exports = function ($input, helpers) {
 
   const pageName = String(runConfig.pageSlug || runConfig.pageName || 'Figma Design');
 
+  const fileKey = String(runConfig.fileKey || '').trim();
+  const nodeId = String(runConfig.nodeId || '').trim();
+  const pageSlug = String(runConfig.pageSlug || '').trim();
+
   const result = {
     pageName,
     mcpText,
     mcpTextLength: mcpText.length,
+    // n8n에서 노드가 바뀌었는지 바로 확인용
+    mcpTextHead: mcpText.slice(0, 240),
+    sourceFileKey: fileKey,
+    sourceNodeId: nodeId,
     generationMode: 'ai-html-direct',
     warnings: [],
     designNodes: [{ id: 'mcp', depth: 0, type: 'DOCUMENT', name: pageName, ownTexts: [] }],
     runConfig: {
       ...runConfig,
-      fileKey: runConfig.fileKey || '',
-      nodeId: runConfig.nodeId || '',
-      pageSlug: runConfig.pageSlug || '',
+      fileKey,
+      nodeId,
+      pageSlug,
       githubOwner: runConfig.githubOwner || '',
       githubRepo: runConfig.githubRepo || '',
       githubBranch: runConfig.githubBranch || 'main',
