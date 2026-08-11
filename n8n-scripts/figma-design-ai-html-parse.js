@@ -246,9 +246,7 @@ module.exports = function ($input, helpers) {
     if (!/data-include-path=["']\/svg-symbols\.html["']/i.test(out)) {
       out = out.replace(/<body([^>]*)>/i, '<body$1>\n  <div data-include-path="/svg-symbols.html"></div>');
     }
-    // layout-page → page-layout (참고 페이지 클래스)
-    out = out.replace(/\blayout-page__main\b/g, 'page-layout__page-inner page-layout--content');
-    out = out.replace(/\blayout-page\b/g, 'page-layout');
+    // layout-page 본문 폭 래퍼 보정은 parse 게이트에서 강제
     return out;
   }
 
@@ -307,39 +305,33 @@ module.exports = function ($input, helpers) {
     warnings.push('import.css/js/common.js/svg-symbols 문서 셸 보정');
   }
 
-  // layout-page 잔존 / 풀폭 본문 구조 차단
-  if (/\blayout-page\b/i.test(html)) {
-    throw new Error('layout-page 가 남아 있습니다. page-layout + page-layout__page-inner 로 작성하세요.');
-  }
-  if (!/page-layout__page-inner/i.test(html)) {
+  // 가운데 흰 카드 구조 필수 (시안 fidelity)
+  if (!/layout-detail__surface/i.test(html)) {
     throw new Error(
-      'page-layout__page-inner 가 없습니다. 본문이 100% 풀폭으로 나갑니다. '
-      + '참고 페이지처럼 page-layout__page-inner(--restr) page-layout--content 를 넣으세요.'
+      'layout-detail__surface(가운데 흰 카드)가 없습니다. '
+      + 'layout-page > layout-page__container > layout-detail > layout-detail__surface 구조로 다시 생성하세요.'
     );
   }
-
-  // 본문 /components include 조립이면 실패 → 참고 페이지 마크업으로 재생성
-  const bodyComponentIncludes = (html.match(/data-include-path=["']\/components\/[^"']+["']/gi) || []).length;
-  if (bodyComponentIncludes >= 2) {
+  if (!/layout-page__container/i.test(html)) {
     throw new Error(
-      '본문이 /components include 조립입니다 (' + bodyComponentIncludes + '개). '
-      + 'yuma-component-img_text/pages 처럼 page-layout + detail-view 마크업으로 다시 생성하세요.'
+      'layout-page__container가 없습니다. 본문이 100% 풀폭으로 나갑니다.'
     );
   }
+  if (/page-layout__page-inner|class=["'][^"']*page-layout[^"']*["']/i.test(html)
+    && !/layout-detail__surface/i.test(html)) {
+    throw new Error('page-layout 공개형 구조입니다. 이 시안은 layout-detail__surface 카드형이 필요합니다.');
+  }
 
-  // 셸 include만 필수 (본문 include 강제 금지)
+  // 셸 include
   if (!/data-include-path=["']\/svg-symbols\.html["']/i.test(html)) {
     throw new Error('svg-symbols include가 없습니다.');
   }
-  if (!/data-include-path=["'][^"']*\/(patterns\/)?(gnb|header)[^"']*["']/i.test(html)
-    && !/data-include-path=["']\/patterns\/gnb\.html["']/i.test(html)) {
-    warnings.push('gnb/header include가 없습니다.');
+  if (!/data-include-path=["']\/patterns\/(gnb|footer)/i.test(html)
+    && !/data-include-path=["'][^"']*(gnb|footer|header)/i.test(html)) {
+    warnings.push('gnb/footer include가 약합니다.');
   }
-  if (!/page-layout--content|page-layout__page-inner--restr/i.test(html)) {
-    warnings.push('page-layout--content / --restr 가 없어 본문 폭이 넓을 수 있습니다.');
-  }
-  if (!/detail-view|board-container|contents-section|page-inner__inner/i.test(html)) {
-    warnings.push('detail-view/board-container 본문 패턴이 약합니다.');
+  if (!/portal-case-header|case-header\.html|portal-contact-bar|contact-bar\.html/i.test(html)) {
+    warnings.push('CaseHeader/ContactBar 패턴이 약합니다.');
   }
 
   if (/TODO|lorem ipsum/i.test(html)) {
