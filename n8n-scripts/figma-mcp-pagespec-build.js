@@ -172,14 +172,42 @@ module.exports = function ($input, helpers) {
       return /^\d{2,4}-\d{3,4}-\d{4}$/.test(t) || /\d{2,4}[-\s]\d{3,4}[-\s]\d{4}/.test(t);
     }
 
-    if (componentKey === 'KeyValueCard' || componentKey === 'SummaryBar') {
+    if (componentKey === 'KeyValueCard' || componentKey === 'SummaryBar' || componentKey === 'AmountBox') {
       if (componentKey === 'KeyValueCard' && pool[0] && pool[0].length <= 40
         && !isMoney(pool[0]) && !isDate(pool[0])) {
         props.title = pool[0];
         used.add(0);
       }
       const rest = pool.filter((_, idx) => !used.has(idx));
-      assignLabelValuePairs(props, rest, 1, 12);
+      const maxPairs = (componentKey === 'SummaryBar' || componentKey === 'AmountBox') ? 3 : 14;
+      assignLabelValuePairs(props, rest, 1, maxPairs);
+      return props;
+    }
+
+    if (componentKey === 'FormButtonGroup') {
+      props.secondaryLabel = take((t) => /이전|취소|닫기|뒤로/.test(t) && t.length <= 20) || take((t) => t.length <= 12);
+      props.primaryLabel = take((t) => /신청|확인|다음|저장|완료|제출/.test(t) && t.length <= 20) || take((t) => t.length <= 12);
+      props.secondaryHref = '#';
+      props.primaryHref = '#';
+      return props;
+    }
+
+    if (componentKey === 'ApplicationDateCard') {
+      props.label = take((t) => /신청일|날짜|일자/.test(t) && t.length <= 20) || '신청일';
+      props.date = take(isDate) || take((t) => /\d{4}/.test(t) && t.length <= 40);
+      props.description = take((t) => t.length >= 20) || take((t) => t.length >= 10);
+      return props;
+    }
+
+    if (componentKey === 'PageTitlePage' || componentKey === 'SectionHeading') {
+      props.title = take((t) => t.length >= 2 && t.length <= 80 && !isDate(t) && !isMoney(t));
+      props.description = take((t) => t.length >= 10 && t.length <= 120);
+      return props;
+    }
+
+    if (componentKey === 'FormCard') {
+      props.title = take((t) => t.length >= 4 && t.length <= 80 && !isMoney(t) && !isDate(t));
+      props.helper = take((t) => t.length >= 20);
       return props;
     }
 
@@ -359,7 +387,9 @@ module.exports = function ($input, helpers) {
     if (componentKey === 'GuideAccordion') {
       const longs = pool.filter((_, idx) => !used.has(idx) && pool[idx].length >= 20);
       if (longs.length) {
-        props.contentHtml = longs.map((t) => `<p>${t}</p>`).join('');
+        props.contentHtml = longs
+          .map((t) => `<p class="accordion__panel-text bullet-item">${t}</p>`)
+          .join('\n');
       }
       if (!props.title) props.title = '유의사항';
     }
@@ -466,7 +496,7 @@ module.exports = function ($input, helpers) {
     let slot = 'content';
     if (/button|action/i.test(c.component) || mapSlot === 'actions') slot = 'actions';
     else if (mapSlot === 'back' || /^BackToList$/i.test(c.component)) slot = 'back';
-    else if (mapSlot === 'header' || mapSlot === 'heading' || /^(SectionHeading|Breadcrumb|BreadcrumbGroup|CaseHeader|DetailContentHeader|PageTitle|PageTitleDisplay)/i.test(c.component)) {
+    else if (mapSlot === 'header' || mapSlot === 'heading' || /^(SectionHeading|Breadcrumb|BreadcrumbGroup|CaseHeader|DetailContentHeader|PageTitle|PageTitleDisplay|PageTitlePage)/i.test(c.component)) {
       slot = 'header';
     } else if (mapSlot === 'profile' || /^AdvisorProfile$/i.test(c.component)) {
       slot = 'profile';

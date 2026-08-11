@@ -1,11 +1,10 @@
 <div class="action-box {variantClass}">
-  <div class="action-box__body">
-    <div class="action-input-field-wrapper">
-      <div class="title-group title--subtitle padding--0">
-        <h3 class="title-group__title">{title}</h3>
-        <p class="title-group__subtitle text-red">{helper}</p>
-      </div>
-      {bodyHtml}
-    </div>
+  <div class="action-box__head">
+    <div class="action-box__head__title">{title}</div>
+  </div>
+  <p class="title-group__subtitle text-red" style="padding:0 24px;">{helper}</p>
+  {bodyHtml}
+  <div class="action-box__footer">
+    {footerHtml}
   </div>
 </div>

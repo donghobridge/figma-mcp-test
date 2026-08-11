@@ -259,6 +259,25 @@
   display: none;
 }
 
+.table__row:has(.table__header:empty):has(.table__cell:empty),
+.table__row:has(.table__header:empty):not(:has(.table__cell:not(:empty))) {
+  display: none;
+}
+
+.action-box__head:has(.action-box__head__title:empty) {
+  display: none;
+}
+
+.action-box__footer:empty,
+.action-box__footer:not(:has(*)) {
+  display: none;
+}
+
+.title-group__subtitle:empty,
+.input-field__msg:empty {
+  display: none;
+}
+
 
 .portal-answer__notice strong:not(:empty) {
   grid-column: 1;

@@ -941,42 +941,35 @@
     "figmaNames": [
       "action-box",
       "form-card",
-      "card",
       "form-card-container",
       "FormCard",
-      "Form Card"
+      "Form Card",
+      "ActionBox"
     ],
     "path": "/components/form-card.html",
     "props": [
       "title",
       "helper",
-      "bodyHtml"
+      "bodyHtml",
+      "footerHtml"
     ],
     "textProps": [
       "title",
       "helper"
     ],
-    "requiredProps": [
-      "title"
-    ],
+    "requiredProps": [],
+    "acceptsChildren": true,
     "variants": [],
-    "description": "여러 입력 항목을 묶는 흰색 폼 카드",
+    "description": "img_text action-box (제목 + bodyHtml + footerHtml)",
     "propTypes": {
       "title": "shortText",
       "helper": "longText",
-      "bodyHtml": "html"
+      "bodyHtml": "html",
+      "footerHtml": "html"
     },
     "propMaxLen": {
-      "title": 80
-    },
-    "propMinLen": {
-      "helper": 40
-    },
-    "acceptsChildren": true,
-    "aliases": [
-      "form-card-container",
-      "FormCardContainer"
-    ]
+      "title": 120
+    }
   },
   "EventParticipationForm": {
     "type": "component",
@@ -1672,11 +1665,11 @@
       "loan-summary",
       "balance-summary",
       "repayment-summary",
-      "잔액요약"
+      "잔액요약",
+      "my-amount-box"
     ],
     "path": "/components/summary-bar.html",
     "props": [
-      "description",
       "label1",
       "value1",
       "label2",
@@ -1685,7 +1678,6 @@
       "value3"
     ],
     "textProps": [
-      "description",
       "label1",
       "value1",
       "label2",
@@ -1697,30 +1689,126 @@
       "label1",
       "value1"
     ],
-    "variants": [
-      "ui-summary-bar--stack"
-    ],
-    "description": "금액 등 핵심 정보 요약. stack 변형은 세로 리스트(대출상환 신청용)",
+    "variants": [],
+    "description": "img_text my-amount-box 금액 요약",
     "propTypes": {
-      "description": "shortText",
-      "label1": "shortText",
-      "value1": "shortText",
-      "label2": "shortText",
-      "value2": "shortText",
-      "label3": "shortText",
-      "value3": "shortText"
-    },
-    "propMaxLen": {
-      "description": 120,
-      "label1": 80,
-      "value1": 80,
-      "label2": 80,
-      "value2": 80,
-      "label3": 80,
-      "value3": 80
-    },
+      "label1": "label",
+      "value1": "money",
+      "label2": "label",
+      "value2": "money",
+      "label3": "label",
+      "value3": "money"
+    }
+  },
+  "AmountBox": {
+    "type": "component",
+    "slot": "content",
+    "figmaNames": [
+      "AmountBox"
+    ],
+    "path": "/components/amount-box.html",
+    "props": [
+      "label1",
+      "value1",
+      "label2",
+      "value2",
+      "label3",
+      "value3"
+    ],
+    "textProps": [
+      "label1",
+      "value1",
+      "label2",
+      "value2",
+      "label3",
+      "value3"
+    ],
+    "requiredProps": [
+      "label1",
+      "value1"
+    ],
+    "description": "SummaryBar 별칭 (my-amount-box)",
+    "propTypes": {
+      "label1": "label",
+      "value1": "money",
+      "label2": "label",
+      "value2": "money",
+      "label3": "label",
+      "value3": "money"
+    }
+  },
+  "ConfirmTable": {
+    "type": "component",
+    "slot": "content",
+    "figmaNames": [
+      "ConfirmTable",
+      "confirm-list",
+      "신청내역"
+    ],
+    "path": "/components/confirm-table.html",
+    "props": [
+      "title",
+      "rowsHtml"
+    ],
+    "textProps": [
+      "title"
+    ],
+    "acceptsChildren": true,
+    "itemComponent": "ConfirmTableRow",
     "defaults": {
-      "variantClass": ""
+      "title": "신청내역"
+    },
+    "description": "신청내역 confirm-list + table",
+    "propTypes": {
+      "title": "shortText",
+      "rowsHtml": "html"
+    }
+  },
+  "ConfirmTableRow": {
+    "type": "component",
+    "slot": "content",
+    "figmaNames": [
+      "ConfirmTableRow",
+      "Table_A_PC",
+      "Table_A"
+    ],
+    "path": "/components/confirm-table-row.html",
+    "props": [
+      "label",
+      "value"
+    ],
+    "textProps": [
+      "label",
+      "value"
+    ],
+    "requiredProps": [
+      "label"
+    ],
+    "description": "confirm table 한 행 (Table_A 매핑)",
+    "propTypes": {
+      "label": "label",
+      "value": "shortText"
+    }
+  },
+  "PageTitlePage": {
+    "type": "component",
+    "slot": "header",
+    "figmaNames": [
+      "PageTitlePage"
+    ],
+    "path": "/components/page-title-page.html",
+    "props": [
+      "title"
+    ],
+    "textProps": [
+      "title"
+    ],
+    "requiredProps": [
+      "title"
+    ],
+    "description": "폼/신청 title-group title--page",
+    "propTypes": {
+      "title": "shortText"
     }
   },
   "AmountSummary": {

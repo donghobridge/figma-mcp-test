@@ -98,38 +98,43 @@ module.exports = function ($input, helpers) {
   }
 
   const backComps = /^(BackToList)$/i;
-  const headerComps = /^(SectionHeading|Breadcrumb|BreadcrumbGroup|PageTitle|PageTitleDisplay|DetailContentHeader|CaseHeader)$/i;
+  const headerComps = /^(SectionHeading|Breadcrumb|BreadcrumbGroup|PageTitle|PageTitleDisplay|PageTitlePage|DetailContentHeader|CaseHeader)$/i;
   const actionComps = /^(FormButtonGroup|ActionButtonGroup|ButtonGroup|PrimaryButton|Button)$/i;
   const profileComps = /^(AdvisorProfile)$/i;
+  const formChildComps = /^(SummaryBar|AmountBox|KeyValueCard|ApplicationDateCard|ConfirmTable)$/i;
 
-  // BoardListItem → BoardList.rowsHtml(nested includes) 병합
-  const normalized = [];
+  // 1) BoardListItem / ConfirmTableRow 병합
+  const pass1 = [];
   let boardAcc = null;
+  let confirmAcc = null;
   function flushBoard() {
     if (!boardAcc) return;
-    normalized.push(boardAcc);
+    pass1.push(boardAcc);
     boardAcc = null;
+  }
+  function flushConfirm() {
+    if (!confirmAcc) return;
+    pass1.push(confirmAcc);
+    confirmAcc = null;
   }
   for (const section of pageSpec.sections) {
     if (/^BoardListItem$/i.test(section.component)) {
+      flushConfirm();
       if (!boardAcc) {
         const listDef = (componentMap && componentMap.BoardList) || {};
         boardAcc = {
           component: 'BoardList',
           path: listDef.path || '/components/board-list.html',
-          props: {
-            resultTitle: '검색결과',
-            rowsHtml: '',
-          },
+          props: { resultTitle: '검색결과', rowsHtml: '' },
           slot: 'content',
           figmaName: 'BoardList',
         };
       }
-      const itemHtml = renderInclude(section);
-      boardAcc.props.rowsHtml += `${itemHtml}\n`;
+      boardAcc.props.rowsHtml += `${renderInclude(section)}\n`;
       continue;
     }
     if (/^BoardList$/i.test(section.component)) {
+      flushConfirm();
       if (boardAcc && boardAcc.props && boardAcc.props.rowsHtml) {
         boardAcc.props.resultTitle = (section.props && section.props.resultTitle)
           || boardAcc.props.resultTitle
@@ -143,10 +148,74 @@ module.exports = function ($input, helpers) {
       };
       continue;
     }
+    if (/^ConfirmTableRow$/i.test(section.component)) {
+      flushBoard();
+      if (!confirmAcc) {
+        const def = (componentMap && componentMap.ConfirmTable) || {};
+        confirmAcc = {
+          component: 'ConfirmTable',
+          path: def.path || '/components/confirm-table.html',
+          props: { title: '신청내역', rowsHtml: '' },
+          slot: 'content',
+          figmaName: 'ConfirmTable',
+        };
+      }
+      confirmAcc.props.rowsHtml += `${renderInclude(section)}\n`;
+      continue;
+    }
+    if (/^ConfirmTable$/i.test(section.component)) {
+      flushBoard();
+      if (confirmAcc && confirmAcc.props.rowsHtml) {
+        confirmAcc.props.title = (section.props && section.props.title) || confirmAcc.props.title;
+        continue;
+      }
+      flushConfirm();
+      confirmAcc = {
+        ...section,
+        props: { ...(section.props || {}), rowsHtml: (section.props && section.props.rowsHtml) || '' },
+      };
+      continue;
+    }
     flushBoard();
-    normalized.push(section);
+    flushConfirm();
+    pass1.push(section);
   }
   flushBoard();
+  flushConfirm();
+
+  // 2) FormCard 자식 흡수 (SummaryBar/KeyValue/ApplicationDate/ConfirmTable → bodyHtml)
+  const normalized = [];
+  let formAcc = null;
+  function flushForm() {
+    if (!formAcc) return;
+    normalized.push(formAcc);
+    formAcc = null;
+  }
+  for (const section of pass1) {
+    if (/^FormCard$/i.test(section.component)) {
+      flushForm();
+      formAcc = {
+        ...section,
+        props: {
+          ...(section.props || {}),
+          bodyHtml: (section.props && section.props.bodyHtml) || '',
+          footerHtml: (section.props && section.props.footerHtml) || '',
+        },
+      };
+      continue;
+    }
+    if (formAcc && formChildComps.test(section.component)) {
+      formAcc.props.bodyHtml += `${renderInclude(section)}\n`;
+      continue;
+    }
+    if (formAcc && actionComps.test(section.component)) {
+      formAcc.props.footerHtml += `${renderInclude(section)}\n`;
+      continue;
+    }
+    flushForm();
+    normalized.push(section);
+  }
+  flushForm();
 
   const backParts = [];
   const headerParts = [];
@@ -175,12 +244,12 @@ module.exports = function ($input, helpers) {
   }
 
   const names = normalized.map((s) => s.component);
-  const isForm = names.some((n) => /Form|GuideAccordion|SummaryBar|ApplicationDate|KeyValue|ActionBox|AmountBox/i.test(n))
+  const isForm = names.some((n) => /FormCard|GuideAccordion|SummaryBar|ApplicationDate|KeyValue|AmountBox|ConfirmTable|FormButton/i.test(n))
     && !names.some((n) => /CaseHeader|DetailContentHeader|QuestionArea|QuestionContent|AnswerArea|AnswerPanel|BoardList/i.test(n));
   const isPublicDetail = names.some((n) =>
     /CaseHeader|DetailContentHeader|QuestionArea|QuestionContent|AnswerArea|AnswerPanel|BackToList|ContactBar|AttachmentList/i.test(n)
   );
-  const isList = !isPublicDetail && names.some((n) =>
+  const isList = !isPublicDetail && !isForm && names.some((n) =>
     /BoardList|BoardFilterBar|BoardListItem|Pagination|EmptyDataPublic|PageTitleDisplay|Breadcrumb/i.test(n)
   );
 
@@ -190,12 +259,12 @@ module.exports = function ($input, helpers) {
   let mainInner = '';
   if (isForm) {
     mainInner = `
-    <div class="page-layout__page-inner page-layout--content">
-      <div class="page-inner__inner">
 ${headerParts.join('\n\n')}
+    <div class="page-layout__page-inner page-layout__page-inner--action">
+      <div class="page-inner__wrap">
+        <div class="page-inner__inner action-box-list">
 ${contentParts.join('\n\n')}
-        <div class="action-button-list">
-${actionParts.join('\n\n')}
+${actionParts.length ? `<div class="action-box"><div class="action-box__footer">\n${actionParts.join('\n\n')}\n</div></div>` : ''}
         </div>
       </div>
     </div>`;
