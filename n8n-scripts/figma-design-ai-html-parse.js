@@ -246,7 +246,23 @@ module.exports = function ($input, helpers) {
     if (!/data-include-path=["']\/svg-symbols\.html["']/i.test(out)) {
       out = out.replace(/<body([^>]*)>/i, '<body$1>\n  <div data-include-path="/svg-symbols.html"></div>');
     }
+    // layout-page → page-layout (참고 페이지 클래스)
+    out = out.replace(/\blayout-page__main\b/g, 'page-layout__page-inner page-layout--content');
+    out = out.replace(/\blayout-page\b/g, 'page-layout');
     return out;
+  }
+
+  /** Figma 텍스트 토큰/이스케이프 정리 */
+  function cleanFigmaTextArtifacts(html) {
+    return String(html || '')
+      .replace(/\{ts\d+\}/gi, '')
+      .replace(/\{\/ts\d+\}/gi, '')
+      .replace(/\\\(/g, '(')
+      .replace(/\\\)/g, ')')
+      .replace(/\\\[/g, '[')
+      .replace(/\\\]/g, ']')
+      .replace(/\\\//g, '/')
+      .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
   }
 
   let html = raw
@@ -285,9 +301,19 @@ module.exports = function ($input, helpers) {
     || 'Figma Design';
   const beforeShell = html;
   html = ensureDocumentShell(html, pageNameEarly);
+  html = cleanFigmaTextArtifacts(html);
   if (html !== beforeShell) {
     repairs.push('DocumentShell');
     warnings.push('import.css/js/common.js/svg-symbols 문서 셸 보정');
+  }
+
+  // 본문 /components include 조립이면 실패 → 참고 페이지 마크업으로 재생성
+  const bodyComponentIncludes = (html.match(/data-include-path=["']\/components\/[^"']+["']/gi) || []).length;
+  if (bodyComponentIncludes >= 2) {
+    throw new Error(
+      '본문이 /components include 조립입니다 (' + bodyComponentIncludes + '개). '
+      + 'yuma-component-img_text/pages 처럼 page-layout + detail-view 마크업으로 다시 생성하세요.'
+    );
   }
 
   // 셸 include만 필수 (본문 include 강제 금지)
@@ -300,6 +326,9 @@ module.exports = function ($input, helpers) {
   }
   if (!/page-layout|layout-page/i.test(html)) {
     warnings.push('page-layout 래퍼가 없습니다. 참고 페이지 구조와 다를 수 있음.');
+  }
+  if (!/detail-view|board-container|contents-section|page-layout__page-inner/i.test(html)) {
+    warnings.push('detail-view/board-container 본문 패턴이 약합니다.');
   }
 
   if (/TODO|lorem ipsum/i.test(html)) {

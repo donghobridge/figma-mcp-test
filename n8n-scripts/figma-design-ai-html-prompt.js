@@ -1,9 +1,7 @@
 /**
- * Figma MCP 텍스트 + component-map → AI HTML 프롬프트.
- *
- * 목표 스타일: yuma-component-img_text/pages/*
- * - svg-symbols / gnb / footer 만 include
- * - 본문은 page-layout + 디자인 시스템 마크업 (전부 include 금지)
+ * Figma MCP 텍스트 → AI HTML 프롬프트.
+ * 참고: yuma-component-img_text/pages/경영자문/*
+ * include = svg/gnb/footer 만. 본문은 detail-view 마크업.
  */
 module.exports = function ($input, helpers) {
   const inputJson = $input.first().json || {};
@@ -26,59 +24,42 @@ module.exports = function ($input, helpers) {
     throw new Error('component-map이 비어 있습니다.');
   }
 
-  function toCatalogEntry(name, def) {
-    return {
-      path: def.path || '',
-      figmaNames: def.figmaNames || [],
-      props: def.props || [],
-      textProps: def.textProps || [],
-      role: def.role || def.slot || '',
-      description: def.description || '',
-    };
-  }
-
-  // include 후보: gnb/footer + MCP에 이름이 명확히 보이는 것만 (본문 강제용 아님)
-  const mcpLower = mcpText.toLowerCase();
+  // 본문 include 유혹 제거: 셸(헤더/푸터)만 카탈로그
   const catalog = {};
   for (const [name, def] of Object.entries(componentMap)) {
-    if (!def || typeof def !== 'object' || def.type === 'layout') continue;
-    const role = String(def.role || def.slot || '');
-    const names = [name, ...(def.figmaNames || []), ...(def.aliases || [])].map(String);
-    const hitShell = /header|footer|gnb/i.test(role) || /^(Header|Footer|GNB)$/i.test(name);
-    const hitText = names.some((n) => n && mcpLower.includes(String(n).toLowerCase()));
-    if (hitShell || hitText) catalog[name] = toCatalogEntry(name, def);
+    if (!def || typeof def !== 'object') continue;
+    if (/^(Header|Footer|GNB)$/i.test(name) || /header|footer|gnb/i.test(String(def.role || def.slot || ''))) {
+      catalog[name] = {
+        path: def.path || '',
+        role: def.role || def.slot || '',
+      };
+    }
   }
 
   const pageName = prepared.pageName || runConfig.pageSlug || 'Figma Design';
-  const headerPath = (catalog.Header && catalog.Header.path)
-    || (Object.values(catalog).find((c) => /header|gnb/i.test(c.role)) || {}).path
-    || '/patterns/gnb.html';
-  const footerPath = (catalog.Footer && catalog.Footer.path)
-    || (Object.values(catalog).find((c) => /footer/i.test(c.role)) || {}).path
-    || '/patterns/footer.html';
-
+  const headerPath = (catalog.Header && catalog.Header.path) || '/patterns/gnb.html';
+  const footerPath = (catalog.Footer && catalog.Footer.path) || '/patterns/footer.html';
   const sourceFileKey = String(runConfig.fileKey || prepared.sourceFileKey || '');
   const sourceNodeId = String(runConfig.nodeId || prepared.sourceNodeId || '');
 
   const prompt = `당신은 Yuma(노란우산) 포털 퍼블리셔입니다.
-Figma MCP 원문의 화면을 HTML로 만드세요.
-참고 페이지 스타일: yuma-component-img_text/pages (상담사례 상세/목록, 사업안내 등).
+Figma MCP 시안을 yuma-component-img_text/pages 스타일 HTML로 만드세요.
 
-# 핵심 규칙 (중요)
-- 페이지 전체를 data-include-path로 쪼개지 말 것
-- include는 공통 셸만: svg-symbols, gnb, footer
-- 본문은 실제 HTML 마크업으로 작성 (page-layout, breadcrumb-group, title-group, detail-view, badge, board-container 등)
-- MCP 원문에 있는 텍스트/구조만 사용. 없는 문구 창작 금지
-- TODO / lorem / 샘플 / (MCP제목) 금지
-- head에 import.css, import.js, common.js 필수
-- HTML만 출력 (설명/마크다운 금지)
+# 절대 금지
+- /components/*.html data-include-path 로 본문 조립 금지
+  (case-header, question-content, answer-panel, contact-bar, attachment-list, tag-list, breadcrumb, button 등 전부 금지)
+- class="layout-page" 사용 금지 → class="page-layout" 사용
+- MCP에 없는 문장 창작 금지
+- {ts1} {/ts1} \\[ \\] 같은 Figma 토큰/이스케이프를 그대로 출력 금지 (내용은 남기고 토큰만 제거)
+- TODO, lorem, 샘플 금지
+- 설명문/마크다운 금지. HTML만
 
-# include 허용 범위
-- 필수: /svg-symbols.html, ${headerPath}, ${footerPath}
-- 선택: component-map에 있고, 참고 페이지처럼 공통 조각으로 빼는 게 자연스러울 때만
-- case-header / question-content / answer-panel / key-value-card 등으로 본문 전체를 include 조립하지 말 것
+# include 허용 (이것만)
+- /svg-symbols.html
+- ${headerPath}
+- ${footerPath}
 
-# 문서 구조 (이 뼈대 유지)
+# 상담/게시 상세 뼈대 (이 구조를 따를 것 — 값은 MCP에서)
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -94,14 +75,90 @@ Figma MCP 원문의 화면을 HTML로 만드세요.
   <div class="page-layout">
     <div data-include-path="${headerPath}"></div>
 
-    <!-- 본문: 시안에 맞게 마크업. include로 대체하지 말 것 -->
-    <div class="breadcrumb-group">...</div>
-    <div class="title-group title--display">
-      <h2 class="title-group__title">MCP제목</h2>
+    <div class="title-group title--page">
+      <a href="" class="title-group__title">
+        <svg class="icon icon--32" aria-hidden="true"><use href="#icon-chevron-left"></use></svg>
+        <span>목록</span>
+      </a>
     </div>
+
     <div class="page-layout__page-inner page-layout--content">
-      <div class="page-inner__inner">
-        <!-- MCP 내용: badge, title-group, detail-view, question-area, answer-area, table 등 -->
+      <div class="detail-view-container">
+        <div class="page-inner__inner">
+          <div class="detail-view__content">
+            <div class="detail-view--content-header">
+              <div class="detail-view--content-header-text">
+                <div class="detail-view--content-header-title">
+                  <div>
+                    <div class="title-group title--content">
+                      <div class="board-list__type">
+                        <div class="badge-wrap">
+                          <div class="badge badge--blue">MCP배지</div>
+                          <div class="badge badge--gray">MCP배지</div>
+                        </div>
+                      </div>
+                      <h2 class="title-group__title">MCP제목</h2>
+                    </div>
+                    <div class="title-group title--info content-card__meta">
+                      <div class="title-group__text">작성일 : MCP날짜</div>
+                      <div class="title-group__text">작성자 : MCP작성자</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- 첨부파일이 있으면 -->
+              <div class="detail-view--content-file-list">
+                <div class="detail-view--content-file-list-item">
+                  <span class="detail-view--content-file-list-item-name">
+                    <svg class="icon icon--20" aria-hidden="true"><use href="#icon-attach"></use></svg>
+                    MCP파일명
+                  </span>
+                  <div class="action-list">
+                    <button class="btn btn--text" type="button">
+                      <svg class="icon icon--12" aria-hidden="true"><use href="#icon-download"></use></svg>
+                      <div class="btn__label">다운로드</div>
+                    </button>
+                    <button class="btn btn--text" type="button">
+                      <svg class="icon icon--12" aria-hidden="true"><use href="#icon-document"></use></svg>
+                      <div class="btn__label">바로보기</div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="detail-view--content-body">
+              <div class="question-area">
+                <b><em>Q</em></b>
+                <p class="detail-text">MCP질문본문</p>
+              </div>
+              <div class="answer-area">
+                <b>A</b>
+                <div class="answer-area__detail">
+                  <!-- 자료보완요청 등 알림이 있으면 -->
+                  <div class="notice-box"><!-- MCP알림 --></div>
+                  <p class="detail-text">MCP답변본문<br></p>
+                  <div class="tag-list">
+                    <button class="tag tag--md">#MCP태그</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <nav class="post-nav" aria-label="게시글 네비게이션">
+            <a href="#" class="post-nav__item post-nav__item--prev">
+              <svg class="icon icon--20" aria-hidden="true"><use href="#icon-chevron-left"></use></svg>
+              <span class="post-nav__label">이전 글</span>
+              <span class="post-nav__title">MCP이전글</span>
+            </a>
+            <a href="#" class="post-nav__item post-nav__item--next">
+              <span class="post-nav__title">MCP다음글</span>
+              <span class="post-nav__label">다음글</span>
+              <svg class="icon icon--20" aria-hidden="true"><use href="#icon-chevron-right"></use></svg>
+            </a>
+          </nav>
+        </div>
       </div>
     </div>
 
@@ -110,25 +167,24 @@ Figma MCP 원문의 화면을 HTML로 만드세요.
 </body>
 </html>
 
-# 본문 작성 가이드
-- 상담/게시 상세면: detail-view-container, badge-wrap, title-group, question-area(Q), answer-area(A), tag-list, post-nav 패턴 사용
-- 목록이면: breadcrumb-group + title-group + board-container / custom-table 또는 카드 리스트
-- 아이콘은 <svg class="icon"><use href="#icon-..."></use></svg>
-- 줄바꿈은 <br> 사용 가능
-- class 이름은 기존 디자인 시스템 관례를 따름 (page-layout, title-group__title, btn, badge 등)
+# 목록 화면이면
+- breadcrumb-group + title-group title--display + board-container / custom-table 마크업
+- 역시 /components include 금지
+
+# 텍스트 정리
+- {ts1}**강조**{/ts1} → <strong>강조</strong> 또는 일반 텍스트
+- \\( \\) \\[ \\] → ( ) [ ]
+- 연락처/카테고리 바는 detail-view 헤더 메타 또는 본문 상단 마크업으로 (contact-bar include 금지)
 
 # 이번 실행
 pageName=${pageName}
 fileKey=${sourceFileKey}
 nodeId=${sourceNodeId}
 
-# component-map (참고용. 본문 강제 include 목록 아님)
-${JSON.stringify(catalog, null, 2)}
-
-# Figma MCP 원문 (값·구조의 유일한 출처)
+# Figma MCP 원문
 ${mcpText}
 
-위 규칙의 HTML만 출력하세요.`;
+HTML만 출력하세요.`;
 
   return [{
     json: {
