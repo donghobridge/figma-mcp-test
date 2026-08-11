@@ -148,6 +148,7 @@
     "requiredProps": [
       "title"
     ],
+    "absorbChildren": true,
     "variants": [],
     "description": "공개 상세 머리말(배지·제목·메타·좋아요) — img_text detail-view header",
     "propTypes": {
@@ -285,7 +286,8 @@
     },
     "propMinLen": {
       "description": 40
-    }
+    },
+    "absorbChildren": true
   },
   "AnswerPanel": {
     "type": "component",
@@ -348,7 +350,8 @@
     },
     "propMinLen": {
       "description": 40
-    }
+    },
+    "absorbChildren": true
   },
   "AnswerArea": {
     "type": "component",
@@ -380,7 +383,8 @@
     },
     "propMinLen": {
       "bodyHtml": 40
-    }
+    },
+    "absorbChildren": true
   },
   "DetailContentHeader": {
     "type": "component",
@@ -423,7 +427,8 @@
       "meta2": "shortText",
       "meta3": "shortText",
       "likeCount": "label"
-    }
+    },
+    "absorbChildren": true
   },
   "BackToList": {
     "type": "component",
@@ -506,7 +511,8 @@
     "description": "QuestionContent 공개형 별칭",
     "propTypes": {
       "bodyHtml": "longText"
-    }
+    },
+    "absorbChildren": true
   },
   "PageTitleDisplay": {
     "type": "component",
@@ -2104,8 +2110,7 @@
     "slot": "content",
     "figmaNames": [
       "status-badge",
-      "badge",
-      "chip"
+      "StatusBadge"
     ],
     "path": "/components/status-badge.html",
     "props": [

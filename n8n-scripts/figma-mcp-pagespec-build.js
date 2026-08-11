@@ -110,11 +110,14 @@ module.exports = function ($input, helpers) {
   const nameToComponent = new Map();
   for (const [key, def] of Object.entries(componentMap)) {
     if (!def || typeof def !== 'object' || def.type === 'layout') continue;
-    const aliases = [key, ...(def.figmaNames || []), ...(def.aliases || [])];
+    // 컴포넌트 키 자체는 항상 등록
+    nameToComponent.set(String(key).toLowerCase(), key);
+    const aliases = [...(def.figmaNames || []), ...(def.aliases || [])];
     for (const a of aliases) {
       const token = String(a || '').trim();
       if (!token) continue;
       const lower = token.toLowerCase();
+      if (lower === String(key).toLowerCase()) continue;
       if (SKIP_ALIAS.has(lower)) continue;
       // ASCII 3자 이하 별칭은 너무 모호
       if (/^[a-z0-9_-]+$/i.test(token) && token.length <= 3) continue;
@@ -501,7 +504,10 @@ module.exports = function ($input, helpers) {
     candidates.push({ index: i, node: n, component, end: endIndex(nodes, i) });
   }
 
-  // 자식 선호 시: acceptsChildren 부모는 유지, 그 외 부모는 제거
+  // 자식 포함 시:
+  // - acceptsChildren: 부모+자식 유지 (FormCard)
+  // - absorbChildren: 부모만 유지 (CaseHeader 안 badge, AnswerPanel 안 TagList)
+  // - 그 외: 래퍼 부모 제거
   const chosen = [];
   for (const c of candidates) {
     let skip = false;
@@ -511,12 +517,18 @@ module.exports = function ($input, helpers) {
         const prevDef = componentMap[prev.component] || {};
         if (prevDef.acceptsChildren) {
           // keep both
+        } else if (prevDef.absorbChildren) {
+          skip = true;
         } else {
           chosen.splice(j, 1);
         }
       } else if (prev.index > c.index && prev.index < c.end) {
         const cDef = componentMap[c.component] || {};
-        if (!cDef.acceptsChildren) skip = true;
+        if (cDef.absorbChildren) {
+          chosen.splice(j, 1);
+        } else if (!cDef.acceptsChildren) {
+          skip = true;
+        }
       }
     }
     if (!skip) chosen.push(c);
@@ -546,6 +558,7 @@ module.exports = function ($input, helpers) {
           if (n.type === 'TEXT' && n.text && !isNoise(n.text)) propsTexts.push(n.text);
         }
       } else {
+        // absorbChildren 포함: 하위 전체 텍스트를 props로 (배지/태그도 부모에 흡수)
         propsTexts = collectTexts(nodes, c.index);
       }
       props = assignProps(c.component, propsTexts);
