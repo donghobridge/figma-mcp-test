@@ -1,18 +1,52 @@
-<section class="portal-attachments {variantClass}" aria-label="첨부파일 목록">
-  <div class="portal-attachment-row">
-    <strong class="portal-attachment-row__type">{type1}</strong>
-    <span class="portal-attachment-row__name">{file1}</span>
-    <div class="portal-attachment-row__actions">
-      <a href="{downloadHref1}">다운로드</a>
-      <a href="{previewHref1}">바로보기</a>
+<div class="file-list-container {variantClass}" aria-label="첨부파일 목록">
+  <div class="detail-view--content-file-list">
+    <div class="file-type">
+      <svg class="icon icon--20" aria-hidden="true">
+        <use href="#icon-attach"></use>
+      </svg>
+      {type1}
+    </div>
+    <div class="detail-view--content-file-list-item">
+      <span class="detail-view--content-file-list-item-name">{file1}</span>
+      <div class="action-list">
+        <a class="btn btn--text" href="{downloadHref1}">
+          <svg class="icon icon--12" aria-hidden="true">
+            <use href="#icon-download"></use>
+          </svg>
+          <div class="btn__label">다운로드</div>
+        </a>
+        <a class="btn btn--text" href="{previewHref1}">
+          <svg class="icon icon--12" aria-hidden="true">
+            <use href="#icon-document"></use>
+          </svg>
+          <div class="btn__label">바로보기</div>
+        </a>
+      </div>
     </div>
   </div>
-  <div class="portal-attachment-row">
-    <strong class="portal-attachment-row__type">{type2}</strong>
-    <span class="portal-attachment-row__name">{file2}</span>
-    <div class="portal-attachment-row__actions">
-      <a href="{downloadHref2}">다운로드</a>
-      <a href="{previewHref2}">바로보기</a>
+  <div class="detail-view--content-file-list">
+    <div class="file-type">
+      <svg class="icon icon--20" aria-hidden="true">
+        <use href="#icon-attach"></use>
+      </svg>
+      {type2}
+    </div>
+    <div class="detail-view--content-file-list-item">
+      <span class="detail-view--content-file-list-item-name">{file2}</span>
+      <div class="action-list">
+        <a class="btn btn--text" href="{downloadHref2}">
+          <svg class="icon icon--12" aria-hidden="true">
+            <use href="#icon-download"></use>
+          </svg>
+          <div class="btn__label">다운로드</div>
+        </a>
+        <a class="btn btn--text" href="{previewHref2}">
+          <svg class="icon icon--12" aria-hidden="true">
+            <use href="#icon-document"></use>
+          </svg>
+          <div class="btn__label">바로보기</div>
+        </a>
+      </div>
     </div>
   </div>
-</section>
+</div>

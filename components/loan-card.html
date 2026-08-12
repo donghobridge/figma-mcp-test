@@ -1,1 +1,17 @@
-<article class="ui-loan-card {variantClass}"><header><strong>{amount}</strong><span>{badge}</span><p>{account}</p><p>{period}</p></header><dl><div><dt>{label1}</dt><dd>{value1}</dd></div><div><dt>{label2}</dt><dd>{value2}</dd></div><div><dt>{label3}</dt><dd>{value3}</dd></div><div><dt>{label4}</dt><dd>{value4}</dd></div></dl><div class="ui-loan-card__actions">{actionsHtml}</div></article>
+<article class="content-box {variantClass}">
+  <header class="title-group title--content">
+    <strong class="title-group__title">{amount}</strong>
+    <span class="badge badge--blue">{badge}</span>
+    <p class="title-group__text">{account}</p>
+    <p class="title-group__text">{period}</p>
+  </header>
+  <div class="table" role="table">
+    <div class="table__body">
+      <div class="table__row"><div class="table__header">{label1}</div><div class="table__cell">{value1}</div></div>
+      <div class="table__row"><div class="table__header">{label2}</div><div class="table__cell">{value2}</div></div>
+      <div class="table__row"><div class="table__header">{label3}</div><div class="table__cell">{value3}</div></div>
+      <div class="table__row"><div class="table__header">{label4}</div><div class="table__cell">{value4}</div></div>
+    </div>
+  </div>
+  <div class="action-button-list">{actionsHtml}</div>
+</article>

@@ -1,8 +1,10 @@
 <li class="terms-area__detail-item">
-  <label class="ui-checkbox">
-    <input class="ui-checkbox__input" type="checkbox" id="{id}" />
-    <span class="ui-checkbox__control" aria-hidden="true"></span>
-    <span class="ui-checkbox__label">{label}</span>
+  <label class="check check--icon check--sm" data-js="check">
+    <input class="check__input" type="checkbox" id="{id}" />
+    <svg class="icon icon--checkbox" aria-hidden="true">
+      <use href="#icon-checkbox"></use>
+    </svg>
+    <span class="check__label">{label}</span>
   </label>
   <a href="{href}" aria-label="상세 보기">
     <svg class="icon icon--20" aria-hidden="true"><use href="#icon-chevron-right"></use></svg>

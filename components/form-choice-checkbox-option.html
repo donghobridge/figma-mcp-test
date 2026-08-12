@@ -1,5 +1,7 @@
-<label class="ui-checkbox">
-  <input class="ui-checkbox__input" type="checkbox" name="{name}" id="{id}"{checkedAttr} />
-  <span class="ui-checkbox__control" aria-hidden="true"></span>
-  <span class="ui-checkbox__label">{label}</span>
+<label class="check check--square check--sm" data-js="check">
+  <input class="check__input" type="checkbox" name="{name}" id="{id}"{checkedAttr} />
+  <svg class="icon icon--checkbox" aria-hidden="true">
+    <use href="#icon-checkbox-square"></use>
+  </svg>
+  <span class="check__label">{label}</span>
 </label>

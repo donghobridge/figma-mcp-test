@@ -1,18 +1,31 @@
-<section class="portal-answer {variantClass}">
-  <h2 class="portal-answer__title">{title}</h2>
-  <div class="portal-answer__divider"></div>
-  <div class="portal-answer__notice">
-    <strong>{noticeTitle}</strong>
-    <span>{noticeMessage}</span>
-    <time>{noticeDate}</time>
+<div class="{variantClass}">
+  <div class="answer-warning">
+    <div class="answer-warning__content">
+      <div class="answer-warning__label">{noticeTitle}</div>
+      <div class="answer-warning__text">
+        <p>{noticeMessage}</p>
+      </div>
+    </div>
+    <div class="answer-warning__date">{noticeDate}</div>
   </div>
-  <dl class="portal-answer__costs">
-    <div><dt>{costLabel1}</dt><dd>{costValue1}</dd></div>
-    <div><dt>{costLabel2}</dt><dd>{costValue2}</dd></div>
-  </dl>
-  <div class="portal-answer__body">{description}</div>
-  <div class="portal-tag-list" aria-label="관련 태그">
-    <span>{tag1}</span>
-    <span>{tag2}</span>
+  <div class="answer-area">
+    <b>A</b>
+    <div class="answer-area__detail">
+      <div class="meta-list">
+        <div class="meta-item">
+          <span class="meta">{costLabel1}</span>
+          <span class="meta">{costValue1}</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta">{costLabel2}</span>
+          <span class="meta">{costValue2}</span>
+        </div>
+      </div>
+      <p class="detail-text">{description}</p>
+      <div class="tag-list" aria-label="관련 태그">
+        <button type="button" class="tag tag--md">{tag1}</button>
+        <button type="button" class="tag tag--md">{tag2}</button>
+      </div>
+    </div>
   </div>
-</section>
+</div>

@@ -327,7 +327,7 @@
       "description"
     ],
     "variants": [],
-    "description": "어드민/포탈 상담답변 패널 (빈 notice·cost는 CSS로 숨김)",
+    "description": "상담답변 패널 (answer-warning + answer-area, img_text)",
     "propTypes": {
       "title": "shortText",
       "noticeTitle": "label",
@@ -802,10 +802,10 @@
       "label"
     ],
     "variants": [
-      "ui-button--primary",
-      "ui-button--secondary"
+      "btn--secondary",
+      "btn--tertiary"
     ],
-    "description": "사용자가 실행하거나 이동할 수 있는 단일 버튼",
+    "description": "사용자가 실행하거나 이동할 수 있는 단일 버튼 (img_text btn)",
     "propTypes": {
       "label": "shortText",
       "href": "href"

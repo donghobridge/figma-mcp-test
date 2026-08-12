@@ -1,10 +1,12 @@
 <div class="action-box {variantClass}">
   <div class="action-box__body">
     <div class="terms-area">
-      <label class="ui-checkbox ui-checkbox--all">
-        <input class="ui-checkbox__input" type="checkbox" />
-        <span class="ui-checkbox__control" aria-hidden="true"></span>
-        <span class="ui-checkbox__label">{allLabel}</span>
+      <label class="check check--box check--lg" data-js="check">
+        <input class="check__input" type="checkbox" />
+        <svg class="icon icon--checkbox" aria-hidden="true">
+          <use href="#icon-checkbox"></use>
+        </svg>
+        <span class="check__label">{allLabel}</span>
       </label>
       <ul class="terms-area__detail-list">
         {itemsHtml}
