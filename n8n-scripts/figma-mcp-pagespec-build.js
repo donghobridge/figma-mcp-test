@@ -328,18 +328,45 @@ module.exports = function ($input, helpers) {
       return props;
     }
 
+    if (componentKey === 'ContactBar') {
+      props.phone = take(isPhone);
+      props.category = take((t) => t.length <= 40 && /분쟁|법률|법무|노무|경영|세무|지원|상담/.test(t))
+        || take((t) => t.length >= 2 && t.length <= 40 && !isPhone(t) && !isDate(t));
+      props.name = take((t) => t.length >= 2 && t.length <= 20 && !isPhone(t) && !isDate(t) && !/분쟁|법률|첨부|다운로드|바로보기/.test(t));
+      return props;
+    }
+
+    if (componentKey === 'AttachmentList') {
+      const isFileName = (t) => /\.(pdf|png|jpe?g|docx?|hwp|xlsx?)$/i.test(t);
+      const isType = (t) => /첨부|증빙|자료|파일/.test(t) && t.length <= 20 && !isFileName(t);
+      props.type1 = take(isType) || '첨부파일';
+      props.file1 = take(isFileName) || props.type1;
+      props.type2 = take(isType) || '증빙파일';
+      props.file2 = take(isFileName) || props.type2;
+      props.downloadHref1 = '#';
+      props.previewHref1 = '#';
+      props.downloadHref2 = '#';
+      props.previewHref2 = '#';
+      return props;
+    }
+
     if (componentKey === 'AnswerPanel') {
       props.title = take((t) => /상담답변|답변/.test(t) && t.length <= 40) || '상담답변';
       props.noticeDate = take(isDate);
       props.tag1 = take(isTag);
       props.tag2 = take(isTag);
-      props.costValue1 = take(isMoney);
-      props.costValue2 = take(isMoney);
-      props.costLabel1 = take((t) => /비용|금액/.test(t) && t.length <= 20) || (props.costValue1 ? '소송비용' : '');
-      props.costLabel2 = take((t) => /비용|금액/.test(t) && t.length <= 20) || (props.costValue2 ? '발생비용' : '');
-      props.noticeTitle = take((t) => /보완|요청|안내|공지|상담답변/.test(t) && t.length <= 30);
-      props.noticeMessage = take((t) => t.length >= 8 && t.length <= 80 && !isMoney(t) && !isDate(t) && !isTag(t));
-      props.description = take((t) => t.length >= 40) || take((t) => t.length >= 20);
+      props.costLabel1 = take((t) => /비용|금액/.test(t) && t.length <= 20);
+      props.costValue1 = take(isMoney) || take((t) => /정보\s*\(?\s*Data\s*\)?/i.test(t) || (/^\d/.test(t) && t.length <= 24));
+      if (!props.costLabel1 && props.costValue1) props.costLabel1 = '소송비용';
+      if (props.costLabel1 && !props.costValue1) props.costValue1 = '정보(Data)';
+      props.costLabel2 = take((t) => /비용|금액/.test(t) && t.length <= 20);
+      props.costValue2 = take(isMoney) || take((t) => /정보\s*\(?\s*Data\s*\)?/i.test(t) || (/^\d/.test(t) && t.length <= 24));
+      if (!props.costLabel2 && props.costValue2) props.costLabel2 = '발생비용';
+      if (props.costLabel2 && !props.costValue2) props.costValue2 = '정보(Data)';
+      props.noticeTitle = take((t) => /보완|요청|안내|공지/.test(t) && t.length <= 30);
+      props.noticeMessage = take((t) => t.length >= 8 && t.length <= 120 && !isMoney(t) && !isDate(t) && !isTag(t) && !/비용|금액/.test(t));
+      const long = take((t) => t.length >= 40) || take((t) => t.length >= 20);
+      if (long) props.description = long.replace(/\n/g, '<br/>');
       return props;
     }
 
@@ -358,9 +385,10 @@ module.exports = function ($input, helpers) {
     }
 
     if (componentKey === 'QuestionContent') {
-      props.description = take((t) => t.length >= 40) || take((t) => t.length >= 20);
-      props.category = take((t) => t.length <= 60 && (/:/.test(t) || /분쟁|법률|상담/.test(t)));
-      props.label = take((t) => /신청|내용|문의/.test(t) && t.length <= 40);
+      props.label = take((t) => /신청|종류|내용|문의|분류/.test(t) && t.length <= 40);
+      props.category = take((t) => t.length <= 60 && !isDate(t) && !isPhone(t) && !isTag(t) && t !== props.label);
+      const long = take((t) => t.length >= 40) || take((t) => t.length >= 20 && !/비용|보완|요청/.test(t));
+      if (long) props.description = long.replace(/\n/g, '<br/>');
       return props;
     }
 
