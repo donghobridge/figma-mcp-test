@@ -46,14 +46,37 @@
     "props": [
       "brand",
       "brandHref",
-      "navHtml"
+      "item1",
+      "item1Href",
+      "item2",
+      "item2Href",
+      "item3",
+      "item3Href",
+      "item4",
+      "item4Href",
+      "item5",
+      "item5Href",
+      "item6",
+      "item6Href",
+      "item7",
+      "item7Href",
+      "item8",
+      "item8Href"
     ],
     "textProps": [
-      "brand"
+      "brand",
+      "item1",
+      "item2",
+      "item3",
+      "item4",
+      "item5",
+      "item6",
+      "item7",
+      "item8"
     ],
     "requiredProps": [],
     "variants": [],
-    "description": "Site Header Pattern",
+    "description": "Site Header Pattern (brand + GNB chrome from site-layout)",
     "figmaNames": [
       "Header",
       "SiteHeader",
@@ -65,7 +88,22 @@
     "propTypes": {
       "brand": "shortText",
       "brandHref": "href",
-      "navHtml": "html"
+      "item1": "shortText",
+      "item2": "shortText",
+      "item3": "shortText",
+      "item4": "shortText",
+      "item5": "shortText",
+      "item6": "shortText",
+      "item7": "shortText",
+      "item8": "shortText",
+      "item1Href": "href",
+      "item2Href": "href",
+      "item3Href": "href",
+      "item4Href": "href",
+      "item5Href": "href",
+      "item6Href": "href",
+      "item7Href": "href",
+      "item8Href": "href"
     },
     "slot": "header",
     "role": "header",
@@ -146,12 +184,24 @@
     "props": [
       "brand",
       "info",
-      "copyright"
+      "copyright",
+      "nav1",
+      "nav1Href",
+      "nav2",
+      "nav2Href",
+      "policy1",
+      "policy1Href",
+      "policy2",
+      "policy2Href"
     ],
     "textProps": [
       "brand",
       "info",
-      "copyright"
+      "copyright",
+      "nav1",
+      "nav2",
+      "policy1",
+      "policy2"
     ],
     "requiredProps": [],
     "variants": [],
@@ -166,7 +216,15 @@
     "propTypes": {
       "brand": "shortText",
       "info": "shortText",
-      "copyright": "shortText"
+      "copyright": "shortText",
+      "nav1": "shortText",
+      "nav2": "shortText",
+      "policy1": "shortText",
+      "policy2": "shortText",
+      "nav1Href": "href",
+      "nav2Href": "href",
+      "policy1Href": "href",
+      "policy2Href": "href"
     },
     "slot": "footer",
     "role": "footer",

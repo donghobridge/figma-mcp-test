@@ -1,6 +1,31 @@
+<!-- Pattern fragment for import.js. Source: patterns/demo/site-layout.html / header/site-header.html -->
+<a class="skip-link" href="#main-content">본문 바로가기</a>
 <header class="site-header">
   <div class="site-header__inner page-container">
     <a class="site-header__brand" href="{brandHref}">{brand}</a>
-    <div class="site-header__nav">{navHtml}</div>
+
+    <div class="site-header__nav site-header__nav--desktop">
+      <nav class="gnb gnb--desktop" aria-label="주요 메뉴">
+        <ul class="gnb__list">
+          <li class="gnb__item"><a class="gnb__link" href="{item1Href}" aria-current="page">{item1}</a></li>
+          <li class="gnb__item"><a class="gnb__link" href="{item2Href}">{item2}</a></li>
+          <li class="gnb__item"><a class="gnb__link" href="{item3Href}">{item3}</a></li>
+          <li class="gnb__item"><a class="gnb__link" href="{item4Href}">{item4}</a></li>
+          <li class="gnb__item"><a class="gnb__link" href="{item5Href}">{item5}</a></li>
+          <li class="gnb__item"><a class="gnb__link" href="{item6Href}">{item6}</a></li>
+          <li class="gnb__item"><a class="gnb__link" href="{item7Href}">{item7}</a></li>
+          <li class="gnb__item"><a class="gnb__link" href="{item8Href}">{item8}</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="site-header__utility site-header__utility--desktop">
+      <div class="site-header__actions">
+        <button type="button" class="button button--text button--sm">마이페이지</button>
+        <button type="button" class="button button--text button--sm">로그아웃</button>
+      </div>
+    </div>
+
+    <button type="button" class="button button--secondary button--sm site-header__menu-trigger" data-mobile-nav-trigger aria-label="메뉴 열기">☰</button>
   </div>
 </header>

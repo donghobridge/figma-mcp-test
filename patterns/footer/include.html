@@ -1,9 +1,33 @@
+<!-- Pattern fragment for import.js. Source: patterns/footer/site-footer.html -->
 <footer class="site-footer">
   <div class="site-footer__inner page-container">
     <div class="site-footer__top">
       <div class="site-footer__brand">{brand}</div>
-      <div class="site-footer__info">{info}</div>
+      <div>
+        <ul class="site-footer__nav-list">
+          <li>
+            <div class="site-footer__nav-group-title">Navigation</div>
+            <ul class="site-footer__nav-links">
+              <li><a href="{nav1Href}">{nav1}</a></li>
+              <li><a href="{nav2Href}">{nav2}</a></li>
+            </ul>
+          </li>
+          <li>
+            <div class="site-footer__nav-group-title">Policy</div>
+            <ul class="site-footer__nav-links">
+              <li><a href="{policy1Href}">{policy1}</a></li>
+              <li><a href="{policy2Href}">{policy2}</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div>
+    <div class="site-footer__utility">
+      <select class="select-field__control site-footer__family-site" aria-label="Related site">
+        <option>Related Site</option>
+      </select>
+    </div>
+    <div class="site-footer__info">{info}</div>
     <div class="site-footer__copyright">{copyright}</div>
   </div>
 </footer>
