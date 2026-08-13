@@ -8,7 +8,8 @@
       "content",
       "footer"
     ],
-    "variants": []
+    "variants": [],
+    "description": "page-container 기반 기본 페이지 셸"
   },
   "DetailLayout": {
     "type": "layout",
@@ -19,7 +20,8 @@
       "content",
       "actions"
     ],
-    "variants": []
+    "variants": [],
+    "description": "콘텐츠 섹션 레이아웃"
   },
   "WireframeShell": {
     "type": "layout",
@@ -36,2304 +38,854 @@
       "footer"
     ],
     "variants": [],
-    "description": "와이어프레임/시안 생성용 페이지 셸"
-  },
-  "FormChoiceOption": {
-    "type": "component",
-    "slot": "content",
-    "path": "/components/form-choice-option.html",
-    "props": [
-      "name",
-      "id",
-      "label",
-      "checkedAttr"
-    ],
-    "textProps": [
-      "label"
-    ],
-    "description": "FormChoiceGroup 라디오 옵션 한 줄"
-  },
-  "FormChoiceCheckboxOption": {
-    "type": "component",
-    "slot": "content",
-    "path": "/components/form-choice-checkbox-option.html",
-    "props": [
-      "name",
-      "id",
-      "label",
-      "checkedAttr"
-    ],
-    "textProps": [
-      "label"
-    ],
-    "description": "FormChoiceGroup 체크박스 옵션 한 줄"
-  },
-  "FormTermItem": {
-    "type": "component",
-    "slot": "content",
-    "path": "/components/form-term-item.html",
-    "props": [
-      "id",
-      "label",
-      "href"
-    ],
-    "textProps": [
-      "label"
-    ],
-    "defaults": {
-      "href": "#"
-    },
-    "description": "FormTerms 개별 약관 한 줄"
-  },
-  "ActionButton": {
-    "type": "component",
-    "slot": "actions",
-    "path": "/components/action-button.html",
-    "props": [
-      "label",
-      "href"
-    ],
-    "textProps": [
-      "label"
-    ],
-    "defaults": {
-      "href": "#"
-    },
-    "description": "ActionButtonGroup 단일 버튼"
-  },
-  "GenericListItem": {
-    "type": "component",
-    "slot": "content",
-    "path": "/components/generic-list-item.html",
-    "props": [
-      "label"
-    ],
-    "textProps": [
-      "label"
-    ],
-    "description": "GenericList 항목 한 줄"
-  },
-  "CaseHeader": {
-    "type": "component",
-    "slot": "header",
-    "figmaNames": [
-      "CaseHeader",
-      "case-header"
-    ],
-    "path": "/components/case-header.html",
-    "props": [
-      "badge1",
-      "badge2",
-      "badge3",
-      "status",
-      "title",
-      "meta1",
-      "meta2",
-      "meta3",
-      "likeCount",
-      "date"
-    ],
-    "textProps": [
-      "badge1",
-      "badge2",
-      "badge3",
-      "status",
-      "title",
-      "meta1",
-      "meta2",
-      "meta3",
-      "likeCount",
-      "date"
-    ],
-    "requiredProps": [
-      "title"
-    ],
-    "absorbChildren": true,
-    "variants": [],
-    "description": "공개 상세 머리말(배지·제목·메타·좋아요) — img_text detail-view header",
-    "propTypes": {
-      "badge1": "label",
-      "badge2": "label",
-      "badge3": "label",
-      "status": "label",
-      "title": "shortText",
-      "meta1": "shortText",
-      "meta2": "shortText",
-      "meta3": "shortText",
-      "likeCount": "label",
-      "date": "date"
-    },
-    "propMaxLen": {
-      "badge1": 40,
-      "badge2": 40,
-      "badge3": 40,
-      "title": 120
-    }
-  },
-  "ContactBar": {
-    "type": "component",
-    "slot": "content",
-    "figmaNames": [
-      "ContactBar",
-      "contact-bar",
-      "contact"
-    ],
-    "path": "/components/contact-bar.html",
-    "props": [
-      "category",
-      "name",
-      "phone"
-    ],
-    "textProps": [
-      "category",
-      "name",
-      "phone"
-    ],
-    "requiredProps": [
-      "category",
-      "name",
-      "phone"
-    ],
-    "variants": [],
-    "description": "분류와 담당자 이름, 전화번호를 한 줄로 표시",
-    "propTypes": {
-      "category": "shortText",
-      "name": "shortText",
-      "phone": "phone"
-    },
-    "propMaxLen": {
-      "category": 80,
-      "name": 80
-    }
-  },
-  "AttachmentList": {
-    "type": "component",
-    "slot": "content",
-    "figmaNames": [
-      "AttachmentList",
-      "attachment",
-      "attachments"
-    ],
-    "path": "/components/attachment-list.html",
-    "props": [
-      "type1",
-      "file1",
-      "downloadHref1",
-      "previewHref1",
-      "type2",
-      "file2",
-      "downloadHref2",
-      "previewHref2"
-    ],
-    "textProps": [
-      "type1",
-      "file1",
-      "type2",
-      "file2"
-    ],
-    "requiredProps": [
-      "type1",
-      "file1"
-    ],
-    "variants": [],
-    "description": "첨부파일과 증빙파일의 이름 및 다운로드·미리보기 링크 표시",
-    "propTypes": {
-      "type1": "label",
-      "file1": "file",
-      "downloadHref1": "href",
-      "previewHref1": "href",
-      "type2": "label",
-      "file2": "file",
-      "downloadHref2": "href",
-      "previewHref2": "href"
-    },
-    "propMaxLen": {
-      "type1": 40,
-      "type2": 40
-    }
-  },
-  "QuestionContent": {
-    "type": "component",
-    "slot": "content",
-    "figmaNames": [
-      "QuestionContent",
-      "question-content"
-    ],
-    "path": "/components/question-content.html",
-    "props": [
-      "description",
-      "label",
-      "category"
-    ],
-    "textProps": [
-      "description",
-      "label",
-      "category"
-    ],
-    "requiredProps": [
-      "description"
-    ],
-    "variants": [],
-    "description": "공개 상세 Q 본문 (img_text question-area)",
-    "propTypes": {
-      "description": "longText",
-      "label": "shortText",
-      "category": "shortText"
-    },
-    "propMaxLen": {
-      "label": 80,
-      "category": 80
-    },
-    "propMinLen": {
-      "description": 40
-    },
-    "absorbChildren": true
-  },
-  "AnswerPanel": {
-    "type": "component",
-    "slot": "content",
-    "figmaNames": [
-      "AnswerPanel",
-      "answer-panel"
-    ],
-    "path": "/components/answer-panel.html",
-    "props": [
-      "title",
-      "noticeTitle",
-      "noticeMessage",
-      "noticeDate",
-      "costLabel1",
-      "costValue1",
-      "costLabel2",
-      "costValue2",
-      "description",
-      "tag1",
-      "tag2"
-    ],
-    "textProps": [
-      "title",
-      "noticeTitle",
-      "noticeMessage",
-      "noticeDate",
-      "costLabel1",
-      "costValue1",
-      "costLabel2",
-      "costValue2",
-      "description",
-      "tag1",
-      "tag2"
-    ],
-    "requiredProps": [
-      "description"
-    ],
-    "variants": [],
-    "description": "상담답변 패널 (answer-warning + answer-area, img_text)",
-    "propTypes": {
-      "title": "shortText",
-      "noticeTitle": "label",
-      "noticeMessage": "shortText",
-      "noticeDate": "date",
-      "costLabel1": "label",
-      "costValue1": "money",
-      "costLabel2": "label",
-      "costValue2": "money",
-      "description": "longText",
-      "tag1": "tag",
-      "tag2": "tag"
-    },
-    "propMaxLen": {
-      "title": 80,
-      "noticeTitle": 40,
-      "noticeMessage": 80,
-      "costLabel1": 40,
-      "costLabel2": 40
-    },
-    "propMinLen": {
-      "description": 40
-    },
-    "absorbChildren": true
-  },
-  "AnswerArea": {
-    "type": "component",
-    "slot": "content",
-    "figmaNames": [
-      "AnswerArea",
-      "answer-area"
-    ],
-    "path": "/components/answer-area.html",
-    "props": [
-      "bodyHtml",
-      "tag1",
-      "tag2"
-    ],
-    "textProps": [
-      "bodyHtml",
-      "tag1",
-      "tag2"
-    ],
-    "requiredProps": [
-      "bodyHtml"
-    ],
-    "variants": [],
-    "description": "공개 상세 A 본문 (img_text answer-area)",
-    "propTypes": {
-      "bodyHtml": "longText",
-      "tag1": "tag",
-      "tag2": "tag"
-    },
-    "propMinLen": {
-      "bodyHtml": 40
-    },
-    "absorbChildren": true
-  },
-  "DetailContentHeader": {
-    "type": "component",
-    "slot": "header",
-    "figmaNames": [
-      "DetailContentHeader",
-      "detail-content-header"
-    ],
-    "path": "/components/detail-content-header.html",
-    "props": [
-      "badge1",
-      "badge2",
-      "badge3",
-      "title",
-      "meta1",
-      "meta2",
-      "meta3",
-      "likeCount"
-    ],
-    "textProps": [
-      "badge1",
-      "badge2",
-      "badge3",
-      "title",
-      "meta1",
-      "meta2",
-      "meta3",
-      "likeCount"
-    ],
-    "requiredProps": [
-      "title"
-    ],
-    "description": "CaseHeader와 동일 마크업의 공개 상세 헤더 별칭",
-    "propTypes": {
-      "badge1": "label",
-      "badge2": "label",
-      "badge3": "label",
-      "title": "shortText",
-      "meta1": "shortText",
-      "meta2": "shortText",
-      "meta3": "shortText",
-      "likeCount": "label"
-    },
-    "absorbChildren": true
-  },
-  "BackToList": {
-    "type": "component",
-    "slot": "back",
-    "figmaNames": [
-      "BackToList",
-      "back-to-list"
-    ],
-    "path": "/components/back-to-list.html",
-    "props": [
-      "label",
-      "href"
-    ],
-    "textProps": [
-      "label"
-    ],
-    "requiredProps": [
-      "label"
-    ],
-    "defaults": {
-      "label": "목록",
-      "href": "#"
-    },
-    "description": "상세 상단 목록 돌아가기",
-    "propTypes": {
-      "label": "shortText",
-      "href": "href"
-    }
-  },
-  "AdvisorProfile": {
-    "type": "component",
-    "slot": "profile",
-    "figmaNames": [
-      "AdvisorProfile",
-      "answer-profile",
-      "advisor-profile"
-    ],
-    "path": "/components/advisor-profile.html",
-    "props": [
-      "imageSrc",
-      "name",
-      "field",
-      "region"
-    ],
-    "textProps": [
-      "name",
-      "field",
-      "region"
-    ],
-    "requiredProps": [
-      "name"
-    ],
-    "defaults": {
-      "imageSrc": "/assets/img/pages/contents/advisor-img-03.png"
-    },
-    "description": "답변 하단 자문위원 프로필",
-    "propTypes": {
-      "imageSrc": "href",
-      "name": "shortText",
-      "field": "shortText",
-      "region": "shortText"
-    }
-  },
-  "QuestionArea": {
-    "type": "component",
-    "slot": "content",
-    "figmaNames": [
-      "QuestionArea"
-    ],
-    "path": "/components/question-area.html",
-    "props": [
-      "bodyHtml"
-    ],
-    "textProps": [
-      "bodyHtml"
-    ],
-    "requiredProps": [
-      "bodyHtml"
-    ],
-    "description": "QuestionContent 공개형 별칭",
-    "propTypes": {
-      "bodyHtml": "longText"
-    },
-    "absorbChildren": true
-  },
-  "PageTitleDisplay": {
-    "type": "component",
-    "slot": "header",
-    "figmaNames": [
-      "PageTitleDisplay",
-      "page-title",
-      "DisplayTitle"
-    ],
-    "path": "/components/page-title-display.html",
-    "props": [
-      "title"
-    ],
-    "textProps": [
-      "title"
-    ],
-    "requiredProps": [
-      "title"
-    ],
-    "description": "img_text title-group title--display",
-    "propTypes": {
-      "title": "shortText"
-    }
-  },
-  "BoardFilterBar": {
-    "type": "component",
-    "slot": "content",
-    "figmaNames": [
-      "BoardFilterBar",
-      "ListFilter",
-      "board-filter",
-      "filter-bar"
-    ],
-    "path": "/components/board-filter-bar.html",
-    "props": [
-      "dateStart",
-      "dateEnd",
-      "filterLabel1",
-      "filterValue1",
-      "filterLabel2",
-      "filterValue2",
-      "searchPlaceholder",
-      "searchValue",
-      "searchLabel"
-    ],
-    "textProps": [
-      "dateStart",
-      "dateEnd",
-      "filterLabel1",
-      "filterValue1",
-      "filterLabel2",
-      "filterValue2",
-      "searchPlaceholder",
-      "searchLabel"
-    ],
-    "defaults": {
-      "dateStart": "2025.01.01",
-      "dateEnd": "2025.06.30",
-      "filterLabel1": "상담분야",
-      "filterValue1": "법률/법무",
-      "filterLabel2": "상담유형",
-      "filterValue2": "전화상담",
-      "searchPlaceholder": "검색어를 입력해 주세요.",
-      "searchLabel": "조회하기"
-    },
-    "description": "목록 상단 조회기간·필터·검색",
-    "propTypes": {
-      "dateStart": "date",
-      "dateEnd": "date",
-      "filterLabel1": "label",
-      "filterValue1": "shortText",
-      "filterLabel2": "label",
-      "filterValue2": "shortText",
-      "searchPlaceholder": "shortText",
-      "searchValue": "shortText",
-      "searchLabel": "shortText"
-    }
-  },
-  "BoardList": {
-    "type": "component",
-    "slot": "content",
-    "figmaNames": [
-      "BoardList",
-      "board-list",
-      "ConsultCaseList",
-      "custom-table"
-    ],
-    "path": "/components/board-list.html",
-    "props": [
-      "resultTitle",
-      "rowsHtml"
-    ],
-    "textProps": [
-      "resultTitle"
-    ],
-    "requiredProps": [
-      "resultTitle"
-    ],
-    "acceptsChildren": true,
-    "itemComponent": "BoardListItem",
-    "defaults": {
-      "resultTitle": "검색결과"
-    },
-    "description": "상담사례 등 게시판 테이블 + 행(rowsHtml)",
-    "propTypes": {
-      "resultTitle": "shortText",
-      "rowsHtml": "html"
-    }
-  },
-  "BoardListItem": {
-    "type": "component",
-    "slot": "content",
-    "figmaNames": [
-      "BoardListItem",
-      "board-list-item",
-      "ConsultCaseRow",
-      "list-row"
-    ],
-    "path": "/components/board-list-item.html",
-    "props": [
-      "category",
-      "badge",
-      "title",
-      "advisor",
-      "consultType",
-      "date",
-      "likeCount",
-      "viewCount"
-    ],
-    "textProps": [
-      "category",
-      "badge",
-      "title",
-      "advisor",
-      "consultType",
-      "date",
-      "likeCount",
-      "viewCount"
-    ],
-    "requiredProps": [
-      "title"
-    ],
-    "description": "게시판 목록 한 행",
-    "propTypes": {
-      "category": "label",
-      "badge": "label",
-      "title": "shortText",
-      "advisor": "shortText",
-      "consultType": "shortText",
-      "date": "date",
-      "likeCount": "label",
-      "viewCount": "label"
-    }
-  },
-  "EmptyDataPublic": {
-    "type": "component",
-    "slot": "content",
-    "figmaNames": [
-      "EmptyDataPublic",
-      "empty-data"
-    ],
-    "path": "/components/empty-data-public.html",
-    "props": [
-      "imageSrc",
-      "message",
-      "buttonLabel",
-      "buttonHref"
-    ],
-    "textProps": [
-      "message",
-      "buttonLabel"
-    ],
-    "defaults": {
-      "imageSrc": "/assets/img/pages/contents/content-empty-data-character.svg",
-      "message": "조회된 결과가 없습니다.",
-      "buttonLabel": "목록으로",
-      "buttonHref": "#"
-    },
-    "description": "공개 목록 빈 결과",
-    "propTypes": {
-      "imageSrc": "href",
-      "message": "shortText",
-      "buttonLabel": "shortText",
-      "buttonHref": "href"
-    }
-  },
-  "TagList": {
-    "type": "component",
-    "slot": "content",
-    "figmaNames": [
-      "TagList"
-    ],
-    "path": "/components/tag-list.html",
-    "props": [
-      "tag1",
-      "tag2"
-    ],
-    "textProps": [
-      "tag1",
-      "tag2"
-    ],
-    "variants": [],
-    "description": "관련 태그만 독립적으로 표시",
-    "propTypes": {
-      "tag1": "tag",
-      "tag2": "tag"
-    }
-  },
-  "PageHero": {
-    "type": "component",
-    "slot": "heading",
-    "figmaNames": [
-      "PageHero"
-    ],
-    "path": "/components/page-hero.html",
-    "props": [
-      "eyebrow",
-      "title",
-      "description"
-    ],
-    "textProps": [
-      "eyebrow",
-      "title",
-      "description"
-    ],
-    "variants": [],
-    "description": "페이지 상단의 강조 제목과 설명",
-    "propTypes": {
-      "eyebrow": "shortText",
-      "title": "shortText",
-      "description": "longText"
-    },
-    "propMaxLen": {
-      "eyebrow": 80,
-      "title": 80
-    },
-    "propMinLen": {
-      "description": 40
-    }
-  },
-  "SectionHeading": {
-    "type": "component",
-    "slot": "heading",
-    "figmaNames": [
-      "SectionHeading",
-      "title-section",
-      "PageTitle"
-    ],
-    "path": "/components/section-heading.html",
-    "props": [
-      "title",
-      "description"
-    ],
-    "textProps": [
-      "title",
-      "description"
-    ],
-    "variants": [],
-    "description": "페이지 또는 섹션 제목과 짧은 설명",
-    "propTypes": {
-      "title": "shortText",
-      "description": "longText"
-    },
-    "propMaxLen": {
-      "title": 80
-    },
-    "propMinLen": {
-      "description": 40
-    },
-    "aliases": [
-      "title-section",
-      "PageTitle"
-    ]
-  },
-  "Button": {
-    "type": "component",
-    "slot": "actions",
-    "figmaNames": [
-      "Button"
-    ],
-    "path": "/components/button.html",
-    "props": [
-      "label",
-      "href"
-    ],
-    "textProps": [
-      "label"
-    ],
-    "variants": [
-      "btn--secondary",
-      "btn--tertiary"
-    ],
-    "description": "사용자가 실행하거나 이동할 수 있는 단일 버튼 (img_text btn)",
-    "propTypes": {
-      "label": "shortText",
-      "href": "href"
-    },
-    "propMaxLen": {
-      "label": 80
-    }
-  },
-  "ImageText": {
-    "type": "component",
-    "slot": "content",
-    "figmaNames": [
-      "ImageText",
-      "Image",
-      "ImageArea",
-      "image-area-container",
-      "image-text-wrapper",
-      "image-text-placeholder"
-    ],
-    "path": "/components/image-text.html",
-    "props": [
-      "eyebrow",
-      "title",
-      "description",
-      "buttonLabel",
-      "buttonHref",
-      "imageSrc",
-      "imageAlt"
-    ],
-    "textProps": [
-      "eyebrow",
-      "title",
-      "description",
-      "buttonLabel",
-      "imageAlt"
-    ],
-    "variants": [
-      "ui-image-text--reverse"
-    ],
-    "description": "이미지와 제목, 설명, 버튼을 함께 표시",
-    "propTypes": {
-      "eyebrow": "shortText",
-      "title": "shortText",
-      "description": "longText",
-      "buttonLabel": "shortText",
-      "buttonHref": "href",
-      "imageSrc": "shortText",
-      "imageAlt": "shortText"
-    },
-    "propMaxLen": {
-      "eyebrow": 80,
-      "title": 80,
-      "buttonLabel": 80,
-      "imageSrc": 80,
-      "imageAlt": 80
-    },
-    "defaults": {
-      "imageSrc": "/assets/img/dummy/event.png",
-      "imageAlt": ""
-    },
-    "propMinLen": {
-      "description": 40
-    },
-    "aliases": [
-      "Image",
-      "ImageArea",
-      "image-area-container"
-    ]
-  },
-  "InfoCard": {
-    "type": "component",
-    "slot": "content",
-    "figmaNames": [
-      "InfoCard"
-    ],
-    "path": "/components/info-card.html",
-    "props": [
-      "eyebrow",
-      "title",
-      "description"
-    ],
-    "textProps": [
-      "eyebrow",
-      "title",
-      "description"
-    ],
-    "variants": [],
-    "description": "짧은 제목과 설명을 카드 형태로 표시",
-    "propTypes": {
-      "eyebrow": "shortText",
-      "title": "shortText",
-      "description": "longText"
-    },
-    "propMaxLen": {
-      "eyebrow": 80,
-      "title": 80
-    },
-    "propMinLen": {
-      "description": 40
-    }
-  },
-  "Notice": {
-    "type": "component",
-    "slot": "content",
-    "figmaNames": [
-      "Notice",
-      "notice-container"
-    ],
-    "path": "/components/notice.html",
-    "props": [
-      "message"
-    ],
-    "textProps": [
-      "message"
-    ],
-    "variants": [],
-    "description": "짧은 안내 또는 주의 문구 표시",
-    "propTypes": {
-      "message": "longText"
-    },
-    "propMinLen": {
-      "message": 40
-    },
-    "aliases": [
-      "notice-container",
-      "notice-wrapper",
-      "notice-box"
-    ]
-  },
-  "FormCard": {
-    "type": "component",
-    "slot": "content",
-    "figmaNames": [
-      "action-box",
-      "form-card",
-      "form-card-container",
-      "FormCard",
-      "Form Card",
-      "ActionBox"
-    ],
-    "path": "/components/form-card.html",
-    "props": [
-      "title",
-      "helper",
-      "bodyHtml",
-      "footerHtml"
-    ],
-    "textProps": [
-      "title",
-      "helper"
-    ],
-    "requiredProps": [],
-    "acceptsChildren": true,
-    "variants": [],
-    "description": "img_text action-box (제목 + bodyHtml + footerHtml)",
-    "propTypes": {
-      "title": "shortText",
-      "helper": "longText",
-      "bodyHtml": "html",
-      "footerHtml": "html"
-    },
-    "propMaxLen": {
-      "title": 120
-    }
-  },
-  "EventParticipationForm": {
-    "type": "component",
-    "slot": "content",
-    "figmaNames": [
-      "card-list",
-      "participation-form",
-      "survey-form"
-    ],
-    "path": "/components/event-participation-form.html",
-    "props": [],
-    "textProps": [],
-    "requiredProps": [],
-    "variants": [],
-    "consumesSourceText": true,
-    "description": "참여자 기본정보, 설문, 파일첨부, 약관을 포함하는 이벤트 참여 복합 폼",
-    "propTypes": {}
-  },
-  "FormTextField": {
-    "type": "component",
-    "slot": "content",
-    "figmaNames": [
-      "input-field",
-      "text-field",
-      "input_List",
-      "input-list",
-      "adress_input",
-      "address_input",
-      "form-row",
-      "input-name",
-      "input-phone",
-      "input-business-name",
-      "input-dept",
-      "input-position",
-      "FormTextField"
-    ],
-    "path": "/components/form-text-field.html",
-    "props": [
-      "label",
-      "placeholder",
-      "value",
-      "helper",
-      "requiredClass",
-      "maxLength"
-    ],
-    "textProps": [
-      "label",
-      "placeholder",
-      "value",
-      "helper"
-    ],
-    "requiredProps": [
-      "label"
-    ],
-    "variants": [],
-    "description": "img_text input-field 단일 텍스트",
-    "propTypes": {
-      "label": "shortText",
-      "placeholder": "shortText",
-      "value": "shortText",
-      "helper": "longText",
-      "requiredClass": "shortText",
-      "maxLength": "shortText"
-    },
-    "propMaxLen": {
-      "label": 80,
-      "placeholder": 80,
-      "value": 80
-    },
-    "nestableInContainer": true
-  },
-  "FormTextareaField": {
-    "type": "component",
-    "slot": "content",
-    "figmaNames": [
-      "textarea-wrapper",
-      "textarea-card",
-      "large-input",
-      "FormTextareaField",
-      "textarea-field"
-    ],
-    "path": "/components/form-textarea-field.html",
-    "props": [
-      "label",
-      "placeholder",
-      "value",
-      "helper",
-      "requiredClass",
-      "maxLength",
-      "rows"
-    ],
-    "textProps": [
-      "label",
-      "placeholder",
-      "value",
-      "helper"
-    ],
-    "requiredProps": [
-      "label"
-    ],
-    "defaults": {
-      "rows": "12"
-    },
-    "description": "img_text textarea input-field",
-    "propTypes": {
-      "label": "shortText",
-      "placeholder": "shortText",
-      "value": "longText",
-      "helper": "longText",
-      "requiredClass": "shortText",
-      "maxLength": "shortText",
-      "rows": "shortText"
-    },
-    "nestableInContainer": true
-  },
-  "FormEmailField": {
-    "type": "component",
-    "slot": "content",
-    "figmaNames": [
-      "email-field",
-      "email",
-      "input-email-group"
-    ],
-    "path": "/components/form-email-field.html",
-    "props": [
-      "label",
-      "idPlaceholder",
-      "idValue",
-      "domainPlaceholder",
-      "domainValue",
-      "selectLabel"
-    ],
-    "textProps": [
-      "label",
-      "idPlaceholder",
-      "idValue",
-      "domainPlaceholder",
-      "domainValue",
-      "selectLabel"
-    ],
-    "requiredProps": [
-      "label"
-    ],
-    "variants": [],
-    "description": "이메일 아이디·도메인·도메인 선택",
-    "propTypes": {
-      "label": "shortText",
-      "idPlaceholder": "shortText",
-      "idValue": "shortText",
-      "domainPlaceholder": "shortText",
-      "domainValue": "shortText",
-      "selectLabel": "shortText"
-    },
-    "propMaxLen": {
-      "label": 80,
-      "idPlaceholder": 80,
-      "idValue": 80,
-      "domainPlaceholder": 80,
-      "domainValue": 80,
-      "selectLabel": 80
-    },
-    "nestableInContainer": true,
-    "defaults": {
-      "selectLabel": "직접 입력"
-    }
-  },
-  "FormDateField": {
-    "type": "component",
-    "slot": "content",
-    "figmaNames": [
-      "date-field",
-      "birth",
-      "date-card",
-      "date-wrapper",
-      "input-date-group",
-      "FormDateField"
-    ],
-    "path": "/components/form-date-field.html",
-    "props": [
-      "label",
-      "yearPlaceholder",
-      "yearValue",
-      "monthPlaceholder",
-      "monthValue",
-      "dayPlaceholder",
-      "dayValue"
-    ],
-    "textProps": [
-      "label",
-      "yearPlaceholder",
-      "yearValue",
-      "monthPlaceholder",
-      "monthValue",
-      "dayPlaceholder",
-      "dayValue"
-    ],
-    "requiredProps": [
-      "label"
-    ],
-    "variants": [],
-    "description": "연·월·일을 나누어 입력하는 날짜 필드",
-    "propTypes": {
-      "label": "shortText",
-      "yearPlaceholder": "shortText",
-      "yearValue": "shortText",
-      "monthPlaceholder": "shortText",
-      "monthValue": "shortText",
-      "dayPlaceholder": "shortText",
-      "dayValue": "shortText"
-    },
-    "propMaxLen": {
-      "label": 80,
-      "yearPlaceholder": 80,
-      "yearValue": 80,
-      "monthPlaceholder": 80,
-      "monthValue": 80,
-      "dayPlaceholder": 80,
-      "dayValue": 80
-    },
-    "nestableInContainer": true
-  },
-  "FormAddressField": {
-    "type": "component",
-    "slot": "content",
-    "figmaNames": [
-      "address-field",
-      "address"
-    ],
-    "path": "/components/form-address-field.html",
-    "props": [
-      "label",
-      "searchPlaceholder",
-      "searchLabel",
-      "addressValue",
-      "roadValue",
-      "detailPlaceholder",
-      "detailValue"
-    ],
-    "textProps": [
-      "label",
-      "searchPlaceholder",
-      "searchLabel",
-      "addressValue",
-      "roadValue",
-      "detailPlaceholder",
-      "detailValue"
-    ],
-    "requiredProps": [
-      "label",
-      "searchLabel"
-    ],
-    "variants": [],
-    "description": "주소 검색과 기본주소·상세주소 입력",
-    "propTypes": {
-      "label": "shortText",
-      "searchPlaceholder": "shortText",
-      "searchLabel": "shortText",
-      "addressValue": "shortText",
-      "roadValue": "shortText",
-      "detailPlaceholder": "shortText",
-      "detailValue": "shortText"
-    },
-    "propMaxLen": {
-      "label": 80,
-      "searchPlaceholder": 80,
-      "searchLabel": 80,
-      "addressValue": 80,
-      "roadValue": 80,
-      "detailPlaceholder": 80,
-      "detailValue": 80
-    },
-    "nestableInContainer": true,
-    "defaults": {
-      "searchLabel": "주소 검색",
-      "label": "주소"
-    }
-  },
-  "FormChoiceGroup": {
-    "type": "component",
-    "slot": "content",
-    "figmaNames": [
-      "radio-container",
-      "choice-group",
-      "radio",
-      "radio-list-container",
-      "radio-text-container",
-      "atomic_radio",
-      "atomic-radio",
-      "radio-group",
-      "choice-1-wrapper",
-      "choice-2-wrapper",
-      "choice-card",
-      "choice-detail-card",
-      "choice-options"
-    ],
-    "path": "/components/form-choice-group.html",
-    "props": [
-      "label",
-      "optionsHtml",
-      "optionsLayoutClass"
-    ],
-    "textProps": [
-      "label"
-    ],
-    "requiredProps": [
-      "label"
-    ],
-    "variants": [],
-    "description": "라디오 또는 체크 선택지 그룹",
-    "propTypes": {
-      "label": "shortText",
-      "optionsHtml": "html",
-      "optionsLayoutClass": "shortText"
-    },
-    "propMaxLen": {
-      "label": 80
-    },
-    "nestableInContainer": true,
-    "itemComponent": "FormChoiceOption",
-    "itemComponentByType": {
-      "radio": "FormChoiceOption",
-      "checkbox": "FormChoiceCheckboxOption"
-    },
-    "itemsSource": "options",
-    "itemsHtmlProp": "optionsHtml",
-    "aliases": [
-      "radio-list-container",
-      "radio-text-container",
-      "radio-container"
-    ]
-  },
-  "FormCheckbox": {
-    "type": "component",
-    "slot": "content",
-    "figmaNames": [
-      "checkbox",
-      "check",
-      "check-item",
-      "agreement_check",
-      "agreement-check"
-    ],
-    "path": "/components/form-checkbox.html",
-    "props": [
-      "label",
-      "name",
-      "value",
-      "checked",
-      "disabled"
-    ],
-    "textProps": [
-      "label"
-    ],
-    "requiredProps": [
-      "label"
-    ],
-    "variants": [],
-    "description": "약관 동의와 다중 선택에 사용하는 단일 체크박스",
-    "propTypes": {
-      "label": "shortText",
-      "name": "shortText",
-      "value": "shortText",
-      "checked": "shortText",
-      "disabled": "shortText"
-    },
-    "propMaxLen": {
-      "label": 80,
-      "name": 80,
-      "value": 80,
-      "checked": 80,
-      "disabled": 80
-    },
-    "nestableInContainer": true
-  },
-  "FormFileUpload": {
-    "type": "component",
-    "slot": "content",
-    "figmaNames": [
-      "file-attachment",
-      "file-upload",
-      "file-upload-container",
-      "FileUpload",
-      "upload-wrapper",
-      "upload-card"
-    ],
-    "path": "/components/form-file-upload.html",
-    "props": [
-      "label",
-      "placeholder",
-      "buttonLabel",
-      "helper",
-      "fileName",
-      "filesHtml"
-    ],
-    "textProps": [
-      "label",
-      "placeholder",
-      "buttonLabel",
-      "helper",
-      "fileName"
-    ],
-    "requiredProps": [
-      "label",
-      "buttonLabel"
-    ],
-    "variants": [],
-    "description": "파일 선택, 도움말, 첨부된 파일 표시",
-    "propTypes": {
-      "label": "shortText",
-      "placeholder": "shortText",
-      "buttonLabel": "shortText",
-      "helper": "longText",
-      "fileName": "file"
-    },
-    "propMaxLen": {
-      "label": 80,
-      "placeholder": 80,
-      "buttonLabel": 80
-    },
-    "propMinLen": {
-      "helper": 40
-    },
-    "defaults": {
-      "buttonLabel": "파일 첨부"
-    },
-    "aliases": [
-      "file-upload-container",
-      "FileUpload"
-    ]
-  },
-  "FormTerms": {
-    "type": "component",
-    "slot": "content",
-    "figmaNames": [
-      "terms-area",
-      "agreement",
-      "terms",
-      "terms-container",
-      "Terms",
-      "terms-wrapper",
-      "terms-card"
-    ],
-    "path": "/components/form-terms.html",
-    "props": [
-      "allLabel",
-      "itemsHtml",
-      "helper"
-    ],
-    "textProps": [
-      "allLabel",
-      "helper"
-    ],
-    "requiredProps": [
-      "allLabel"
-    ],
-    "variants": [],
-    "description": "전체동의와 개별 약관 동의 목록",
-    "propTypes": {
-      "allLabel": "shortText",
-      "itemsHtml": "html",
-      "helper": "longText"
-    },
-    "propMaxLen": {
-      "allLabel": 80
-    },
-    "propMinLen": {
-      "helper": 40
-    },
-    "itemComponent": "FormTermItem",
-    "itemsSource": "items",
-    "itemsHtmlProp": "itemsHtml",
-    "aliases": [
-      "terms-container",
-      "Terms"
-    ]
-  },
-  "FormButtonGroup": {
-    "type": "component",
-    "slot": "actions",
-    "figmaNames": [
-      "action-button-list",
-      "button-group",
-      "FormButtonGroupBox",
-      "FormActionGroup",
-      "buttons-container",
-      "FormButtonGroup"
-    ],
-    "path": "/components/form-button-group.html",
-    "props": [
-      "secondaryLabel",
-      "secondaryHref",
-      "primaryLabel",
-      "primaryHref"
-    ],
-    "textProps": [
-      "secondaryLabel",
-      "primaryLabel"
-    ],
-    "requiredProps": [
-      "secondaryLabel",
-      "primaryLabel"
-    ],
-    "variants": [],
-    "description": "취소와 제출 등 두 개의 하단 작업 버튼",
-    "propTypes": {
-      "secondaryLabel": "shortText",
-      "secondaryHref": "href",
-      "primaryLabel": "shortText",
-      "primaryHref": "href"
-    },
-    "propMaxLen": {
-      "secondaryLabel": 80,
-      "primaryLabel": 80
-    },
-    "aliases": [
-      "FormButtonGroupBox",
-      "FormActionGroup",
-      "buttons-container"
-    ]
-  },
-  "Breadcrumb": {
-    "type": "component",
-    "slot": "header",
-    "figmaNames": [
-      "breadcrumb",
-      "Breadcrumb",
-      "BreadcrumbGroup",
-      "breadcrumb-group",
-      "breadcrumb-section"
-    ],
-    "path": "/components/breadcrumb-group.html",
-    "props": [
-      "item1",
-      "item2",
-      "item3",
-      "item4",
-      "item5"
-    ],
-    "textProps": [
-      "item1",
-      "item2",
-      "item3",
-      "item4",
-      "item5"
-    ],
-    "requiredProps": [
-      "item1"
-    ],
-    "variants": [],
-    "description": "img_text breadcrumb-group (홈 + depth)",
-    "propTypes": {
-      "item1": "shortText",
-      "item2": "shortText",
-      "item3": "shortText",
-      "item4": "shortText",
-      "item5": "shortText"
-    },
-    "propMaxLen": {
-      "item1": 80,
-      "item2": 80,
-      "item3": 80,
-      "item4": 80,
-      "item5": 80
-    }
-  },
-  "Tabs": {
-    "type": "component",
-    "slot": "heading",
-    "figmaNames": [
-      "tabs",
-      "tab-list"
-    ],
-    "path": "/components/tabs.html",
-    "props": [
-      "tab1",
-      "tab2"
-    ],
-    "textProps": [
-      "tab1",
-      "tab2"
-    ],
-    "requiredProps": [
-      "tab1",
-      "tab2"
-    ],
-    "variants": [],
-    "description": "두 조회 화면을 전환하는 탭",
-    "propTypes": {
-      "tab1": "shortText",
-      "tab2": "shortText"
-    },
-    "propMaxLen": {
-      "tab1": 80,
-      "tab2": 80
-    }
-  },
-  "KeyValueCard": {
-    "type": "component",
-    "slot": "content",
-    "figmaNames": [
-      "key-value-card",
-      "basic-info",
-      "business-info",
-      "KeyValueCard",
-      "application-details",
-      "repayment-details",
-      "detail-list",
-      "kv-row"
-    ],
-    "path": "/components/key-value-card.html",
-    "props": [
-      "eyebrow",
-      "title",
-      "label1",
-      "value1",
-      "label2",
-      "value2",
-      "label3",
-      "value3",
-      "label4",
-      "value4",
-      "label5",
-      "value5",
-      "label6",
-      "value6",
-      "label7",
-      "value7",
-      "label8",
-      "value8",
-      "label9",
-      "value9",
-      "label10",
-      "value10",
-      "label11",
-      "value11",
-      "label12",
-      "value12"
-    ],
-    "textProps": [
-      "eyebrow",
-      "title",
-      "label1",
-      "value1",
-      "label2",
-      "value2",
-      "label3",
-      "value3",
-      "label4",
-      "value4",
-      "label5",
-      "value5",
-      "label6",
-      "value6",
-      "label7",
-      "value7",
-      "label8",
-      "value8",
-      "label9",
-      "value9",
-      "label10",
-      "value10",
-      "label11",
-      "value11",
-      "label12",
-      "value12"
-    ],
-    "requiredProps": [
-      "title"
-    ],
-    "variants": [
-      "ui-kv-card--sheet"
-    ],
-    "description": "항목명·값 목록 카드 (신청내역 등 최대 12행, 빈 행 자동 숨김)",
-    "propTypes": {
-      "eyebrow": "shortText",
-      "title": "shortText",
-      "label1": "shortText",
-      "value1": "shortText",
-      "label2": "shortText",
-      "value2": "shortText",
-      "label3": "shortText",
-      "value3": "shortText",
-      "label4": "shortText",
-      "value4": "shortText",
-      "label5": "shortText",
-      "value5": "shortText",
-      "label6": "shortText",
-      "value6": "shortText",
-      "label7": "shortText",
-      "value7": "shortText",
-      "label8": "shortText",
-      "value8": "shortText",
-      "label9": "shortText",
-      "value9": "shortText",
-      "label10": "shortText",
-      "value10": "shortText",
-      "label11": "shortText",
-      "value11": "shortText",
-      "label12": "shortText",
-      "value12": "shortText"
-    },
-    "propMaxLen": {
-      "eyebrow": 80,
-      "title": 80,
-      "label1": 80,
-      "value1": 120,
-      "label2": 80,
-      "value2": 120,
-      "label3": 80,
-      "value3": 120,
-      "label4": 80,
-      "value4": 120,
-      "label5": 80,
-      "value5": 120,
-      "label6": 80,
-      "value6": 120,
-      "label7": 80,
-      "value7": 120,
-      "label8": 80,
-      "value8": 120,
-      "label9": 80,
-      "value9": 120,
-      "label10": 80,
-      "value10": 120,
-      "label11": 80,
-      "value11": 120,
-      "label12": 80,
-      "value12": 120
-    }
-  },
-  "SummaryBar": {
-    "type": "component",
-    "slot": "content",
-    "figmaNames": [
-      "summary-bar",
-      "loan-summary",
-      "balance-summary",
-      "repayment-summary",
-      "잔액요약",
-      "my-amount-box"
-    ],
-    "path": "/components/summary-bar.html",
-    "props": [
-      "label1",
-      "value1",
-      "label2",
-      "value2",
-      "label3",
-      "value3"
-    ],
-    "textProps": [
-      "label1",
-      "value1",
-      "label2",
-      "value2",
-      "label3",
-      "value3"
-    ],
-    "requiredProps": [
-      "label1",
-      "value1"
-    ],
-    "variants": [],
-    "description": "img_text my-amount-box 금액 요약",
-    "propTypes": {
-      "label1": "label",
-      "value1": "money",
-      "label2": "label",
-      "value2": "money",
-      "label3": "label",
-      "value3": "money"
-    }
-  },
-  "AmountBox": {
-    "type": "component",
-    "slot": "content",
-    "figmaNames": [
-      "AmountBox"
-    ],
-    "path": "/components/amount-box.html",
-    "props": [
-      "label1",
-      "value1",
-      "label2",
-      "value2",
-      "label3",
-      "value3"
-    ],
-    "textProps": [
-      "label1",
-      "value1",
-      "label2",
-      "value2",
-      "label3",
-      "value3"
-    ],
-    "requiredProps": [
-      "label1",
-      "value1"
-    ],
-    "description": "SummaryBar 별칭 (my-amount-box)",
-    "propTypes": {
-      "label1": "label",
-      "value1": "money",
-      "label2": "label",
-      "value2": "money",
-      "label3": "label",
-      "value3": "money"
-    }
-  },
-  "ConfirmTable": {
-    "type": "component",
-    "slot": "content",
-    "figmaNames": [
-      "ConfirmTable",
-      "confirm-list",
-      "신청내역"
-    ],
-    "path": "/components/confirm-table.html",
-    "props": [
-      "title",
-      "rowsHtml"
-    ],
-    "textProps": [
-      "title"
-    ],
-    "acceptsChildren": true,
-    "itemComponent": "ConfirmTableRow",
-    "defaults": {
-      "title": "신청내역"
-    },
-    "description": "신청내역 confirm-list + table",
-    "propTypes": {
-      "title": "shortText",
-      "rowsHtml": "html"
-    }
-  },
-  "ConfirmTableRow": {
-    "type": "component",
-    "slot": "content",
-    "figmaNames": [
-      "ConfirmTableRow",
-      "Table_A_PC",
-      "Table_A"
-    ],
-    "path": "/components/confirm-table-row.html",
-    "props": [
-      "label",
-      "value"
-    ],
-    "textProps": [
-      "label",
-      "value"
-    ],
-    "requiredProps": [
-      "label"
-    ],
-    "description": "confirm table 한 행 (Table_A 매핑)",
-    "propTypes": {
-      "label": "label",
-      "value": "shortText"
-    }
-  },
-  "PageTitlePage": {
-    "type": "component",
-    "slot": "header",
-    "figmaNames": [
-      "PageTitlePage"
-    ],
-    "path": "/components/page-title-page.html",
-    "props": [
-      "title"
-    ],
-    "textProps": [
-      "title"
-    ],
-    "requiredProps": [
-      "title"
-    ],
-    "description": "폼/신청 title-group title--page",
-    "propTypes": {
-      "title": "shortText"
-    }
-  },
-  "AmountSummary": {
-    "type": "component",
-    "slot": "content",
-    "figmaNames": [
-      "amount-summary",
-      "total-amount"
-    ],
-    "path": "/components/amount-summary.html",
-    "props": [
-      "label",
-      "amount"
-    ],
-    "textProps": [
-      "label",
-      "amount"
-    ],
-    "requiredProps": [
-      "label",
-      "amount"
-    ],
-    "variants": [],
-    "description": "미납총액 등 강조 금액 표시",
-    "propTypes": {
-      "label": "shortText",
-      "amount": "money"
-    },
-    "propMaxLen": {
-      "label": 80
-    }
-  },
-  "LoanCard": {
-    "type": "component",
-    "slot": "content",
-    "figmaNames": [
-      "loan-card",
-      "loan-item"
-    ],
-    "path": "/components/loan-card.html",
-    "props": [
-      "amount",
-      "badge",
-      "account",
-      "period",
-      "label1",
-      "value1",
-      "label2",
-      "value2",
-      "label3",
-      "value3",
-      "label4",
-      "value4",
-      "actionsHtml"
-    ],
-    "textProps": [
-      "amount",
-      "badge",
-      "account",
-      "period",
-      "label1",
-      "value1",
-      "label2",
-      "value2",
-      "label3",
-      "value3",
-      "label4",
-      "value4"
-    ],
-    "requiredProps": [
-      "amount"
-    ],
-    "variants": [],
-    "description": "대출금액, 기간, 금리, 상환정보와 작업 버튼을 묶은 카드",
-    "propTypes": {
-      "amount": "money",
-      "badge": "label",
-      "account": "shortText",
-      "period": "shortText",
-      "label1": "shortText",
-      "value1": "shortText",
-      "label2": "shortText",
-      "value2": "shortText",
-      "label3": "shortText",
-      "value3": "shortText",
-      "label4": "shortText",
-      "value4": "shortText",
-      "actionsHtml": "html"
-    },
-    "propMaxLen": {
-      "badge": 40,
-      "account": 80,
-      "period": 80,
-      "label1": 80,
-      "value1": 80,
-      "label2": 80,
-      "value2": 80,
-      "label3": 80,
-      "value3": 80,
-      "label4": 80,
-      "value4": 80
-    }
-  },
-  "DataTable": {
-    "type": "component",
-    "slot": "content",
-    "figmaNames": [
-      "data-table",
-      "payment-table"
-    ],
-    "path": "/components/data-table.html",
-    "props": [
-      "header1",
-      "header2",
-      "header3",
-      "header4",
-      "header5",
-      "rowsHtml"
-    ],
-    "textProps": [
-      "header1",
-      "header2",
-      "header3",
-      "header4",
-      "header5"
-    ],
-    "requiredProps": [
-      "header1"
-    ],
-    "variants": [],
-    "description": "납부내역 등 행과 열로 구성된 데이터 표",
-    "propTypes": {
-      "header1": "shortText",
-      "header2": "shortText",
-      "header3": "shortText",
-      "header4": "shortText",
-      "header5": "shortText",
-      "rowsHtml": "html"
-    },
-    "propMaxLen": {
-      "header1": 80,
-      "header2": 80,
-      "header3": 80,
-      "header4": 80,
-      "header5": 80
-    }
-  },
-  "Pagination": {
-    "type": "component",
-    "slot": "content",
-    "figmaNames": [
-      "pagination",
-      "paging",
-      "PaginationBar",
-      "pagination-bar"
-    ],
-    "path": "/components/pagination-bar.html",
-    "props": [
-      "page1",
-      "page2",
-      "page3",
-      "page4",
-      "pageLast"
-    ],
-    "textProps": [
-      "page1",
-      "page2",
-      "page3",
-      "page4",
-      "pageLast"
-    ],
-    "requiredProps": [
-      "page1"
-    ],
-    "defaults": {
-      "page1": "1",
-      "page2": "2",
-      "page3": "3",
-      "page4": "4",
-      "pageLast": "23"
-    },
-    "variants": [],
-    "description": "img_text pagination 바",
-    "propTypes": {
-      "page1": "shortText",
-      "page2": "shortText",
-      "page3": "shortText",
-      "page4": "shortText",
-      "pageLast": "shortText"
-    }
-  },
-  "GuideAccordion": {
-    "type": "component",
-    "slot": "content",
-    "figmaNames": [
-      "guide-accordion",
-      "notice-accordion",
-      "accordion"
-    ],
-    "path": "/components/guide-accordion.html",
-    "props": [
-      "title",
-      "contentHtml"
-    ],
-    "textProps": [
-      "title"
-    ],
-    "requiredProps": [
-      "title"
-    ],
-    "variants": [],
-    "description": "펼치고 닫을 수 있는 유의사항 안내",
-    "propTypes": {
-      "title": "shortText",
-      "contentHtml": "html"
-    },
-    "propMaxLen": {
-      "title": 80
-    }
-  },
-  "ApplicationDateCard": {
-    "type": "component",
-    "slot": "content",
-    "figmaNames": [
-      "application-date"
-    ],
-    "path": "/components/application-date-card.html",
-    "props": [
-      "label",
-      "date",
-      "description"
-    ],
-    "textProps": [
-      "label",
-      "date",
-      "description"
-    ],
-    "requiredProps": [
-      "date"
-    ],
-    "variants": [],
-    "description": "신청일과 처리 안내를 표시하는 카드",
-    "propTypes": {
-      "label": "shortText",
-      "date": "date",
-      "description": "longText"
-    },
-    "propMaxLen": {
-      "label": 80
-    },
-    "propMinLen": {
-      "description": 40
-    }
-  },
-  "StatusBadge": {
-    "type": "component",
-    "slot": "content",
-    "figmaNames": [
-      "status-badge",
-      "StatusBadge"
-    ],
-    "path": "/components/status-badge.html",
-    "props": [
-      "label"
-    ],
-    "textProps": [
-      "label"
-    ],
-    "requiredProps": [
-      "label"
-    ],
-    "variants": [],
-    "description": "상태, 유형, 분류를 짧게 표시하는 배지",
-    "propTypes": {
-      "label": "shortText"
-    },
-    "propMaxLen": {
-      "label": 80
-    }
-  },
-  "ContentHeading": {
-    "type": "component",
-    "slot": "content",
-    "figmaNames": [
-      "content-heading",
-      "section-title"
-    ],
-    "path": "/components/content-heading.html",
-    "props": [
-      "title",
-      "description"
-    ],
-    "textProps": [
-      "title",
-      "description"
-    ],
-    "requiredProps": [
-      "title"
-    ],
-    "variants": [],
-    "description": "본문 중간 영역의 제목과 설명",
-    "propTypes": {
-      "title": "shortText",
-      "description": "longText"
-    },
-    "propMaxLen": {
-      "title": 80
-    },
-    "propMinLen": {
-      "description": 40
-    }
-  },
-  "ActionButtonGroup": {
-    "type": "component",
-    "slot": "actions",
-    "figmaNames": [
-      "action-group",
-      "multi-buttons",
-      "button-list"
-    ],
-    "path": "/components/action-button-group.html",
-    "props": [
-      "buttonsHtml"
-    ],
-    "textProps": [],
-    "requiredProps": [],
-    "variants": [],
-    "consumesSourceText": true,
-    "description": "개수가 유동적인 작업 버튼 목록",
-    "propTypes": {
-      "buttonsHtml": "html"
-    },
-    "itemComponent": "ActionButton",
-    "itemsSource": "actions",
-    "itemsHtmlProp": "buttonsHtml"
-  },
-  "EmptyState": {
-    "type": "component",
-    "slot": "content",
-    "figmaNames": [
-      "empty-state",
-      "no-data"
-    ],
-    "path": "/components/empty-state.html",
-    "props": [
-      "title",
-      "description",
-      "buttonLabel",
-      "href"
-    ],
-    "textProps": [
-      "title",
-      "description",
-      "buttonLabel"
-    ],
-    "requiredProps": [
-      "title"
-    ],
-    "variants": [],
-    "description": "조회 결과가 없을 때 표시하는 안내",
-    "propTypes": {
-      "title": "shortText",
-      "description": "longText",
-      "buttonLabel": "shortText",
-      "href": "href"
-    },
-    "propMaxLen": {
-      "title": 80,
-      "buttonLabel": 80
-    },
-    "propMinLen": {
-      "description": 40
-    }
-  },
-  "GenericSection": {
-    "type": "component",
-    "slot": "content",
-    "figmaNames": [
-      "generic-section"
-    ],
-    "path": "/components/generic-section.html",
-    "props": [
-      "title",
-      "body"
-    ],
-    "textProps": [
-      "title",
-      "body"
-    ],
-    "requiredProps": [
-      "title"
-    ],
-    "variants": [],
-    "consumesSourceText": true,
-    "description": "정식 컴포넌트가 없는 영역의 텍스트를 누락 없이 표시하는 폴백",
-    "propTypes": {
-      "title": "shortText",
-      "body": "longText"
-    },
-    "propMaxLen": {
-      "title": 80
-    },
-    "propMinLen": {
-      "body": 40
-    }
-  },
-  "GenericList": {
-    "type": "component",
-    "slot": "content",
-    "figmaNames": [
-      "generic-list"
-    ],
-    "path": "/components/generic-list.html",
-    "props": [
-      "title",
-      "itemsHtml"
-    ],
-    "textProps": [
-      "title"
-    ],
-    "requiredProps": [
-      "title"
-    ],
-    "variants": [],
-    "consumesSourceText": true,
-    "description": "반복되는 짧은 텍스트를 목록으로 표시하는 폴백",
-    "propTypes": {
-      "title": "shortText",
-      "itemsHtml": "html"
-    },
-    "propMaxLen": {
-      "title": 80
-    },
-    "itemComponent": "GenericListItem",
-    "itemsSource": "items",
-    "itemsHtmlProp": "itemsHtml"
+    "description": "시안/조립용 페이지 셸 (Header+Main+Footer)"
   },
   "Header": {
     "type": "pattern",
-    "role": "header",
-    "slot": "header",
+    "path": "/patterns/header/include.html",
+    "props": [
+      "brand",
+      "brandHref",
+      "navHtml"
+    ],
+    "textProps": [
+      "brand"
+    ],
+    "requiredProps": [],
+    "variants": [],
+    "description": "Site Header Pattern",
     "figmaNames": [
       "Header",
-      "GNB",
-      "gnb",
-      "Portal1_GNB",
-      "PortalHeader"
-    ],
-    "required": true,
-    "path": "/patterns/gnb.html",
-    "props": [],
-    "variants": [],
-    "description": "페이지 최상단 공통 내비게이션",
-    "textProps": [],
-    "propTypes": {},
-    "requiredGroup": "header",
-    "requiredProps": [],
-    "aliases": [
+      "SiteHeader",
+      "site-header",
       "PortalHeader",
-      "GNB"
+      "portal-header",
+      "GNB Header"
+    ],
+    "propTypes": {
+      "brand": "shortText",
+      "brandHref": "href",
+      "navHtml": "html"
+    },
+    "slot": "header",
+    "role": "header",
+    "required": true,
+    "aliases": [
+      "SiteHeader",
+      "PortalHeader"
+    ]
+  },
+  "Gnb": {
+    "type": "pattern",
+    "path": "/patterns/gnb/include.html",
+    "props": [
+      "item1",
+      "item1Href",
+      "item2",
+      "item2Href",
+      "item3",
+      "item3Href"
+    ],
+    "textProps": [
+      "item1",
+      "item2",
+      "item3"
+    ],
+    "requiredProps": [],
+    "variants": [],
+    "description": "GNB Pattern",
+    "figmaNames": [
+      "GNB",
+      "Gnb",
+      "gnb",
+      "GlobalNav",
+      "MainNav"
+    ],
+    "propTypes": {
+      "item1": "shortText",
+      "item1Href": "href",
+      "item2": "shortText",
+      "item2Href": "href",
+      "item3": "shortText",
+      "item3Href": "href"
+    },
+    "slot": "header",
+    "role": "gnb",
+    "aliases": [
+      "GlobalNav"
     ]
   },
   "Footer": {
     "type": "pattern",
-    "role": "footer",
-    "slot": "footer",
+    "path": "/patterns/footer/include.html",
+    "props": [
+      "brand",
+      "info",
+      "copyright"
+    ],
+    "textProps": [
+      "brand",
+      "info",
+      "copyright"
+    ],
+    "requiredProps": [],
+    "variants": [],
+    "description": "Site Footer Pattern",
     "figmaNames": [
       "Footer",
       "footer",
-      "Portal1_Footer",
-      "PortalFooter"
+      "SiteFooter",
+      "PortalFooter",
+      "portal-footer"
     ],
+    "propTypes": {
+      "brand": "shortText",
+      "info": "shortText",
+      "copyright": "shortText"
+    },
+    "slot": "footer",
+    "role": "footer",
     "required": true,
-    "path": "/patterns/footer.html",
-    "props": [],
-    "variants": [],
-    "description": "페이지 최하단 공통 정보 영역",
-    "textProps": [],
-    "propTypes": {},
-    "requiredGroup": "footer",
-    "requiredProps": [],
     "aliases": [
+      "SiteFooter",
       "PortalFooter"
+    ]
+  },
+  "Lnb": {
+    "type": "pattern",
+    "path": "/patterns/lnb/include.html",
+    "props": [
+      "item1",
+      "item1Href",
+      "item2",
+      "item2Href",
+      "item3",
+      "item3Href"
+    ],
+    "textProps": [
+      "item1",
+      "item2",
+      "item3"
+    ],
+    "requiredProps": [],
+    "variants": [],
+    "description": "LNB Pattern",
+    "figmaNames": [
+      "LNB",
+      "Lnb",
+      "lnb",
+      "SideNav",
+      "Side Menu"
+    ],
+    "propTypes": {},
+    "slot": "content",
+    "role": "lnb"
+  },
+  "Breadcrumb": {
+    "type": "pattern",
+    "path": "/patterns/breadcrumb/include.html",
+    "props": [
+      "item1",
+      "item1Href",
+      "item2",
+      "item2Href",
+      "item3"
+    ],
+    "textProps": [
+      "item1",
+      "item2",
+      "item3"
+    ],
+    "requiredProps": [],
+    "variants": [],
+    "description": "Breadcrumb Pattern",
+    "figmaNames": [
+      "Breadcrumb",
+      "breadcrumb",
+      "BreadcrumbGroup",
+      "breadcrumb-group"
+    ],
+    "propTypes": {},
+    "slot": "heading"
+  },
+  "Button": {
+    "type": "component",
+    "path": "/components/button/include.html",
+    "props": [
+      "label",
+      "variantClass"
+    ],
+    "textProps": [
+      "label"
+    ],
+    "requiredProps": [
+      "label"
+    ],
+    "variants": [
+      "button--primary",
+      "button--secondary",
+      "button--tertiary",
+      "button--text",
+      "button--lg",
+      "button--md",
+      "button--sm"
+    ],
+    "description": "Base Button",
+    "figmaNames": [
+      "Button",
+      "button",
+      "Primary Button",
+      "CTA"
+    ],
+    "propTypes": {
+      "label": "shortText",
+      "variantClass": "class"
+    },
+    "slot": "actions"
+  },
+  "Alert": {
+    "type": "component",
+    "path": "/components/alert/include.html",
+    "props": [
+      "toneClass",
+      "title",
+      "content",
+      "variantClass"
+    ],
+    "textProps": [
+      "title",
+      "content"
+    ],
+    "requiredProps": [
+      "content"
+    ],
+    "variants": [
+      "alert--neutral",
+      "alert--info",
+      "alert--success",
+      "alert--warning",
+      "alert--error"
+    ],
+    "description": "Inline Alert",
+    "figmaNames": [
+      "Alert",
+      "alert",
+      "InlineAlert",
+      "Banner"
+    ],
+    "propTypes": {
+      "title": "shortText",
+      "content": "shortText",
+      "toneClass": "class"
+    },
+    "slot": "content",
+    "defaults": {
+      "tone": "neutral",
+      "toneClass": "alert--neutral"
+    }
+  },
+  "Badge": {
+    "type": "component",
+    "path": "/components/badge/include.html",
+    "props": [
+      "toneClass",
+      "label",
+      "variantClass"
+    ],
+    "textProps": [
+      "label"
+    ],
+    "requiredProps": [
+      "label"
+    ],
+    "variants": [
+      "badge--neutral",
+      "badge--primary",
+      "badge--info",
+      "badge--success",
+      "badge--warning",
+      "badge--error",
+      "badge--sm",
+      "badge--md"
+    ],
+    "description": "Badge",
+    "figmaNames": [
+      "Badge",
+      "badge"
+    ],
+    "propTypes": {
+      "toneClass": "class"
+    },
+    "slot": "content",
+    "defaults": {
+      "tone": "neutral",
+      "toneClass": "badge--neutral"
+    }
+  },
+  "Checkbox": {
+    "type": "component",
+    "path": "/components/checkbox/include.html",
+    "props": [
+      "label",
+      "checkedAttr",
+      "disabledAttr",
+      "variantClass"
+    ],
+    "textProps": [
+      "label"
+    ],
+    "requiredProps": [
+      "label"
+    ],
+    "variants": [],
+    "description": "Checkbox",
+    "figmaNames": [
+      "Checkbox",
+      "checkbox"
+    ],
+    "propTypes": {},
+    "slot": "content"
+  },
+  "Chip": {
+    "type": "component",
+    "path": "/components/chip/include.html",
+    "props": [
+      "label",
+      "variantClass"
+    ],
+    "textProps": [
+      "label"
+    ],
+    "requiredProps": [
+      "label"
+    ],
+    "variants": [],
+    "description": "Chip",
+    "figmaNames": [
+      "Chip",
+      "chip"
+    ],
+    "propTypes": {},
+    "slot": "content"
+  },
+  "Dialog": {
+    "type": "component",
+    "path": "/components/dialog/include.html",
+    "props": [
+      "title",
+      "titleId",
+      "bodyHtml",
+      "footerHtml",
+      "variantClass"
+    ],
+    "textProps": [
+      "title"
+    ],
+    "requiredProps": [
+      "title"
+    ],
+    "variants": [],
+    "description": "Dialog / Modal",
+    "figmaNames": [
+      "Dialog",
+      "dialog",
+      "Modal",
+      "AlertDialog"
+    ],
+    "propTypes": {
+      "title": "shortText",
+      "bodyHtml": "html",
+      "footerHtml": "html"
+    },
+    "slot": "content",
+    "acceptsChildren": true
+  },
+  "Divider": {
+    "type": "component",
+    "path": "/components/divider/include.html",
+    "props": [
+      "variantClass"
+    ],
+    "textProps": [],
+    "requiredProps": [],
+    "variants": [
+      "divider--sm",
+      "divider--vertical"
+    ],
+    "description": "Divider",
+    "figmaNames": [
+      "Divider",
+      "divider",
+      "Separator"
+    ],
+    "propTypes": {},
+    "slot": "content"
+  },
+  "Drawer": {
+    "type": "component",
+    "path": "/components/drawer/include.html",
+    "props": [
+      "title",
+      "titleId",
+      "bodyHtml",
+      "variantClass"
+    ],
+    "textProps": [
+      "title"
+    ],
+    "requiredProps": [
+      "title"
+    ],
+    "variants": [],
+    "description": "Drawer / Sheet",
+    "figmaNames": [
+      "Drawer",
+      "drawer",
+      "Sheet",
+      "SidePanel"
+    ],
+    "propTypes": {},
+    "slot": "content",
+    "acceptsChildren": true
+  },
+  "FormField": {
+    "type": "component",
+    "path": "/components/form-field/include.html",
+    "props": [
+      "label",
+      "inputId",
+      "placeholder",
+      "value",
+      "helper",
+      "variantClass"
+    ],
+    "textProps": [
+      "label",
+      "placeholder",
+      "value",
+      "helper"
+    ],
+    "requiredProps": [
+      "label"
+    ],
+    "variants": [],
+    "description": "Form Field (label + input + helper)",
+    "figmaNames": [
+      "FormField",
+      "form-field",
+      "Form Text Field",
+      "TextField",
+      "FormTextField"
+    ],
+    "propTypes": {},
+    "slot": "content",
+    "aliases": [
+      "FormTextField",
+      "TextField"
+    ]
+  },
+  "Input": {
+    "type": "component",
+    "path": "/components/input/include.html",
+    "props": [
+      "placeholder",
+      "value",
+      "disabledAttr",
+      "variantClass"
+    ],
+    "textProps": [
+      "placeholder",
+      "value"
+    ],
+    "requiredProps": [],
+    "variants": [
+      "input--sm",
+      "input--md",
+      "input--lg",
+      "input--error",
+      "input--warning"
+    ],
+    "description": "Raw Input control",
+    "figmaNames": [
+      "Input",
+      "input",
+      "Text Input"
+    ],
+    "propTypes": {},
+    "slot": "content"
+  },
+  "Menu": {
+    "type": "component",
+    "path": "/components/menu/include.html",
+    "props": [
+      "item1",
+      "item2",
+      "item3",
+      "variantClass"
+    ],
+    "textProps": [
+      "item1",
+      "item2",
+      "item3"
+    ],
+    "requiredProps": [],
+    "variants": [],
+    "description": "Dropdown Menu",
+    "figmaNames": [
+      "Menu",
+      "menu",
+      "DropdownMenu",
+      "Dropdown"
+    ],
+    "propTypes": {},
+    "slot": "content"
+  },
+  "Pagination": {
+    "type": "component",
+    "path": "/components/pagination/include.html",
+    "props": [
+      "prevLabel",
+      "nextLabel",
+      "page1",
+      "page1Href",
+      "page2",
+      "page2Href",
+      "page3",
+      "page3Href",
+      "variantClass"
+    ],
+    "textProps": [
+      "prevLabel",
+      "nextLabel",
+      "page1",
+      "page2",
+      "page3"
+    ],
+    "requiredProps": [],
+    "variants": [],
+    "description": "Pagination",
+    "figmaNames": [
+      "Pagination",
+      "pagination",
+      "PaginationBar"
+    ],
+    "propTypes": {},
+    "slot": "content",
+    "defaults": {
+      "prevLabel": "이전",
+      "nextLabel": "다음"
+    }
+  },
+  "Popover": {
+    "type": "component",
+    "path": "/components/popover/include.html",
+    "props": [
+      "title",
+      "titleId",
+      "content",
+      "variantClass"
+    ],
+    "textProps": [
+      "title",
+      "content"
+    ],
+    "requiredProps": [],
+    "variants": [],
+    "description": "Popover",
+    "figmaNames": [
+      "Popover",
+      "popover"
+    ],
+    "propTypes": {},
+    "slot": "content"
+  },
+  "Radio": {
+    "type": "component",
+    "path": "/components/radio/include.html",
+    "props": [
+      "label",
+      "name",
+      "checkedAttr",
+      "disabledAttr",
+      "variantClass"
+    ],
+    "textProps": [
+      "label"
+    ],
+    "requiredProps": [
+      "label"
+    ],
+    "variants": [],
+    "description": "Radio",
+    "figmaNames": [
+      "Radio",
+      "radio",
+      "RadioButton"
+    ],
+    "propTypes": {},
+    "slot": "content"
+  },
+  "SelectableCard": {
+    "type": "component",
+    "path": "/components/selectable-card/include.html",
+    "props": [
+      "label",
+      "description",
+      "checkedAttr",
+      "variantClass"
+    ],
+    "textProps": [
+      "label",
+      "description"
+    ],
+    "requiredProps": [
+      "label"
+    ],
+    "variants": [],
+    "description": "Selectable Card",
+    "figmaNames": [
+      "SelectableCard",
+      "selectable-card",
+      "ChoiceCard"
+    ],
+    "propTypes": {},
+    "slot": "content"
+  },
+  "Status": {
+    "type": "component",
+    "path": "/components/status/include.html",
+    "props": [
+      "toneClass",
+      "label",
+      "variantClass"
+    ],
+    "textProps": [
+      "label"
+    ],
+    "requiredProps": [
+      "label"
+    ],
+    "variants": [
+      "status--neutral",
+      "status--info",
+      "status--success",
+      "status--warning",
+      "status--error",
+      "status--inactive"
+    ],
+    "description": "Status indicator",
+    "figmaNames": [
+      "Status",
+      "status",
+      "StatusBadge"
+    ],
+    "propTypes": {
+      "toneClass": "class"
+    },
+    "slot": "content",
+    "defaults": {
+      "tone": "neutral",
+      "toneClass": "status--neutral"
+    },
+    "aliases": [
+      "StatusBadge"
+    ]
+  },
+  "Switch": {
+    "type": "component",
+    "path": "/components/switch/include.html",
+    "props": [
+      "label",
+      "checkedAttr",
+      "disabledAttr",
+      "variantClass"
+    ],
+    "textProps": [
+      "label"
+    ],
+    "requiredProps": [
+      "label"
+    ],
+    "variants": [],
+    "description": "Switch",
+    "figmaNames": [
+      "Switch",
+      "switch",
+      "Toggle"
+    ],
+    "propTypes": {},
+    "slot": "content"
+  },
+  "Table": {
+    "type": "component",
+    "path": "/components/table/include.html",
+    "props": [
+      "caption",
+      "col1",
+      "col2",
+      "col3",
+      "bodyHtml",
+      "variantClass"
+    ],
+    "textProps": [
+      "caption",
+      "col1",
+      "col2",
+      "col3"
+    ],
+    "requiredProps": [],
+    "variants": [
+      "table--bordered",
+      "table--stacked"
+    ],
+    "description": "Data Table",
+    "figmaNames": [
+      "Table",
+      "table",
+      "DataTable",
+      "ConfirmTable"
+    ],
+    "propTypes": {},
+    "slot": "content",
+    "acceptsChildren": true,
+    "aliases": [
+      "DataTable",
+      "ConfirmTable"
+    ]
+  },
+  "Tabs": {
+    "type": "component",
+    "path": "/components/tabs/include.html",
+    "props": [
+      "ariaLabel",
+      "tab1",
+      "tab2",
+      "tab3",
+      "panel1Html",
+      "variantClass"
+    ],
+    "textProps": [
+      "tab1",
+      "tab2",
+      "tab3"
+    ],
+    "requiredProps": [],
+    "variants": [],
+    "description": "Tabs",
+    "figmaNames": [
+      "Tabs",
+      "tabs",
+      "Tab"
+    ],
+    "propTypes": {},
+    "slot": "content",
+    "acceptsChildren": true
+  },
+  "Tag": {
+    "type": "component",
+    "path": "/components/tag/include.html",
+    "props": [
+      "label",
+      "variantClass"
+    ],
+    "textProps": [
+      "label"
+    ],
+    "requiredProps": [
+      "label"
+    ],
+    "variants": [
+      "tag--filter",
+      "tag--outline",
+      "tag--selected",
+      "tag--sm",
+      "tag--md",
+      "tag--lg"
+    ],
+    "description": "Tag",
+    "figmaNames": [
+      "Tag",
+      "tag",
+      "TagList"
+    ],
+    "propTypes": {},
+    "slot": "content"
+  },
+  "Textarea": {
+    "type": "component",
+    "path": "/components/textarea/include.html",
+    "props": [
+      "placeholder",
+      "value",
+      "variantClass"
+    ],
+    "textProps": [
+      "placeholder",
+      "value"
+    ],
+    "requiredProps": [],
+    "variants": [],
+    "description": "Textarea",
+    "figmaNames": [
+      "Textarea",
+      "textarea",
+      "FormTextareaField"
+    ],
+    "propTypes": {},
+    "slot": "content",
+    "aliases": [
+      "FormTextareaField"
+    ]
+  },
+  "Tooltip": {
+    "type": "component",
+    "path": "/components/tooltip/include.html",
+    "props": [
+      "title",
+      "content",
+      "variantClass"
+    ],
+    "textProps": [
+      "title",
+      "content"
+    ],
+    "requiredProps": [],
+    "variants": [],
+    "description": "Tooltip",
+    "figmaNames": [
+      "Tooltip",
+      "tooltip"
+    ],
+    "propTypes": {},
+    "slot": "content"
+  },
+  "Accordion": {
+    "type": "component",
+    "path": "/components/accordion/include.html",
+    "props": [
+      "title",
+      "panelId",
+      "contentHtml",
+      "variantClass"
+    ],
+    "textProps": [
+      "title"
+    ],
+    "requiredProps": [
+      "title"
+    ],
+    "variants": [],
+    "description": "Accordion",
+    "figmaNames": [
+      "Accordion",
+      "accordion",
+      "GuideAccordion"
+    ],
+    "propTypes": {},
+    "slot": "content",
+    "acceptsChildren": true,
+    "aliases": [
+      "GuideAccordion"
     ]
   }
 }

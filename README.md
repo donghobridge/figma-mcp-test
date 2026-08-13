@@ -36,12 +36,15 @@ Pages (pages/* — 워크플로 산출물, 로컬 골든은 배포 제외)
 | 경로 | 역할 |
 |------|------|
 | `import.css` | 공통 CSS 엔트리. base tokens/reset/fonts/components + patterns + project tokens |
+| `import.js` | `data-include-path` + `data-prop-*` 런타임 조립 |
+| `component-map.json` | Figma 이름 ↔ include 경로/props 레지스트리 (n8n pageSpec용) |
 | `css/base/` | 리셋, 폰트, base tokens(light/dark), base components 묶음 CSS |
 | `css/project/` | Yuma 프로젝트 토큰 (`tokens.yuma.css`, `tokens.yuma.dark.css`) |
-| `components/` | Base 컴포넌트 폴더 (`button/button.html` + `button.css` 등) |
+| `components/` | Base 컴포넌트 (`{name}.html` 데모 + `include.html` 조립 조각 + `{name}.css`) |
 | `headless/` | 시각과 분리된 동작 레이어 (`behaviors/`, `controllers/`) |
-| `patterns/` | GNB·Header·Footer·LNB·Breadcrumb·Layout 등 화면 조립 패턴 |
-| `assets/` | 이미지·아이콘 등 정적 자산 |
+| `patterns/` | GNB·Header·Footer·LNB·Breadcrumb (`*.html` 데모 + `include.html`) |
+| `layouts/` | pageSpec 셸 (`page.html`, `detail.html`, `wireframe-shell.html`) |
+| `assets/` | 폰트 등 정적 자산 |
 | `common.js` | 테마 토글 등 페이지 공통 스크립트 |
 | `pages/` | 생성 페이지 출력 위치(배포 시 비움). 로컬 골든/카탈로그는 `.gitignore` |
 
@@ -71,18 +74,28 @@ Pages (pages/* — 워크플로 산출물, 로컬 골든은 배포 제외)
 
 다크 모드는 `html[data-theme="dark"]`로 활성화합니다. (`common.js` 테마 토글)
 
+## Demo vs Include
+
+| 파일 | 용도 |
+|------|------|
+| `components/{name}/{name}.html` | Variant/State Reference 데모 (전체 HTML 문서) |
+| `components/{name}/include.html` | `data-include-path`용 **조각 템플릿** (`{prop}` 자리표시자) |
+| `patterns/{name}/*.html` | Pattern 데모 |
+| `patterns/{name}/include.html` | Pattern 조립 조각 |
+
+페이지 조립은 **항상 `include.html`** 을 사용합니다. 데모 HTML을 include 하면 안 됩니다.
+
 ## Pattern include 경로
 
 | 역할 | include |
 |------|---------|
-| Skip link | 마크업 인라인 또는 demo 참고 |
-| Site Header | `/patterns/header/site-header.html` |
-| GNB | `/patterns/gnb/gnb.html` |
-| LNB | `/patterns/lnb/lnb.html` |
-| Footer | `/patterns/footer/site-footer.html` |
-| Breadcrumb | `/patterns/breadcrumb/breadcrumb.html` |
+| Site Header | `/patterns/header/include.html` |
+| GNB | `/patterns/gnb/include.html` |
+| LNB | `/patterns/lnb/include.html` |
+| Footer | `/patterns/footer/include.html` |
+| Breadcrumb | `/patterns/breadcrumb/include.html` |
 
-호환용 별칭(기존 워크플로): `/patterns/gnb.html`, `/patterns/footer.html`
+호환용 별칭(기존 워크플로): `/patterns/gnb.html`, `/patterns/footer.html` (= include 조각)
 
 네비게이션 동작은 `patterns/demo/site-navigation.js`의 `initSiteNavigation`과
 `data-dropdown-trigger` / `data-mobile-nav-trigger` / `data-lnb-disclosure`를 사용합니다.
@@ -93,8 +106,8 @@ Pages (pages/* — 워크플로 산출물, 로컬 골든은 배포 제외)
 `form-field` `input` `menu` `pagination` `popover` `radio` `selectable-card`
 `status` `switch` `table` `tabs` `tag` `textarea` `tooltip`
 
-각 컴포넌트는 `components/{name}/{name}.html` + `{name}.css` 쌍입니다.
-페이지에서는 `data-include-path="/components/{name}/{name}.html"`과 `data-prop-*`로 조립합니다.
+페이지에서는 `data-include-path="/components/{name}/include.html"`과 `data-prop-*`로 조립합니다.
+레지스트리는 루트 `component-map.json`입니다.
 
 ## Headless
 
@@ -106,12 +119,14 @@ Headless는 **시각 class를 추가하지 않고** `data-state` / ARIA / native
 
 ## 배포에 포함 / 제외
 
-**포함:** `assets/`, `components/`, `css/`, `patterns/`, `headless/`, `lib/`,
-`import.css`, `common.js`, 운영·코딩 매뉴얼, README, `pages/.gitkeep`
+**포함:** `assets/`, `components/`, `css/`, `patterns/`, `headless/`, `layouts/`,
+`lib/`, `import.css`, `import.js`, `component-map.json`, `common.js`, 매뉴얼, README,
+`pages/.gitkeep`
 
 **제외:** `wireframe-test/`, `mcp Test/`, `generated-*`, 로컬 `pages/*.html`·카탈로그
 
 워크플로가 생성하는 HTML만 `pages/`에 커밋합니다.
+
 
 ## Figma / AI 조립 원칙
 
