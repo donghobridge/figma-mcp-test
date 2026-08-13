@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>상담접수 내용 상세</title>
+  <title>자문위원포털_홈(상담접수관리)_상담접수 내용 상세</title>
   <link rel="stylesheet" href="/import.css">
   <script defer src="/import.js"></script>
   <script defer src="/common.js"></script>
@@ -12,16 +12,37 @@
   <div data-include-path="/svg-symbols.html"></div>
   <div class="page-layout">
     <div data-include-path="/patterns/gnb.html"></div>
-    <div data-include-path="/components/back-to-list.html" data-prop-label="목록" data-prop-href="#"></div>
-    <div class="page-layout__page-inner page-layout--content">
-      <div class="detail-view-container">
-        <div class="page-inner__inner">
-          <div class="detail-view__content">
-            <div data-include-path="/components/case-header.html" data-prop-title="부동산 분쟁소송대리지원"></div>
-            <div class="detail-view--content-body">
-              <div data-include-path="/components/button.html" data-prop-label="수정하기"></div>
-            </div>
-          </div>
+
+    <!-- Breadcrumb: Breadcrumb -->
+<div data-include-path="/components/breadcrumb-group.html" data-prop-item1="상담접수 관리"></div>
+
+    <div class="page-layout__page-inner page-layout__page-inner--action">
+      <div class="page-inner__wrap">
+        <div class="page-inner__inner action-box-list">
+
+<!-- BackToList: BackToList -->
+<div data-include-path="/components/back-to-list.html" data-prop-label="목록"></div>
+
+<!-- CaseHeader: CaseHeader -->
+<div data-include-path="/components/case-header.html" data-prop-title="상담접수 내용 상세"></div>
+
+<!-- AttachmentList: AttachmentList -->
+<div data-include-path="/components/attachment-list.html" data-prop-type1="file1"></div>
+
+<!-- ContactBar: ContactBar -->
+<div data-include-path="/components/contact-bar.html" data-prop-category="상담자" data-prop-name="홍길동" data-prop-phone="02-1234-5678"></div>
+
+<!-- QuestionContent: QuestionContent -->
+<div data-include-path="/components/question-content.html" data-prop-description="신청 법률분쟁의 종류"></div>
+
+<!-- AnswerPanel: AnswerPanel -->
+<div data-include-path="/components/answer-panel.html" data-prop-description="답변 내용"></div>
+
+<!-- TagList: TagList -->
+
+<!-- Button: Button -->
+<div data-include-path="/components/button.html" data-prop-label="수정하기"></div>
+
         </div>
       </div>
     </div>
