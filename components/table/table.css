@@ -1,0 +1,101 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  background: var(--table-cell-bg);
+  color: var(--text-default);
+  font-family: var(--font-family, var(--font-family-base));
+  font-size: var(--font-body-table);
+}
+
+.table__caption {
+  margin-bottom: var(--size-12);
+  text-align: left;
+  color: var(--text-subtle);
+  font-size: var(--font-caption-regular);
+}
+
+.table__head .table__cell {
+  background: var(--table-header-bg);
+  border: 1px solid var(--table-header-border);
+  color: var(--text-white);
+  font-weight: var(--font-weight-semibold);
+  text-align: center;
+}
+
+.table__body .table__cell {
+  border: 1px solid var(--table-cell-border);
+  background: var(--table-cell-bg);
+}
+
+.table__cell {
+  padding: var(--size-12) var(--size-16);
+  vertical-align: middle;
+  text-align: left;
+}
+
+.table__cell--row-header {
+  background: var(--table-row-header-bg);
+  border-color: var(--table-row-header-border);
+  font-weight: var(--font-weight-medium);
+}
+
+.table--bordered {
+  border: 1px solid var(--table-border);
+}
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table-wrapper--scroll {
+  max-width: 100%;
+}
+
+@media (max-width: 767px) {
+  .table--stacked {
+    display: block;
+  }
+
+  .table--stacked .table__head {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .table--stacked .table__body,
+  .table--stacked .table__row {
+    display: block;
+  }
+
+  .table--stacked .table__row {
+    margin-bottom: var(--size-16);
+    border: 1px solid var(--table-border);
+  }
+
+  .table--stacked .table__cell {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--size-12);
+    border: 0;
+    border-bottom: 1px solid var(--table-cell-border);
+  }
+
+  .table--stacked .table__cell:last-child {
+    border-bottom: 0;
+  }
+
+  .table--stacked .table__cell::before {
+    content: attr(data-label);
+    flex-shrink: 0;
+    color: var(--text-subtle);
+    font-weight: var(--font-weight-medium);
+  }
+}

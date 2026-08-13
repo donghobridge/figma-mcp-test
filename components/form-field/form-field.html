@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Form Field — Input Reference</title>
+  <link rel="stylesheet" href="/import.css" />
+  <style>
+    body {
+      padding: 4rem 2.4rem;
+      background: var(--surface-default);
+      color: var(--text-default);
+      font-family: var(--font-family, var(--font-family-base));
+    }
+    .demo-section { margin-bottom: 5.6rem; }
+    .demo-title {
+      margin-bottom: 0.8rem;
+      font-size: var(--font-size-20);
+      font-weight: var(--font-weight-bold);
+    }
+    .demo-desc {
+      margin-bottom: 2.4rem;
+      color: var(--text-subtle);
+      font-size: var(--font-body-small);
+    }
+    .demo-stack { display: grid; gap: 3.2rem; max-width: 48rem; }
+    .demo-states {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+      gap: 2.4rem;
+    }
+    .demo-state-label {
+      margin-bottom: 0.8rem;
+      color: var(--text-subtle);
+      font-size: var(--font-caption-regular);
+    }
+  </style>
+</head>
+<body>
+  <h1>Form Field — Input Reference</h1>
+  <p class="demo-desc">Label + Control + Help/Validation 구조. Raw control state grid → <a href="/components/input/input.html">input.html</a></p>
+
+  <!-- 1. Basic Text -->
+  <section class="demo-section">
+    <h2 class="demo-title">1. Basic Text Input</h2>
+    <div class="demo-stack">
+      <div class="form-field">
+        <label class="form-field__label" for="text-lg">Label</label>
+        <div class="form-field__control">
+          <input id="text-lg" type="text" class="input input--lg" placeholder="String value" aria-describedby="text-lg-help" />
+        </div>
+        <p class="form-field__helper" id="text-lg-help">Help text</p>
+      </div>
+      <div class="form-field">
+        <label class="form-field__label" for="text-md">Label</label>
+        <div class="form-field__control">
+          <input id="text-md" type="text" class="input input--md" placeholder="String value" />
+        </div>
+        <p class="form-field__helper">Help text</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Select -->
+  <section class="demo-section">
+    <h2 class="demo-title">2. Select (Native)</h2>
+    <div class="form-field">
+      <label class="form-field__label" for="select-md">Label</label>
+      <div class="form-field__control">
+        <div class="select-field select-field--md">
+          <select id="select-md" class="select-field__control">
+            <option value="">선택</option>
+            <option value="a">Option A</option>
+            <option value="b">Option B</option>
+          </select>
+        </div>
+      </div>
+      <p class="form-field__helper">Native select visual trigger</p>
+    </div>
+  </section>
+
+  <!-- 3. Search -->
+  <section class="demo-section">
+    <h2 class="demo-title">3. Search</h2>
+    <div class="form-field">
+      <label class="form-field__label" for="search-md">Label</label>
+      <div class="form-field__control">
+        <div class="search-field">
+          <div class="input-field input-field--trailing-icon">
+            <input id="search-md" type="search" class="input input--md" placeholder="검색" />
+            <span class="input-field__icon" aria-hidden="true">
+              <svg viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="4.5" stroke="currentColor" stroke-width="1.5"/><path d="m10.5 10.5 3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Date -->
+  <section class="demo-section">
+    <h2 class="demo-title">4. Date</h2>
+    <div class="form-field">
+      <label class="form-field__label" for="date-md">Label</label>
+      <div class="form-field__control">
+        <div class="date-field">
+          <div class="input-field input-field--trailing-icon">
+            <input id="date-md" type="date" class="input input--md" />
+            <span class="input-field__icon" aria-hidden="true">
+              <svg viewBox="0 0 16 16" fill="none"><rect x="2.5" y="3.5" width="11" height="10" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M2.5 6.5h11M5.5 2v2M10.5 2v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </div>
+        </div>
+      </div>
+      <p class="form-field__helper">DatePicker behavior → Headless (후속)</p>
+    </div>
+  </section>
+
+  <!-- 5. Password -->
+  <section class="demo-section">
+    <h2 class="demo-title">5. Password</h2>
+    <div class="form-field">
+      <label class="form-field__label" for="password-md">Label</label>
+      <div class="form-field__control">
+        <div class="password-field">
+          <div class="input-field input-field--trailing-icon">
+            <input id="password-md" type="password" class="input input--md" value="password" autocomplete="off" />
+            <button type="button" class="button button--text button--sm input-field__action" aria-label="비밀번호 표시">👁</button>
+          </div>
+        </div>
+      </div>
+      <p class="form-field__helper">Toggle behavior → Headless (후속). Visual affordance only.</p>
+    </div>
+  </section>
+
+  <!-- 6. Verification / Timer -->
+  <section class="demo-section">
+    <h2 class="demo-title">6. Verification / Timer</h2>
+    <div class="form-field">
+      <label class="form-field__label" for="verify-md">인증번호</label>
+      <div class="form-field__control">
+        <div class="verification-field">
+          <div class="input-field">
+            <input id="verify-md" type="text" class="input input--md" inputmode="numeric" maxlength="6" placeholder="6자리" aria-describedby="verify-help" />
+            <span class="input-field__timer" aria-live="polite">03:00</span>
+          </div>
+        </div>
+      </div>
+      <p class="form-field__helper" id="verify-help">Timer countdown → Headless (후속)</p>
+    </div>
+  </section>
+
+  <!-- 7. Prefix / Composite -->
+  <section class="demo-section">
+    <h2 class="demo-title">7. Prefix / Composite Field</h2>
+    <div class="form-field">
+      <label class="form-field__label" for="composite-md">Label</label>
+      <div class="form-field__control">
+        <div class="composite-field">
+          <div class="input-group">
+            <span class="input-group__prefix">+82 ▾</span>
+            <input id="composite-md" type="tel" class="input input--md" placeholder="010-0000-0000" />
+            <span class="input-group__suffix" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="4.5" stroke="currentColor" stroke-width="1.5"/><path d="m10.5 10.5 3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- States -->
+  <section class="demo-section">
+    <h2 class="demo-title">Validation States (Medium)</h2>
+    <div class="demo-states">
+      <div>
+        <div class="demo-state-label">Error</div>
+        <div class="form-field form-field--error">
+          <label class="form-field__label" for="err-md">Label</label>
+          <div class="form-field__control"><input id="err-md" type="text" class="input input--md input--error" aria-invalid="true" aria-describedby="err-msg" /></div>
+          <p class="form-field__error" id="err-msg" role="alert">Error message</p>
+        </div>
+      </div>
+      <div>
+        <div class="demo-state-label">Warning</div>
+        <div class="form-field form-field--warning">
+          <label class="form-field__label" for="warn-md">Label</label>
+          <div class="form-field__control"><input id="warn-md" type="text" class="input input--md input--warning" aria-describedby="warn-msg" /></div>
+          <p class="form-field__warning" id="warn-msg">Warning message</p>
+        </div>
+      </div>
+      <div>
+        <div class="demo-state-label">Disabled</div>
+        <div class="form-field">
+          <label class="form-field__label" for="dis-md">Label</label>
+          <div class="form-field__control"><input id="dis-md" type="text" class="input input--md" value="Disabled" disabled /></div>
+        </div>
+      </div>
+      <div>
+        <div class="demo-state-label">Readonly</div>
+        <div class="form-field">
+          <label class="form-field__label" for="ro-md">Label</label>
+          <div class="form-field__control"><input id="ro-md" type="text" class="input input--md" value="Readonly" readonly /></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

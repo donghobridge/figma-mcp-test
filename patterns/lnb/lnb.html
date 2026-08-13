@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pattern — LNB</title>
+  <link rel="stylesheet" href="/import.css" />
+  <link rel="stylesheet" href="/patterns/patterns.css" />
+  <link rel="stylesheet" href="/patterns/demo/pattern-demo.css" />
+  <style>
+    .lnb-demo-layout { max-width: var(--lnb-width); }
+  </style>
+</head>
+<body class="pattern-demo">
+  <div class="pattern-demo__body page-container">
+    <h1>LNB Pattern</h1>
+    <p class="pattern-demo__desc">Nested navigation = <code>bindDisclosure()</code> · CSS-only sublist styles are internal elements.</p>
+
+    <section class="pattern-demo__section">
+      <h2 class="pattern-demo__title">Flat + Current</h2>
+      <div class="pattern-demo__frame lnb-demo-layout">
+        <nav class="lnb" aria-label="서비스 메뉴">
+          <ul class="lnb__list">
+            <li class="lnb__item"><a class="lnb__link" href="#" aria-current="page">Section A</a></li>
+            <li class="lnb__item"><a class="lnb__link" href="#">Section B</a></li>
+          </ul>
+        </nav>
+      </div>
+    </section>
+
+    <section class="pattern-demo__section">
+      <h2 class="pattern-demo__title">Nested (Disclosure)</h2>
+      <div class="pattern-demo__frame lnb-demo-layout">
+        <nav class="lnb" aria-label="서비스 메뉴">
+          <ul class="lnb__list">
+            <li class="lnb__item"><a class="lnb__link" href="#">Section A</a></li>
+            <li class="lnb__item">
+              <button type="button" class="lnb__trigger" data-lnb-disclosure aria-expanded="false" aria-controls="lnb-demo-sub">
+                <span>Section B</span><span aria-hidden="true">▾</span>
+              </button>
+              <ul class="lnb__sublist" id="lnb-demo-sub" hidden data-state="closed">
+                <li class="lnb__item"><a class="lnb__link" href="#">Sub B-1</a></li>
+                <li class="lnb__item"><a class="lnb__link" href="#" aria-current="page">Sub B-2 (current)</a></li>
+              </ul>
+            </li>
+            <li class="lnb__item"><a class="lnb__link" href="#">Section C</a></li>
+          </ul>
+        </nav>
+      </div>
+      <p class="pattern-demo__note">Click trigger toggles <code>aria-expanded</code> and panel visibility</p>
+    </section>
+  </div>
+
+  <script type="module">
+    import { initSiteNavigation } from '/patterns/demo/site-navigation.js';
+    initSiteNavigation(document);
+  </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+.drawer {
+  padding: 0;
+  border: 0;
+  margin: 0;
+  max-width: none;
+  max-height: none;
+  height: 100%;
+  background: transparent;
+}
+
+.drawer::backdrop {
+  background: var(--dialog-overlay-bg);
+}
+
+.drawer__panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dialog-gap);
+  width: min(100vw, var(--drawer-width-md));
+  height: 100%;
+  margin-left: auto;
+  padding: var(--dialog-padding);
+  background: var(--surface-elevated);
+  box-shadow: var(--dialog-shadow);
+  color: var(--text-default);
+  font-family: var(--font-family, var(--font-family-base));
+}
+
+.drawer__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--size-12);
+}
+
+.drawer__title {
+  font-size: var(--font-headline-regular);
+  font-weight: var(--font-weight-bold);
+}
+
+.drawer__body {
+  flex: 1 1 auto;
+  overflow: auto;
+}
+
+.drawer[data-state="closed"],
+.drawer:not([open]) {
+  display: none;
+}
+
+.drawer--sm .drawer__panel {
+  width: min(100vw, var(--drawer-width-sm));
+}
+
+.drawer--start .drawer__panel {
+  margin-right: auto;
+  margin-left: 0;
+}

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Divider</title>
+  <link rel="stylesheet" href="/import.css" />
+  <style>
+    body { padding: 4rem 2.4rem; background: var(--surface-default); color: var(--text-default); font-family: var(--font-family, var(--font-family-base)); }
+    .demo-row { display: flex; align-items: center; gap: 1.2rem; min-height: 4rem; }
+  </style>
+</head>
+<body>
+  <h1>Divider</h1>
+  <hr class="divider divider--sm" />
+  <p>Section A</p>
+  <hr class="divider" />
+  <p>Section B</p>
+  <div class="demo-row">
+    <span>Left</span>
+    <hr class="divider divider--vertical" />
+    <span>Right</span>
+  </div>
+</body>
+</html>

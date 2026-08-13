@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Textarea</title>
+  <link rel="stylesheet" href="/import.css" />
+  <style>
+    body { padding: 4rem 2.4rem; background: var(--surface-default); color: var(--text-default); font-family: var(--font-family, var(--font-family-base)); }
+    .demo-stack { display: grid; gap: 1.2rem; max-width: 40rem; }
+  </style>
+</head>
+<body>
+  <h1>Textarea</h1>
+  <div class="demo-stack">
+    <textarea class="textarea textarea--sm" placeholder="Small"></textarea>
+    <textarea class="textarea textarea--md" placeholder="Medium"></textarea>
+    <textarea class="textarea textarea--lg" placeholder="Large"></textarea>
+    <textarea class="textarea textarea--md textarea--error" aria-invalid="true">Error</textarea>
+    <textarea class="textarea textarea--md" disabled>Disabled</textarea>
+  </div>
+</body>
+</html>

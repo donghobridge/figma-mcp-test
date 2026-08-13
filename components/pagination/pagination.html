@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pagination</title>
+  <link rel="stylesheet" href="/import.css" />
+  <style>
+    body { padding: 4rem 2.4rem; background: var(--surface-default); color: var(--text-default); font-family: var(--font-family, var(--font-family-base)); }
+    .demo-section { margin-bottom: 4rem; }
+    .demo-label { margin-bottom: 1.2rem; color: var(--text-subtle); font-size: var(--font-body-small); }
+    .pagination-dots { display: flex; gap: 0.8rem; list-style: none; }
+    .pagination-dots__item { width: 0.8rem; height: 0.8rem; border-radius: var(--radius-round); background: var(--color-neutral-200); }
+    .pagination-dots__item[aria-current="true"] { background: var(--color-neutral-800); }
+  </style>
+</head>
+<body>
+  <h1>Pagination</h1>
+
+  <section class="demo-section">
+    <div class="demo-label">Page number (PC/Mobile shared markup)</div>
+    <nav class="pagination" aria-label="페이지네이션">
+      <ul class="pagination__list">
+        <li><button type="button" class="pagination__item pagination__item--prev" disabled>이전</button></li>
+        <li><a href="#" class="pagination__item pagination__item--current" aria-current="page">1</a></li>
+        <li><a href="#" class="pagination__item">2</a></li>
+        <li><a href="#" class="pagination__item">3</a></li>
+        <li><span class="pagination__item pagination__item--ellipsis" aria-hidden="true">…</span></li>
+        <li><a href="#" class="pagination__item">23</a></li>
+        <li><a href="#" class="pagination__item pagination__item--next">다음</a></li>
+      </ul>
+    </nav>
+  </section>
+
+  <section class="demo-section">
+    <div class="demo-label">Dot pagination — Carousel Pattern (NOT page pagination variant)</div>
+    <ul class="pagination-dots" aria-label="슬라이드 위치">
+      <li class="pagination-dots__item" aria-current="true" aria-label="1번 슬라이드"></li>
+      <li class="pagination-dots__item" aria-label="2번 슬라이드"></li>
+      <li class="pagination-dots__item" aria-label="3번 슬라이드"></li>
+    </ul>
+    <p style="margin-top:1rem;color:var(--text-subtle);font-size:var(--font-body-small);">Reference dot → Carousel Pattern 후속. Page Pagination Component와 분리.</p>
+  </section>
+</body>
+</html>

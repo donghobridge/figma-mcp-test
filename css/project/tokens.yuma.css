@@ -1,0 +1,249 @@
+/*
+ * Project Tokens v0.1
+ * Yellow Umbrella
+ *
+ * 프로젝트 고유 Brand / Domain / Layout
+ */
+
+
+/* =========================================================
+ * 1. Brand
+ * ======================================================= */
+
+:root {
+  /*
+   * 다른 프로젝트와 비교 후
+   * Base typography로 승격할지 판단.
+   */
+  --font-family: PretendardGOV, Pretendard, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, "Apple SD Gothic Neo", "Noto Sans KR",
+    "Malgun Gothic", sans-serif;
+
+
+  /* primary brand */
+  --color-primary-100: #fffdf0;
+  --color-primary-200: #fff8cc;
+  --color-primary-300: #ffef8a;
+  --color-primary-400: #ffe74d;
+  --color-primary-450: #c4c0a6;
+  --color-primary-500: #ffdd00;
+  --color-primary-550: #e2c712;
+  --color-primary-600: #c2a800;
+  --color-primary-650: #a38d00;
+  --color-primary-700: #857300;
+  --color-primary-750: #575547;
+  --color-primary-800: #524700;
+  --color-primary-900: #2e2800;
+
+
+  /* project accent */
+  --color-primary-green-dark: #95c53d;
+  --color-primary-green-light: #bed730;
+
+
+  /* logo */
+  --logo-primary: var(--color-primary-500);
+  --logo-line: #221e1f;
+  --logo-point: #d12838;
+}
+
+
+/* =========================================================
+ * 2. Domain Color
+ * ======================================================= */
+
+:root {
+  /* pastel */
+  --color-pastel-brown-bg: #ddd2c8;
+  --color-pastel-green-bg: #c6d9b2;
+  --color-pastel-grayish-bg: #d1d7d3;
+  --color-pastel-blue-bg: #bcd7ea;
+  --color-pastel-pink-bg: #dbc8db;
+  --color-pastel-bagie-bg: #e5e3c7;
+  --color-pastel-turquoise-bg: #b7d7d4;
+
+  --color-pastel-brown-text: #b09e8f;
+  --color-pastel-green-text: #587933;
+  --color-pastel-grayish-text: #5f6479;
+  --color-pastel-blue-text: #8ab5d3;
+  --color-pastel-pink-text: #b7a2b7;
+  --color-pastel-bagie-text: #c4c2a5;
+  --color-pastel-turquoise-text: #63908c;
+
+
+  /* graph */
+  --color-graphic-100: #ffdd00;
+  --color-graphic-200: #dfa920;
+  --color-graphic-300: #ff9d00;
+  --color-graphic-400: #ff7700;
+  --color-graphic-500: #ff5900;
+
+
+  /* membership */
+  --color-gold: #c2a800;
+  --color-silver: #b1b6bf;
+  --color-bronze: #bcaea4;
+}
+
+
+/* =========================================================
+ * 3. Project Semantic / Component
+ * ======================================================= */
+
+:root {
+  --text-default-yellow: var(--color-neutral-black);
+  --text-secondary: var(--color-pastel-turquoise-text);
+
+  --icon-default-yellow: var(--color-neutral-black);
+
+  --border-yellow: var(--color-primary-700);
+  --border-green: var(--color-primary-green-dark);
+
+  --element-primary-green: var(--color-primary-green-dark);
+
+
+  /* graph */
+  --element-graph-100: var(--color-graphic-100);
+  --element-graph-200: var(--color-graphic-200);
+  --element-graph-300: var(--color-graphic-300);
+  --element-graph-400: var(--color-graphic-400);
+  --element-graph-500: var(--color-graphic-500);
+
+
+  /* category */
+  --element-pastel-legal: var(--color-pastel-brown-bg);
+  --element-pastel-legal-text: var(--color-pastel-brown-text);
+
+  --element-pastel-people: var(--color-pastel-green-bg);
+  --element-pastel-people-text: var(--color-pastel-green-text);
+
+  --element-pastel-tax: var(--color-pastel-grayish-bg);
+  --element-pastel-tax-text: var(--color-pastel-grayish-text);
+  --element-pastel-tax-text-fixed:
+    var(--color-pastel-grayish-text);
+
+  --element-pastel-trade: var(--color-pastel-blue-bg);
+  --element-pastel-trade-text: var(--color-pastel-blue-text);
+
+  --element-pastel-idea: var(--color-pastel-pink-bg);
+  --element-pastel-idea-text: var(--color-pastel-pink-text);
+
+  --element-pastel-consulting:
+    var(--color-pastel-turquoise-bg);
+
+  --element-pastel-consulting-fixed:
+    var(--color-pastel-turquoise-bg);
+
+  --element-pastel-consulting-text:
+    var(--color-pastel-turquoise-text);
+
+  --element-pastel-medicine:
+    var(--color-pastel-bagie-bg);
+
+  --element-pastel-medicine-text:
+    var(--color-pastel-bagie-text);
+
+
+  /* component */
+  --bookmark-bg: var(--color-transparent);
+  --banner-bg: var(--color-primary-200);
+
+  --member-gold: var(--color-gold);
+  --member-silver: var(--color-silver);
+  --member-bronze: var(--color-bronze);
+
+  --button-secondary-text-yellow:
+    var(--color-neutral-black);
+}
+
+
+/* =========================================================
+ * 4. Project Layout
+ * ======================================================= */
+
+:root {
+  --width-gnb-head: 100%;
+  --width-action-content: 66rem;
+
+  --width-card-content-large: 34.5rem;
+  --width-card-content-small: 34.5rem;
+
+  --width-modal-medium: 35.3rem;
+  --width-modal-small: 35.3rem;
+
+  --width-logo: var(--size-34);
+
+
+  --padding-title-top: var(--size-16);
+  --padding-title-bottom: var(--size-24);
+
+  --padding-y-top: var(--size-32);
+  --padding-y-bottom: var(--size-60);
+
+  --padding-y-large: var(--size-120);
+  --padding-y: var(--size-80);
+
+  --padding-x: var(--size-24);
+  --padding-x-small: var(--size-24);
+}
+
+
+/* Tablet */
+
+@media (min-width: 768px) {
+  :root {
+    --width-gnb-head: 100%;
+
+    --width-card-content-large: 72rem;
+    --width-card-content-small: 62rem;
+
+    --width-modal-medium: 66rem;
+    --width-modal-small: 56rem;
+
+    --width-logo: var(--size-56);
+
+
+    --padding-title-top: var(--size-32);
+    --padding-title-bottom: var(--size-48);
+
+    --padding-y-top: var(--size-48);
+    --padding-y-bottom: var(--size-80);
+
+    --padding-y-large: var(--size-100);
+    --padding-y: var(--size-80);
+
+    --padding-x: var(--size-34);
+    --padding-x-small: var(--size-24);
+  }
+}
+
+
+/* PC */
+
+@media (min-width: 1024px) {
+  :root {
+    --width-gnb-head: 127.2rem;
+
+    --width-card-content-large: 96rem;
+    --width-card-content-small: 66rem;
+
+    --width-modal-medium: 56rem;
+    --width-modal-small: 48rem;
+
+    --width-logo: var(--size-80);
+
+
+    --padding-title-top: var(--size-48);
+    --padding-title-bottom: var(--size-60);
+
+    --padding-y-top: var(--size-60);
+    --padding-y-bottom: var(--size-100);
+
+    --padding-y-large: var(--size-120);
+    --padding-y: var(--size-80);
+
+    --padding-x: var(--size-360);
+    --padding-x-small: var(--size-100);
+  }
+}

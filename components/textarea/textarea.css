@@ -1,0 +1,65 @@
+.textarea {
+  display: block;
+  width: 100%;
+  min-height: var(--textarea-min-height-md);
+  padding: var(--textarea-padding-y) var(--textarea-padding-x);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--input-border-default);
+  border-radius: var(--input-radius-md);
+  background: var(--input-bg);
+  color: var(--input-text);
+  font-family: var(--font-family, var(--font-family-base));
+  font-size: var(--input-font-size-md);
+  line-height: 1.5;
+  resize: vertical;
+  appearance: none;
+  transition:
+    border-color 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.textarea::placeholder {
+  color: var(--input-text-placeholder);
+}
+
+.textarea:hover:not(:disabled):not(:read-only) {
+  border-color: var(--input-border-hover);
+}
+
+.textarea:focus {
+  outline: none;
+}
+
+.textarea:focus-visible {
+  border-color: var(--input-border-focused);
+  outline: var(--input-focus-ring-width) solid var(--input-focus-ring-color);
+  outline-offset: var(--input-focus-ring-offset);
+}
+
+.textarea:disabled {
+  background: var(--input-bg-disabled);
+  border-color: var(--input-border-disabled);
+  color: var(--input-text-disabled);
+  cursor: not-allowed;
+}
+
+.textarea--sm {
+  min-height: var(--textarea-min-height-sm);
+  font-size: var(--input-font-size-sm);
+}
+
+.textarea--md {
+  min-height: var(--textarea-min-height-md);
+  font-size: var(--input-font-size-md);
+}
+
+.textarea--lg {
+  min-height: var(--textarea-min-height-lg);
+  font-size: var(--input-font-size-lg);
+  border-radius: var(--input-radius-lg);
+}
+
+.textarea--error {
+  border-color: var(--input-border-error);
+}

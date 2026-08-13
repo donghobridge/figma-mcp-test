@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Input — Control States</title>
+  <link rel="stylesheet" href="/import.css" />
+  <style>
+    body {
+      padding: 4rem 2.4rem;
+      background: var(--surface-default);
+      color: var(--text-default);
+      font-family: var(--font-family, var(--font-family-base));
+    }
+    .demo-section { margin-bottom: 4rem; }
+    .demo-label { margin-bottom: 1.2rem; color: var(--text-subtle); font-size: var(--font-body-small); }
+    .demo-grid {
+      display: grid;
+      grid-template-columns: 13rem repeat(4, minmax(12rem, 1fr));
+      gap: 1.6rem 2rem;
+      align-items: center;
+      max-width: 90rem;
+    }
+    .demo-head { color: var(--text-subtle); font-size: var(--font-caption-regular); }
+    .demo-size { color: var(--text-subtle); font-size: var(--font-caption-regular); }
+    .demo-note { margin-bottom: 2rem; color: var(--text-subtle); font-size: var(--font-body-small); }
+  </style>
+</head>
+<body>
+  <h1>Input — Control States</h1>
+  <p class="demo-note">Label/Help/Pattern demos → <a href="/components/form-field/form-field.html">form-field.html</a></p>
+
+  <section class="demo-section">
+    <div class="demo-label">Medium — Reference size</div>
+    <div class="demo-grid">
+      <div class="demo-head">Size</div>
+      <div class="demo-head">Default</div>
+      <div class="demo-head">Filled</div>
+      <div class="demo-head">Focus (tab)</div>
+      <div class="demo-head">Disabled</div>
+
+      <div class="demo-size">Medium</div>
+      <input type="text" class="input input--md" placeholder="String value" />
+      <input type="text" class="input input--md" value="Filled value" />
+      <input type="text" class="input input--md" value="Focus me" />
+      <input type="text" class="input input--md" value="Disabled" disabled />
+
+      <div class="demo-size">Large</div>
+      <input type="text" class="input input--lg" placeholder="String value" />
+      <input type="text" class="input input--lg" value="Filled value" />
+      <input type="text" class="input input--lg" value="Focus me" />
+      <input type="text" class="input input--lg" value="Disabled" disabled />
+    </div>
+    <p style="margin-top:1.2rem;color:var(--text-subtle);font-size:var(--font-caption-regular);">Hover는 마우스로 확인 · Warning/Error는 form-field demo 참조</p>
+  </section>
+
+  <section class="demo-section">
+    <div class="demo-label">Validation modifiers (control only)</div>
+    <div style="display:grid;gap:1.2rem;max-width:32rem;">
+      <input type="text" class="input input--md input--warning" value="Warning border" />
+      <input type="text" class="input input--md input--error" value="Error border" aria-invalid="true" />
+      <input type="text" class="input input--md" value="Readonly" readonly />
+    </div>
+  </section>
+</body>
+</html>

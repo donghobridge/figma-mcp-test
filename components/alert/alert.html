@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alert</title>
+  <link rel="stylesheet" href="/import.css" />
+  <style>
+    body { padding: 4rem 2.4rem; background: var(--surface-default); color: var(--text-default); font-family: var(--font-family, var(--font-family-base)); }
+    .demo-stack { display: grid; gap: 1.2rem; max-width: 40rem; }
+  </style>
+</head>
+<body>
+  <h1>Alert</h1>
+  <div class="demo-stack">
+    <div class="alert alert--neutral" role="status"><strong class="alert__title">Neutral</strong><span class="alert__content">Message</span></div>
+    <div class="alert alert--info" role="status"><strong class="alert__title">Info</strong><span class="alert__content">Message</span></div>
+    <div class="alert alert--success" role="status"><strong class="alert__title">Success</strong><span class="alert__content">Message</span></div>
+    <div class="alert alert--warning" role="status"><strong class="alert__title">Warning</strong><span class="alert__content">Message</span></div>
+    <div class="alert alert--error" role="alert"><strong class="alert__title">Error</strong><span class="alert__content">Message</span></div>
+  </div>
+</body>
+</html>

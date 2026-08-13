@@ -1,0 +1,15 @@
+.content-with-lnb {
+  display: grid;
+  gap: var(--size-24);
+}
+
+@media (min-width: 768px) {
+  .content-with-lnb {
+    grid-template-columns: var(--lnb-width) minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
+.content-with-lnb__main {
+  min-width: 0;
+}

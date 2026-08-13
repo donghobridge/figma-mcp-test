@@ -1,0 +1,49 @@
+.menu {
+  min-width: var(--menu-min-width);
+  padding: var(--menu-padding-y) var(--menu-padding-x);
+  border: 1px solid var(--menu-border);
+  border-radius: var(--menu-radius);
+  background: var(--menu-bg);
+  box-shadow: var(--menu-shadow);
+  font-family: var(--font-family, var(--font-family-base));
+}
+
+.menu__item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: var(--menu-item-padding-y) var(--menu-item-padding-x);
+  border: 0;
+  border-radius: var(--menu-item-radius);
+  background: transparent;
+  color: var(--menu-item-text);
+  font-size: var(--font-body-small);
+  text-align: left;
+  cursor: pointer;
+}
+
+.menu__item:hover:not(:disabled):not([aria-disabled="true"]),
+.menu__item:focus-visible {
+  background: var(--menu-item-bg-hover);
+  outline: none;
+}
+
+.menu__item[aria-disabled="true"],
+.menu__item:disabled {
+  color: var(--menu-item-text-disabled);
+  cursor: not-allowed;
+}
+
+.menu__item[aria-selected="true"],
+.menu__item[data-state="selected"] {
+  background: var(--menu-item-bg-selected);
+}
+
+.menu[data-state="closed"],
+.menu[hidden] {
+  display: none;
+}
+
+.menu-trigger {
+  display: inline-flex;
+}

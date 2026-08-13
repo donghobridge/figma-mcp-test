@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drawer</title>
+  <link rel="stylesheet" href="/import.css" />
+  <style>
+    body { padding: 4rem 2.4rem; background: var(--surface-default); color: var(--text-default); font-family: var(--font-family, var(--font-family-base)); }
+  </style>
+</head>
+<body>
+  <h1>Drawer</h1>
+  <p>Mobile navigation pattern base — reuses Dialog controller</p>
+
+  <button type="button" class="button button--primary button--md" id="open-drawer">Open Drawer</button>
+
+  <dialog class="drawer drawer--start" id="demo-drawer" data-state="closed" aria-labelledby="drawer-title">
+    <div class="drawer__panel">
+      <div class="drawer__header">
+        <h2 class="drawer__title" id="drawer-title">Navigation</h2>
+        <button type="button" class="button button--text button--sm" data-dialog-close aria-label="닫기">×</button>
+      </div>
+      <nav class="drawer__body" aria-label="모바일 메뉴">
+        <ul style="list-style:none;padding:0;margin:0;display:grid;gap:0.8rem;">
+          <li><a href="#" class="button button--text button--md" style="width:100%;justify-content:flex-start;">Menu 1</a></li>
+          <li><a href="#" class="button button--text button--md" style="width:100%;justify-content:flex-start;">Menu 2</a></li>
+          <li><a href="#" class="button button--text button--md" style="width:100%;justify-content:flex-start;">Menu 3</a></li>
+        </ul>
+      </nav>
+    </div>
+  </dialog>
+
+  <script type="module">
+    import { createDrawer } from '/headless/controllers/drawer.js';
+
+    const drawerEl = document.getElementById('demo-drawer');
+    const trigger = document.getElementById('open-drawer');
+    const drawer = createDrawer(drawerEl);
+
+    trigger.addEventListener('click', () => drawer.open(trigger));
+  </script>
+</body>
+</html>

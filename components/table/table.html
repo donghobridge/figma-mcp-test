@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Table</title>
+  <link rel="stylesheet" href="/import.css" />
+  <style>
+    body { padding: 4rem 2.4rem; background: var(--surface-default); color: var(--text-default); font-family: var(--font-family, var(--font-family-base)); }
+    .demo-block { margin-bottom: 4rem; }
+    .demo-note { margin-top: 1rem; color: var(--text-subtle); font-size: var(--font-body-small); }
+  </style>
+</head>
+<body>
+  <h1>Table</h1>
+
+  <div class="demo-block">
+    <h2>Data Table</h2>
+    <div class="table-wrapper table-wrapper--scroll">
+      <table class="table table--bordered">
+        <caption class="table__caption">Data Table</caption>
+        <thead class="table__head">
+          <tr class="table__row">
+            <th scope="col" class="table__cell">이름</th>
+            <th scope="col" class="table__cell">정보</th>
+          </tr>
+        </thead>
+        <tbody class="table__body">
+          <tr class="table__row">
+            <th scope="row" class="table__cell table__cell--row-header">항목</th>
+            <td class="table__cell">정보(Data)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="demo-block">
+    <h2>Key-Value Table (Reference Table A)</h2>
+    <table class="table table--bordered">
+      <caption class="table__caption">Key-Value / Description list pattern</caption>
+      <tbody class="table__body">
+        <tr class="table__row">
+          <th scope="row" class="table__cell table__cell--row-header">이름</th>
+          <td class="table__cell">정보(Data)</td>
+        </tr>
+        <tr class="table__row">
+          <th scope="row" class="table__cell table__cell--row-header">가입증명서 약관 수령 방법</th>
+          <td class="table__cell">2line value example</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="demo-note">Mobile stacked layout → <code>table--stacked</code> + <code>data-label</code></p>
+  </div>
+
+  <div class="demo-block">
+    <h2>Responsive stacked (Table A mobile)</h2>
+    <table class="table table--stacked">
+      <thead class="table__head">
+        <tr class="table__row">
+          <th scope="col" class="table__cell">이름</th>
+          <th scope="col" class="table__cell">정보</th>
+        </tr>
+      </thead>
+      <tbody class="table__body">
+        <tr class="table__row">
+          <td class="table__cell" data-label="이름">이름</td>
+          <td class="table__cell" data-label="정보">정보(Data)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="demo-block">
+    <h2>Reference Table B — Segmented Data Grid</h2>
+    <p class="demo-note">Promotion Candidate / Project Pattern. Base에 table--b variant 없음. Segmented corner radius grid는 프로젝트 Data Table pattern 후속.</p>
+  </div>
+</body>
+</html>

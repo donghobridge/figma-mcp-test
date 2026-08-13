@@ -1,0 +1,80 @@
+.pagination {
+  display: block;
+}
+
+.pagination__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--pagination-gap);
+  list-style: none;
+}
+
+.pagination__item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--pagination-item-size);
+  min-height: var(--pagination-item-size);
+  padding-inline: var(--size-8);
+  border: 0;
+  border-radius: var(--pagination-item-radius);
+  background: var(--pagination-item-bg);
+  color: var(--pagination-item-text);
+  font-family: var(--font-family, var(--font-family-base));
+  font-size: var(--pagination-font-size);
+  font-weight: var(--pagination-font-weight);
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  appearance: none;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.pagination__item:hover:not(:disabled):not([aria-disabled="true"]):not([aria-current="page"]) {
+  background: var(--pagination-item-bg-hover);
+  color: var(--pagination-item-text-hover);
+}
+
+.pagination__item:active:not(:disabled):not([aria-disabled="true"]):not([aria-current="page"]) {
+  background: var(--pagination-item-bg-pressed);
+}
+
+.pagination__item:focus {
+  outline: none;
+}
+
+.pagination__item:focus-visible {
+  outline: var(--button-focus-ring-width) solid var(--button-focus-ring-color);
+  outline-offset: var(--button-focus-ring-offset);
+}
+
+.pagination__item[aria-current="page"],
+.pagination__item--current {
+  background: var(--pagination-item-bg-current);
+  color: var(--pagination-item-text-current);
+  cursor: default;
+  pointer-events: none;
+}
+
+.pagination__item:disabled,
+.pagination__item[aria-disabled="true"] {
+  background: var(--pagination-item-bg-disabled);
+  color: var(--pagination-item-text-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.pagination__item--ellipsis {
+  min-width: auto;
+  padding-inline: var(--size-4);
+  cursor: default;
+  pointer-events: none;
+}
+
+.pagination__item--prev,
+.pagination__item--next {
+  padding-inline: var(--size-12);
+}

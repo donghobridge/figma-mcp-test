@@ -1,0 +1,22 @@
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  padding: var(--skip-link-padding-y) var(--skip-link-padding-x);
+  border-radius: 0 0 var(--radius-8) 0;
+  background: var(--skip-link-bg);
+  color: var(--skip-link-text);
+  font-family: var(--font-family, var(--font-family-base));
+  font-size: var(--font-body-small);
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+  transform: translateY(-120%);
+  transition: transform 0.15s ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+  outline: var(--input-focus-ring-width) solid var(--input-focus-ring-color);
+  outline-offset: var(--input-focus-ring-offset);
+}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Selectable Card</title>
+  <link rel="stylesheet" href="/import.css" />
+  <style>
+    body { padding: 4rem 2.4rem; background: var(--surface-default); color: var(--text-default); font-family: var(--font-family, var(--font-family-base)); }
+    .demo-section { margin-bottom: 4rem; }
+    .demo-label { margin-bottom: 1.2rem; color: var(--text-subtle); font-size: var(--font-body-small); }
+    .demo-row { display: flex; flex-wrap: wrap; gap: 1.2rem; }
+    .demo-grid { display: grid; gap: 1.2rem; max-width: 48rem; }
+  </style>
+</head>
+<body>
+  <h1>Selectable Card</h1>
+  <p>Composite Pattern. Reference <strong>Box</strong> / <strong>Box Multi</strong> mapping. Not Checkbox variant.</p>
+
+  <section class="demo-section">
+    <div class="demo-label">Box — multiple selection (checkbox)</div>
+    <div class="demo-row">
+      <label class="selectable-card selectable-card--md">
+        <input type="checkbox" class="selectable-card__input" />
+        <span class="selectable-card__surface">
+          <span class="selectable-card__indicator" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6.2 5 8.7 9.5 3.3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="selectable-card__label">Option</span>
+        </span>
+      </label>
+      <label class="selectable-card selectable-card--md">
+        <input type="checkbox" class="selectable-card__input" checked />
+        <span class="selectable-card__surface">
+          <span class="selectable-card__indicator" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6.2 5 8.7 9.5 3.3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="selectable-card__label">Selected</span>
+        </span>
+      </label>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <div class="demo-label">Box — single selection (radio)</div>
+    <div class="demo-row">
+      <label class="selectable-card selectable-card--sm">
+        <input type="radio" name="card-single" class="selectable-card__input" checked />
+        <span class="selectable-card__surface">
+          <span class="selectable-card__indicator" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6.2 5 8.7 9.5 3.3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="selectable-card__label">Small</span>
+        </span>
+      </label>
+      <label class="selectable-card selectable-card--md">
+        <input type="radio" name="card-single" class="selectable-card__input" />
+        <span class="selectable-card__surface">
+          <span class="selectable-card__indicator" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6.2 5 8.7 9.5 3.3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="selectable-card__label">Medium</span>
+        </span>
+      </label>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <div class="demo-label">Box Multi — block card</div>
+    <div class="demo-grid">
+      <label class="selectable-card selectable-card--lg selectable-card--block">
+        <input type="checkbox" class="selectable-card__input" />
+        <span class="selectable-card__surface">
+          <span class="selectable-card__header">
+            <span class="selectable-card__indicator" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6.2 5 8.7 9.5 3.3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="selectable-card__label">Header</span>
+          </span>
+          <span class="selectable-card__description">정보(Data)</span>
+        </span>
+      </label>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <div class="demo-label">Reference Check indicator — not implemented as standalone Base (Promotion Candidate)</div>
+    <p style="color:var(--text-subtle);font-size:var(--font-body-small);">Icon-only check list item는 Selectable Item pattern 후속 검토.</p>
+  </section>
+</body>
+</html>

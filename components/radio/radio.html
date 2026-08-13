@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Radio</title>
+  <link rel="stylesheet" href="/import.css" />
+  <style>
+    body { padding: 4rem 2.4rem; background: var(--surface-default); color: var(--text-default); font-family: var(--font-family, var(--font-family-base)); }
+    .demo-section { margin-bottom: 3.2rem; }
+    .demo-label { margin-bottom: 1.2rem; color: var(--text-subtle); font-size: var(--font-body-small); }
+    .demo-stack { display: grid; gap: 1.2rem; max-width: 32rem; }
+    .demo-row { display: flex; flex-wrap: wrap; gap: 2rem; align-items: flex-start; }
+  </style>
+</head>
+<body>
+  <h1>Radio</h1>
+  <p>Reference <strong>Round</strong> → Radio (not Checkbox variant)</p>
+
+  <section class="demo-section">
+    <div class="demo-label">Size — sm / md / lg</div>
+    <div class="demo-row">
+      <label class="radio radio--sm"><input type="radio" name="size-sm" class="radio__input" checked /><span class="radio__control" aria-hidden="true"></span><span class="radio__label">Small</span></label>
+      <label class="radio radio--md"><input type="radio" name="size-md" class="radio__input" checked /><span class="radio__control" aria-hidden="true"></span><span class="radio__label">Medium</span></label>
+      <label class="radio radio--lg"><input type="radio" name="size-lg" class="radio__input" checked /><span class="radio__control" aria-hidden="true"></span><span class="radio__label">Large</span></label>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <div class="demo-label">State</div>
+    <div class="demo-stack">
+      <label class="radio radio--md"><input type="radio" name="state" class="radio__input" /><span class="radio__control" aria-hidden="true"></span><span class="radio__label">Unchecked</span></label>
+      <label class="radio radio--md"><input type="radio" name="state" class="radio__input" checked /><span class="radio__control" aria-hidden="true"></span><span class="radio__label">Checked</span></label>
+      <label class="radio radio--md"><input type="radio" name="state-disabled" class="radio__input" disabled /><span class="radio__control" aria-hidden="true"></span><span class="radio__label">Disabled</span></label>
+      <label class="radio radio--md"><input type="radio" name="state-disabled" class="radio__input" checked disabled /><span class="radio__control" aria-hidden="true"></span><span class="radio__label">Disabled + Checked</span></label>
+    </div>
+  </section>
+</body>
+</html>

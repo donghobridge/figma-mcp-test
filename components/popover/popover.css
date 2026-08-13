@@ -1,0 +1,39 @@
+.popover {
+  position: relative;
+  display: block;
+  max-width: var(--tooltip-max-width);
+  padding: var(--popover-padding);
+  border: 1px solid var(--popover-border);
+  border-radius: var(--popover-radius);
+  background: var(--popover-bg);
+  box-shadow: var(--popover-shadow);
+  color: var(--popover-text);
+  font-family: var(--font-family, var(--font-family-base));
+  font-size: var(--font-body-small);
+  line-height: 1.5;
+}
+
+.popover__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--size-8);
+  margin-bottom: var(--size-8);
+}
+
+.popover__title {
+  font-weight: var(--font-weight-semibold);
+}
+
+.popover__close {
+  flex-shrink: 0;
+}
+
+.popover__content {
+  display: block;
+}
+
+.popover[data-state="closed"],
+.popover[hidden] {
+  display: none;
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Status</title>
+  <link rel="stylesheet" href="/import.css" />
+  <style>
+    body { padding: 4rem 2.4rem; background: var(--surface-default); color: var(--text-default); font-family: var(--font-family, var(--font-family-base)); }
+    .demo-section { margin-bottom: 2.4rem; }
+    .demo-label { margin-bottom: 1.2rem; color: var(--text-subtle); font-size: var(--font-body-small); }
+    .demo-row { display: flex; flex-wrap: wrap; gap: 1.2rem; }
+  </style>
+</head>
+<body>
+  <h1>Status</h1>
+  <p>Reference 업무 상태(신청/완료/승인…) → Project에서 semantic status로 mapping</p>
+  <section class="demo-section">
+    <div class="demo-label">Medium</div>
+    <div class="demo-row">
+      <span class="status status--neutral status--md"><span class="status__dot" aria-hidden="true"></span><span class="status__label">Neutral</span></span>
+      <span class="status status--info status--md"><span class="status__dot" aria-hidden="true"></span><span class="status__label">Info</span></span>
+      <span class="status status--success status--md"><span class="status__dot" aria-hidden="true"></span><span class="status__label">Success</span></span>
+      <span class="status status--warning status--md"><span class="status__dot" aria-hidden="true"></span><span class="status__label">Warning</span></span>
+      <span class="status status--error status--md"><span class="status__dot" aria-hidden="true"></span><span class="status__label">Error</span></span>
+      <span class="status status--inactive status--md"><span class="status__dot" aria-hidden="true"></span><span class="status__label">Inactive</span></span>
+    </div>
+  </section>
+  <section class="demo-section">
+    <div class="demo-label">Small</div>
+    <div class="demo-row">
+      <span class="status status--success status--sm"><span class="status__dot" aria-hidden="true"></span><span class="status__label">Success</span></span>
+      <span class="status status--error status--sm"><span class="status__dot" aria-hidden="true"></span><span class="status__label">Error</span></span>
+    </div>
+  </section>
+</body>
+</html>

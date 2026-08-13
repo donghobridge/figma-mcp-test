@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Popover</title>
+  <link rel="stylesheet" href="/import.css" />
+  <style>
+    body { padding: 4rem 2.4rem; background: var(--surface-default); color: var(--text-default); font-family: var(--font-family, var(--font-family-base)); }
+    .demo-wrap { position: relative; display: inline-block; }
+    .popover { position: absolute; top: calc(100% + 0.8rem); left: 0; z-index: 10; min-width: 24rem; }
+  </style>
+</head>
+<body>
+  <h1>Popover</h1>
+  <p>Dismissable Layer + Escape + Outside click</p>
+
+  <div class="demo-wrap">
+    <button type="button" class="button button--secondary button--md" id="popover-trigger" aria-expanded="false" aria-controls="demo-popover">Open Popover</button>
+    <div class="popover" id="demo-popover" role="dialog" hidden data-state="closed" aria-labelledby="popover-title">
+      <div class="popover__header">
+        <strong class="popover__title" id="popover-title">Popover title</strong>
+        <button type="button" class="button button--text button--sm popover__close" data-popover-close aria-label="닫기">×</button>
+      </div>
+      <div class="popover__content">
+        <p>Interactive content with close action.</p>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { createPopover } from '/headless/controllers/popover.js';
+    createPopover(
+      document.getElementById('popover-trigger'),
+      document.getElementById('demo-popover'),
+    );
+  </script>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Web Patterns — Integration Demo</title>
+  <link rel="stylesheet" href="/import.css" />
+  <link rel="stylesheet" href="/patterns/patterns.css" />
+  <link rel="stylesheet" href="/patterns/demo/pattern-demo.css" />
+  <style>
+    body.pattern-demo { display: flex; flex-direction: column; min-height: 100vh; }
+    .pattern-demo__content { flex: 1 1 auto; padding-block: var(--size-24); }
+  </style>
+</head>
+<body class="pattern-demo">
+  <a class="skip-link" href="#main-content">본문 바로가기</a>
+
+  <header class="site-header">
+    <div class="site-header__inner page-container">
+      <a class="site-header__brand" href="#">Logo</a>
+
+      <div class="site-header__nav site-header__nav--desktop">
+        <nav class="gnb gnb--desktop" aria-label="주요 메뉴">
+          <ul class="gnb__list">
+            <li class="gnb__item">
+              <a class="gnb__link" href="#" aria-current="page">Menu 1</a>
+            </li>
+            <li class="gnb__item">
+              <button type="button" class="gnb__trigger" data-dropdown-trigger aria-haspopup="menu" aria-expanded="false" aria-controls="gnb-menu-2">Menu 2 ▾</button>
+              <div class="menu gnb__menu" id="gnb-menu-2" role="menu" hidden data-state="closed">
+                <button type="button" class="menu__item" role="menuitem">Sub Item A</button>
+                <button type="button" class="menu__item" role="menuitem">Sub Item B</button>
+              </div>
+            </li>
+            <li class="gnb__item">
+              <button type="button" class="gnb__trigger" data-dropdown-trigger aria-haspopup="true" aria-expanded="false" aria-controls="gnb-mega-3">Menu 3 ▾</button>
+              <div class="gnb__mega" id="gnb-mega-3" hidden data-state="closed" role="region" aria-label="Menu 3">
+                <div class="gnb__mega-grid">
+                  <div>
+                    <div class="gnb__mega-title">Group A</div>
+                    <ul class="gnb__mega-links">
+                      <li><a href="#">Link A-1</a></li>
+                      <li><a href="#">Link A-2</a></li>
+                    </ul>
+                  </div>
+                  <div>
+                    <div class="gnb__mega-title">Group B</div>
+                    <ul class="gnb__mega-links">
+                      <li><a href="#">Link B-1</a></li>
+                      <li><a href="#">Link B-2</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="gnb__item"><a class="gnb__link" href="#">Menu 4</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="site-header__utility site-header__utility--desktop">
+        <div class="site-header__search">
+          <div class="search-field">
+            <div class="input-field input-field--trailing-icon">
+              <input type="search" class="input input--sm" placeholder="Search" aria-label="Search" />
+              <span class="input-field__icon" aria-hidden="true">
+                <svg viewBox="0 0 16 16" width="16" height="16" fill="none"><circle cx="7" cy="7" r="4.5" stroke="currentColor" stroke-width="1.5"/><path d="m10.5 10.5 3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+            </div>
+          </div>
+        </div>
+        <select class="select-field__control site-header__language" aria-label="Language">
+          <option>Language</option>
+          <option>KO</option>
+          <option>EN</option>
+        </select>
+        <div class="site-header__actions">
+          <button type="button" class="button button--text button--sm" data-dropdown-trigger aria-haspopup="menu" aria-expanded="false" aria-controls="user-menu">Account ▾</button>
+          <div class="menu" id="user-menu" role="menu" hidden data-state="closed">
+            <button type="button" class="menu__item" role="menuitem">My Page</button>
+            <button type="button" class="menu__item" role="menuitem">Settings</button>
+            <button type="button" class="menu__item" role="menuitem">Logout</button>
+          </div>
+        </div>
+      </div>
+
+      <button type="button" class="button button--secondary button--sm site-header__menu-trigger" data-mobile-nav-trigger aria-label="메뉴 열기">☰</button>
+    </div>
+  </header>
+
+  <div class="page-container pattern-demo__content">
+    <nav class="breadcrumb" aria-label="현재 위치">
+      <ol class="breadcrumb__list">
+        <li class="breadcrumb__item"><a class="breadcrumb__link" href="#">Home</a></li>
+        <li class="breadcrumb__item"><a class="breadcrumb__link" href="#">Service</a></li>
+        <li class="breadcrumb__item" aria-current="page">Page</li>
+      </ol>
+    </nav>
+
+    <div class="content-with-lnb">
+      <aside>
+        <nav class="lnb" aria-label="서비스 메뉴">
+          <ul class="lnb__list">
+            <li class="lnb__item"><a class="lnb__link" href="#" aria-current="page">Section A</a></li>
+            <li class="lnb__item">
+              <button type="button" class="lnb__trigger" data-lnb-disclosure aria-expanded="false" aria-controls="lnb-sub-1">
+                <span>Section B</span><span aria-hidden="true">▾</span>
+              </button>
+              <ul class="lnb__sublist" id="lnb-sub-1" hidden data-state="closed">
+                <li class="lnb__item"><a class="lnb__link" href="#">Sub B-1</a></li>
+                <li class="lnb__item"><a class="lnb__link" href="#">Sub B-2</a></li>
+              </ul>
+            </li>
+            <li class="lnb__item"><a class="lnb__link" href="#">Section C</a></li>
+          </ul>
+        </nav>
+      </aside>
+
+      <main class="content-with-lnb__main" id="main-content" tabindex="-1">
+        <h1 class="pattern-demo__title">Web Pattern Integration</h1>
+        <div class="pattern-demo__frame">
+          <p>Desktop: GNB dropdown/mega · Utility search/account · LNB disclosure</p>
+          <p>Mobile (&lt;768px): Drawer navigation with nested disclosure</p>
+          <p>Pattern references: <a href="/patterns/header/site-header.html">Header</a> · <a href="/patterns/gnb/gnb.html">GNB</a> · <a href="/patterns/lnb/lnb.html">LNB</a> · <a href="/patterns/footer/site-footer.html">Footer</a></p>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner page-container">
+      <div class="site-footer__top">
+        <div class="site-footer__brand">Logo</div>
+        <div>
+          <ul class="site-footer__nav-list">
+            <li>
+              <div class="site-footer__nav-group-title">Navigation</div>
+              <ul class="site-footer__nav-links">
+                <li><a href="#">Menu 1</a></li>
+                <li><a href="#">Menu 2</a></li>
+              </ul>
+            </li>
+            <li>
+              <div class="site-footer__nav-group-title">Policy</div>
+              <ul class="site-footer__nav-links">
+                <li><a href="#">Terms</a></li>
+                <li><a href="#">Privacy</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="site-footer__utility">
+        <select id="family-site" class="select-field__control site-footer__family-site" aria-label="Related site">
+          <option>Related Site</option>
+          <option>Site A</option>
+          <option>Site B</option>
+        </select>
+      </div>
+      <div class="site-footer__info">Company Info · Contact · Address placeholder</div>
+      <div class="site-footer__copyright">© Company. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <dialog class="drawer" data-mobile-nav-drawer data-state="closed" aria-labelledby="mobile-nav-title">
+    <div class="drawer__panel">
+      <div class="drawer__header">
+        <h2 class="drawer__title" id="mobile-nav-title">Menu</h2>
+        <button type="button" class="button button--text button--sm" data-dialog-close aria-label="닫기">×</button>
+      </div>
+      <nav class="drawer__body" aria-label="모바일 주요 메뉴">
+        <ul class="lnb__list">
+          <li class="lnb__item"><a class="lnb__link" href="#" aria-current="page">Menu 1</a></li>
+          <li class="lnb__item">
+            <button type="button" class="lnb__trigger" data-lnb-disclosure aria-expanded="false" aria-controls="mobile-sub-1">
+              <span>Menu 2</span><span aria-hidden="true">▾</span>
+            </button>
+            <ul class="lnb__sublist" id="mobile-sub-1" hidden data-state="closed">
+              <li class="lnb__item"><a class="lnb__link" href="#">Sub 2-A</a></li>
+              <li class="lnb__item"><a class="lnb__link" href="#">Sub 2-B</a></li>
+            </ul>
+          </li>
+          <li class="lnb__item"><a class="lnb__link" href="#">Menu 3</a></li>
+          <li class="lnb__item"><a class="lnb__link" href="#">Menu 4</a></li>
+        </ul>
+      </nav>
+    </div>
+  </dialog>
+
+  <script type="module">
+    import { initSiteNavigation } from '/patterns/demo/site-navigation.js';
+    initSiteNavigation(document);
+  </script>
+</body>
+</html>

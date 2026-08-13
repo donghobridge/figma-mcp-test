@@ -1,15 +1,12 @@
-/* 기본 — HTML 파일 기준 상대경로 */
-@import url('css/fonts.css');
-@import url('css/tokens.css');
-@import url('css/common.css');
+/* base */
+@import url('/css/base/reset.css');
+@import url('/css/base/fonts.css');
+@import url('/css/base/tokens.css');
+/* Dark tokens apply only when html[data-theme="dark"] is set */
+@import url('/css/base/tokens.dark.css');
+@import url('/css/base/components.css');
+@import url('/patterns/patterns.css');
 
-@import url('css/main.css');
-@import url('css/join.css');
-@import url('css/contents.css');
-
-@import url('css/pages.css');
-@import url('lib/flatpickr/flatpickr.min.css');
-@import url('css/calendar.css');
-@import url('css/components.css');
-@import url('css/layouts.css');
-
+/* project */
+@import url('/css/project/tokens.yuma.css');
+@import url('/css/project/tokens.yuma.dark.css');

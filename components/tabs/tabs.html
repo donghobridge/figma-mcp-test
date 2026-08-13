@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tabs</title>
+  <link rel="stylesheet" href="/import.css" />
+  <style>
+    body { padding: 4rem 2.4rem; background: var(--surface-default); color: var(--text-default); font-family: var(--font-family, var(--font-family-base)); max-width: 48rem; }
+  </style>
+</head>
+<body>
+  <h1>Tabs</h1>
+  <p>Roving focus + manual activation (Enter/Space)</p>
+
+  <div class="tabs" id="demo-tabs">
+    <div class="tabs__list" role="tablist" aria-label="Demo tabs">
+      <button type="button" class="tabs__tab" role="tab" id="tab-1" aria-selected="true" aria-controls="panel-1">Tab 1</button>
+      <button type="button" class="tabs__tab" role="tab" id="tab-2" aria-selected="false" aria-controls="panel-2" tabindex="-1">Tab 2</button>
+      <button type="button" class="tabs__tab" role="tab" id="tab-3" aria-selected="false" aria-controls="panel-3" tabindex="-1">Tab 3</button>
+    </div>
+    <div class="tabs__panel" role="tabpanel" id="panel-1" aria-labelledby="tab-1">Panel 1 content</div>
+    <div class="tabs__panel" role="tabpanel" id="panel-2" aria-labelledby="tab-2" hidden>Panel 2 content</div>
+    <div class="tabs__panel" role="tabpanel" id="panel-3" aria-labelledby="tab-3" hidden>Panel 3 content</div>
+  </div>
+
+  <script type="module">
+    import { createTabs } from '/headless/controllers/tabs.js';
+    createTabs(document.getElementById('demo-tabs'));
+  </script>
+</body>
+</html>

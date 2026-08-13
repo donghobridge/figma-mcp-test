@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pattern — Site Header</title>
+  <link rel="stylesheet" href="/import.css" />
+  <link rel="stylesheet" href="/patterns/patterns.css" />
+  <link rel="stylesheet" href="/patterns/demo/pattern-demo.css" />
+</head>
+<body class="pattern-demo">
+  <div class="pattern-demo__body page-container">
+    <h1>Site Header Pattern</h1>
+    <p class="pattern-demo__desc">Optional composition — variant class 대신 slot 조합으로 구성합니다. Integration Demo: <a href="/patterns/demo/site-layout.html">site-layout.html</a></p>
+
+    <section class="pattern-demo__section">
+      <h2 class="pattern-demo__title">Simple Header</h2>
+      <div class="pattern-demo__frame pattern-demo__frame--flush">
+        <header class="site-header">
+          <div class="site-header__inner page-container">
+            <a class="site-header__brand" href="#">Logo</a>
+          </div>
+        </header>
+      </div>
+    </section>
+
+    <section class="pattern-demo__section">
+      <h2 class="pattern-demo__title">Header + GNB</h2>
+      <div class="pattern-demo__frame pattern-demo__frame--flush">
+        <header class="site-header" data-pattern-header-gnb>
+          <div class="site-header__inner page-container">
+            <a class="site-header__brand" href="#">Logo</a>
+            <div class="site-header__nav site-header__nav--desktop">
+              <nav class="gnb gnb--desktop" aria-label="주요 메뉴">
+                <ul class="gnb__list">
+                  <li class="gnb__item"><a class="gnb__link" href="#" aria-current="page">Menu 1</a></li>
+                  <li class="gnb__item">
+                    <button type="button" class="gnb__trigger" data-dropdown-trigger aria-haspopup="menu" aria-expanded="false" aria-controls="header-gnb-menu">Menu 2 ▾</button>
+                    <div class="menu gnb__menu" id="header-gnb-menu" role="menu" hidden data-state="closed">
+                      <button type="button" class="menu__item" role="menuitem">Sub A</button>
+                      <button type="button" class="menu__item" role="menuitem">Sub B</button>
+                    </div>
+                  </li>
+                  <li class="gnb__item"><a class="gnb__link" href="#">Menu 3</a></li>
+                </ul>
+              </nav>
+            </div>
+            <button type="button" class="button button--secondary button--sm site-header__menu-trigger" data-mobile-nav-trigger aria-label="메뉴 열기">☰</button>
+          </div>
+        </header>
+      </div>
+    </section>
+
+    <section class="pattern-demo__section">
+      <h2 class="pattern-demo__title">Header + GNB + Utility (Search / Account / Language)</h2>
+      <div class="pattern-demo__frame pattern-demo__frame--flush">
+        <header class="site-header" data-pattern-header-full>
+          <div class="site-header__inner page-container">
+            <a class="site-header__brand" href="#">Logo</a>
+            <div class="site-header__nav site-header__nav--desktop">
+              <nav class="gnb gnb--desktop" aria-label="주요 메뉴">
+                <ul class="gnb__list">
+                  <li class="gnb__item"><a class="gnb__link" href="#">Menu 1</a></li>
+                  <li class="gnb__item"><a class="gnb__link" href="#">Menu 2</a></li>
+                </ul>
+              </nav>
+            </div>
+            <div class="site-header__utility site-header__utility--desktop">
+              <div class="site-header__search">
+                <div class="search-field">
+                  <div class="input-field input-field--trailing-icon">
+                    <input type="search" class="input input--sm" placeholder="Search" aria-label="Search" />
+                    <span class="input-field__icon" aria-hidden="true">
+                      <svg viewBox="0 0 16 16" width="16" height="16" fill="none"><circle cx="7" cy="7" r="4.5" stroke="currentColor" stroke-width="1.5"/><path d="m10.5 10.5 3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <select class="select-field__control site-header__language" aria-label="Language">
+                <option>Language</option>
+                <option>KO</option>
+                <option>EN</option>
+              </select>
+              <div class="site-header__actions">
+                <button type="button" class="button button--text button--sm" data-dropdown-trigger aria-haspopup="menu" aria-expanded="false" aria-controls="header-user-menu">Account ▾</button>
+                <div class="menu" id="header-user-menu" role="menu" hidden data-state="closed">
+                  <button type="button" class="menu__item" role="menuitem">My Page</button>
+                  <button type="button" class="menu__item" role="menuitem">Logout</button>
+                </div>
+              </div>
+            </div>
+            <button type="button" class="button button--secondary button--sm site-header__menu-trigger" data-mobile-nav-trigger aria-label="메뉴 열기">☰</button>
+          </div>
+        </header>
+      </div>
+      <p class="pattern-demo__note">Search = SearchField composite · Language = native select · Account = Menu headless</p>
+    </section>
+  </div>
+
+  <dialog class="drawer" data-mobile-nav-drawer data-state="closed" aria-labelledby="header-drawer-title">
+    <div class="drawer__panel">
+      <div class="drawer__header">
+        <h2 class="drawer__title" id="header-drawer-title">Menu</h2>
+        <button type="button" class="button button--text button--sm" data-dialog-close aria-label="닫기">×</button>
+      </div>
+      <nav class="drawer__body" aria-label="모바일 주요 메뉴">
+        <ul class="lnb__list">
+          <li class="lnb__item"><a class="lnb__link" href="#">Menu 1</a></li>
+          <li class="lnb__item"><a class="lnb__link" href="#">Menu 2</a></li>
+        </ul>
+      </nav>
+    </div>
+  </dialog>
+
+  <script type="module">
+    import { initSiteNavigation } from '/patterns/demo/site-navigation.js';
+    initSiteNavigation(document);
+  </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+/* Pretendard GOV */
+@font-face {
+  font-family: "PretendardGOV";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    url("/assets/fonts/PretendardGOV-Regular.woff2") format("woff2"),
+    url("/assets/fonts/PretendardGOV-Regular.woff") format("woff"),
+    url("/assets/fonts/PretendardGOV-Regular.ttf") format("truetype"),
+    url("/assets/fonts/PretendardGOV-Regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "PretendardGOV";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src:
+    url("/assets/fonts/PretendardGOV-Medium.woff2") format("woff2"),
+    url("/assets/fonts/PretendardGOV-Medium.woff") format("woff"),
+    url("/assets/fonts/PretendardGOV-Medium.ttf") format("truetype"),
+    url("/assets/fonts/PretendardGOV-Medium.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "PretendardGOV";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src:
+    url("/assets/fonts/PretendardGOV-SemiBold.woff2") format("woff2"),
+    url("/assets/fonts/PretendardGOV-SemiBold.woff") format("woff"),
+    url("/assets/fonts/PretendardGOV-SemiBold.ttf") format("truetype"),
+    url("/assets/fonts/PretendardGOV-SemiBold.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "PretendardGOV";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src:
+    url("/assets/fonts/PretendardGOV-Bold.woff2") format("woff2"),
+    url("/assets/fonts/PretendardGOV-Bold.woff") format("woff"),
+    url("/assets/fonts/PretendardGOV-Bold.ttf") format("truetype"),
+    url("/assets/fonts/PretendardGOV-Bold.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "PretendardGOV";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src:
+    url("/assets/fonts/PretendardGOV-ExtraBold.ttf") format("truetype"),
+    url("/assets/fonts/PretendardGOV-ExtraBold.otf") format("opentype");
+}

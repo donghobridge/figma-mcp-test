@@ -1,0 +1,53 @@
+/* Shared styles for pattern reference demos only — not part of Pattern API */
+
+.pattern-demo {
+  min-height: 100vh;
+  background: var(--surface-default);
+  color: var(--text-default);
+  font-family: var(--font-family, var(--font-family-base));
+}
+
+.pattern-demo__body {
+  padding: var(--size-24);
+}
+
+.pattern-demo__section {
+  margin-bottom: var(--size-40);
+}
+
+.pattern-demo__title {
+  margin-bottom: var(--size-8);
+  font-size: var(--font-headline-regular);
+  font-weight: var(--font-weight-bold);
+}
+
+.pattern-demo__desc {
+  margin-bottom: var(--size-16);
+  color: var(--text-subtle);
+  font-size: var(--font-body-small);
+}
+
+.pattern-demo__frame {
+  padding: var(--size-16);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-12);
+  background: var(--surface-elevated);
+}
+
+.pattern-demo__frame--flush {
+  padding: 0;
+  overflow: hidden;
+}
+
+.pattern-demo__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--size-12);
+  margin-bottom: var(--size-16);
+}
+
+.pattern-demo__note {
+  margin-top: var(--size-12);
+  color: var(--text-subtle);
+  font-size: var(--font-caption-regular);
+}

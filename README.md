@@ -1,30 +1,121 @@
 # Yuma Component Library
 
-기존 `yuma-component-img_text`의 정적 HTML 구조, 디자인 토큰, 공통 스타일,
-이미지 자산, GNB와 Footer를 유지한 조립형 컴포넌트 PoC입니다.
+회사 공통 Design System을 **토큰 → Base Component → Headless → Pattern** 계층으로
+조립하는 정적 HTML/CSS 라이브러리입니다. Figma MCP / n8n 파이프라인은 이 저장소의
+include 경로와 `import.css`를 기준으로 페이지를 생성·배포합니다.
 
-## 실행
+배포 저장소: [donghobridge/figma-mcp-test](https://github.com/donghobridge/figma-mcp-test)  
+미리보기: [figma-mcp-test-nu.vercel.app](https://figma-mcp-test-nu.vercel.app)
 
-루트 경로 기반 include를 사용하므로 파일을 직접 열지 말고 이 폴더를 웹 루트로 실행합니다.
+## 로컬 실행
+
+루트 절대 경로(`/css/...`, `/patterns/...`)를 쓰므로 **이 폴더를 웹 루트**로 띄웁니다.
 
 ```bash
 cd yuma-component-library
 python3 -m http.server 8080
 ```
 
-브라우저에서 `http://localhost:8080`을 엽니다.
+브라우저: `http://localhost:8080`  
+패턴 통합 데모: `http://localhost:8080/patterns/demo/site-layout.html`
 
-## 구조
+## 계층 구조
 
-- `components/`: AI가 선택하고 props를 채우는 재사용 컴포넌트
-- `patterns/`: 기존 GNB와 Footer
-- `component-map.json`: Figma 이름과 HTML 컴포넌트 매핑용 레지스트리
-- `pages/catalog/`: 컴포넌트 조립 예제
-- `css/components.css`: 새 컴포넌트 전용 스타일
-- `assets/`, `css/`, `lib/`: 기존 프로젝트 자산과 스타일
+```text
+Design Tokens (css/base + css/project)
+        ↓
+Base Components (components/*)
+        ↓
+Headless Behavior (headless/*)
+        ↓
+Web Patterns (patterns/*)
+        ↓
+Pages (pages/* — 워크플로 산출물, 로컬 골든은 배포 제외)
+```
 
-## Figma 매핑 원칙
+| 경로 | 역할 |
+|------|------|
+| `import.css` | 공통 CSS 엔트리. base tokens/reset/fonts/components + patterns + project tokens |
+| `css/base/` | 리셋, 폰트, base tokens(light/dark), base components 묶음 CSS |
+| `css/project/` | Yuma 프로젝트 토큰 (`tokens.yuma.css`, `tokens.yuma.dark.css`) |
+| `components/` | Base 컴포넌트 폴더 (`button/button.html` + `button.css` 등) |
+| `headless/` | 시각과 분리된 동작 레이어 (`behaviors/`, `controllers/`) |
+| `patterns/` | GNB·Header·Footer·LNB·Breadcrumb·Layout 등 화면 조립 패턴 |
+| `assets/` | 이미지·아이콘 등 정적 자산 |
+| `common.js` | 테마 토글 등 페이지 공통 스크립트 |
+| `pages/` | 생성 페이지 출력 위치(배포 시 비움). 로컬 골든/카탈로그는 `.gitignore` |
 
-Figma 컴포넌트 이름을 `component-map.json`의 키와 일치시킵니다. AI는 등록된
-컴포넌트와 variant만 사용하고, 화면별 텍스트와 이미지 값은 `data-prop-*`으로
-전달합니다.
+## 문서
+
+| 문서 | 내용 |
+|------|------|
+| [디자인시스템_Component_운영매뉴얼_v0.1.md](./디자인시스템_Component_운영매뉴얼_v0.1.md) | 무엇을 Component로 올릴지, Base / Pattern / Project 경계 |
+| [디자인시스템_Component_Coding_Convention_v0.1.md](./디자인시스템_Component_Coding_Convention_v0.1.md) | HTML/CSS/Token/상태/접근성 코딩 규칙 |
+| [patterns/README.md](./patterns/README.md) | Pattern 목록·데모·Headless 연결 |
+| [headless/README.md](./headless/README.md) | Behavior / Controller 계약과 인벤토리 |
+
+## CSS 로드
+
+페이지는 **페이지별 `styles.css`를 두지 않고** 공통 엔트리만 로드합니다.
+
+```html
+<link rel="stylesheet" href="/import.css" />
+<script defer src="/common.js"></script>
+```
+
+`import.css` 로드 순서:
+
+1. `css/base/reset.css` → `fonts.css` → `tokens.css` → `tokens.dark.css` → `components.css`
+2. `patterns/patterns.css`
+3. `css/project/tokens.yuma.css` → `tokens.yuma.dark.css`
+
+다크 모드는 `html[data-theme="dark"]`로 활성화합니다. (`common.js` 테마 토글)
+
+## Pattern include 경로
+
+| 역할 | include |
+|------|---------|
+| Skip link | 마크업 인라인 또는 demo 참고 |
+| Site Header | `/patterns/header/site-header.html` |
+| GNB | `/patterns/gnb/gnb.html` |
+| LNB | `/patterns/lnb/lnb.html` |
+| Footer | `/patterns/footer/site-footer.html` |
+| Breadcrumb | `/patterns/breadcrumb/breadcrumb.html` |
+
+호환용 별칭(기존 워크플로): `/patterns/gnb.html`, `/patterns/footer.html`
+
+네비게이션 동작은 `patterns/demo/site-navigation.js`의 `initSiteNavigation`과
+`data-dropdown-trigger` / `data-mobile-nav-trigger` / `data-lnb-disclosure`를 사용합니다.
+
+## Base Component 목록
+
+`accordion` `alert` `badge` `button` `checkbox` `chip` `dialog` `divider` `drawer`
+`form-field` `input` `menu` `pagination` `popover` `radio` `selectable-card`
+`status` `switch` `table` `tabs` `tag` `textarea` `tooltip`
+
+각 컴포넌트는 `components/{name}/{name}.html` + `{name}.css` 쌍입니다.
+페이지에서는 `data-include-path="/components/{name}/{name}.html"`과 `data-prop-*`로 조립합니다.
+
+## Headless
+
+- `headless/behaviors/` — Escape, Focus Trap, Disclosure, Roving Focus 등 공통 원시 동작
+- `headless/controllers/` — Dialog, Drawer, Menu, Mega Menu, Popover, Tabs, Accordion
+
+Headless는 **시각 class를 추가하지 않고** `data-state` / ARIA / native state만 갱신합니다.
+상세는 `headless/README.md`를 참고하세요.
+
+## 배포에 포함 / 제외
+
+**포함:** `assets/`, `components/`, `css/`, `patterns/`, `headless/`, `lib/`,
+`import.css`, `common.js`, 운영·코딩 매뉴얼, README, `pages/.gitkeep`
+
+**제외:** `wireframe-test/`, `mcp Test/`, `generated-*`, 로컬 `pages/*.html`·카탈로그
+
+워크플로가 생성하는 HTML만 `pages/`에 커밋합니다.
+
+## Figma / AI 조립 원칙
+
+1. 등록된 Base Component·Pattern만 사용하고, 화면 텍스트·이미지는 `data-prop-*`로 전달합니다.
+2. GNB / Footer / Header는 Pattern include로만 넣고, 페이지에서 마크업을 새로 쓰지 않습니다.
+3. 공통 스타일은 `/import.css`만 사용합니다. 페이지 전용 CSS 파일은 만들지 않습니다.
+4. 운영 매뉴얼의 Base vs Pattern vs Project Custom 경계를 지킵니다.

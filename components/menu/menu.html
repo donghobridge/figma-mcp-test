@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu</title>
+  <link rel="stylesheet" href="/import.css" />
+  <style>
+    body { padding: 4rem 2.4rem; background: var(--surface-default); color: var(--text-default); font-family: var(--font-family, var(--font-family-base)); }
+    .demo-wrap { position: relative; display: inline-block; }
+    .menu { position: absolute; top: calc(100% + 0.4rem); left: 0; z-index: 10; }
+  </style>
+</head>
+<body>
+  <h1>Dropdown Menu</h1>
+  <p>Dismissable Layer + Roving Focus + ARIA menu contract</p>
+
+  <div class="demo-wrap">
+    <button type="button" class="button button--secondary button--md menu-trigger" id="menu-trigger" aria-haspopup="menu" aria-expanded="false" aria-controls="demo-menu">Menu</button>
+    <div class="menu" id="demo-menu" role="menu" hidden data-state="closed" aria-labelledby="menu-trigger">
+      <button type="button" class="menu__item" role="menuitem">Item 1</button>
+      <button type="button" class="menu__item" role="menuitem">Item 2</button>
+      <button type="button" class="menu__item" role="menuitem" disabled aria-disabled="true">Disabled</button>
+      <button type="button" class="menu__item" role="menuitem">Item 3</button>
+    </div>
+  </div>
+
+  <script type="module">
+    import { createDropdownMenu } from '/headless/controllers/menu.js';
+
+    createDropdownMenu(
+      document.getElementById('menu-trigger'),
+      document.getElementById('demo-menu'),
+    );
+  </script>
+</body>
+</html>

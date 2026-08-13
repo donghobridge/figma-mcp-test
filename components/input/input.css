@@ -1,0 +1,292 @@
+/*
+ * Input — Native control
+ *
+ * Composite patterns (SearchField, PasswordField, etc.) use these
+ * base styles via .input and shared layout blocks below.
+ */
+
+.input,
+.select-field__control {
+  display: block;
+  width: 100%;
+  min-height: var(--input-height-md);
+  padding-inline: var(--input-padding-x-md);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--input-border-default);
+  border-radius: var(--input-radius-md);
+  background: var(--input-bg);
+  color: var(--input-text);
+  font-family: var(--font-family, var(--font-family-base));
+  font-size: var(--input-font-size-md);
+  line-height: 1.5;
+  appearance: none;
+  transition:
+    border-color 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.input::placeholder {
+  color: var(--input-text-placeholder);
+}
+
+.input:hover:not(:disabled):not(:read-only),
+.select-field__control:hover:not(:disabled) {
+  border-color: var(--input-border-hover);
+}
+
+.input:focus,
+.select-field__control:focus {
+  outline: none;
+}
+
+.input:focus-visible,
+.select-field__control:focus-visible {
+  border-color: var(--input-border-focused);
+  outline: var(--input-focus-ring-width) solid var(--input-focus-ring-color);
+  outline-offset: var(--input-focus-ring-offset);
+}
+
+.input:disabled,
+.select-field__control:disabled {
+  background: var(--input-bg-disabled);
+  border-color: var(--input-border-disabled);
+  color: var(--input-text-disabled);
+  cursor: not-allowed;
+}
+
+.input:read-only {
+  background: var(--input-bg-disabled);
+}
+
+.input--sm,
+.select-field--sm .select-field__control {
+  min-height: var(--input-height-sm);
+  padding-inline: var(--input-padding-x-sm);
+  font-size: var(--input-font-size-sm);
+  border-radius: var(--input-radius-sm);
+}
+
+.input--md,
+.select-field--md .select-field__control {
+  min-height: var(--input-height-md);
+  padding-inline: var(--input-padding-x-md);
+  font-size: var(--input-font-size-md);
+  border-radius: var(--input-radius-md);
+}
+
+.input--lg,
+.select-field--lg .select-field__control {
+  min-height: var(--input-height-lg);
+  padding-inline: var(--input-padding-x-lg);
+  font-size: var(--input-font-size-lg);
+  border-radius: var(--input-radius-lg);
+}
+
+.input--error {
+  border-color: var(--input-border-error);
+}
+
+.input--warning {
+  border-color: var(--input-border-warning);
+}
+
+/* -------------------------------------------------------------------------
+ * InputGroup — prefix / suffix / composite
+ * ---------------------------------------------------------------------- */
+
+.input-group {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+}
+
+.input-group__prefix,
+.input-group__suffix {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: var(--input-addon-gap);
+  padding-inline: var(--input-padding-x-md);
+  border: 1px solid var(--input-border-default);
+  background: var(--color-neutral-50);
+  color: var(--input-text);
+  font-size: var(--input-font-size-md);
+  white-space: nowrap;
+}
+
+.input-group__prefix {
+  border-right: 0;
+  border-radius: var(--input-radius-md) 0 0 var(--input-radius-md);
+}
+
+.input-group__suffix {
+  border-left: 0;
+  border-radius: 0 var(--input-radius-md) var(--input-radius-md) 0;
+}
+
+.input-group .input {
+  flex: 1 1 auto;
+  min-width: 0;
+  border-radius: 0;
+}
+
+.input-group .input:first-child {
+  border-radius: var(--input-radius-md) 0 0 var(--input-radius-md);
+}
+
+.input-group .input:last-child {
+  border-radius: 0 var(--input-radius-md) var(--input-radius-md) 0;
+}
+
+.input-group__prefix + .input {
+  border-left: 0;
+}
+
+.input-group .input:not(:last-child) {
+  border-right: 0;
+}
+
+/* -------------------------------------------------------------------------
+ * InputField — icon / action slot
+ * ---------------------------------------------------------------------- */
+
+.input-field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.input-field .input {
+  width: 100%;
+}
+
+.input-field__icon {
+  position: absolute;
+  top: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--input-icon-size);
+  height: var(--input-icon-size);
+  color: var(--icon-subtle);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.input-field__icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.input-field--leading-icon .input {
+  padding-left: calc(var(--input-padding-x-md) + var(--input-icon-size) + var(--input-addon-gap));
+}
+
+.input-field--leading-icon .input-field__icon {
+  left: var(--input-padding-x-md);
+}
+
+.input-field--trailing-icon .input {
+  padding-right: calc(var(--input-padding-x-md) + var(--input-icon-size) + var(--input-addon-gap));
+}
+
+.input-field--trailing-icon .input-field__icon {
+  right: var(--input-padding-x-md);
+}
+
+.input-field--lg.input-field--trailing-icon .input {
+  padding-right: calc(var(--input-padding-x-lg) + var(--input-icon-size) + var(--input-addon-gap));
+}
+
+.input-field--lg.input-field--trailing-icon .input-field__icon,
+.input-field--lg.input-field--trailing-icon .input-field__action,
+.input-field--lg.input-field--trailing-icon .input-field__timer {
+  right: var(--input-padding-x-lg);
+}
+
+.input-field--sm.input-field--trailing-icon .input {
+  padding-right: calc(var(--input-padding-x-sm) + var(--input-icon-size) + var(--input-addon-gap));
+}
+
+.input-field--sm.input-field--trailing-icon .input-field__icon,
+.input-field--sm.input-field--trailing-icon .input-field__action,
+.input-field--sm.input-field--trailing-icon .input-field__timer {
+  right: var(--input-padding-x-sm);
+}
+
+.input-field__action {
+  position: absolute;
+  top: 50%;
+  right: var(--input-padding-x-md);
+  transform: translateY(-50%);
+}
+
+.input-field__timer {
+  position: absolute;
+  top: 50%;
+  right: var(--input-padding-x-md);
+  color: var(--input-timer-text);
+  font-size: var(--font-caption-regular);
+  font-weight: var(--font-weight-medium);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* -------------------------------------------------------------------------
+ * SelectField — native select visual
+ * ---------------------------------------------------------------------- */
+
+.select-field {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.select-field__control {
+  padding-right: calc(var(--input-padding-x-md) + var(--input-icon-size));
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none'%3E%3Cpath d='m4 6 4 4 4-4' stroke='%236E7986' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--input-padding-x-md) center;
+  background-size: var(--input-icon-size) var(--input-icon-size);
+  cursor: pointer;
+}
+
+/* -------------------------------------------------------------------------
+ * Pattern wrappers (Reference composite affordances)
+ * ---------------------------------------------------------------------- */
+
+.search-field,
+.password-field,
+.date-field,
+.verification-field,
+.composite-field {
+  width: 100%;
+}
+
+.password-field .input-field__action {
+  z-index: 1;
+}
+
+.date-field .input-field__icon {
+  color: var(--icon-subtle);
+}
+
+.date-field input[type="date"]::-webkit-calendar-picker-indicator {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.verification-field .input {
+  padding-right: calc(var(--input-padding-x-md) + 5.5ch);
+}
+
+.verification-field .input-field__timer {
+  letter-spacing: 0.05em;
+}

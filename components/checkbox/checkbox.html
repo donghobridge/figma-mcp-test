@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkbox</title>
+  <link rel="stylesheet" href="/import.css" />
+  <style>
+    body { padding: 4rem 2.4rem; background: var(--surface-default); color: var(--text-default); font-family: var(--font-family, var(--font-family-base)); }
+    .demo-section { margin-bottom: 3.2rem; }
+    .demo-label { margin-bottom: 1.2rem; color: var(--text-subtle); font-size: var(--font-body-small); }
+    .demo-stack { display: grid; gap: 1.2rem; max-width: 32rem; }
+    .demo-row { display: flex; flex-wrap: wrap; gap: 2rem; align-items: flex-start; }
+  </style>
+</head>
+<body>
+  <h1>Checkbox</h1>
+  <p>Reference <strong>Square</strong> → Checkbox. Reference <strong>Round</strong> → Radio (see radio demo).</p>
+
+  <section class="demo-section">
+    <div class="demo-label">Size — sm / md / lg</div>
+    <div class="demo-row">
+      <label class="checkbox checkbox--sm"><input type="checkbox" class="checkbox__input" checked /><span class="checkbox__control" aria-hidden="true"></span><span class="checkbox__label">Small</span></label>
+      <label class="checkbox checkbox--md"><input type="checkbox" class="checkbox__input" checked /><span class="checkbox__control" aria-hidden="true"></span><span class="checkbox__label">Medium</span></label>
+      <label class="checkbox checkbox--lg"><input type="checkbox" class="checkbox__input" checked /><span class="checkbox__control" aria-hidden="true"></span><span class="checkbox__label">Large</span></label>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <div class="demo-label">State</div>
+    <div class="demo-stack">
+      <label class="checkbox checkbox--md"><input type="checkbox" class="checkbox__input" /><span class="checkbox__control" aria-hidden="true"></span><span class="checkbox__label">Unchecked</span></label>
+      <label class="checkbox checkbox--md"><input type="checkbox" class="checkbox__input" checked /><span class="checkbox__control" aria-hidden="true"></span><span class="checkbox__label">Checked</span></label>
+      <label class="checkbox checkbox--md"><input type="checkbox" class="checkbox__input" id="indeterminate-demo" /><span class="checkbox__control" aria-hidden="true"></span><span class="checkbox__label">Indeterminate</span></label>
+      <label class="checkbox checkbox--md"><input type="checkbox" class="checkbox__input" disabled /><span class="checkbox__control" aria-hidden="true"></span><span class="checkbox__label">Disabled</span></label>
+      <label class="checkbox checkbox--md"><input type="checkbox" class="checkbox__input" checked disabled /><span class="checkbox__control" aria-hidden="true"></span><span class="checkbox__label">Disabled + Checked</span></label>
+      <label class="checkbox checkbox--md checkbox--error"><input type="checkbox" class="checkbox__input" /><span class="checkbox__control" aria-hidden="true"></span><span class="checkbox__label">Error</span></label>
+    </div>
+  </section>
+  <script>
+    var indeterminate = document.getElementById('indeterminate-demo');
+    if (indeterminate) indeterminate.indeterminate = true;
+  </script>
+</body>
+</html>

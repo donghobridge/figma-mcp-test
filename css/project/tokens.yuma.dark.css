@@ -1,0 +1,149 @@
+/*
+ * Project Tokens v0.1
+ * Yellow Umbrella
+ * Dark Theme
+ *
+ * Load Order
+ * 1. tokens.css
+ * 2. tokens.dark.css
+ * 3. tokens.project.css
+ * 4. tokens.project.dark.css
+ *
+ * Rules
+ * - 노란우산 프로젝트 고유 Dark override만 정의한다.
+ * - Base Dark 규칙을 다시 선언하지 않는다.
+ * - Light와 값이 동일한 Project Token은 재선언하지 않는다.
+ */
+
+:root {
+
+
+  /* =========================================================
+   * 1. Brand
+   * ======================================================= */
+
+
+  /* -----------------------------------------
+   * Logo
+   * -------------------------------------- */
+
+  --logo-primary:
+    var(--color-transparent);
+
+  --logo-line:
+    var(--color-neutral-white);
+
+
+  /*
+   * --logo-point는 Light/Dark 모두 동일하므로
+   * tokens.project.css 값을 그대로 사용한다.
+   */
+
+
+
+  /* =========================================================
+   * 2. Project Semantic
+   * ======================================================= */
+
+
+  /* -----------------------------------------
+   * Text
+   * -------------------------------------- */
+
+  /*
+   * Light:
+   * --text-secondary:
+   *   var(--color-pastel-turquoise-text);
+   *
+   * Dark:
+   */
+  --text-secondary:
+    var(--color-pastel-turquoise-bg);
+
+
+  /*
+   * --text-default-yellow은
+   * Light/Dark 모두 black이므로
+   * 재선언하지 않는다.
+   */
+
+
+
+  /* -----------------------------------------
+   * Icon
+   * -------------------------------------- */
+
+  --icon-default-yellow:
+    var(--color-primary-800);
+
+
+
+  /* -----------------------------------------
+   * Border
+   * -------------------------------------- */
+
+  --border-yellow:
+    var(--color-primary-450);
+
+  --border-green:
+    var(--color-primary-green-light);
+
+
+
+  /* -----------------------------------------
+   * Element
+   * -------------------------------------- */
+
+  --element-primary-green:
+    var(--color-primary-green-light);
+
+
+
+  /* =========================================================
+   * 3. Project Component
+   * ======================================================= */
+
+
+  /* -----------------------------------------
+   * Button
+   * -------------------------------------- */
+
+  --button-secondary-text-yellow:
+    var(--color-primary-800);
+
+
+
+  /* =========================================================
+   * 4. Base Token Project Override
+   * ======================================================= */
+
+
+  /*
+   * Warning
+   * -------------------------------------------------------
+   * 노란우산 원본 Dark에서는 warning surface를
+   * 일반 warning palette가 아니라
+   * Yellow Primary palette로 표현한다.
+   *
+   * 따라서 이 규칙은 Base Dark가 아니라
+   * 노란우산 Project Dark의 책임으로 둔다.
+   */
+
+  --state-warning:
+    var(--color-primary-800);
+
+  --state-warning-border:
+    var(--color-primary-700);
+
+
+
+  /*
+   * Table
+   * -------------------------------------------------------
+   * 기존 노란우산 Dark UI와 색상을 정확하게 유지해야 한다면
+   * 원본의 직접 색상값을 프로젝트 override로 유지한다.
+   */
+
+  --table-border:
+    #5a5a5a;
+}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chip</title>
+  <link rel="stylesheet" href="/import.css" />
+  <style>
+    body { padding: 4rem 2.4rem; background: var(--surface-default); color: var(--text-default); font-family: var(--font-family, var(--font-family-base)); }
+    .demo-row { display: flex; flex-wrap: wrap; gap: 1.2rem; }
+  </style>
+</head>
+<body>
+  <h1>Chip</h1>
+  <p>Reference <strong>tag (removable)</strong> → Removable Chip</p>
+  <div class="demo-row">
+    <span class="chip chip--sm">
+      <span class="chip__label">Small</span>
+      <button type="button" class="chip__remove" aria-label="Small 제거">×</button>
+    </span>
+    <span class="chip chip--md">
+      <span class="chip__label">내 생일</span>
+      <button type="button" class="chip__remove" aria-label="내 생일 제거">×</button>
+    </span>
+  </div>
+</body>
+</html>

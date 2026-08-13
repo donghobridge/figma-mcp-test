@@ -1,0 +1,278 @@
+/*
+ * Button — Base Component
+ *
+ * Markup contract
+ *   <button type="button" class="button button--primary button--md">
+ *     <span class="button__icon" aria-hidden="true">…</span>
+ *     <span class="button__label">Label</span>
+ *   </button>
+ *
+ * Modifiers
+ *   Variant: button--primary | button--secondary | button--tertiary | button--text
+ *   Size:    button--xs | button--sm | button--md | button--lg
+ *   Layout:  button--icon-only
+ *
+ * Headless / showcase state (CSS expression only, not behavior)
+ *   data-state="hover" | data-state="active"
+ */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--button-gap);
+  min-height: var(--button-height-md);
+  padding-inline: var(--button-padding-x-md);
+  border-width: var(--button-border-width);
+  border-style: solid;
+  border-color: transparent;
+  border-radius: var(--button-radius-md);
+  background: transparent;
+  box-shadow: var(--button-shadow);
+  color: var(--button-text);
+  font-family: var(--font-family, var(--font-family-base));
+  font-size: var(--button-font-size-md);
+  font-weight: var(--button-font-weight);
+  line-height: 1.5;
+  text-decoration: none;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  appearance: none;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.button:focus {
+  outline: none;
+}
+
+.button:focus-visible {
+  outline: var(--button-focus-ring-width) solid var(--button-focus-ring-color);
+  outline-offset: var(--button-focus-ring-offset);
+}
+
+.button:disabled,
+.button[aria-disabled="true"] {
+  background: var(--button-disabled-bg);
+  border-color: var(--button-disabled-border-color);
+  color: var(--button-disabled-text);
+  box-shadow: none;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* -------------------------------------------------------------------------
+ * Elements
+ * ---------------------------------------------------------------------- */
+
+.button__label {
+  display: inline-block;
+}
+
+.button__icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: var(--button-icon-size-md);
+  height: var(--button-icon-size-md);
+  color: currentColor;
+}
+
+.button__icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* -------------------------------------------------------------------------
+ * Size
+ * ---------------------------------------------------------------------- */
+
+.button--xs {
+  min-height: var(--button-height-xs);
+  padding-inline: var(--button-padding-x-xs);
+  border-radius: var(--button-radius-sm);
+  font-size: var(--button-font-size-xs);
+}
+
+.button--xs .button__icon {
+  width: var(--button-icon-size-xs);
+  height: var(--button-icon-size-xs);
+}
+
+.button--sm {
+  min-height: var(--button-height-sm);
+  padding-inline: var(--button-padding-x-sm);
+  border-radius: var(--button-radius-sm);
+  font-size: var(--button-font-size-sm);
+}
+
+.button--sm .button__icon {
+  width: var(--button-icon-size-sm);
+  height: var(--button-icon-size-sm);
+}
+
+.button--md {
+  min-height: var(--button-height-md);
+  padding-inline: var(--button-padding-x-md);
+  border-radius: var(--button-radius-md);
+  font-size: var(--button-font-size-md);
+}
+
+.button--md .button__icon {
+  width: var(--button-icon-size-md);
+  height: var(--button-icon-size-md);
+}
+
+.button--lg {
+  min-height: var(--button-height-lg);
+  padding-inline: var(--button-padding-x-lg);
+  border-radius: var(--button-radius-lg);
+  font-size: var(--button-font-size-lg);
+}
+
+.button--lg .button__icon {
+  width: var(--button-icon-size-lg);
+  height: var(--button-icon-size-lg);
+}
+
+.button--icon-only.button--xs {
+  width: var(--button-height-xs);
+  padding-inline: 0;
+}
+
+.button--icon-only.button--sm {
+  width: var(--button-height-sm);
+  padding-inline: 0;
+}
+
+.button--icon-only.button--md {
+  width: var(--button-height-md);
+  padding-inline: 0;
+}
+
+.button--icon-only.button--lg {
+  width: var(--button-height-lg);
+  padding-inline: 0;
+}
+
+/* -------------------------------------------------------------------------
+ * Variant — Primary
+ * ---------------------------------------------------------------------- */
+
+.button--primary {
+  background: var(--button-primary-bg);
+  border-color: var(--button-primary-border-color);
+  color: var(--button-primary-text);
+}
+
+.button--primary:hover:not(:disabled):not([aria-disabled="true"]),
+.button--primary[data-state="hover"]:not(:disabled):not([aria-disabled="true"]) {
+  background: var(--button-primary-bg-hover);
+  border-color: var(--button-primary-bg-hover);
+  color: var(--button-primary-text-hover);
+}
+
+.button--primary:active:not(:disabled):not([aria-disabled="true"]),
+.button--primary[data-state="active"]:not(:disabled):not([aria-disabled="true"]) {
+  background: var(--button-primary-bg-pressed);
+  border-color: var(--button-primary-bg-pressed);
+  color: var(--button-primary-text-pressed);
+}
+
+/* -------------------------------------------------------------------------
+ * Variant — Secondary
+ * ---------------------------------------------------------------------- */
+
+.button--secondary {
+  background: var(--button-secondary-bg);
+  border-color: var(--button-secondary-border-color);
+  color: var(--button-secondary-text);
+}
+
+.button--secondary:hover:not(:disabled):not([aria-disabled="true"]),
+.button--secondary[data-state="hover"]:not(:disabled):not([aria-disabled="true"]) {
+  background: var(--button-secondary-bg-hover);
+  border-color: var(--button-secondary-bg-hover);
+  color: var(--button-secondary-text-hover);
+}
+
+.button--secondary:active:not(:disabled):not([aria-disabled="true"]),
+.button--secondary[data-state="active"]:not(:disabled):not([aria-disabled="true"]) {
+  background: var(--button-secondary-bg-pressed);
+  border-color: var(--button-secondary-bg-pressed);
+  color: var(--button-secondary-text-pressed);
+}
+
+.button--secondary:disabled,
+.button--secondary[aria-disabled="true"] {
+  background: var(--button-secondary-bg-disabled);
+  border-color: var(--button-secondary-bg-disabled);
+  color: var(--button-secondary-text-disabled);
+}
+
+/* -------------------------------------------------------------------------
+ * Variant — Tertiary
+ * ---------------------------------------------------------------------- */
+
+.button--tertiary {
+  border-width: var(--button-tertiary-border-width);
+  background: var(--button-tertiary-bg);
+  border-color: var(--button-tertiary-border);
+  color: var(--button-tertiary-text);
+}
+
+.button--tertiary:hover:not(:disabled):not([aria-disabled="true"]),
+.button--tertiary[data-state="hover"]:not(:disabled):not([aria-disabled="true"]) {
+  background: var(--button-tertiary-bg-hover);
+  color: var(--button-tertiary-text-hover);
+}
+
+.button--tertiary:active:not(:disabled):not([aria-disabled="true"]),
+.button--tertiary[data-state="active"]:not(:disabled):not([aria-disabled="true"]) {
+  background: var(--button-tertiary-bg-pressed);
+  color: var(--button-tertiary-text-pressed);
+}
+
+/* -------------------------------------------------------------------------
+ * Variant — Text (ghost / inline action)
+ * ---------------------------------------------------------------------- */
+
+.button--text {
+  min-height: unset;
+  padding-inline: 0;
+  border-width: 0;
+  background: transparent;
+  box-shadow: none;
+  color: var(--button-text);
+}
+
+.button--text:hover:not(:disabled):not([aria-disabled="true"]),
+.button--text[data-state="hover"]:not(:disabled):not([aria-disabled="true"]) {
+  color: var(--button-text-hover);
+}
+
+.button--text:active:not(:disabled):not([aria-disabled="true"]),
+.button--text[data-state="active"]:not(:disabled):not([aria-disabled="true"]) {
+  color: var(--button-text-pressed);
+}
+
+.button--text:disabled,
+.button--text[aria-disabled="true"] {
+  background: transparent;
+  border-color: transparent;
+  color: var(--button-text-disabled);
+}
+
+/* Toggle Button — use aria-pressed, not a separate favorite variant */
+.button[aria-pressed="true"].button--tertiary {
+  background: var(--button-tertiary-bg-hover);
+  border-color: var(--button-tertiary-border);
+  color: var(--button-tertiary-text-hover);
+}

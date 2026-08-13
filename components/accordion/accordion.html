@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Accordion</title>
+  <link rel="stylesheet" href="/import.css" />
+  <style>
+    body { padding: 4rem 2.4rem; background: var(--surface-default); color: var(--text-default); font-family: var(--font-family, var(--font-family-base)); max-width: 48rem; }
+  </style>
+</head>
+<body>
+  <h1>Accordion</h1>
+  <p>Disclosure behavior — single open section</p>
+
+  <div class="accordion" id="demo-accordion">
+    <div class="accordion__item">
+      <button type="button" class="accordion__trigger" aria-expanded="false" aria-controls="acc-panel-1">
+        Section 1
+        <span class="accordion__icon" aria-hidden="true">▾</span>
+      </button>
+      <div class="accordion__panel" id="acc-panel-1" hidden data-state="closed">Section 1 content</div>
+    </div>
+    <div class="accordion__item">
+      <button type="button" class="accordion__trigger" aria-expanded="false" aria-controls="acc-panel-2">
+        Section 2
+        <span class="accordion__icon" aria-hidden="true">▾</span>
+      </button>
+      <div class="accordion__panel" id="acc-panel-2" hidden data-state="closed">Section 2 content</div>
+    </div>
+    <div class="accordion__item">
+      <button type="button" class="accordion__trigger" aria-expanded="false" aria-controls="acc-panel-3">
+        Section 3
+        <span class="accordion__icon" aria-hidden="true">▾</span>
+      </button>
+      <div class="accordion__panel" id="acc-panel-3" hidden data-state="closed">Section 3 content</div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { createAccordion } from '/headless/controllers/accordion.js';
+    createAccordion(document.getElementById('demo-accordion'), { multiple: false });
+  </script>
+</body>
+</html>

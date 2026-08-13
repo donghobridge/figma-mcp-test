@@ -1,0 +1,98 @@
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--status-gap);
+  min-height: var(--status-height-md);
+  padding-inline: var(--status-padding-x-md);
+  border-radius: var(--status-radius);
+  background: var(--status-neutral-bg);
+  color: var(--status-neutral-text);
+  font-family: var(--font-family, var(--font-family-base));
+  font-size: var(--status-font-size-md);
+  font-weight: var(--status-font-weight);
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.status__dot {
+  flex-shrink: 0;
+  width: var(--status-dot-size-md);
+  height: var(--status-dot-size-md);
+  border-radius: var(--radius-round);
+  background: var(--status-neutral-dot);
+}
+
+.status__label {
+  display: inline-block;
+}
+
+.status--sm {
+  min-height: var(--status-height-sm);
+  padding-inline: var(--status-padding-x-sm);
+  font-size: var(--status-font-size-sm);
+}
+
+.status--sm .status__dot {
+  width: var(--status-dot-size-sm);
+  height: var(--status-dot-size-sm);
+}
+
+.status--md {
+  min-height: var(--status-height-md);
+  padding-inline: var(--status-padding-x-md);
+  font-size: var(--status-font-size-md);
+}
+
+.status--neutral {
+  background: var(--status-neutral-bg);
+  color: var(--status-neutral-text);
+}
+
+.status--neutral .status__dot {
+  background: var(--status-neutral-dot);
+}
+
+.status--info {
+  background: var(--status-info-bg);
+  color: var(--status-info-text);
+}
+
+.status--info .status__dot {
+  background: var(--status-info-dot);
+}
+
+.status--success {
+  background: var(--status-success-bg);
+  color: var(--status-success-text);
+}
+
+.status--success .status__dot {
+  background: var(--status-success-dot);
+}
+
+.status--warning {
+  background: var(--status-warning-bg);
+  color: var(--status-warning-text);
+}
+
+.status--warning .status__dot {
+  background: var(--status-warning-dot);
+}
+
+.status--error {
+  background: var(--status-error-bg);
+  color: var(--status-error-text);
+}
+
+.status--error .status__dot {
+  background: var(--status-error-dot);
+}
+
+.status--inactive {
+  background: var(--status-inactive-bg);
+  color: var(--status-inactive-text);
+}
+
+.status--inactive .status__dot {
+  background: var(--status-inactive-dot);
+}

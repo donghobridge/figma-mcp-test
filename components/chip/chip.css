@@ -1,0 +1,59 @@
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--chip-gap);
+  min-height: var(--chip-height-md);
+  padding-inline: var(--chip-padding-x-md);
+  border-radius: var(--chip-radius);
+  background: var(--chip-bg);
+  color: var(--chip-text);
+  font-family: var(--font-family, var(--font-family-base));
+  font-size: var(--chip-font-size-md);
+  font-weight: var(--chip-font-weight);
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.chip--sm {
+  min-height: var(--chip-height-sm);
+  padding-inline: var(--chip-padding-x-sm);
+  font-size: var(--chip-font-size-sm);
+}
+
+.chip--md {
+  min-height: var(--chip-height-md);
+  padding-inline: var(--chip-padding-x-md);
+  font-size: var(--chip-font-size-md);
+}
+
+.chip__label {
+  display: inline-block;
+}
+
+.chip__remove {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: var(--chip-remove-size);
+  height: var(--chip-remove-size);
+  border: 0;
+  border-radius: var(--radius-round);
+  background: var(--chip-remove-bg);
+  color: var(--chip-remove-text);
+  cursor: pointer;
+  appearance: none;
+}
+
+.chip__remove:focus {
+  outline: none;
+}
+
+.chip__remove:focus-visible {
+  outline: var(--button-focus-ring-width) solid var(--button-focus-ring-color);
+  outline-offset: var(--button-focus-ring-offset);
+}
+
+.chip__remove:hover:not(:disabled) {
+  background: var(--chip-remove-bg-hover);
+}

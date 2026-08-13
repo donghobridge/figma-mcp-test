@@ -22,20 +22,14 @@ function updateThemeButtons(theme) {
 }
 
 function applyTheme(theme) {
-  if (theme === 'dark') {
-    if (!document.querySelector('#theme-dark-css')) {
-      const link = document.createElement('link');
-      link.id = 'theme-dark-css';
-      link.rel = 'stylesheet';
-      link.href = '/css/tokens.dark.css';
-      document.head.appendChild(link);
-    }
+  // Dark tokens are already loaded via /import.css ([data-theme="dark"]).
+  // Only toggle the attribute — do not inject a separate tokens.dark.css link.
+  const link = document.querySelector('#theme-dark-css');
+  if (link) link.remove();
 
+  if (theme === 'dark') {
     document.documentElement.setAttribute('data-theme', 'dark');
   } else {
-    const link = document.querySelector('#theme-dark-css');
-    if (link) link.remove();
-
     document.documentElement.setAttribute('data-theme', 'light');
   }
 

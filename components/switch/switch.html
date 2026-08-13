@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Switch</title>
+  <link rel="stylesheet" href="/import.css" />
+  <style>
+    body {
+      padding: 4rem 2.4rem;
+      background: var(--surface-default);
+      color: var(--text-default);
+      font-family: var(--font-family, var(--font-family-base));
+    }
+    .demo-section { margin-bottom: 4rem; }
+    .demo-label {
+      margin-bottom: 1.2rem;
+      color: var(--text-subtle);
+      font-size: var(--font-body-small);
+    }
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
+      gap: 1.6rem 3.2rem;
+      max-width: 72rem;
+    }
+    .demo-item {
+      display: flex;
+      align-items: center;
+      min-height: 3.2rem;
+    }
+    .demo-caption {
+      width: 10rem;
+      flex-shrink: 0;
+      color: var(--text-subtle);
+      font-size: var(--font-caption-regular);
+    }
+  </style>
+</head>
+<body>
+  <h1>Switch</h1>
+  <p>Native checkbox + <code>role="switch"</code>. Track/Thumb/Label layout 분리.</p>
+
+  <section class="demo-section">
+    <div class="demo-label">Small</div>
+    <div class="demo-grid">
+      <div class="demo-item"><span class="demo-caption">Off</span><label class="switch switch--sm"><input type="checkbox" role="switch" class="switch__input" aria-label="Small off" /><span class="switch__track" aria-hidden="true"></span><span class="switch__label">Label</span></label></div>
+      <div class="demo-item"><span class="demo-caption">On</span><label class="switch switch--sm"><input type="checkbox" role="switch" class="switch__input" checked aria-label="Small on" /><span class="switch__track" aria-hidden="true"></span><span class="switch__label">Label</span></label></div>
+      <div class="demo-item"><span class="demo-caption">Disabled Off</span><label class="switch switch--sm"><input type="checkbox" role="switch" class="switch__input" disabled aria-label="Small disabled off" /><span class="switch__track" aria-hidden="true"></span><span class="switch__label">Label</span></label></div>
+      <div class="demo-item"><span class="demo-caption">Disabled On</span><label class="switch switch--sm"><input type="checkbox" role="switch" class="switch__input" checked disabled aria-label="Small disabled on" /><span class="switch__track" aria-hidden="true"></span><span class="switch__label">Label</span></label></div>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <div class="demo-label">Medium</div>
+    <div class="demo-grid">
+      <div class="demo-item"><span class="demo-caption">Off</span><label class="switch switch--md"><input type="checkbox" role="switch" class="switch__input" aria-label="Medium off" /><span class="switch__track" aria-hidden="true"></span><span class="switch__label">Label</span></label></div>
+      <div class="demo-item"><span class="demo-caption">On</span><label class="switch switch--md"><input type="checkbox" role="switch" class="switch__input" checked aria-label="Medium on" /><span class="switch__track" aria-hidden="true"></span><span class="switch__label">Label</span></label></div>
+      <div class="demo-item"><span class="demo-caption">Disabled Off</span><label class="switch switch--md"><input type="checkbox" role="switch" class="switch__input" disabled aria-label="Medium disabled off" /><span class="switch__track" aria-hidden="true"></span><span class="switch__label">Label</span></label></div>
+      <div class="demo-item"><span class="demo-caption">Disabled On</span><label class="switch switch--md"><input type="checkbox" role="switch" class="switch__input" checked disabled aria-label="Medium disabled on" /><span class="switch__track" aria-hidden="true"></span><span class="switch__label">Label</span></label></div>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <div class="demo-label">Interaction</div>
+    <p style="color:var(--text-subtle);font-size:var(--font-body-small);">Hover / Focus-visible는 native interaction으로 확인하세요.</p>
+    <label class="switch switch--md">
+      <input type="checkbox" role="switch" class="switch__input" />
+      <span class="switch__track" aria-hidden="true"></span>
+      <span class="switch__label">Tab to focus</span>
+    </label>
+  </section>
+</body>
+</html>

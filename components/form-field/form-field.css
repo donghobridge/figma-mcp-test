@@ -1,0 +1,69 @@
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--form-field-gap);
+  width: 100%;
+}
+
+.form-field__label {
+  color: var(--form-field-label-text);
+  font-family: var(--font-family, var(--font-family-base));
+  font-size: var(--form-field-label-font-size);
+  font-weight: var(--form-field-label-font-weight);
+  line-height: 1.5;
+}
+
+.form-field__control {
+  width: 100%;
+}
+
+.form-field__helper {
+  color: var(--form-field-helper-text);
+  font-family: var(--font-family, var(--font-family-base));
+  font-size: var(--form-field-helper-font-size);
+  line-height: 1.5;
+}
+
+.form-field__error,
+.form-field__warning {
+  font-family: var(--font-family, var(--font-family-base));
+  font-size: var(--form-field-helper-font-size);
+  line-height: 1.5;
+}
+
+.form-field__error {
+  color: var(--form-field-error-text);
+}
+
+.form-field__warning {
+  color: var(--form-field-warning-text);
+}
+
+.form-field--error .form-field__label {
+  color: var(--form-field-error-text);
+}
+
+.form-field--warning .form-field__label {
+  color: var(--form-field-warning-text);
+}
+
+.form-field--error .input,
+.form-field--error .textarea,
+.form-field--error .select-field__control,
+.form-field--error .input-field .input,
+.form-field--error .input-group .input {
+  border-color: var(--input-border-error);
+}
+
+.form-field--warning .input,
+.form-field--warning .textarea,
+.form-field--warning .select-field__control,
+.form-field--warning .input-field .input,
+.form-field--warning .input-group .input {
+  border-color: var(--input-border-warning);
+}
+
+.form-field--error .input:focus-visible,
+.form-field--warning .input:focus-visible {
+  outline-color: var(--input-focus-ring-color);
+}

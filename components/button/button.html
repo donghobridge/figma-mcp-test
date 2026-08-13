@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Button — Design System Reference</title>
+  <link rel="stylesheet" href="/import.css" />
+  <style>
+    body {
+      padding: 4rem 2.4rem;
+      background: var(--surface-default);
+      color: var(--text-default);
+      font-family: var(--font-family, var(--font-family-base));
+    }
+
+    .button-demo__theme-label {
+      margin-bottom: 4rem;
+      font-size: var(--font-body-small);
+      color: var(--text-subtle);
+    }
+
+    .button-demo__theme-label code {
+      font-size: inherit;
+    }
+
+    .button-demo {
+      margin-bottom: 6.8rem;
+    }
+
+    .button-demo:last-child {
+      margin-bottom: 0;
+    }
+
+    .button-demo__inner {
+      display: grid;
+      grid-template-columns: 13rem repeat(4, max-content);
+      column-gap: 4rem;
+    }
+
+    .button-demo__header {
+      display: grid;
+      grid-column: 1 / -1;
+      grid-template-columns: subgrid;
+      align-items: center;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border-default);
+    }
+
+    .button-demo__title {
+      margin: 0;
+      font-size: var(--font-size-24);
+      font-weight: var(--font-weight-bold);
+      line-height: 1;
+    }
+
+    .button-demo__state-head {
+      font-size: var(--font-size-12);
+      color: var(--text-subtle);
+    }
+
+    .button-demo__body {
+      display: grid;
+      grid-column: 1 / -1;
+      grid-template-columns: subgrid;
+      align-items: center;
+      row-gap: 3rem;
+      padding-top: 3.4rem;
+    }
+
+    .button-demo__size-label {
+      font-size: var(--font-size-12);
+      color: var(--text-subtle);
+    }
+  </style>
+</head>
+<body>
+  <p class="button-demo__theme-label">
+    Dark theme preview: set <code>data-theme="dark"</code> on the
+    <code>&lt;html&gt;</code> element.
+  </p>
+
+  <main>
+    <!-- Primary -->
+    <section class="button-demo" aria-labelledby="demo-primary-title">
+      <div class="button-demo__inner">
+        <div class="button-demo__header">
+          <h2 class="button-demo__title" id="demo-primary-title">Primary</h2>
+          <div class="button-demo__state-head">Default</div>
+          <div class="button-demo__state-head">Hover</div>
+          <div class="button-demo__state-head">Pressed</div>
+          <div class="button-demo__state-head">Disabled</div>
+        </div>
+        <div class="button-demo__body">
+          <div class="button-demo__size-label">Large</div>
+          <button type="button" class="button button--primary button--lg">
+            <span class="button__icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5v9M8 10.5 4.5 7M8 10.5 11.5 7M3 14.5h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="button__label">Primary</span>
+            <span class="button__icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="m6 4 4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <button type="button" class="button button--primary button--lg" data-state="hover">
+            <span class="button__icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5v9M8 10.5 4.5 7M8 10.5 11.5 7M3 14.5h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="button__label">Primary</span>
+            <span class="button__icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="m6 4 4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <button type="button" class="button button--primary button--lg" data-state="active">
+            <span class="button__icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5v9M8 10.5 4.5 7M8 10.5 11.5 7M3 14.5h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="button__label">Primary</span>
+            <span class="button__icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="m6 4 4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <button type="button" class="button button--primary button--lg" disabled>
+            <span class="button__icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5v9M8 10.5 4.5 7M8 10.5 11.5 7M3 14.5h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="button__label">Primary</span>
+            <span class="button__icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="m6 4 4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+
+          <div class="button-demo__size-label">Medium</div>
+          <button type="button" class="button button--primary button--md">
+            <span class="button__icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5v9M8 10.5 4.5 7M8 10.5 11.5 7M3 14.5h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="button__label">Primary</span>
+            <span class="button__icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="m6 4 4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <button type="button" class="button button--primary button--md" data-state="hover">
+            <span class="button__icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5v9M8 10.5 4.5 7M8 10.5 11.5 7M3 14.5h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="button__label">Primary</span>
+            <span class="button__icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="m6 4 4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <button type="button" class="button button--primary button--md" data-state="active">
+            <span class="button__icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5v9M8 10.5 4.5 7M8 10.5 11.5 7M3 14.5h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="button__label">Primary</span>
+            <span class="button__icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="m6 4 4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <button type="button" class="button button--primary button--md" disabled>
+            <span class="button__icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5v9M8 10.5 4.5 7M8 10.5 11.5 7M3 14.5h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="button__label">Primary</span>
+            <span class="button__icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="m6 4 4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+
+          <div class="button-demo__size-label">Small</div>
+          <button type="button" class="button button--primary button--sm">
+            <span class="button__icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5v9M8 10.5 4.5 7M8 10.5 11.5 7M3 14.5h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="button__label">Primary</span>
+            <span class="button__icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="m6 4 4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <button type="button" class="button button--primary button--sm" data-state="hover">
+            <span class="button__icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5v9M8 10.5 4.5 7M8 10.5 11.5 7M3 14.5h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="button__label">Primary</span>
+            <span class="button__icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="m6 4 4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <button type="button" class="button button--primary button--sm" data-state="active">
+            <span class="button__icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5v9M8 10.5 4.5 7M8 10.5 11.5 7M3 14.5h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="button__label">Primary</span>
+            <span class="button__icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="m6 4 4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <button type="button" class="button button--primary button--sm" disabled>
+            <span class="button__icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5v9M8 10.5 4.5 7M8 10.5 11.5 7M3 14.5h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="button__label">Primary</span>
+            <span class="button__icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="m6 4 4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Secondary -->
+    <section class="button-demo" aria-labelledby="demo-secondary-title">
+      <div class="button-demo__inner">
+        <div class="button-demo__header">
+          <h2 class="button-demo__title" id="demo-secondary-title">Secondary</h2>
+          <div class="button-demo__state-head">Default</div>
+          <div class="button-demo__state-head">Hover</div>
+          <div class="button-demo__state-head">Pressed</div>
+          <div class="button-demo__state-head">Disabled</div>
+        </div>
+        <div class="button-demo__body">
+          <div class="button-demo__size-label">Large</div>
+          <button type="button" class="button button--secondary button--lg">
+            <span class="button__icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5v9M8 10.5 4.5 7M8 10.5 11.5 7M3 14.5h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="button__label">Secondary</span>
+          </button>
+          <button type="button" class="button button--secondary button--lg" data-state="hover">
+            <span class="button__icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5v9M8 10.5 4.5 7M8 10.5 11.5 7M3 14.5h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="button__label">Secondary</span>
+          </button>
+          <button type="button" class="button button--secondary button--lg" data-state="active">
+            <span class="button__icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5v9M8 10.5 4.5 7M8 10.5 11.5 7M3 14.5h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="button__label">Secondary</span>
+          </button>
+          <button type="button" class="button button--secondary button--lg" disabled>
+            <span class="button__icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5v9M8 10.5 4.5 7M8 10.5 11.5 7M3 14.5h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="button__label">Secondary</span>
+          </button>
+
+          <div class="button-demo__size-label">Medium</div>
+          <button type="button" class="button button--secondary button--md">
+            <span class="button__label">Secondary</span>
+          </button>
+          <button type="button" class="button button--secondary button--md" data-state="hover">
+            <span class="button__label">Secondary</span>
+          </button>
+          <button type="button" class="button button--secondary button--md" data-state="active">
+            <span class="button__label">Secondary</span>
+          </button>
+          <button type="button" class="button button--secondary button--md" disabled>
+            <span class="button__label">Secondary</span>
+          </button>
+
+          <div class="button-demo__size-label">Small</div>
+          <button type="button" class="button button--secondary button--sm">
+            <span class="button__label">Secondary</span>
+          </button>
+          <button type="button" class="button button--secondary button--sm" data-state="hover">
+            <span class="button__label">Secondary</span>
+          </button>
+          <button type="button" class="button button--secondary button--sm" data-state="active">
+            <span class="button__label">Secondary</span>
+          </button>
+          <button type="button" class="button button--secondary button--sm" disabled>
+            <span class="button__label">Secondary</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tertiary -->
+    <section class="button-demo" aria-labelledby="demo-tertiary-title">
+      <div class="button-demo__inner">
+        <div class="button-demo__header">
+          <h2 class="button-demo__title" id="demo-tertiary-title">Tertiary</h2>
+          <div class="button-demo__state-head">Default</div>
+          <div class="button-demo__state-head">Hover</div>
+          <div class="button-demo__state-head">Pressed</div>
+          <div class="button-demo__state-head">Disabled</div>
+        </div>
+        <div class="button-demo__body">
+          <div class="button-demo__size-label">Large</div>
+          <button type="button" class="button button--tertiary button--lg">
+            <span class="button__label">Tertiary</span>
+          </button>
+          <button type="button" class="button button--tertiary button--lg" data-state="hover">
+            <span class="button__label">Tertiary</span>
+          </button>
+          <button type="button" class="button button--tertiary button--lg" data-state="active">
+            <span class="button__label">Tertiary</span>
+          </button>
+          <button type="button" class="button button--tertiary button--lg" disabled>
+            <span class="button__label">Tertiary</span>
+          </button>
+
+          <div class="button-demo__size-label">Medium</div>
+          <button type="button" class="button button--tertiary button--md">
+            <span class="button__label">Tertiary</span>
+          </button>
+          <button type="button" class="button button--tertiary button--md" data-state="hover">
+            <span class="button__label">Tertiary</span>
+          </button>
+          <button type="button" class="button button--tertiary button--md" data-state="active">
+            <span class="button__label">Tertiary</span>
+          </button>
+          <button type="button" class="button button--tertiary button--md" disabled>
+            <span class="button__label">Tertiary</span>
+          </button>
+
+          <div class="button-demo__size-label">Small</div>
+          <button type="button" class="button button--tertiary button--sm">
+            <span class="button__label">Tertiary</span>
+          </button>
+          <button type="button" class="button button--tertiary button--sm" data-state="hover">
+            <span class="button__label">Tertiary</span>
+          </button>
+          <button type="button" class="button button--tertiary button--sm" data-state="active">
+            <span class="button__label">Tertiary</span>
+          </button>
+          <button type="button" class="button button--tertiary button--sm" disabled>
+            <span class="button__label">Tertiary</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Text -->
+    <section class="button-demo" aria-labelledby="demo-text-title">
+      <div class="button-demo__inner">
+        <div class="button-demo__header">
+          <h2 class="button-demo__title" id="demo-text-title">Text</h2>
+          <div class="button-demo__state-head">Default</div>
+          <div class="button-demo__state-head">Hover</div>
+          <div class="button-demo__state-head">Pressed</div>
+          <div class="button-demo__state-head">Disabled</div>
+        </div>
+        <div class="button-demo__body">
+          <div class="button-demo__size-label">Large</div>
+          <button type="button" class="button button--text button--lg">
+            <span class="button__icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5v9M8 10.5 4.5 7M8 10.5 11.5 7M3 14.5h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="button__label">Text</span>
+            <span class="button__icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="m6 4 4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <button type="button" class="button button--text button--lg" data-state="hover">
+            <span class="button__icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5v9M8 10.5 4.5 7M8 10.5 11.5 7M3 14.5h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="button__label">Text</span>
+            <span class="button__icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="m6 4 4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <button type="button" class="button button--text button--lg" data-state="active">
+            <span class="button__icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5v9M8 10.5 4.5 7M8 10.5 11.5 7M3 14.5h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="button__label">Text</span>
+            <span class="button__icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="m6 4 4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <button type="button" class="button button--text button--lg" disabled>
+            <span class="button__icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5v9M8 10.5 4.5 7M8 10.5 11.5 7M3 14.5h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="button__label">Text</span>
+            <span class="button__icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="m6 4 4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+
+          <div class="button-demo__size-label">Icon only</div>
+          <button type="button" class="button button--primary button--md button--icon-only" aria-label="다운로드">
+            <span class="button__icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5v9M8 10.5 4.5 7M8 10.5 11.5 7M3 14.5h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <span></span>
+          <span></span>
+          <button type="button" class="button button--primary button--md button--icon-only" disabled aria-label="다운로드">
+            <span class="button__icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5v9M8 10.5 4.5 7M8 10.5 11.5 7M3 14.5h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="button-demo" aria-labelledby="demo-toggle-title">
+      <div class="button-demo__inner">
+        <div class="button-demo__header">
+          <h2 class="button-demo__title" id="demo-toggle-title">Toggle / Reference mapping</h2>
+        </div>
+        <div class="button-demo__body" style="grid-column: 1 / -1; padding-top: 3.4rem;">
+          <p style="margin-bottom: 1.6rem; color: var(--text-subtle); font-size: var(--font-body-small);">
+            Toggle Button → <code>aria-pressed</code> · Star/Favorite Reference → Tag (<a href="/components/tag/tag.html">tag demo</a>) · Carousel control → Carousel Pattern (후속) · Selected pill radius → Promotion Candidate
+          </p>
+          <div style="display:flex; gap:1.2rem; flex-wrap:wrap;">
+            <button type="button" class="button button--tertiary button--md" aria-pressed="false">Toggle Off</button>
+            <button type="button" class="button button--tertiary button--md" aria-pressed="true">Toggle On</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

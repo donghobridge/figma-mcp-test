@@ -1,0 +1,478 @@
+/*
+ * Base Tokens v0.1
+ * Dark Theme
+ *
+ * Load Order
+ * 1. tokens.css
+ * 2. tokens.dark.css
+ * 3. tokens.project.css
+ * 4. tokens.project.dark.css
+ *
+ * Rules
+ * - Base Design System의 Dark 기본값만 정의한다.
+ * - 프로젝트 고유 Brand / Domain 값은 정의하지 않는다.
+ * - *-fixed 토큰은 override하지 않는다.
+ * - Light와 값이 동일한 토큰은 불필요하게 재선언하지 않는다.
+ */
+
+/*
+ * Dark theme activation
+ *
+ * Explicit: <html data-theme="dark">
+ *
+ * Default (no attribute) = Light theme from tokens.css.
+ * System preference auto-switch is intentionally not enabled here
+ * to avoid silently overriding project Light tokens.
+ */
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+
+  /* =========================================================
+   * 1. Semantic
+   * ======================================================= */
+
+
+  /* -----------------------------------------
+   * Surface
+   * -------------------------------------- */
+
+  --surface-default:
+    var(--color-neutral-warm-850);
+
+  --surface-elevated:
+    var(--color-neutral-warm-700);
+
+  --surface-elevated-dark:
+    var(--color-neutral-warm-800);
+
+  --surface-inverse:
+    var(--color-neutral-warm-600);
+
+
+  /* dim */
+  --surface-dim-13:
+    var(--color-neutral-white-18);
+
+  --surface-dim-30:
+    var(--color-neutral-white-35);
+
+  --surface-dim-50:
+    var(--color-neutral-white-50);
+
+  --surface-dim-70:
+    var(--color-neutral-white-80);
+
+
+  --surface-white-50:
+    var(--color-neutral-black-50);
+
+
+  /*
+   * surface-primary는 Light/Dark 모두
+   * primary-500이므로 override하지 않는다.
+   *
+   * surface-primary-light / dark 역시
+   * 프로젝트 Primary Palette를 그대로 참조하므로
+   * Base Light 값을 유지한다.
+   */
+
+
+  /* semantic white / black inversion */
+  --surface-white:
+    var(--color-neutral-black);
+
+  --surface-black:
+    var(--color-neutral-white);
+
+
+
+  /* -----------------------------------------
+   * State
+   * -------------------------------------- */
+
+  --state-primary:
+    var(--color-primary-750);
+
+
+  /* info */
+  --state-info:
+    var(--color-info-800);
+
+  --state-info-gray:
+    var(--color-neutral-warm-600);
+
+  --state-info-gray-border:
+    var(--color-neutral-warm-550);
+
+  --state-info-border:
+    var(--color-info-700);
+
+
+  /* success */
+  --state-success:
+    var(--color-success-700);
+
+  --state-success-border:
+    var(--color-success-600);
+
+
+  /* error */
+  --state-error:
+    var(--color-error-800);
+
+  --state-error-border:
+    var(--color-error-800);
+
+
+  /*
+   * warning
+   *
+   * Base에서는 Warning Palette를 사용한다.
+   *
+   * 노란우산 원본 Dark에서는
+   * primary-800 / primary-700을 사용했으므로
+   * 해당 매핑은 tokens.project.dark.css에서 override한다.
+   */
+  --state-warning:
+    var(--color-warning-800);
+
+  --state-warning-border:
+    var(--color-warning-700);
+
+
+
+  /* -----------------------------------------
+   * Text
+   * -------------------------------------- */
+
+  --text-default:
+    var(--color-neutral-warm-15);
+
+  --text-subtle:
+    var(--color-neutral-warm-300);
+
+  --text-subtle-dark:
+    var(--color-neutral-warm-100);
+
+  --text-subtle-gray:
+    var(--color-neutral-warm-300);
+
+  --text-disabled:
+    var(--color-neutral-warm-500);
+
+  --text-input-disabled:
+    var(--color-neutral-warm-300);
+
+
+  /*
+   * text-primary는 Light/Dark 모두
+   * primary-500이므로 유지.
+   */
+
+  --text-primary-dark:
+    var(--color-primary-300);
+
+
+  /*
+   * text-white는 항상 white이므로
+   * override하지 않는다.
+   */
+
+
+
+  /* -----------------------------------------
+   * Text / State
+   * -------------------------------------- */
+
+  --text-state-info:
+    var(--color-info-300);
+
+  --text-state-info-light:
+    var(--color-info-200);
+
+  --text-state-info-gray:
+    var(--color-neutral-300);
+
+
+  --text-state-success:
+    var(--color-success-300);
+
+
+  --text-state-error:
+    var(--color-error-300);
+
+
+  --text-state-warning:
+    var(--color-warning-400);
+
+
+  --text-state-primary:
+    var(--color-primary-400);
+
+
+
+  /* -----------------------------------------
+   * Icon
+   * -------------------------------------- */
+
+  --icon-focus:
+    var(--color-neutral-warm-75);
+
+  --icon-default:
+    var(--color-neutral-warm-75);
+
+  --icon-subtle:
+    var(--color-neutral-warm-300);
+
+  --icon-primary:
+    var(--color-primary-300);
+
+  --icon-pressed:
+    var(--color-neutral-warm-200);
+
+  --icon-disabled:
+    var(--color-neutral-warm-500);
+
+
+
+  /* -----------------------------------------
+   * Border
+   * -------------------------------------- */
+
+  --border-default:
+    var(--color-neutral-warm-450);
+
+  --border-strong:
+    var(--color-neutral-warm-600);
+
+  --border-subtle:
+    var(--color-neutral-warm-550);
+
+
+
+  /* -----------------------------------------
+   * Element
+   *
+   * v0.1 provisional
+   * 추후 control / form-control 등의
+   * Semantic Layer로 재정의할지 검토.
+   * -------------------------------------- */
+
+  --element-default:
+    var(--color-neutral-warm-850);
+
+  --element-primary:
+    var(--color-primary-400);
+
+  --element-focused:
+    var(--color-primary-900);
+
+  --element-disabled:
+    var(--color-neutral-warm-550);
+
+
+  --element-default-border:
+    var(--color-neutral-warm-650);
+
+  --element-focused-border:
+    var(--color-primary-700);
+
+  --element-disabled-border:
+    var(--color-neutral-warm-600);
+
+  --element-hover-border:
+    var(--color-primary-100);
+
+
+
+  /* =========================================================
+   * 2. Component
+   * ======================================================= */
+
+
+  /* -----------------------------------------
+   * Button
+   * -------------------------------------- */
+
+
+  /* Primary */
+
+  --button-primary-text:
+    var(--color-neutral-black);
+
+  --button-primary-text-hover:
+    var(--color-neutral-warm-650);
+
+  --button-primary-text-pressed:
+    var(--color-neutral-warm-700);
+
+
+  --button-primary-bg:
+    var(--color-neutral-warm-25);
+
+  --button-primary-bg-hover:
+    var(--color-neutral-white);
+
+  --button-primary-bg-pressed:
+    var(--color-neutral-warm-300);
+
+
+
+  /* Secondary */
+
+  --button-secondary-text:
+    var(--color-primary-900);
+
+  --button-secondary-text-hover:
+    var(--color-primary-800);
+
+  --button-secondary-text-pressed:
+    var(--color-primary-500);
+
+  --button-secondary-text-disabled:
+    var(--color-neutral-warm-250);
+
+
+  --button-secondary-bg:
+    var(--color-primary-500);
+
+  --button-secondary-bg-hover:
+    var(--color-primary-300);
+
+  --button-secondary-bg-pressed:
+    var(--color-primary-700);
+
+  --button-secondary-bg-disabled:
+    var(--color-primary-750);
+
+
+
+  /* Tertiary */
+
+  --button-tertiary-text:
+    var(--color-neutral-white);
+
+  --button-tertiary-text-hover:
+    var(--color-neutral-warm-15);
+
+  --button-tertiary-text-pressed:
+    var(--color-neutral-warm-300);
+
+
+  --button-tertiary-bg:
+    var(--color-neutral-warm-550);
+
+  --button-tertiary-border:
+    var(--color-neutral-warm-650);
+
+  --button-tertiary-bg-hover:
+    var(--color-neutral-warm-450);
+
+  --button-tertiary-bg-pressed:
+    var(--color-neutral-warm-900);
+
+
+
+  /* Default */
+
+  --button-text:
+    var(--color-neutral-warm-25);
+
+  --button-text-hover:
+    var(--color-neutral-warm-15);
+
+  --button-text-pressed:
+    var(--color-neutral-warm-450);
+
+  --button-text-disabled:
+    var(--color-neutral-warm-300);
+
+
+  /* Disabled */
+
+  --button-disabled-bg:
+    var(--color-neutral-warm-600);
+
+
+
+  /* -----------------------------------------
+   * Input
+   * -------------------------------------- */
+
+  --input-bg:
+    var(--color-neutral-warm-800);
+
+  --input-bg-primary:
+    var(--color-primary-400);
+
+  --input-bg-focused:
+    var(--color-primary-900);
+
+  --input-bg-disabled:
+    var(--color-neutral-warm-600);
+
+
+  --input-border-error:
+    var(--color-error-400);
+
+  --input-border-default:
+    var(--color-neutral-warm-850);
+
+  --input-border-focused:
+    var(--color-primary-700);
+
+  --input-border-disabled:
+    var(--color-neutral-warm-550);
+
+  --input-border-hover:
+    var(--color-neutral-white);
+
+
+
+  /* -----------------------------------------
+   * Checkbox
+   * -------------------------------------- */
+
+  /*
+   * Checkbox는 아래 Semantic Token을 참조하므로
+   * 별도 Dark override가 필요하지 않다.
+   *
+   * --checkbox-bg
+   *   -> --element-default
+   *
+   * --checkbox-border
+   *   -> --element-default-border
+   *
+   * --checkbox-check
+   *   -> --icon-subtle
+   */
+
+
+
+  /* -----------------------------------------
+   * Table
+   * -------------------------------------- */
+
+  --table-border:
+    var(--color-neutral-warm-600);
+
+  --table-header-bg:
+    var(--color-neutral-warm-850);
+
+  --table-header-border:
+    var(--color-neutral-warm-850);
+
+  --table-row-header-bg:
+    var(--color-neutral-warm-700);
+
+  --table-row-header-border:
+    var(--color-neutral-warm-700);
+
+  --table-cell-bg:
+    var(--color-neutral-warm-650);
+
+  --table-cell-border:
+    var(--color-neutral-warm-650);
+}

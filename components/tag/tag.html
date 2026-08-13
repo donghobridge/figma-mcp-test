@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tag</title>
+  <link rel="stylesheet" href="/import.css" />
+  <style>
+    body { padding: 4rem 2.4rem; background: var(--surface-default); color: var(--text-default); font-family: var(--font-family, var(--font-family-base)); }
+    .demo-section { margin-bottom: 3.2rem; }
+    .demo-label { margin-bottom: 1.2rem; color: var(--text-subtle); font-size: var(--font-body-small); }
+    .demo-row { display: flex; flex-wrap: wrap; gap: 1.2rem; }
+  </style>
+</head>
+<body>
+  <h1>Tag</h1>
+  <p>Filter / selectable tag. Removable label → <a href="/components/chip/chip.html">Chip</a></p>
+
+  <section class="demo-section">
+    <div class="demo-label">Tag_search — size sm / md / lg</div>
+    <div class="demo-row">
+      <button type="button" class="tag tag--filter tag--sm"><span class="tag__prefix">#</span><span class="tag__label">가입안내</span></button>
+      <button type="button" class="tag tag--filter tag--md"><span class="tag__prefix">#</span><span class="tag__label">가입안내</span></button>
+      <button type="button" class="tag tag--filter tag--lg"><span class="tag__prefix">#</span><span class="tag__label">가입안내</span></button>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <div class="demo-label">Filter chip states</div>
+    <div class="demo-row">
+      <button type="button" class="tag tag--filter tag--md"><span class="tag__prefix">#</span><span class="tag__label">Default</span></button>
+      <button type="button" class="tag tag--filter tag--md tag--outline"><span class="tag__prefix">#</span><span class="tag__label">Outline</span></button>
+      <button type="button" class="tag tag--filter tag--md" aria-pressed="true"><span class="tag__prefix">#</span><span class="tag__label">Selected</span></button>
+      <button type="button" class="tag tag--filter tag--md" disabled><span class="tag__prefix">#</span><span class="tag__label">Disabled</span></button>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <div class="demo-label">tag_btn favorite — toggle (Reference)</div>
+    <div class="demo-row">
+      <button type="button" class="tag tag--md" aria-pressed="false">
+        <span class="tag__icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.5 12 13 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="tag__label">내 생일</span>
+      </button>
+      <button type="button" class="tag tag--md" aria-pressed="true">
+        <span class="tag__icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.5 12 13 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="tag__label">내 생일</span>
+      </button>
+    </div>
+  </section>
+</body>
+</html>
