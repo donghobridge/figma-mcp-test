@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>참조 셸</title>
+  <title>상담접수 내용 상세</title>
   <link rel="stylesheet" href="/import.css">
   <script defer src="/import.js"></script>
   <script defer src="/common.js"></script>
@@ -12,104 +12,22 @@
   <div data-include-path="/svg-symbols.html"></div>
   <div class="page-layout">
     <div data-include-path="/patterns/gnb.html"></div>
-    <div class="page-layout__page-inner">
-      <div class="breadcrumb-group">
-        <div class="breadcrumb-group__item">
-          <a href="#" class="breadcrumb-group__home-link">
-            <svg class="icon" aria-hidden="true">
-              <use href="/svg-symbols.html#icon-home"></use>
-            </svg>
-          </a>
-        </div>
-        <div class="breadcrumb-group__item">
-          <a href="#" class="breadcrumb-group__link"></a>
-        </div>
-        <div class="breadcrumb-group__item">
-          <a href="#" class="breadcrumb-group__link"></a>
-        </div>
-        <div class="breadcrumb-group__item">
-          <a href="#" class="breadcrumb-group__link"></a>
-        </div>
-        <div class="breadcrumb-group__item">
-          <span class="breadcrumb-group__current"></span>
-        </div>
-      </div>
-
-      <div class="title-group">
-        <a href="#" class="title-group__back-button">
-          <svg class="icon" aria-hidden="true">
-            <use href="/svg-symbols.html#icon-arrow-back-ios"></use>
-          </svg>
-        </a>
-        <h1 class="title-group__title">목록</h1>
-      </div>
-
-      <div class="content-card">
-        <div class="content-card__section">
-          <div class="case-header">
-            <!-- No visible text in the tree for CaseHeader title -->
-          </div>
-
-          <div class="attachment-list">
-            <!-- No visible text in the tree for AttachmentList content -->
-          </div>
-
-          <div class="contact-bar">
-            <!-- No visible text in the tree for ContactBar content -->
-          </div>
-
-          <div class="attachment-list">
-            <div class="attachment-list__item">
-              <!-- No visible text in the tree for attach item -->
-            </div>
-            <div class="attachment-list__item">
-              <!-- No visible text in the tree for attach item -->
+    <div data-include-path="/components/back-to-list.html" data-prop-label="목록" data-prop-href="#"></div>
+    <div class="page-layout__page-inner page-layout--content">
+      <div class="detail-view-container">
+        <div class="page-inner__inner">
+          <div class="detail-view__content">
+            <div data-include-path="/components/breadcrumb-group.html" data-prop-item1="홈"></div>
+            <div data-include-path="/components/case-header.html"></div>
+            <div class="detail-view--content-body">
+              <div data-include-path="/components/attachment-list.html"></div>
+              <div data-include-path="/components/contact-bar.html"></div>
+              <div data-include-path="/components/attachment-list.html"></div>
+              <div data-include-path="/components/question-content.html" data-prop-label="신청 법률분쟁의 종류" data-prop-category="부동산 분쟁소송대리지원" data-prop-description="제가 가지고 있는 오래된 빌라가 재건..."></div>
+              <div data-include-path="/components/answer-panel.html" data-prop-notice-date="2026.02.19 15:42:28" data-prop-description="안녕하세요. 답변드립니다.&#x2028;&#x2028;1. 2..."></div>
+              <div data-include-path="/components/button.html" data-prop-label="수정하기" data-prop-href="#"></div>
             </div>
           </div>
-        </div>
-
-        <div class="question-content">
-          <div class="question-content__header">
-            <p class="question-content__label">신청 법률분쟁의 종류</p>
-            <hr class="question-content__divider">
-            <p class="question-content__type">부동산 분쟁소송대리지원</p>
-          </div>
-          <p class="question-content__text">제가 가지고 있는 오래된 빌라가 재건...</p>
-        </div>
-
-        <div class="answer-panel">
-          <div class="answer-panel__header">
-            <!-- No visible text in the tree for Frame 1430106042 -->
-          </div>
-          <hr class="answer-panel__divider">
-          <div class="answer-panel__info">
-            <!-- No visible text in the tree for Frame 1430106054 -->
-            <span class="answer-panel__timestamp">2026.02.19 15:42:28</span>
-          </div>
-          <div class="answer-panel__body">
-            <!-- No visible text in the tree for Frame 1430106505 -->
-            <p class="answer-panel__text">안녕하세요. 답변드립니다.&#x2028;&#x2028;1. 2...</p>
-          </div>
-          <div class="tag-list">
-            <div class="tag-list__item">
-              <!-- No visible text in the tree for tag_serach -->
-            </div>
-            <div class="tag-list__item">
-              <!-- No visible text in the tree for tag_serach -->
-            </div>
-          </div>
-        </div>
-
-        <div class="button-group">
-          <button type="button" class="button button--primary">
-            <svg class="icon" aria-hidden="true">
-              <!-- No specific icon name provided in the tree for this icon -->
-            </svg>
-            <span>수정하기</span>
-            <svg class="icon" aria-hidden="true">
-              <!-- No specific icon name provided in the tree for this icon -->
-            </svg>
-          </button>
         </div>
       </div>
     </div>
