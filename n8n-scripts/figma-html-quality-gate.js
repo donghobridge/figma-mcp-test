@@ -1,10 +1,8 @@
 /**
- * 조립 HTML 품질 게이트 (Phase E)
- * - 필수 셸: page-layout
- * - 패밀리 마커: detail-view | board-container | action-box(폼)
- * - 레거시/portal-only 클래스 금지(또는 경고)
- *
- * 실행 입력 qualityGateStrict=false 이면 errors → warnings로 강등
+ * 조립 HTML 품질 게이트
+ * - page-layout 필수
+ * - detail/list/form/content 패밀리 셸 검증
+ * - strict 모드에서는 본문 component include 0개를 즉시 실패
  */
 module.exports = function ($input, helpers) {
   let assembled = {};
@@ -13,9 +11,7 @@ module.exports = function ($input, helpers) {
       assembled = helpers.getJson('HTML 조립') || {};
     }
   } catch (_) {}
-  if (!assembled.html) {
-    assembled = $input.first().json || {};
-  }
+  if (!assembled.html) assembled = $input.first().json || {};
 
   const html = String(assembled.html || '');
   if (!html || !/<html[\s>]/i.test(html)) {
@@ -28,24 +24,32 @@ module.exports = function ($input, helpers) {
   const errors = [];
   const warnings = Array.isArray(assembled.warnings) ? assembled.warnings.slice() : [];
 
-  if (!/\bpage-layout\b/.test(html)) {
-    errors.push('필수 클래스 page-layout 없음');
+  if (!/\bpage-layout\b/.test(html)) errors.push('필수 클래스 page-layout 없음');
+
+  if (!/data-include-path="\/patterns\/(gnb|header)(\/include)?\.html"/.test(html)) {
+    warnings.push('header/gnb include 없음');
   }
-  if (!/data-include-path="\/patterns\/gnb\.html"/.test(html)) {
-    warnings.push('gnb include 없음');
-  }
-  if (!/data-include-path="\/patterns\/footer\.html"/.test(html)) {
+  if (!/data-include-path="\/patterns\/footer(\/include)?\.html"/.test(html)) {
     warnings.push('footer include 없음');
   }
   if (!/data-include-path="\/svg-symbols\.html"/.test(html)) {
     warnings.push('svg-symbols include 없음');
   }
 
+  const componentIncludes = html.match(/data-include-path="\/components\/[^"]+"/g) || [];
+  if (!componentIncludes.length) {
+    const msg = '본문 component include가 0개입니다. component-map/Figma alias 매칭 실패 가능성이 큽니다.';
+    if (strict) errors.push(msg);
+    else warnings.push(msg);
+  }
+
   const hasDetail = /detail-view-container|detail-view__content|detail-view--content/.test(html);
   const hasList = /board-container/.test(html);
   const hasForm = /page-layout__page-inner--action|action-box-list|\baction-box\b/.test(html);
-  if (!hasDetail && !hasList && !hasForm) {
-    errors.push('패밀리 셸 없음 (detail-view / board-container / action-box 중 하나 필요)');
+  const hasContent = /page-layout__page-inner|page-layout--content/.test(html);
+
+  if (!hasDetail && !hasList && !hasForm && !hasContent) {
+    errors.push('페이지 패밀리 셸 없음');
   }
 
   if (/\blayout-page\b|\blayout-detail\b/.test(html)) {
@@ -60,11 +64,8 @@ module.exports = function ($input, helpers) {
     else warnings.push(msg);
   }
 
-  if (!/data-include-path="\/components\//.test(html)) {
-    warnings.push('component include가 없음 (빈 페이지 가능)');
-  }
-
-  const layoutMode = assembled.layoutMode || (hasForm ? 'form' : hasList ? 'list' : hasDetail ? 'public-detail' : 'content');
+  const layoutMode = assembled.layoutMode
+    || (hasForm ? 'form' : hasList ? 'list' : hasDetail ? 'public-detail' : 'content');
 
   if (errors.length) {
     throw new Error(
@@ -81,8 +82,9 @@ module.exports = function ($input, helpers) {
       qualityGate: {
         ok: true,
         strict,
+        componentIncludeCount: componentIncludes.length,
         layoutMode,
-        markers: { hasDetail, hasList, hasForm },
+        markers: { hasDetail, hasList, hasForm, hasContent },
         errors: [],
         warnings,
       },
