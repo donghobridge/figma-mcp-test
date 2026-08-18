@@ -10,3 +10,6 @@
 /* project */
 @import url('/css/project/tokens.yuma.css');
 @import url('/css/project/tokens.yuma.dark.css');
+
+/* page-composition layer used by Figma MCP assembly */
+@import url('/css/project/compositions.css');
