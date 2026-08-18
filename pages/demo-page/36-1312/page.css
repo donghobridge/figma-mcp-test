@@ -1,119 +1,933 @@
-.fg-root,.fg-root *{box-sizing:border-box}
-.fg-root img{display:block;max-width:100%}
-.fg-1wq5n08{display:flex;flex-direction:column;align-items:center;width:100%;max-width:1920px;margin-left:auto;margin-right:auto;height:auto;background-color:#F4F5F6}
-.fg-owgw1p{display:flex;flex-direction:column;gap:6px;padding:20px 0px 10px;align-items:center;width:1920px;max-width:100%;height:auto;background:linear-gradient(180deg, rgba(244, 245, 246, 1) 66%, rgba(244, 245, 246, 0) 100%)}
-.fg-8zs8vd{display:flex;flex-direction:column;gap:10px;align-items:center;align-self:stretch;align-self:stretch;width:auto;min-width:0;height:auto}
-.fg-1fu2r0c{display:flex;flex-direction:row;gap:8px;padding:0px 10px 0px 20px;justify-content:space-between;align-items:center;flex-wrap:wrap;width:1272px;max-width:100%;height:64px;border-radius:18px;overflow:hidden;background-color:#FFFFFF}
-.fg-10xjjrc{width:212px;max-width:100%;height:42px}
-.fg-vd6lem{display:flex;flex-direction:row;gap:60px;align-items:center;width:max-content;max-width:100%;height:auto}
-.fg-139tttv{width:max-content;max-width:100%;height:auto;color:#111111;font-family:Pretendard GOV;font-weight:600;font-size:16px;line-height:1.44em;letter-spacing:-0.0188em;text-align:left;white-space:normal}
-.fg-17ndnv5{width:max-content;max-width:100%;height:auto;color:#111111;font-family:Pretendard GOV;font-weight:600;font-size:16px;line-height:1.44em;letter-spacing:-0.0188em;text-align:left;white-space:normal}
-.fg-1fncjb0{width:max-content;max-width:100%;height:auto;color:#111111;font-family:Pretendard GOV;font-weight:600;font-size:16px;line-height:1.44em;letter-spacing:-0.0188em;text-align:left;white-space:normal}
-.fg-13807yv{width:max-content;max-width:100%;height:auto;color:#111111;font-family:Pretendard GOV;font-weight:600;font-size:16px;line-height:1.44em;letter-spacing:-0.0188em;text-align:left;white-space:normal}
-.fg-15iz4r3{width:max-content;max-width:100%;height:auto;color:#111111;font-family:Pretendard GOV;font-weight:600;font-size:16px;line-height:1.44em;letter-spacing:-0.0188em;text-align:left;white-space:normal}
-.fg-bv73q2{display:flex;flex-direction:row;align-items:center;width:max-content;max-width:100%;height:auto}
-.fg-17mrsof{display:flex;flex-direction:row;gap:4px;padding:0px 18px;justify-content:flex-end;align-items:center;width:max-content;max-width:100%;height:auto}
-.fg-19dzv3g{display:flex;flex-direction:column;gap:8px;justify-content:center;width:max-content;max-width:100%;height:auto}
-.fg-q1u9j9{width:20px;max-width:100%;height:20px}
-.fg-pzbn{width:max-content;max-width:100%;height:auto;color:#848E9A;font-family:Pretendard GOV;font-weight:600;font-size:12px;line-height:1.44em;letter-spacing:-0.025em;text-align:left;white-space:normal}
-.fg-z0miz2{display:flex;flex-direction:row;gap:4px;padding:0px 18px;justify-content:flex-end;align-items:center;width:max-content;max-width:100%;height:20px}
-.fg-j5dwr1{display:flex;flex-direction:column;gap:8px;justify-content:center;width:max-content;max-width:100%;height:auto}
-.fg-1qj6lc6{width:20px;max-width:100%;height:20px}
-.fg-11lfyqs{width:max-content;max-width:100%;height:auto;color:#848E9A;font-family:Pretendard GOV;font-weight:600;font-size:12px;line-height:1.44em;letter-spacing:-0.025em;text-align:left;white-space:normal}
-.fg-1iqqi0m{display:flex;flex-direction:column;gap:60px;padding:48px 0px 60px;align-items:center;width:1920px;max-width:100%;height:auto;background-color:#F4F5F6}
-.fg-47gqdl{display:flex;flex-direction:row;gap:10px;padding:0px 12px;align-items:center;width:1272px;max-width:100%;height:auto}
-.fg-1jrezl0{display:flex;flex-direction:column;gap:8px;justify-content:center;width:max-content;max-width:100%;height:auto}
-.fg-1nu9sb6{width:32px;max-width:100%;height:32px}
-.fg-nm6rg5{width:max-content;max-width:100%;height:auto;color:#111111;font-family:Pretendard GOV;font-weight:600;font-size:32px;line-height:1.5em;letter-spacing:-0.0094em;text-align:left;white-space:normal}
-.fg-1sp9t3e{display:flex;flex-direction:column;gap:10px;padding:0px 0px 100px;align-items:stretch;width:1272px;max-width:100%;height:auto}
-.fg-l9mgil{display:flex;flex-direction:column;gap:40px;padding:60px;align-items:center;align-self:stretch;align-self:stretch;width:auto;min-width:0;height:auto;border-radius:60px;overflow:hidden;box-shadow:0px 2px 28px 0px rgba(0, 0, 0, 0.05);background-color:#FFFFFF}
-.fg-jivje5{display:flex;flex-direction:column;gap:28px;align-self:stretch;align-self:stretch;width:auto;min-width:0;height:auto}
-.fg-otcaqi{display:flex;flex-direction:row;gap:12px;padding:0px 12px;width:1104px;max-width:100%;height:117px}
-.fg-1qqjai3{display:flex;flex-direction:column;gap:12px;flex:1 1 0;min-width:0;height:auto}
-.fg-83edao{display:flex;flex-direction:row;gap:4px;align-items:center;width:max-content;max-width:100%;height:auto}
-.fg-4jn82n{display:flex;flex-direction:row;padding:0px 8px;justify-content:center;align-items:center;width:max-content;max-width:100%;height:24px}
-.fg-1sn5gay{display:flex;flex-direction:row;padding:0px 8px;justify-content:center;align-items:center;width:max-content;max-width:100%;height:24px}
-.fg-xfvy1p{align-self:stretch;width:auto;min-width:0;height:auto;color:#111111;font-family:Pretendard GOV;font-weight:600;font-size:30px;line-height:1.5em;letter-spacing:-0.01em;text-align:left;white-space:normal}
-.fg-13scxqw{width:1128px;max-width:100%;height:24px;color:#848E9A;font-family:Pretendard GOV;font-weight:400;font-size:16px;line-height:1.5em;letter-spacing:-0.0313em;text-align:left;white-space:normal}
-.fg-jp2ila{display:flex;flex-direction:row;padding:16px 32px 16px 16px;justify-content:space-between;align-items:center;align-self:stretch;align-self:stretch;width:auto;min-width:0;height:auto;border-radius:28px;overflow:hidden;border-style:solid;border-color:#FFE2A8;border-width:2px;background-color:#FFFDF0}
-.fg-1ivaz69{display:flex;flex-direction:row;gap:16px;align-items:center;width:max-content;max-width:100%;height:auto}
-.fg-vsy7tk{width:48px;max-width:100%;height:48px}
-.fg-1njjppv{display:flex;flex-direction:row;gap:8px;width:max-content;max-width:100%;height:auto}
-.fg-ebcb61{width:max-content;max-width:100%;height:auto;color:#111111;font-family:Pretendard GOV;font-weight:400;font-size:19px;line-height:1.5em;letter-spacing:-0.0263em;text-align:left;white-space:normal}
-.fg-7ybtzs{display:flex;flex-direction:row;gap:20px;width:max-content;max-width:100%;height:auto}
-.fg-1f8ebov{width:max-content;max-width:100%;height:auto;color:#111111;font-family:Pretendard GOV;font-weight:500;font-size:19px;line-height:1.5em;letter-spacing:-0.0263em;text-align:left;white-space:normal}
-.fg-1ukmfb6{width:max-content;max-width:100%;height:auto;color:#111111;font-family:Pretendard GOV;font-weight:500;font-size:19px;line-height:1.5em;letter-spacing:-0.0263em;text-align:left;white-space:normal}
-.fg-o9btxz{display:flex;flex-direction:column;gap:8px;align-items:stretch;align-self:stretch;align-self:stretch;width:auto;min-width:0;height:auto}
-.fg-1tkrvzw{display:flex;flex-direction:column;gap:12px;padding:12px 32px 12px 20px;justify-content:center;align-items:stretch;align-self:stretch;align-self:stretch;width:auto;min-width:0;height:auto;border-radius:16px;overflow:hidden;border-style:solid;border-color:#CDD0D6;border-width:1px}
-.fg-mqhdux{display:flex;flex-direction:row;gap:20px;align-items:center;align-self:stretch;align-self:stretch;width:auto;min-width:0;height:auto}
-.fg-1av8tqu{display:flex;flex-direction:row;gap:8px;align-items:center;flex:1 1 0;min-width:0;height:auto}
-.fg-kzlsl{display:flex;flex-direction:column;gap:8px;justify-content:center;width:max-content;max-width:100%;height:auto}
-.fg-ndjawx{width:20px;max-width:100%;height:20px}
-.fg-e0vdyk{width:max-content;max-width:100%;height:auto;color:#111111;font-family:Pretendard GOV;font-weight:600;font-size:14px;line-height:1.6em;letter-spacing:-0.0214em;text-align:left;white-space:normal}
-.fg-32hv73{width:0px;max-width:100%;height:14px;border-style:solid;border-color:#CDD0D6;border-width:1px}
-.fg-1y9kuoz{flex:1 1 0;min-width:0;height:auto;color:#111111;font-family:Pretendard GOV;font-weight:400;font-size:14px;line-height:1.5em;letter-spacing:-0.0214em;text-align:left;white-space:normal}
-.fg-1t74atg{display:flex;flex-direction:row;gap:24px;align-items:center;width:max-content;max-width:100%;height:auto}
-.fg-a1x9yx{display:flex;flex-direction:row;gap:4px;justify-content:center;align-items:center;width:max-content;max-width:100%;height:auto}
-.fg-1y5h7dy{display:flex;flex-direction:row;gap:4px;justify-content:center;align-items:center;width:max-content;max-width:100%;height:auto}
-.fg-ivbyvx{display:flex;flex-direction:column;gap:12px;padding:12px 32px 12px 20px;justify-content:center;align-items:stretch;align-self:stretch;align-self:stretch;width:auto;min-width:0;height:auto;border-radius:16px;overflow:hidden;border-style:solid;border-color:#CDD0D6;border-width:1px}
-.fg-wntcxs{display:flex;flex-direction:row;gap:20px;align-items:center;align-self:stretch;align-self:stretch;width:auto;min-width:0;height:auto}
-.fg-m3jq3f{display:flex;flex-direction:row;gap:8px;align-items:center;flex:1 1 0;min-width:0;height:auto}
-.fg-d7pnya{display:flex;flex-direction:column;gap:8px;justify-content:center;width:max-content;max-width:100%;height:auto}
-.fg-u08a90{width:20px;max-width:100%;height:20px}
-.fg-1xoi9yj{width:max-content;max-width:100%;height:auto;color:#111111;font-family:Pretendard GOV;font-weight:600;font-size:14px;line-height:1.6em;letter-spacing:-0.0214em;text-align:left;white-space:normal}
-.fg-120lw32{width:0px;max-width:100%;height:14px;border-style:solid;border-color:#CDD0D6;border-width:1px}
-.fg-gcr9ce{flex:1 1 0;min-width:0;height:auto;color:#111111;font-family:Pretendard GOV;font-weight:400;font-size:14px;line-height:1.5em;letter-spacing:-0.0214em;text-align:left;white-space:normal}
-.fg-1w265mf{display:flex;flex-direction:row;gap:24px;align-items:center;width:max-content;max-width:100%;height:auto}
-.fg-en7tes{display:flex;flex-direction:row;gap:4px;justify-content:center;align-items:center;width:max-content;max-width:100%;height:auto}
-.fg-16jbsab{display:flex;flex-direction:row;gap:4px;justify-content:center;align-items:center;width:max-content;max-width:100%;height:auto}
-.fg-1x4z3sy{display:flex;flex-direction:column;gap:12px;padding:0px 12px;justify-content:center;align-items:stretch;align-self:stretch;align-self:stretch;width:auto;min-width:0;height:auto}
-.fg-b4jg0j{display:flex;flex-direction:row;gap:8px;align-items:center;align-self:stretch;align-self:stretch;width:auto;min-width:0;height:auto}
-.fg-qpqxkk{width:max-content;max-width:100%;height:auto;color:#111111;font-family:Pretendard GOV;font-weight:600;font-size:16px;line-height:1.6em;letter-spacing:-0.0188em;text-align:left;white-space:normal}
-.fg-utjihy{width:0px;max-width:100%;height:14px;border-style:solid;border-color:#CDD0D6;border-width:1px}
-.fg-cnd9ie{flex:1 1 0;min-width:0;height:auto;color:#111111;font-family:Pretendard GOV;font-weight:600;font-size:16px;line-height:1.6em;letter-spacing:-0.0188em;text-align:left;white-space:normal}
-.fg-1qontcw{align-self:stretch;width:auto;min-width:0;height:auto;color:#111111;font-family:Pretendard GOV;font-weight:400;font-size:16px;line-height:1.6em;letter-spacing:-0.0188em;text-align:left;white-space:normal}
-.fg-14tzslj{display:flex;flex-direction:column;gap:24px;padding:24px;align-self:stretch;align-self:stretch;width:auto;min-width:0;height:auto;border-radius:28px;overflow:hidden;background-color:#F1F2F4}
-.fg-1eiorba{display:flex;flex-direction:row;justify-content:space-between;align-self:stretch;align-self:stretch;width:auto;min-width:0;height:auto}
-.fg-97zqhl{display:flex;flex-direction:column;gap:24px;flex:1 1 0;min-width:0;height:auto}
-.fg-19tq0bo{width:max-content;max-width:100%;height:auto;color:#111111;font-family:Pretendard GOV;font-weight:600;font-size:24px;line-height:1.5em;letter-spacing:-0.0125em;text-align:left;white-space:normal}
-.fg-8wbzls{align-self:stretch;width:auto;min-width:0;height:0px;border-style:solid;border-color:#CDD0D6;border-width:1px}
-.fg-1t1whxu{display:flex;flex-direction:row;padding:16px 24px;justify-content:space-between;align-items:center;align-self:stretch;align-self:stretch;width:auto;min-width:0;height:auto;border-radius:28px;overflow:hidden;border-style:solid;border-color:#F7AFA0;border-width:2px;background-color:#FDE7E3}
-.fg-1vj6lhh{display:flex;flex-direction:row;gap:20px;align-items:center;width:max-content;max-width:100%;height:auto}
-.fg-su09zs{width:max-content;max-width:100%;height:auto;color:#111111;font-family:Pretendard GOV;font-weight:600;font-size:16px;line-height:1.48em;letter-spacing:-0.0188em;text-align:left;white-space:normal}
-.fg-1it9ae5{width:max-content;max-width:100%;height:auto;color:#111111;font-family:Pretendard GOV;font-weight:500;font-size:16px;line-height:1.48em;letter-spacing:-0.0188em;text-align:left;white-space:normal}
-.fg-aoubnx{width:max-content;max-width:100%;height:auto;color:#111111;font-family:Pretendard GOV;font-weight:400;font-size:16px;line-height:1.5em;letter-spacing:-0.0313em;text-align:right;white-space:normal}
-.fg-pyopes{display:flex;flex-direction:column;gap:12px;align-self:stretch;align-self:stretch;width:auto;min-width:0;height:auto}
-.fg-h4vwk1{display:flex;flex-direction:row;gap:36px;width:max-content;max-width:100%;height:auto}
-.fg-1683d4n{align-self:stretch;width:auto;min-width:0;height:auto;color:#111111;font-family:Pretendard GOV;font-weight:400;font-size:16px;line-height:1.6em;letter-spacing:-0.0188em;text-align:left;white-space:normal}
-.fg-1x33gkw{display:flex;flex-direction:row;gap:12px;width:max-content;max-width:100%;height:auto}
-.fg-779wit{display:flex;flex-direction:row;gap:8px;padding:8px 18px;justify-content:center;align-items:center;width:max-content;max-width:100%;height:auto}
-.fg-e0pyzu{display:flex;flex-direction:row;gap:8px;padding:8px 18px;justify-content:center;align-items:center;width:max-content;max-width:100%;height:auto}
-.fg-1qbi5a7{display:flex;flex-direction:row;gap:8px;padding:0px 24px;justify-content:center;align-items:center;width:240px;max-width:100%;height:56px}
-.fg-1x9rea4{display:flex;flex-direction:column;gap:40px;padding:0px 0px 24px;align-items:center;width:1920px;max-width:100%;height:auto;background-color:#E3E5E8}
-.fg-1uro97i{display:flex;flex-direction:column;justify-content:center;align-items:stretch;width:1920px;max-width:100%;height:56px;border-style:solid;border-color:#CDD0D6;border-width:1px 0px;background-color:#E3E5E8}
-.fg-uwsntd{display:flex;flex-direction:row;align-items:center;align-self:stretch;align-self:stretch;width:auto;min-width:0;flex:1 1 auto;min-height:0;border-style:solid;border-color:#CDD0D6;border-width:0px 0px 0px 1px}
-.fg-rnudcw{display:flex;flex-direction:row;gap:8px;padding:0px 24px;align-items:center;align-self:stretch;flex:1 1 0;min-width:0;align-self:stretch;border-style:solid;border-color:#CDD0D6;border-width:1px 1px 1px 0px}
-.fg-12f05xd{flex:1 1 0;min-width:0;height:auto;color:#111111;font-family:Pretendard GOV;font-weight:400;font-size:16px;line-height:1.5em;letter-spacing:-0.0188em;text-align:left;white-space:normal}
-.fg-1xwgj7q{display:flex;flex-direction:column;gap:8px;justify-content:center;width:max-content;max-width:100%;height:auto}
-.fg-q4hron{width:20px;max-width:100%;height:20px}
-.fg-uxu471{display:flex;flex-direction:row;gap:8px;padding:0px 24px;align-items:center;align-self:stretch;flex:1 1 0;min-width:0;align-self:stretch;border-style:solid;border-color:#CDD0D6;border-width:1px 1px 1px 0px}
-.fg-1q433v4{flex:1 1 0;min-width:0;height:auto;color:#111111;font-family:Pretendard GOV;font-weight:400;font-size:16px;line-height:1.5em;letter-spacing:-0.0188em;text-align:left;white-space:normal}
-.fg-1bprgip{display:flex;flex-direction:column;gap:8px;justify-content:center;width:max-content;max-width:100%;height:auto}
-.fg-1waankq{width:20px;max-width:100%;height:20px}
-.fg-cx2gtt{display:flex;flex-direction:row;gap:24px;align-items:flex-end;width:1272px;max-width:100%;height:auto}
-.fg-19ydi2m{display:flex;flex-direction:column;gap:16px;flex:1 1 0;min-width:0;height:auto}
-.fg-8r4noh{width:max-content;max-width:100%;height:auto;color:#111111;font-family:Pretendard GOV;font-weight:400;font-size:19px;line-height:1.5em;letter-spacing:-0.0158em;text-align:left;white-space:normal}
-.fg-1afq474{display:flex;flex-direction:column;gap:8px;width:max-content;max-width:100%;height:auto}
-.fg-wn8q59{display:flex;flex-direction:row;gap:8px;align-items:center;width:max-content;max-width:100%;height:auto}
-.fg-t09r6i{width:max-content;max-width:100%;height:auto;color:#111111;font-family:Pretendard GOV;font-weight:600;font-size:16px;line-height:1.5em;letter-spacing:-0.0188em;text-align:left;white-space:normal}
-.fg-m4los5{width:max-content;max-width:100%;height:auto;color:#111111;font-family:Pretendard GOV;font-weight:400;font-size:16px;line-height:1.5em;text-align:left;white-space:normal}
-.fg-5pp6ho{display:flex;flex-direction:row;gap:8px;align-items:center;width:max-content;max-width:100%;height:auto}
-.fg-feh1l6{width:max-content;max-width:100%;height:auto;color:#111111;font-family:Pretendard GOV;font-weight:600;font-size:16px;line-height:1.5em;letter-spacing:-0.0188em;text-align:left;white-space:normal}
-.fg-1xdw9p3{width:max-content;max-width:100%;height:auto;color:#111111;font-family:Pretendard GOV;font-weight:400;font-size:16px;line-height:1.5em;text-align:left;white-space:normal}
-.fg-lvb4k0{display:flex;flex-direction:row;gap:8px;align-items:center;width:max-content;max-width:100%;height:auto}
-.fg-166aua9{width:max-content;max-width:100%;height:auto;color:#111111;font-family:Pretendard GOV;font-weight:600;font-size:16px;line-height:1.5em;letter-spacing:-0.0188em;text-align:left;white-space:normal}
-.fg-1gfmbva{width:max-content;max-width:100%;height:auto;color:#111111;font-family:Pretendard GOV;font-weight:400;font-size:16px;line-height:1.5em;text-align:left;white-space:normal}
-.fg-w1gcu9{display:flex;flex-direction:row;padding:16px 0px 0px;justify-content:center;align-items:flex-end;align-self:stretch;align-self:stretch;width:auto;min-width:0;height:auto;border-style:solid;border-color:#CDD0D6;border-width:1px 0px 0px}
-.fg-g4t47o{display:flex;flex-direction:row;gap:40px;justify-content:center;align-items:center;flex:1 1 0;min-width:0;height:auto}
-.fg-q2fnm0{display:flex;flex-direction:row;align-items:center;width:max-content;max-width:100%;height:24px}
-.fg-vqix7f{width:max-content;max-width:100%;height:auto;color:#464C53;font-family:Pretendard GOV;font-weight:400;font-size:14px;line-height:1.5em;text-align:left;white-space:normal}
+.page-root,
+.page-root * {
+  box-sizing:border-box;
+}
+
+.page-root img {
+  display:block;
+  max-width:100%;
+}
+
+.page-shell {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  width:100%;
+  max-width:1920px;
+  margin-left:auto;
+  margin-right:auto;
+  height:auto;
+  background-color:#F4F5F6;
+}
+
+.page-gnb {
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  padding:20px 0px 10px;
+  align-items:center;
+  width:1920px;
+  max-width:100%;
+  height:auto;
+  background:linear-gradient(180deg, rgba(244, 245, 246, 1) 66%, rgba(244, 245, 246, 0) 100%);
+}
+
+.page-wrapper {
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  align-items:center;
+  align-self:stretch;
+  width:auto;
+  min-width:0;
+  height:auto;
+}
+
+.page-navigation-container {
+  display:flex;
+  flex-direction:row;
+  gap:8px;
+  padding:0px 10px 0px 20px;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  width:1272px;
+  max-width:100%;
+  height:64px;
+  border-radius:18px;
+  overflow:hidden;
+  background-color:#FFFFFF;
+}
+
+.page-navigation-container-visual {
+  width:212px;
+  max-width:100%;
+  height:42px;
+}
+
+.page-navigation-container-row {
+  display:flex;
+  flex-direction:row;
+  gap:60px;
+  align-items:center;
+  width:max-content;
+  max-width:100%;
+  height:auto;
+}
+
+.page-navigation-container-text {
+  width:max-content;
+  max-width:100%;
+  height:auto;
+  color:#111111;
+  font-family:Pretendard GOV;
+  font-weight:600;
+  font-size:16px;
+  line-height:1.44em;
+  letter-spacing:-0.0188em;
+  text-align:left;
+  white-space:normal;
+}
+
+.page-navigation-container-row-2 {
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  width:max-content;
+  max-width:100%;
+  height:auto;
+}
+
+.page-my-page-container {
+  display:flex;
+  flex-direction:row;
+  gap:4px;
+  padding:0px 18px;
+  justify-content:flex-end;
+  align-items:center;
+  width:max-content;
+  max-width:100%;
+  height:auto;
+}
+
+.page-icon-size {
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  justify-content:center;
+  width:max-content;
+  max-width:100%;
+  height:auto;
+}
+
+.page-icon-size-icon {
+  width:20px;
+  max-width:100%;
+  height:20px;
+}
+
+.page-my-page-container-text,
+.page-logout-container-text {
+  width:max-content;
+  max-width:100%;
+  height:auto;
+  color:#848E9A;
+  font-family:Pretendard GOV;
+  font-weight:600;
+  font-size:12px;
+  line-height:1.44em;
+  letter-spacing:-0.025em;
+  text-align:left;
+  white-space:normal;
+}
+
+.page-logout-container {
+  display:flex;
+  flex-direction:row;
+  gap:4px;
+  padding:0px 18px;
+  justify-content:flex-end;
+  align-items:center;
+  width:max-content;
+  max-width:100%;
+  height:20px;
+}
+
+.page-button {
+  display:flex;
+  flex-direction:column;
+  gap:60px;
+  padding:48px 0px 60px;
+  align-items:center;
+  width:1920px;
+  max-width:100%;
+  height:auto;
+  background-color:#F4F5F6;
+}
+
+.page-title-area {
+  display:flex;
+  flex-direction:row;
+  gap:10px;
+  padding:0px 12px;
+  align-items:center;
+  width:1272px;
+  max-width:100%;
+  height:auto;
+}
+
+.page-icon-size-icon-2 {
+  width:32px;
+  max-width:100%;
+  height:32px;
+}
+
+.page-title-area-heading {
+  width:max-content;
+  max-width:100%;
+  height:auto;
+  color:#111111;
+  font-family:Pretendard GOV;
+  font-weight:600;
+  font-size:32px;
+  line-height:1.5em;
+  letter-spacing:-0.0094em;
+  text-align:left;
+  white-space:normal;
+}
+
+.page-main {
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  padding:0px 0px 100px;
+  align-items:stretch;
+  width:1272px;
+  max-width:100%;
+  height:auto;
+}
+
+.page-main-content {
+  display:flex;
+  flex-direction:column;
+  gap:40px;
+  padding:60px;
+  align-items:center;
+  align-self:stretch;
+  width:auto;
+  min-width:0;
+  height:auto;
+  border-radius:60px;
+  overflow:hidden;
+  box-shadow:0px 2px 28px 0px rgba(0, 0, 0, 0.05);
+  background-color:#FFFFFF;
+}
+
+.page-section {
+  display:flex;
+  flex-direction:column;
+  gap:28px;
+  align-self:stretch;
+  width:auto;
+  min-width:0;
+  height:auto;
+}
+
+.page-section-2 {
+  display:flex;
+  flex-direction:row;
+  gap:12px;
+  padding:0px 12px;
+  width:1104px;
+  max-width:100%;
+  height:117px;
+}
+
+.page-section-content {
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  flex:1 1 0;
+  min-width:0;
+  height:auto;
+}
+
+.page-section-content-2 {
+  display:flex;
+  flex-direction:row;
+  gap:4px;
+  align-items:center;
+  width:max-content;
+  max-width:100%;
+  height:auto;
+}
+
+.page-badge-host {
+  display:flex;
+  flex-direction:row;
+  padding:0px 8px;
+  justify-content:center;
+  align-items:center;
+  width:max-content;
+  max-width:100%;
+  height:24px;
+}
+
+.page-section-heading {
+  align-self:stretch;
+  width:auto;
+  min-width:0;
+  height:auto;
+  color:#111111;
+  font-family:Pretendard GOV;
+  font-weight:600;
+  font-size:30px;
+  line-height:1.5em;
+  letter-spacing:-0.01em;
+  text-align:left;
+  white-space:normal;
+}
+
+.page-section-date {
+  width:1128px;
+  max-width:100%;
+  height:24px;
+  color:#848E9A;
+  font-family:Pretendard GOV;
+  font-weight:400;
+  font-size:16px;
+  line-height:1.5em;
+  letter-spacing:-0.0313em;
+  text-align:left;
+  white-space:normal;
+}
+
+.page-alert {
+  display:flex;
+  flex-direction:row;
+  padding:16px 32px 16px 16px;
+  justify-content:space-between;
+  align-items:center;
+  align-self:stretch;
+  width:auto;
+  min-width:0;
+  height:auto;
+  border-radius:28px;
+  overflow:hidden;
+  border-style:solid;
+  border-color:#FFE2A8;
+  border-width:2px;
+  background-color:#FFFDF0;
+}
+
+.page-alert-row {
+  display:flex;
+  flex-direction:row;
+  gap:16px;
+  align-items:center;
+  width:max-content;
+  max-width:100%;
+  height:auto;
+}
+
+.page-chat-gpt-image-2026년-1월-20일-오후-12-57-35-2 {
+  width:48px;
+  max-width:100%;
+  height:48px;
+}
+
+.page-alert-row-2 {
+  display:flex;
+  flex-direction:row;
+  gap:8px;
+  width:max-content;
+  max-width:100%;
+  height:auto;
+}
+
+.page-alert-text {
+  width:max-content;
+  max-width:100%;
+  height:auto;
+  color:#111111;
+  font-family:Pretendard GOV;
+  font-weight:400;
+  font-size:19px;
+  line-height:1.5em;
+  letter-spacing:-0.0263em;
+  text-align:left;
+  white-space:normal;
+}
+
+.page-alert-row-3 {
+  display:flex;
+  flex-direction:row;
+  gap:20px;
+  width:max-content;
+  max-width:100%;
+  height:auto;
+}
+
+.page-alert-text-2 {
+  width:max-content;
+  max-width:100%;
+  height:auto;
+  color:#111111;
+  font-family:Pretendard GOV;
+  font-weight:500;
+  font-size:19px;
+  line-height:1.5em;
+  letter-spacing:-0.0263em;
+  text-align:left;
+  white-space:normal;
+}
+
+.page-section-3 {
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  align-items:stretch;
+  align-self:stretch;
+  width:auto;
+  min-width:0;
+  height:auto;
+}
+
+.page-attach {
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  padding:12px 32px 12px 20px;
+  justify-content:center;
+  align-items:stretch;
+  align-self:stretch;
+  width:auto;
+  min-width:0;
+  height:auto;
+  border-radius:16px;
+  overflow:hidden;
+  border-style:solid;
+  border-color:#CDD0D6;
+  border-width:1px;
+}
+
+.page-attach-row {
+  display:flex;
+  flex-direction:row;
+  gap:20px;
+  align-items:center;
+  align-self:stretch;
+  width:auto;
+  min-width:0;
+  height:auto;
+}
+
+.page-attach-row-2 {
+  display:flex;
+  flex-direction:row;
+  gap:8px;
+  align-items:center;
+  flex:1 1 0;
+  min-width:0;
+  height:auto;
+}
+
+.page-attach-text {
+  width:max-content;
+  max-width:100%;
+  height:auto;
+  color:#111111;
+  font-family:Pretendard GOV;
+  font-weight:600;
+  font-size:14px;
+  line-height:1.6em;
+  letter-spacing:-0.0214em;
+  text-align:left;
+  white-space:normal;
+}
+
+.page-attach-divider,
+.page-form-field-divider {
+  width:0px;
+  max-width:100%;
+  height:14px;
+  border-style:solid;
+  border-color:#CDD0D6;
+  border-width:1px;
+}
+
+.page-attach-text-2 {
+  flex:1 1 0;
+  min-width:0;
+  height:auto;
+  color:#111111;
+  font-family:Pretendard GOV;
+  font-weight:400;
+  font-size:14px;
+  line-height:1.5em;
+  letter-spacing:-0.0214em;
+  text-align:left;
+  white-space:normal;
+}
+
+.page-attach-content {
+  display:flex;
+  flex-direction:row;
+  gap:24px;
+  align-items:center;
+  width:max-content;
+  max-width:100%;
+  height:auto;
+}
+
+.page-button-host {
+  display:flex;
+  flex-direction:row;
+  gap:4px;
+  justify-content:center;
+  align-items:center;
+  width:max-content;
+  max-width:100%;
+  height:auto;
+}
+
+.page-section-4 {
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  padding:0px 12px;
+  justify-content:center;
+  align-items:stretch;
+  align-self:stretch;
+  width:auto;
+  min-width:0;
+  height:auto;
+}
+
+.page-form-field {
+  display:flex;
+  flex-direction:row;
+  gap:8px;
+  align-items:center;
+  align-self:stretch;
+  width:auto;
+  min-width:0;
+  height:auto;
+}
+
+.page-form-field-text {
+  width:max-content;
+  max-width:100%;
+  height:auto;
+  color:#111111;
+  font-family:Pretendard GOV;
+  font-weight:600;
+  font-size:16px;
+  line-height:1.6em;
+  letter-spacing:-0.0188em;
+  text-align:left;
+  white-space:normal;
+}
+
+.page-form-field-text-2 {
+  flex:1 1 0;
+  min-width:0;
+  height:auto;
+  color:#111111;
+  font-family:Pretendard GOV;
+  font-weight:600;
+  font-size:16px;
+  line-height:1.6em;
+  letter-spacing:-0.0188em;
+  text-align:left;
+  white-space:normal;
+}
+
+.page-section-text {
+  align-self:stretch;
+  width:auto;
+  min-width:0;
+  height:auto;
+  color:#111111;
+  font-family:Pretendard GOV;
+  font-weight:400;
+  font-size:16px;
+  line-height:1.6em;
+  letter-spacing:-0.0188em;
+  text-align:left;
+  white-space:normal;
+}
+
+.page-section-5 {
+  display:flex;
+  flex-direction:column;
+  gap:24px;
+  padding:24px;
+  align-self:stretch;
+  width:auto;
+  min-width:0;
+  height:auto;
+  border-radius:28px;
+  overflow:hidden;
+  background-color:#F1F2F4;
+}
+
+.page-section-row {
+  display:flex;
+  flex-direction:row;
+  justify-content:space-between;
+  align-self:stretch;
+  width:auto;
+  min-width:0;
+  height:auto;
+}
+
+.page-section-stack {
+  display:flex;
+  flex-direction:column;
+  gap:24px;
+  flex:1 1 0;
+  min-width:0;
+  height:auto;
+}
+
+.page-section-heading-2 {
+  width:max-content;
+  max-width:100%;
+  height:auto;
+  color:#111111;
+  font-family:Pretendard GOV;
+  font-weight:600;
+  font-size:24px;
+  line-height:1.5em;
+  letter-spacing:-0.0125em;
+  text-align:left;
+  white-space:normal;
+}
+
+.page-section-divider {
+  align-self:stretch;
+  width:auto;
+  min-width:0;
+  height:0px;
+  border-style:solid;
+  border-color:#CDD0D6;
+  border-width:1px;
+}
+
+.page-alert-2 {
+  display:flex;
+  flex-direction:row;
+  padding:16px 24px;
+  justify-content:space-between;
+  align-items:center;
+  align-self:stretch;
+  width:auto;
+  min-width:0;
+  height:auto;
+  border-radius:28px;
+  overflow:hidden;
+  border-style:solid;
+  border-color:#F7AFA0;
+  border-width:2px;
+  background-color:#FDE7E3;
+}
+
+.page-alert-row-4 {
+  display:flex;
+  flex-direction:row;
+  gap:20px;
+  align-items:center;
+  width:max-content;
+  max-width:100%;
+  height:auto;
+}
+
+.page-alert-text-3 {
+  width:max-content;
+  max-width:100%;
+  height:auto;
+  color:#111111;
+  font-family:Pretendard GOV;
+  font-weight:600;
+  font-size:16px;
+  line-height:1.48em;
+  letter-spacing:-0.0188em;
+  text-align:left;
+  white-space:normal;
+}
+
+.page-alert-text-4 {
+  width:max-content;
+  max-width:100%;
+  height:auto;
+  color:#111111;
+  font-family:Pretendard GOV;
+  font-weight:500;
+  font-size:16px;
+  line-height:1.48em;
+  letter-spacing:-0.0188em;
+  text-align:left;
+  white-space:normal;
+}
+
+.page-alert-date {
+  width:max-content;
+  max-width:100%;
+  height:auto;
+  color:#111111;
+  font-family:Pretendard GOV;
+  font-weight:400;
+  font-size:16px;
+  line-height:1.5em;
+  letter-spacing:-0.0313em;
+  text-align:right;
+  white-space:normal;
+}
+
+.page-section-stack-2 {
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  align-self:stretch;
+  width:auto;
+  min-width:0;
+  height:auto;
+}
+
+.page-table-host {
+  display:flex;
+  flex-direction:row;
+  gap:36px;
+  width:max-content;
+  max-width:100%;
+  height:auto;
+}
+
+.page-section-content-3 {
+  display:flex;
+  flex-direction:row;
+  gap:12px;
+  width:max-content;
+  max-width:100%;
+  height:auto;
+}
+
+.page-tag-host {
+  display:flex;
+  flex-direction:row;
+  gap:8px;
+  padding:8px 18px;
+  justify-content:center;
+  align-items:center;
+  width:max-content;
+  max-width:100%;
+  height:auto;
+}
+
+.page-button-host-2 {
+  display:flex;
+  flex-direction:row;
+  gap:8px;
+  padding:0px 24px;
+  justify-content:center;
+  align-items:center;
+  width:240px;
+  max-width:100%;
+  height:56px;
+}
+
+.page-footer {
+  display:flex;
+  flex-direction:column;
+  gap:40px;
+  padding:0px 0px 24px;
+  align-items:center;
+  width:1920px;
+  max-width:100%;
+  height:auto;
+  background-color:#E3E5E8;
+}
+
+.page-related-site {
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:stretch;
+  width:1920px;
+  max-width:100%;
+  height:56px;
+  border-style:solid;
+  border-color:#CDD0D6;
+  border-width:1px 0px;
+  background-color:#E3E5E8;
+}
+
+.page-item-list {
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  align-self:stretch;
+  width:auto;
+  min-width:0;
+  flex:1 1 auto;
+  min-height:0;
+  border-style:solid;
+  border-color:#CDD0D6;
+  border-width:0px 0px 0px 1px;
+}
+
+.page-footer-relatedsite-box-atomic {
+  display:flex;
+  flex-direction:row;
+  gap:8px;
+  padding:0px 24px;
+  align-items:center;
+  align-self:stretch;
+  flex:1 1 0;
+  min-width:0;
+  border-style:solid;
+  border-color:#CDD0D6;
+  border-width:1px 1px 1px 0px;
+}
+
+.page-footer-relatedsite-box-atomic-text {
+  flex:1 1 0;
+  min-width:0;
+  height:auto;
+  color:#111111;
+  font-family:Pretendard GOV;
+  font-weight:400;
+  font-size:16px;
+  line-height:1.5em;
+  letter-spacing:-0.0188em;
+  text-align:left;
+  white-space:normal;
+}
+
+.page-footer-grid {
+  display:flex;
+  flex-direction:row;
+  gap:24px;
+  align-items:flex-end;
+  width:1272px;
+  max-width:100%;
+  height:auto;
+}
+
+.page-columns-1 {
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+  flex:1 1 0;
+  min-width:0;
+  height:auto;
+}
+
+.page-columns-1-text {
+  width:max-content;
+  max-width:100%;
+  height:auto;
+  color:#111111;
+  font-family:Pretendard GOV;
+  font-weight:400;
+  font-size:19px;
+  line-height:1.5em;
+  letter-spacing:-0.0158em;
+  text-align:left;
+  white-space:normal;
+}
+
+.page-전화번호 {
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  width:max-content;
+  max-width:100%;
+  height:auto;
+}
+
+.page-내용 {
+  display:flex;
+  flex-direction:row;
+  gap:8px;
+  align-items:center;
+  width:max-content;
+  max-width:100%;
+  height:auto;
+}
+
+.page-내용-text {
+  width:max-content;
+  max-width:100%;
+  height:auto;
+  color:#111111;
+  font-family:Pretendard GOV;
+  font-weight:600;
+  font-size:16px;
+  line-height:1.5em;
+  letter-spacing:-0.0188em;
+  text-align:left;
+  white-space:normal;
+}
+
+.page-내용-text-2 {
+  width:max-content;
+  max-width:100%;
+  height:auto;
+  color:#111111;
+  font-family:Pretendard GOV;
+  font-weight:400;
+  font-size:16px;
+  line-height:1.5em;
+  text-align:left;
+  white-space:normal;
+}
+
+.page-footer-copyright-atomic {
+  display:flex;
+  flex-direction:row;
+  padding:16px 0px 0px;
+  justify-content:center;
+  align-items:flex-end;
+  align-self:stretch;
+  width:auto;
+  min-width:0;
+  height:auto;
+  border-style:solid;
+  border-color:#CDD0D6;
+  border-width:1px 0px 0px;
+}
+
+.page-fixed-con {
+  display:flex;
+  flex-direction:row;
+  gap:40px;
+  justify-content:center;
+  align-items:center;
+  flex:1 1 0;
+  min-width:0;
+  height:auto;
+}
+
+.page-copyright {
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  width:max-content;
+  max-width:100%;
+  height:24px;
+}
+
+.page-copyright-text {
+  width:max-content;
+  max-width:100%;
+  height:auto;
+  color:#464C53;
+  font-family:Pretendard GOV;
+  font-weight:400;
+  font-size:14px;
+  line-height:1.5em;
+  text-align:left;
+  white-space:normal;
+}
