@@ -3,39 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>1. 2...&quot;</title>
+  <title>demo-page</title>
   <link rel="stylesheet" href="/import.css">
   <script defer src="/import.js"></script>
   <script defer src="/common.js"></script>
-  <script defer src="/patterns/demo/site-navigation.js"></script>
-  <style>
-    .ds-prose{margin:1.2rem 0;line-height:1.7;white-space:pre-wrap;color:var(--text-default, #111);}
-    #main-content{padding:2.4rem 0 4rem;}
-    .gnb__link:empty{display:none;}
-    .gnb__item:has(.gnb__link:empty){display:none;}
-  </style>
 </head>
 <body>
-<!-- Header: Header -->
-<div data-include-path="/patterns/header/include.html" data-prop-brand="KBIZ 노란우산" data-prop-brand-href="#" data-prop-item1="상담접수 관리" data-prop-item2="상담일정 관리" data-prop-item3="수당조회" data-prop-item4="자문위원 FAQ" data-prop-item5="공지사항" data-prop-item1-href="#" data-prop-item2-href="#" data-prop-item3-href="#" data-prop-item4-href="#" data-prop-item5-href="#"></div>
-  <div class="page-container">
-    <main id="main-content">
-<!-- Alert: Alert -->
-<div data-include-path="/components/alert/include.html" data-prop-title="1. 2...&quot;" data-prop-content="1. 2...&quot;" data-prop-tone-class="alert--info"></div>
-<!-- Table: Table -->
-<div data-include-path="/components/table/include.html" data-prop-caption="안녕하세요. 답변드립니다.  1. 2..." data-prop-col1="1. 2...&quot;" data-prop-col2="값" data-prop-variant-class="table--bordered"></div>
-<!-- Tag: Tag -->
-<div data-include-path="/components/tag/include.html" data-prop-label="1. 2...&quot;"></div>
-<!-- Tag: Tag -->
-<div data-include-path="/components/tag/include.html" data-prop-label="1. 2...&quot;"></div>
-<div data-include-path="/components/form-field/include.html" data-prop-label="신청 법률분쟁의 종류" data-prop-value="부동산 분쟁소송대리지원"></div>
-<div data-include-path="/components/alert/include.html" data-prop-content="2026.02.19 15:42:28"></div>
-<div data-include-path="/components/button/include.html" data-prop-label="목록"></div>
-<div data-include-path="/components/button/include.html" data-prop-label="수정하기"></div>
-    </main>
+  <div data-include-path="/svg-symbols.html"></div>
+  <div class="page-layout">
+    <div data-include-path="/patterns/gnb.html"></div>
+    <div class="page-layout__page-inner">
+    </div>
+    <div data-include-path="/patterns/footer.html"></div>
   </div>
-<!-- Footer: Footer -->
-<div data-include-path="/patterns/footer/include.html" data-prop-brand="KBIZ 노란우산" data-prop-info="고객센터 1666-9988" data-prop-copyright="Copyright KBIZ. All rights reserved." data-prop-nav1="이용약관" data-prop-nav2="개인정보처리방침" data-prop-nav1-href="#" data-prop-nav2-href="#" data-prop-policy1="이메일무단수집거부" data-prop-policy2="사이트맵" data-prop-policy1-href="#" data-prop-policy2-href="#"></div>
-  <script>document.addEventListener('DOMContentLoaded',function(){if(window.initSiteNavigation)window.initSiteNavigation(document);});</script>
 </body>
 </html>
