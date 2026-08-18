@@ -3,18 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>demo-page</title>
+  <title>자문위원포털_홈(상담접수관리)_상담접수 내용 상세</title>
   <link rel="stylesheet" href="/import.css">
   <script defer src="/import.js"></script>
   <script defer src="/common.js"></script>
 </head>
 <body>
   <div data-include-path="/svg-symbols.html"></div>
-  <div class="page-layout">
-    <div data-include-path="/patterns/gnb.html"></div>
-    <div class="page-layout__page-inner">
+<!-- Gnb: Gnb -->
+<div data-include-path="/patterns/gnb/include.html" data-prop-item1="상담접수 관리" data-prop-item2="상담일정 관리" data-prop-item3="수당조회" data-prop-item4="자문위원 FAQ" data-prop-item5="공지사항" data-prop-item6="마이페이지" data-prop-item7="로그아웃"></div>
+  <main id="main-content">
+    <div class="page-container">
+
+<!-- BackToList: Button -->
+<div data-include-path="/components/back-to-list/include.html" data-prop-label="목록" data-prop-href="#"></div>
+
+<!-- DetailContentHeader: Section -->
+<div data-include-path="/components/case-header/include.html" data-prop-title="상담접수 내용 상세" data-prop-badge1="분쟁소송대리지원" data-prop-badge2="법률/법무" data-prop-meta1="2026.02.19 15:42:28"></div>
+
+<!-- QuestionContent: Section -->
+<div data-include-path="/components/question-content/include.html" data-prop-description="부동산 관련 문의입니다."></div>
+
+<!-- ContactBar: Section -->
+<div data-include-path="/components/contact-bar/include.html" data-prop-name="홍길동" data-prop-phone="010-8900-1250"></div>
+
+<!-- AttachmentList: Section -->
+<div data-include-path="/components/attachment-list/include.html" data-prop-type1="첨부파일" data-prop-file1="부동산계약서.pdf"></div>
+
+<!-- FormCard: Section -->
+<div data-include-path="/components/form-card/include.html" data-prop-title="신청 법률분쟁의 종류" data-prop-body-html="&lt;p&gt;부동산 분쟁소송대리지원&lt;/p&gt;&lt;p&gt; 제가 가지고 있는 오래된 빌라가 재건축이 들어가게되었습니다.&lt;/p&gt;"></div>
+
+<!-- AnswerPanel: Section -->
+<div data-include-path="/components/answer-panel/include.html" data-prop-title="상담답변" data-prop-notice-title="자료보완요청" data-prop-notice-message="제출하신 증빙서류가 상담 내용과 일치하지 않습니다. 재제출 부탁드립니다." data-prop-description="안녕하세요. 답변드립니다.&#10;&#10;1. 2025년 8월 만료 후 재계약 하지 않기로 협의하였다면, 기존 계약서 내용대로 하여야 합니다. &#10;통상 재건축 예정인 주택의 경우 재건축 이주기간이 나올 경우 명도하여야 한다고 되어 있습니다. &#10;이 경우 세입자 중개비 등 이주비용 부담을 누가 하는 지 기재되어 있으면 그에 따르고, 그렇지 않으면 세입자 부담입니다.&#10;&#10;2. 계약서에 위와 같은 특약이 있으면, 특약내용대로 하시면 됩니다.&#10;&#10;3. 계약서 위와 같은 특약이 없다고 하더라도, 실무적으로 재계약임을 알고 세입자가 입주하였다가 묵시적 갱신 이후 &#10;중도 퇴거하였다고 하더라도 원칙적으로 세입자가 이주비용을 부담합니다.&#10;&#10;4. 그런데 상담자님께서는 일정지연 시 비용 부담으로, 세입자에게 추후 \(이사비용\)정산을 해주겠다고 한 말은 구두 약정으로 볼 수 있습니다.&#10;&#10;5. 구두약정은 법률적으로 계약으로 보기때문에 도의적인 취지였다고 번복하기 어렵습니다.&#10;&#10;6. 다만, 이주비용 금액을 어느 정도로 하겠다고 명확히 밝히지 않았기 때문에 인근 같은 재건축 빌라 세입자들의 통상 이주비를 &#10;중개사를 통해 확인하여 해당 비용이 적정하다고 의견을 주고, 세입자가 요청한 금액과 사이에서 합의 시도해보시기 바랍니다.&#10;&#10;7. 날짜가 임박하여 합의가 안되면 상담자님의 비용부담이 늘어날 수 있으니, 세입자와 감정싸움이 나지 않도록 원만히 합의하시기 바랍니다."></div>
+
+<!-- Tag: Tag -->
+<div data-include-path="/components/tag/include.html" data-prop-label="#부동산"></div>
+
+<!-- Tag: Tag -->
+<div data-include-path="/components/tag/include.html" data-prop-label="#매매"></div>
+<!-- ActionButton: Button -->
+<div data-include-path="/components/action-button/include.html" data-prop-label="수정하기" data-prop-href="#"></div>
     </div>
-    <div data-include-path="/patterns/footer.html"></div>
-  </div>
+  </main>
+<!-- Footer: Footer -->
+<div data-include-path="/patterns/footer/include.html" data-prop-brand="KBIZ" data-prop-copyright="Copyright 2026. KBIZ. all rights reserved." data-prop-policy1="개인정보처리방침" data-prop-policy1-href="#" data-prop-policy2="이용약관" data-prop-policy2-href="#"></div>
 </body>
 </html>
